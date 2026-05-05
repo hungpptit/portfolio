@@ -69,9 +69,9 @@ export default function App() {
             transition={{ delay: 0.2 }}
             className="mt-6 md:mt-0 text-left md:text-right font-mono text-[10px] md:text-xs space-y-1 opacity-60 hover:opacity-100 transition-opacity"
           >
-            <p className="flex items-center md:justify-end gap-2"><Phone size={12} className="text-accent"/> {PERSONAL_INFO.phone}</p>
-            <p className="flex items-center md:justify-end gap-2"><Mail size={12} className="text-accent"/> {PERSONAL_INFO.email}</p>
-            <p className="flex items-center md:justify-end gap-2"><Github size={12} className="text-accent"/> github.com/hungpptit</p>
+            <a href={`tel:${PERSONAL_INFO.phone}`} className="flex items-center md:justify-end gap-2 hover:text-accent transition-colors"><Phone size={12} className="text-accent"/> {PERSONAL_INFO.phone}</a>
+            <a href={`mailto:${PERSONAL_INFO.email}`} className="flex items-center md:justify-end gap-2 hover:text-accent transition-colors"><Mail size={12} className="text-accent"/> {PERSONAL_INFO.email}</a>
+            <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="flex items-center md:justify-end gap-2 hover:text-accent transition-colors"><Github size={12} className="text-accent"/> github.com/hungpptit</a>
           </motion.div>
         </header>
 
