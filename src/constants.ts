@@ -58,23 +58,27 @@ export const PROJECTS: Project[] = [
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    name: "Languages",
-    skills: ["JavaScript (ES6+)", "Java", "Python", "SQL"]
+    name: "Programming & DB",
+    skills: ["JavaScript ES6", "TypeScript", "Java (OOP)", "Python", "SQL Server (TSQL)"]
   },
   {
-    name: "Frontend",
-    skills: ["ReactJS", "NextJS", "TypeScript", "HTML/CSS"]
+    name: "AI & Machine Learning",
+    skills: ["Algorithms (SVD, kNN)", "Naive Bayes", "NLP", "Pandas", "Scikit-learn"]
   },
   {
-    name: "Backend",
-    skills: ["Node.js", "Express", "NestJS", "Sequelize", "Prisma", "RESTful API"]
+    name: "Frontend Dev",
+    skills: ["ReactJS", "Next.js", "Tailwind CSS", "HTML5/CSS3"]
   },
   {
-    name: "DevOps",
-    skills: ["Git", "Docker", "Postman", "CI/CD"]
+    name: "Backend & Cloud",
+    skills: ["NestJS", "Node.js", "Firebase", "JWT", "RESTful API", "Stripe"]
   },
   {
-    name: "Soft Skills",
-    skills: ["Teamwork", "Problem-solving", "Time Management", "Adaptability"]
+    name: "Architecture & DevOps",
+    skills: ["Monorepo", "Git", "Docker", "Postman", "CI/CD (GitHub Actions)"]
+  },
+  {
+    name: "Methodologies",
+    skills: ["Agile/Scrum", "SDLC", "ETL Concepts", "Data Cleaning"]
   }
 ];
