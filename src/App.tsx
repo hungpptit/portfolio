@@ -186,7 +186,7 @@ function ProjectCard({ project, index }: { project: Project; index: number; key?
         {project.title}
       </h3>
       
-      <p className="text-xs text-slate-400 mb-6 leading-relaxed flex-grow">
+      <p className="text-xs text-slate-400 mb-6 leading-relaxed flex-grow whitespace-pre-wrap">
         {project.description}
       </p>
 

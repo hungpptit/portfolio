@@ -24,16 +24,16 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Tech Store Ecosystem",
-    description: "A comprehensive e-commerce solution featuring a native Android user application and a web-based administrative dashboard for order and product management.",
-    tech: ["Java (Android)", "TypeScript", "React", "Node.js", "SQL"],
+    description: "Mobile: native Android app with secure Stripe checkout and Firebase real-time chat (FCM + Firestore).\nWeb: Next.js admin dashboard for inventory control, order tracking, and synchronized customer support messaging.",
+    tech: ["Java (Android Studio)", "Next.js", "Firebase", "Stripe API", "Tailwind CSS"],
     link: "https://github.com/hungpptit/tech-store-mobile",
     github: "https://github.com/hungpptit/tech-store-mobile",
     type: "Mobile"
   },
   {
     title: "Chatbot TOEIC + AI",
-    description: "An AI-powered preparation tool for TOEIC exams, featuring interactive chatbots to enhance language learning through conversation.",
-    tech: ["Python", "NLP", "AI SDK", "TypeScript"],
+    description: "Multi-layered TOEIC tutor built with Gemini AI for advanced guidance, BERT for intent recognition, and Naïve Bayes + kNN analytics for adaptive study recommendations.",
+    tech: ["ReactJS", "Node.js", "Gemini API", "BERT", "Naïve Bayes", "kNN"],
     link: "https://github.com/hungpptit/chatbot-toeic",
     github: "https://github.com/hungpptit/chatbot-toeic",
     type: "AI"
@@ -58,27 +58,31 @@ export const PROJECTS: Project[] = [
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    name: "Programming & DB",
-    skills: ["JavaScript ES6", "TypeScript", "Java (OOP)", "Python", "SQL Server (TSQL)"]
+    name: "Programming & Databases",
+    skills: ["JavaScript (ES6+)", "TypeScript", "Java (OOP, Android Studio)", "Python", "SQL Server (T-SQL, CTEs, Window Functions)"]
   },
   {
     name: "AI & Machine Learning",
-    skills: ["Algorithms (SVD, kNN)", "Naive Bayes", "NLP", "Pandas", "Scikit-learn"]
+    skills: ["BERT (Deep Learning)", "Gemini API (LLM Integration)", "Naïve Bayes", "kNN", "SVD", "Content-Based Filtering"]
   },
   {
-    name: "Frontend Dev",
-    skills: ["ReactJS", "Next.js", "Tailwind CSS", "HTML5/CSS3"]
+    name: "Libraries & Modeling",
+    skills: ["Pandas", "NumPy", "Scikit-learn", "Data Analysis", "Modeling"]
+  },
+  {
+    name: "Frontend Development",
+    skills: ["ReactJS", "Next.js", "Tailwind CSS", "HTML/CSS"]
   },
   {
     name: "Backend & Cloud",
-    skills: ["NestJS", "Node.js", "Firebase", "JWT", "RESTful API", "Stripe"]
+    skills: ["NestJS", "Node.js (Express, Sequelize, Prisma)", "RESTful API Design", "Firebase (Firestore, Authentication, Hosting)", "JWT", "Stripe API"]
   },
   {
     name: "Architecture & DevOps",
-    skills: ["Monorepo", "Git", "Docker", "Postman", "CI/CD (GitHub Actions)"]
+    skills: ["Monorepo Architecture", "Git", "Docker", "Postman", "CI/CD (GitHub Actions)"]
   },
   {
     name: "Methodologies",
-    skills: ["Agile/Scrum", "SDLC", "ETL Concepts", "Data Cleaning"]
+    skills: ["Agile/Scrum", "SDLC", "Data-Driven Decision Making", "ETL Concepts", "Data Cleaning", "Star Schema Modeling"]
   }
 ];
