@@ -48,7 +48,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Online Movie Ticket Booking System",
-    description: "Built a microservices-based movie booking platform with an API Gateway and separated services for users, movies, seats, bookings, payments, and notifications.\nImplemented the full booking flow: browse movies, select showtimes, temporarily lock seats, pay via QR code, confirm tickets, and send notifications.\nImproved concurrency handling with Redis-based seat locking and timeout mechanisms to prevent double-booking under high traffic.",
+    description: "Built a microservices-based movie booking platform with an API Gateway and separated services for users, movies, bookings, payments, and notifications, with movie/showtime handling in the movie service.\nImplemented the full booking flow: browse movies, select showtimes, temporarily lock seats, pay via ZaloPay Dynamic QR, confirm tickets, and send notifications through RabbitMQ.\nImproved concurrency handling with Redis distributed locking + TTL and a database lock fallback in the booking service to prevent double-booking under high traffic.",
     tech: ["React", "Express.js", "Sequelize", "SQL Server", "Redis", "RabbitMQ", "JWT", "Axios", "React Router", "CSS Modules", "Nodemailer", "QR Code"],
     link: "https://github.com/hungpptit/XEMPHIM/tree/kientruc",
     github: "https://github.com/hungpptit/XEMPHIM/tree/kientruc",
