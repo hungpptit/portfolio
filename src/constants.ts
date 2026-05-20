@@ -47,11 +47,11 @@ export const PROJECTS: Project[] = [
     type: "Game"
   },
   {
-    title: "Library Management System",
-    description: "A robust Java-based application for managing library resources, tracking book loans, and maintaining member records with an intuitive interface.",
-    tech: ["Java", "Swing", "JDBC", "MySQL"],
-    link: "https://github.com/hungpptit/library-management-system",
-    github: "https://github.com/hungpptit/library-management-system",
+    title: "Online Movie Ticket Booking System",
+    description: "Built a microservices-based movie booking platform with an API Gateway and separated services for users, movies, seats, bookings, payments, and notifications.\nImplemented the full booking flow: browse movies, select showtimes, temporarily lock seats, pay via QR code, confirm tickets, and send notifications.\nImproved concurrency handling with Redis-based seat locking and timeout mechanisms to prevent double-booking under high traffic.",
+    tech: ["React", "Express.js", "Sequelize", "SQL Server", "Redis", "RabbitMQ", "JWT", "Axios", "React Router", "CSS Modules", "Nodemailer", "QR Code"],
+    link: "https://github.com/hungpptit/XEMPHIM/tree/kientruc",
+    github: "https://github.com/hungpptit/XEMPHIM/tree/kientruc",
     type: "System"
   }
 ];
@@ -63,7 +63,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     name: "AI & Machine Learning",
-    skills: ["BERT (Deep Learning)", "Gemini API (LLM Integration)", "Naïve Bayes", "kNN", "SVD", "Content-Based Filtering"]
+    skills: ["BERT (Deep Learning)", "Gemini API (LLM Integration)", "Naive Bayes", "kNN", "SVD", "Content-Based Filtering"]
   },
   {
     name: "Libraries & Modeling",
