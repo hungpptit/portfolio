@@ -10,7 +10,7 @@ export const PERSONAL_INFO = {
   phone: "0785535224",
   github: "https://github.com/hungpptit",
   location: "Vietnam",
-  bio: "Final-year IT student at PTIT with a focus on scalable system design and full-stack development (NextJS, NestJS, Java Android). Specialized in implementing AI solutions, including recommender systems and NLP chatbots."
+  bio: "Final-year IT student at PTIT with a focus on scalable system design and full-stack development (NextJS, NestJS, Java Android). Specialized in implementing AI solutions including recommender systems, NLP chatbots, and Edge AI deployment. Experienced in model quantization, complex embedded environments, and ROS/ROS2 middleware for robotics."
 };
 
 export const PROJECTS: Project[] = [
@@ -53,6 +53,14 @@ export const PROJECTS: Project[] = [
     link: "https://github.com/hungpptit/XEMPHIM/tree/kientruc",
     github: "https://github.com/hungpptit/XEMPHIM/tree/kientruc",
     type: "System"
+  },
+  {
+    title: "Smart Garden with On-Device Edge AI",
+    description: "Deployed Edge AI Machine Learning models in a complex embedded system environment (ESP32). Handled the end-to-end ML pipeline including training, model quantization, and deploying optimized TFLite models directly on resource-constrained embedded hardware for real-time inference. Architected a multi-tasking FreeRTOS system, demonstrating strong capability in Edge AI deployment and sensor-driven automation.",
+    tech: ["C++", "FreeRTOS", "TensorFlow Lite", "Model Quantization", "ESP32", "Edge AI", "ROS/ROS2"],
+    link: "https://github.com/hungpptit/VuonThongMinh",
+    github: "https://github.com/hungpptit/VuonThongMinh",
+    type: "IoT"
   }
 ];
 
@@ -60,6 +68,10 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     name: "Programming & Databases",
     skills: ["JavaScript (ES6+)", "TypeScript", "Java (OOP, Android Studio)", "Python", "SQL Server (T-SQL, CTEs, Window Functions)"]
+  },
+  {
+    name: "Embedded, Robotics & Edge AI",
+    skills: ["ROS/ROS2", "Model Quantization", "Edge AI (TFLite)", "FreeRTOS", "ESP32 / Embedded Hardware"]
   },
   {
     name: "AI & Machine Learning",

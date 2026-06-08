@@ -4,7 +4,7 @@ export interface Project {
   tech: string[];
   link: string;
   github?: string;
-  type: 'Web' | 'Mobile' | 'Game' | 'AI' | 'System';
+  type: 'Web' | 'Mobile' | 'Game' | 'AI' | 'System' | 'IoT';
 }
 
 export interface SkillCategory {
