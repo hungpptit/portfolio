@@ -1,28 +1,214 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-
-  --color-accent: #22d3ee; /* cyan-400 */
-  --color-muted: #94a3b8; /* slate-400 */
-}
-
 @layer base {
+  :root {
+    --bg-surface: #131313;
+    --bg-surface-dim: #131313;
+    --bg-surface-bright: #393939;
+    --bg-surface-lowest: #0e0e0e;
+    --bg-surface-low: #1b1c1c;
+    --bg-surface-container: #1f2020;
+    --bg-surface-high: #2a2a2a;
+    --bg-surface-highest: #353535;
+    --color-gold: #D4AF37;
+    --color-gold-light: #e9c349;
+    --color-gold-dim: #af8d11;
+    --text-primary: #e4e2e1;
+    --text-variant: #c4c7c7;
+    --text-muted: #8e9192;
+    --border-neutral: #2a2a2a;
+    --border-subtle: #1b1c1c;
+    --border-gold: #D4AF37;
+  }
+
+  * {
+    border-color: var(--border-neutral);
+    border-radius: 0px !important; /* Aurelian Editorial 0px sharp geometric precision */
+  }
+
   body {
-    @apply bg-slate-950 text-slate-200 antialiased selection:bg-cyan-500/30 selection:text-cyan-200;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4, .font-serif-editorial {
+    font-family: 'Bodoni Moda', serif;
+    letter-spacing: -0.01em;
+  }
+
+  .font-mono-code {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .font-sans-editorial {
+    font-family: 'Montserrat', sans-serif;
   }
 }
 
-.geometric-border {
-  @apply border border-slate-800 bg-slate-900/50 transition-all duration-300;
+/* Editorial Typography Utility Classes */
+.display-lg {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(44px, 7vw, 84px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 }
 
-.section-label {
-  @apply text-xs font-bold text-accent uppercase tracking-widest mb-4 flex items-center;
+.headline-lg {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 500;
+  line-height: 1.15;
 }
 
-.section-line {
-  @apply w-8 h-[1px] bg-accent mr-2;
+.headline-md {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.body-lg {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 32px;
+  letter-spacing: 0.01em;
+}
+
+.body-md {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.label-caps {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Hairline Ledger & Divider Lines */
+.hairline-b {
+  border-bottom: 1px solid var(--border-neutral);
+}
+.hairline-t {
+  border-top: 1px solid var(--border-neutral);
+}
+.hairline-r {
+  border-right: 1px solid var(--border-neutral);
+}
+.hairline-l {
+  border-left: 1px solid var(--border-neutral);
+}
+.hairline-all {
+  border: 1px solid var(--border-neutral);
+}
+
+/* Aurelian Editorial Buttons */
+.btn-gold-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  background: transparent;
+  padding: 14px 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-gold-outline:hover {
+  background: var(--color-gold);
+  color: #121212;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+}
+
+.btn-neutral-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-neutral);
+  color: var(--text-variant);
+  background: transparent;
+  padding: 14px 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.btn-neutral-outline:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Minimalist Editorial Input with Bottom Border only */
+.input-editorial {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-neutral);
+  padding: 14px 0;
+  color: var(--text-primary);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.4s ease;
+}
+
+.input-editorial:focus {
+  border-bottom-color: var(--color-gold);
+}
+
+.input-editorial::placeholder {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #131313;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Background Gradients & Ambient */
+.bg-editorial-gradient {
+  background: radial-gradient(circle at 50% -10%, rgba(212, 175, 55, 0.07) 0%, rgba(19, 19, 19, 0) 65%);
+}
+
+.bg-editorial-card {
+  background: #181818;
+  border: 1px solid var(--border-neutral);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bg-editorial-card:hover {
+  background: #1f2020;
+  border-color: #444748;
 }
