@@ -1,8 +1,14 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { UI_TRANSLATIONS } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Footer: React.FC = () => {
+  const { language } = useLanguage();
+  const t = UI_TRANSLATIONS[language];
+  const info = PERSONAL_INFO[language];
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -21,10 +27,10 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <div className="font-serif-editorial text-base font-semibold text-[#e4e2e1]">
-                {PERSONAL_INFO.name}
+                {info.name}
               </div>
               <div className="label-caps text-[9px] text-[#8e9192]">
-                AURELIAN EDITORIAL MONOGRAPH — 2026
+                {t.footer.role.toUpperCase()} — 2026
               </div>
             </div>
           </div>
@@ -40,16 +46,16 @@ export const Footer: React.FC = () => {
               href="#projects"
               className="label-caps text-[#8e9192] hover:text-[#D4AF37] transition-colors"
             >
-              WORKS
+              {t.nav.works}
             </a>
             <a
               href="#skills"
               className="label-caps text-[#8e9192] hover:text-[#D4AF37] transition-colors"
             >
-              EXPERTISE
+              {t.nav.capabilities}
             </a>
             <a
-              href={PERSONAL_INFO.github}
+              href={info.github}
               target="_blank"
               rel="noopener noreferrer"
               className="label-caps text-[#8e9192] hover:text-[#D4AF37] transition-colors"
@@ -58,21 +64,21 @@ export const Footer: React.FC = () => {
             </a>
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-2 label-caps text-[#D4AF37] hover:text-[#e4e2e1] transition-colors cursor-pointer"
+              className="flex items-center gap-1 label-caps text-[#D4AF37] hover:text-[#e4e2e1] transition-colors"
             >
-              <span>ASCEND</span>
-              <ArrowUp className="w-3.5 h-3.5" />
+              <span>{t.footer.backToTop}</span>
+              <ArrowUp className="w-3 h-3" />
             </button>
           </div>
 
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8e9192]">
-          <div className="label-caps text-[10px]">
-            ALL RIGHTS RESERVED • PHAM TUAN HUNG © {new Date().getFullYear()}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#8e9192]">
+          <div>
+            &copy; {new Date().getFullYear()} {info.name}. {t.footer.rights}
           </div>
           <div className="label-caps text-[10px] text-[#8e9192]">
-            STYLED UNDER AURELIAN EDITORIAL DISCIPLINE
+            STATUS: <span className="text-[#34D399]">ACTIVE DEPLOYMENT</span>
           </div>
         </div>
 

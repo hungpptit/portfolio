@@ -1,7 +1,13 @@
 import React from 'react';
 import { EXPERIENCE_MILESTONES } from '../data/portfolioData';
+import { UI_TRANSLATIONS } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Experience: React.FC = () => {
+  const { language } = useLanguage();
+  const t = UI_TRANSLATIONS[language];
+  const list = EXPERIENCE_MILESTONES[language];
+
   return (
     <section id="experience" className="py-24 md:py-36 border-t border-[#2a2a2a]">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-20">
@@ -12,21 +18,21 @@ export const Experience: React.FC = () => {
             <div className="flex items-center gap-2.5 mb-3">
               <span className="w-1.5 h-1.5 bg-[#D4AF37]" />
               <span className="label-caps text-[#D4AF37]">
-                SECTION 03 — ACADEMIC FOUNDATION
+                {t.experience.badge}
               </span>
             </div>
             <h2 className="headline-lg text-[#e4e2e1]">
-              Education & Engineering Trajectory
+              {t.experience.title}
             </h2>
           </div>
           <p className="body-md text-[#8e9192] max-w-md">
-            Formal computer science training at PTIT supplemented by intensive self-directed systems engineering.
+            {t.experience.subtitle}
           </p>
         </div>
 
         {/* Editorial Timeline Matrix */}
         <div className="space-y-8">
-          {EXPERIENCE_MILESTONES.map((item, idx) => (
+          {list.map((item, idx) => (
             <div
               key={idx}
               className="p-8 md:p-12 border border-[#2a2a2a] bg-[#161616] hover:bg-[#1c1c1c] transition-all duration-400"
@@ -35,7 +41,7 @@ export const Experience: React.FC = () => {
                 
                 {/* Left Column: Period & Organization */}
                 <div className="md:col-span-4 border-b md:border-b-0 md:border-r border-[#2a2a2a] pb-6 md:pb-0 md:pr-8">
-                  <span className="label-caps text-[#D4AF37] text-[10px] block mb-2">
+                  <span className="label-caps text-[#D4AF37] text-[10px] block mb-2 font-bold">
                     {item.period}
                   </span>
                   <div className="font-serif-editorial text-2xl font-bold text-[#e4e2e1] mb-2">
@@ -57,7 +63,7 @@ export const Experience: React.FC = () => {
 
                   <div className="p-6 bg-[#111111] border border-[#222222]">
                     <span className="label-caps text-[#8e9192] text-[10px] block mb-3">
-                      KEY ACHIEVEMENTS & MILESTONES
+                      {language === 'vi' ? 'KẾT QUẢ & ĐIỂM NHẤN CỐT LÕI' : 'KEY ACHIEVEMENTS & MILESTONES'}
                     </span>
                     <ul className="space-y-2.5">
                       {item.highlights.map((hl, hIdx) => (

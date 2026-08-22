@@ -25,25 +25,13 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
-import { SMART_LOGISTICS_DETAIL as detail } from '../data/projects/smartLogistics.data';
-
-const project = PROJECTS.find(p => p.id === 'smart-logistics')!;
-
-// ─── Sidebar Mục lục (TOC) ──────────────────────────────────────────────────
-const TOC_SECTIONS = [
-  { id: 'overview',   label: 'Tổng quan dự án' },
-  { id: 'ai',         label: 'Thuật toán AI chia tuyến' },
-  { id: 'telemetry',  label: 'Định vị GPS thời gian thực' },
-  { id: 'lifecycle',  label: 'Quy trình 7 bước giao vận' },
-  { id: 'database',   label: 'Kiến trúc Cơ sở dữ liệu' },
-  { id: 'techstack',  label: 'Ngăn xếp công nghệ' },
-  { id: 'tests',      label: 'Báo cáo kiểm thử tự động' },
-  { id: 'impact',     label: 'Hiệu quả kinh doanh & Vận hành' },
-  { id: 'challenges', label: 'Thách thức kỹ thuật & Giải pháp' },
-];
+import { SMART_LOGISTICS_DETAIL, SmartLogisticsData } from '../data/projects/smartLogistics.data';
+import { useLanguage } from '../context/LanguageContext';
+import { LanguageToggle } from '../components/LanguageToggle';
+import { UI_TRANSLATIONS } from '../data/translations';
 
 // ─── AI Pipeline Flow ──────────────────────────────────────────────────────
-const AIPipelineFlow: React.FC = () => {
+const AIPipelineFlow: React.FC<{ detail: SmartLogisticsData; language: string }> = ({ detail, language }) => {
   const colors = ['#4F9CF9', '#A78BFA', '#F59E0B', '#34D399'];
   const stepIcons = [
     <MapPin className="w-7 h-7" />,
@@ -53,7 +41,7 @@ const AIPipelineFlow: React.FC = () => {
   ];
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
-      {detail.aiPipeline!.map((step, idx) => (
+      {detail.aiPipeline.map((step, idx) => (
         <div key={step.step} className="relative flex flex-col">
           {idx < 3 && (
             <div className="hidden md:block absolute top-[58px] right-0 w-1/2 h-[2px] z-10"
@@ -67,7 +55,9 @@ const AIPipelineFlow: React.FC = () => {
             <div className="w-[112px] h-[112px] rounded-full flex flex-col items-center justify-center border-2 mb-3 shadow-lg"
               style={{ borderColor: colors[idx], background: `${colors[idx]}15`, color: colors[idx] }}>
               <div className="mb-1">{stepIcons[idx]}</div>
-              <span className="text-xs font-bold tracking-wider font-mono">BƯỚC {step.step}</span>
+              <span className="text-xs font-bold tracking-wider font-mono">
+                {language === 'vi' ? `BƯỚC ${step.step}` : `MODULE ${step.step}`}
+              </span>
             </div>
             <span className="font-bold text-base text-[#f3f4f6] text-center mb-1">{step.name}</span>
             <span className="text-xs text-[#9ca3af] text-center leading-tight mb-3">{step.algo}</span>
@@ -75,14 +65,16 @@ const AIPipelineFlow: React.FC = () => {
               <span className="px-2.5 py-1 text-xs font-mono font-bold flex items-center gap-1 rounded"
                 style={{ background: `${colors[idx]}20`, color: colors[idx] }}>
                 <Clock className="w-3.5 h-3.5" />
-                <span>Thời gian: {step.timeMs}</span>
+                <span>{step.timeMs}</span>
               </span>
             )}
           </div>
           <div className="p-5 bg-[#121212] border border-[#262626] flex-1 flex flex-col justify-between gap-4 rounded">
             <p className="text-sm text-[#d1d5db] leading-relaxed font-normal">{step.description}</p>
             <div className="pt-3 border-t border-[#262626]">
-              <span className="text-xs text-[#9ca3af] uppercase tracking-wider font-semibold block mb-1.5">Kết quả thực tế</span>
+              <span className="text-xs text-[#9ca3af] uppercase tracking-wider font-semibold block mb-1.5">
+                {language === 'vi' ? 'Kết quả thực tế' : 'Verified Output'}
+              </span>
               <p className="text-sm font-semibold leading-relaxed" style={{ color: colors[idx] }}>{step.result}</p>
             </div>
           </div>
@@ -93,16 +85,24 @@ const AIPipelineFlow: React.FC = () => {
 };
 
 // ─── GPS Telemetry Flow ────────────────────────────────────────────────────
-const TelemetryFlow: React.FC = () => (
+const TelemetryFlow: React.FC<{ language: string }> = ({ language }) => (
   <div className="p-7 bg-[#121212] border border-[#262626] rounded">
-    <p className="text-xs font-bold text-[#9ca3af] uppercase tracking-wider mb-6">Mô hình đường ống 2 tầng xử lý tọa độ GPS thời gian thực (2-Tier Telemetry Pipeline)</p>
+    <p className="text-xs font-bold text-[#9ca3af] uppercase tracking-wider mb-6">
+      {language === 'vi'
+        ? 'Mô hình đường ống 2 tầng xử lý tọa độ GPS thời gian thực (2-Tier Telemetry Pipeline)'
+        : '2-Tier High-Frequency Real-Time GPS Telemetry Architecture'}
+    </p>
     <div className="flex flex-col lg:flex-row items-start gap-6">
       <div className="flex flex-col items-center gap-2 min-w-[150px]">
         <div className="w-14 h-14 border border-[#333] bg-[#1a1a1a] flex items-center justify-center text-[#4F9CF9] rounded">
           <Smartphone className="w-7 h-7" />
         </div>
-        <span className="text-sm text-[#f3f4f6] text-center font-semibold">Ứng dụng Tài xế (Flutter App)</span>
-        <span className="text-xs text-[#9ca3af] text-center">Phát GPS định kỳ 5 giây/lần</span>
+        <span className="text-sm text-[#f3f4f6] text-center font-semibold">
+          {language === 'vi' ? 'Ứng dụng Tài xế (Flutter App)' : 'Flutter Driver Mobile App'}
+        </span>
+        <span className="text-xs text-[#9ca3af] text-center">
+          {language === 'vi' ? 'Phát GPS định kỳ 5 giây/lần' : 'GPS telemetry ping every 5s'}
+        </span>
       </div>
       <div className="flex items-center gap-2 self-center">
         <div className="w-10 h-[2px] bg-gradient-to-r from-[#4F9CF9] to-[#A78BFA]" />
@@ -113,40 +113,61 @@ const TelemetryFlow: React.FC = () => (
         <div className="w-14 h-14 border border-[#A78BFA]/40 bg-[#A78BFA]/10 flex items-center justify-center text-[#A78BFA] rounded">
           <Radio className="w-7 h-7" />
         </div>
-        <span className="text-sm text-[#A78BFA] font-semibold">Cổng tiếp nhận (Tracking Gateway)</span>
+        <span className="text-sm text-[#A78BFA] font-semibold">
+          {language === 'vi' ? 'Cổng tiếp nhận (Tracking Gateway)' : 'Live Tracking Gateway'}
+        </span>
       </div>
       <div className="flex flex-col gap-4 flex-1">
         <div className="p-4 border-l-2 border-[#34D399] bg-[#34D399]/5 pl-5 rounded-r">
           <div className="flex items-center gap-2 mb-2 text-[#34D399]">
             <Zap className="w-4 h-4" />
-            <span className="text-sm font-bold">Tầng 1: Bộ nhớ đệm tốc độ cao Redis 7 (In-Memory Stream)</span>
+            <span className="text-sm font-bold">
+              {language === 'vi'
+                ? 'Tầng 1: Bộ nhớ đệm tốc độ cao Redis 7 (In-Memory Stream)'
+                : 'Tier 1: Redis 7 In-Memory Hot Cache & Geospatial Stream'}
+            </span>
           </div>
           <div className="text-xs text-[#d1d5db] space-y-1 font-mono">
-            <div><code className="text-[#34D399] font-bold">HSET driver:location:&#123;id&#125;</code> — Lưu tọa độ GPS tức thời (độ trễ dưới 1 mili-giây)</div>
-            <div><code className="text-[#34D399] font-bold">GEOADD driver:geo:&#123;id&#125;</code> — Đánh chỉ mục địa lý không gian (Geospatial Indexing)</div>
+            <div><code className="text-[#34D399] font-bold">HSET driver:location:&#123;id&#125;</code> — {language === 'vi' ? 'Lưu tọa độ GPS tức thời (độ trễ dưới 1 mili-giây)' : 'Sub-millisecond driver position buffer'}</div>
+            <div><code className="text-[#34D399] font-bold">GEOADD driver:geo:&#123;id&#125;</code> — {language === 'vi' ? 'Đánh chỉ mục địa lý không gian (Geospatial Indexing)' : 'Geospatial proximity indexing'}</div>
           </div>
           <div className="mt-3 flex gap-3">
-            <span className="text-xs px-2.5 py-1 bg-[#34D399]/15 text-[#34D399] font-bold font-mono rounded">Độ trễ P99 &lt; 1 mili-giây</span>
-            <span className="text-xs px-2.5 py-1 bg-[#34D399]/15 text-[#34D399] font-bold font-mono rounded">Thông lượng: 1,321 điểm tọa độ/giây</span>
+            <span className="text-xs px-2.5 py-1 bg-[#34D399]/15 text-[#34D399] font-bold font-mono rounded">
+              {language === 'vi' ? 'Độ trễ P99 < 1 mili-giây' : 'P99 Latency < 1ms'}
+            </span>
+            <span className="text-xs px-2.5 py-1 bg-[#34D399]/15 text-[#34D399] font-bold font-mono rounded">
+              {language === 'vi' ? 'Thông lượng: 1,321 điểm tọa độ/giây' : 'Throughput: 1,321 pings/sec'}
+            </span>
           </div>
         </div>
         <div className="p-4 border-l-2 border-[#F59E0B] bg-[#F59E0B]/5 pl-5 rounded-r">
           <div className="flex items-center gap-2 mb-2 text-[#F59E0B]">
             <Radio className="w-4 h-4" />
-            <span className="text-sm font-bold">Truyền phát WebSocket qua phòng riêng biệt (Socket.io Rooms)</span>
+            <span className="text-sm font-bold">
+              {language === 'vi'
+                ? 'Truyền phát WebSocket qua phòng riêng biệt (Socket.io Rooms)'
+                : 'Socket.io Targeted Room Broadcast Pipeline'}
+            </span>
           </div>
           <div className="text-xs text-[#d1d5db] space-y-1">
-            <div>→ Kênh phòng <code className="text-[#F59E0B] font-mono">order:&#123;orderId&#125;</code> → Cập nhật vị trí tài xế trực tiếp lên màn hình radar của người điều vận</div>
-            <div>→ <strong className="text-[#F59E0B]">Sự kiện cắm cờ (Flag Drop Event)</strong>: Khi giao hàng thành công, trạng thái trên màn hình radar tự động đổi màu mà không cần người dùng tải lại trang</div>
+            <div>→ {language === 'vi' ? 'Kênh phòng' : 'Broadcast to'} <code className="text-[#F59E0B] font-mono">order:&#123;orderId&#125;</code> {language === 'vi' ? '→ Cập nhật vị trí tài xế trực tiếp lên màn hình radar' : '→ Live Admin Radar Dashboard viewports'}</div>
+            <div>→ <strong className="text-[#F59E0B]">{language === 'vi' ? 'Sự kiện cắm cờ (Flag Drop Event)' : 'Flag Drop Event'}</strong>: {language === 'vi' ? 'Khi giao hàng thành công, trạng thái tự động đổi màu tức thì không cần tải lại trang' : 'Instant visual status flip on DELIVERED with zero client page refreshes'}</div>
           </div>
         </div>
         <div className="p-4 border-l-2 border-[#4F9CF9] bg-[#4F9CF9]/5 pl-5 rounded-r">
           <div className="flex items-center gap-2 mb-2 text-[#4F9CF9]">
             <Database className="w-4 h-4" />
-            <span className="text-sm font-bold">Tầng 2: Cơ sở dữ liệu PostgreSQL (Chỉ lưu khi phát sinh sự kiện nghiệp vụ)</span>
+            <span className="text-sm font-bold">
+              {language === 'vi'
+                ? 'Tầng 2: Cơ sở dữ liệu PostgreSQL (Chỉ lưu khi phát sinh sự kiện nghiệp vụ)'
+                : 'Tier 2: PostgreSQL Persistence (Triggered Strictly on Business Milestones)'}
+            </span>
           </div>
           <div className="text-xs text-[#d1d5db]">
-            Chỉ lưu cố định khi có mốc nghiệp vụ: <code className="text-[#4F9CF9] font-mono font-bold">ĐÃ LẤY HÀNG · ĐÃ ĐẾN BƯU CỤC · ĐÃ GIAO THÀNH CÔNG</code> kèm chữ ký số và ảnh chụp bằng chứng giao hàng (POD)
+            {language === 'vi'
+              ? 'Chỉ lưu cố định khi có mốc nghiệp vụ: '
+              : 'Persisted to disk only on: '}
+            <code className="text-[#4F9CF9] font-mono font-bold">PICKED_UP · AT_HUB · DELIVERED</code> {language === 'vi' ? '+ ảnh POD & xác thực GPS' : '+ Digital POD signature & photo'}
           </div>
         </div>
       </div>
@@ -154,12 +175,12 @@ const TelemetryFlow: React.FC = () => (
   </div>
 );
 
-// ─── Fulfillment Lifecycle ─────────────────────────────────────────────────
-const FulfillmentFlow: React.FC = () => {
+// ─── Fulfillment Lifecycle Flow ────────────────────────────────────────────
+const FulfillmentFlow: React.FC<{ detail: SmartLogisticsData }> = ({ detail }) => {
   const stageColors = ['#4F9CF9','#A78BFA','#F59E0B','#34D399','#F472B6','#60A5FA','#FBBF24'];
   return (
     <div className="space-y-2">
-      {detail.fulfillmentStages!.map((s, i) => (
+      {detail.fulfillmentStages.map((s, i) => (
         <div key={i} className="flex items-start gap-4 p-5 border border-[#262626] hover:border-[#3a3a3a] bg-[#121212] transition-colors rounded">
           <div className="w-8 h-8 flex items-center justify-center text-xs font-black font-mono shrink-0 mt-0.5 rounded"
             style={{ background: `${stageColors[i]}20`, color: stageColors[i] }}>
@@ -184,7 +205,24 @@ const FulfillmentFlow: React.FC = () => {
 // ─── Main Page ─────────────────────────────────────────────────────────────
 const SmartLogisticsPage: React.FC = () => {
   const navigate = useNavigate();
+  const { language } = useLanguage();
   const [activeSection, setActiveSection] = useState('overview');
+
+  const detail = SMART_LOGISTICS_DETAIL[language];
+  const project = PROJECTS[language].find(p => p.id === 'smart-logistics')!;
+  const t = UI_TRANSLATIONS[language];
+
+  const TOC_SECTIONS = [
+    { id: 'overview',   label: language === 'vi' ? 'Tổng quan dự án' : 'Project Overview' },
+    { id: 'ai',         label: language === 'vi' ? 'Thuật toán AI chia tuyến' : 'AI Routing Pipeline' },
+    { id: 'telemetry',  label: language === 'vi' ? 'Định vị GPS thời gian thực' : 'Real-Time GPS Telemetry' },
+    { id: 'lifecycle',  label: language === 'vi' ? 'Quy trình 7 bước giao vận' : '7-Stage Fulfillment' },
+    { id: 'database',   label: language === 'vi' ? 'Kiến trúc Cơ sở dữ liệu' : 'Database Architecture' },
+    { id: 'techstack',  label: language === 'vi' ? 'Ngăn xếp công nghệ' : 'Technology Stack' },
+    { id: 'tests',      label: language === 'vi' ? 'Báo cáo kiểm thử tự động' : 'Testing Report' },
+    { id: 'impact',     label: language === 'vi' ? 'Hiệu quả kinh doanh & Vận hành' : 'Business Impact' },
+    { id: 'challenges', label: language === 'vi' ? 'Thách thức kỹ thuật & Giải pháp' : 'Engineering Challenges' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -221,12 +259,16 @@ const SmartLogisticsPage: React.FC = () => {
         <div className="max-w-[1500px] mx-auto px-6 py-4 flex items-center justify-between">
           <button onClick={() => navigate(-1)}
             className="flex items-center gap-2 text-[#9ca3af] hover:text-[#D4AF37] transition-colors text-sm font-semibold tracking-wider uppercase">
-            <ArrowLeft className="w-4 h-4" /> Quay lại danh sách dự án
+            <ArrowLeft className="w-4 h-4" /> {t.detailCommon.backBtn}
           </button>
-          <a href={detail.githubUrl} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold hover:bg-[#D4AF37]/10 transition-colors tracking-wider rounded">
-            MÃ NGUỒN DỰ ÁN (SOURCE REPO) <ArrowUpRight className="w-4 h-4" />
-          </a>
+          
+          <div className="flex items-center gap-4">
+            <LanguageToggle />
+            <a href={detail.githubUrl} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold hover:bg-[#D4AF37]/10 transition-colors tracking-wider rounded">
+              {t.detailCommon.sourceRepo} <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </header>
 
@@ -238,29 +280,29 @@ const SmartLogisticsPage: React.FC = () => {
 
             {/* Quick Info */}
             <div>
-              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-4">Thông tin tóm tắt</p>
+              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-4">{t.detailCommon.quickInfoTitle}</p>
               <div className="space-y-4">
                 <div>
-                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">Trạng thái dự án</p>
+                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.statusLabel}</p>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#34D399]" />
-                    <span className="text-sm text-[#f3f4f6] font-semibold">Đang vận hành thực tế</span>
+                    <span className="text-sm text-[#f3f4f6] font-semibold">{t.detailCommon.statusInProgress}</span>
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">Thời gian phát triển</p>
+                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.durationLabel}</p>
                   <p className="text-sm text-[#f3f4f6] font-semibold">{detail.duration}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">Doanh nghiệp triển khai</p>
+                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.companyLabel}</p>
                   <p className="text-sm text-[#f3f4f6] font-semibold">{detail.company}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">Vai trò đảm nhiệm</p>
-                  <p className="text-sm text-[#f3f4f6] font-semibold">Kỹ sư Phần mềm & Lập trình viên Backend</p>
+                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.roleLabel}</p>
+                  <p className="text-sm text-[#f3f4f6] font-semibold">{detail.role}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">Quy mô nhóm</p>
+                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.teamLabel}</p>
                   <p className="text-sm text-[#f3f4f6] font-semibold">{detail.teamSize}</p>
                 </div>
               </div>
@@ -271,7 +313,7 @@ const SmartLogisticsPage: React.FC = () => {
 
             {/* TOC */}
             <div>
-              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-4">Mục lục nội dung</p>
+              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-4">{t.detailCommon.tocTitle}</p>
               <nav className="space-y-1">
                 {TOC_SECTIONS.map(s => (
                   <button
@@ -295,10 +337,10 @@ const SmartLogisticsPage: React.FC = () => {
             {/* Key metrics mini */}
             <div className="border-t border-[#222222] pt-6 space-y-3">
               {[
-                { val: 'Giảm 58.2%', label: 'Quãng đường giao hàng', color: '#34D399' },
-                { val: '1,321/giây', label: 'Tọa độ GPS tiếp nhận', color: '#4F9CF9' },
-                { val: '< 1 mili-giây', label: 'Độ trễ xử lý (P99)', color: '#A78BFA' },
-                { val: '12/12 Đạt', label: 'Kiểm thử tự động', color: '#F59E0B' },
+                { val: language === 'vi' ? 'Giảm 58.2%' : '–58.2%', label: language === 'vi' ? 'Quãng đường giao hàng' : 'Transit Distance', color: '#34D399' },
+                { val: '1,321/s', label: language === 'vi' ? 'Tọa độ GPS tiếp nhận' : 'GPS Telemetry Write', color: '#4F9CF9' },
+                { val: '< 1ms', label: language === 'vi' ? 'Độ trễ xử lý (P99)' : 'P99 In-Memory Latency', color: '#A78BFA' },
+                { val: '12/12 PASS', label: language === 'vi' ? 'Kiểm thử tự động' : 'Automated Tests', color: '#F59E0B' },
               ].map((m, i) => (
                 <div key={i} className="flex items-center justify-between">
                   <span className="text-xs text-[#9ca3af] font-medium">{m.label}</span>
@@ -316,7 +358,9 @@ const SmartLogisticsPage: React.FC = () => {
           <section id="overview">
             <div className="flex items-center gap-2 mb-6">
               <span className="w-2 h-2 bg-[#D4AF37]" />
-              <span className="text-xs font-bold tracking-wider text-[#D4AF37] uppercase">Hệ thống Cấp Doanh nghiệp · Công ty TNHH CITARES</span>
+              <span className="text-xs font-bold tracking-wider text-[#D4AF37] uppercase">
+                {language === 'vi' ? 'Hệ thống Cấp Doanh nghiệp · Công ty TNHH CITARES' : 'Enterprise Logistics System · CITARES Co., Ltd.'}
+              </span>
             </div>
             <h1 className="text-4xl md:text-6xl font-black text-[#f3f4f6] tracking-tight mb-6 leading-tight">
               Smart Logistics<br /><span className="text-[#D4AF37]">Platform (SLP)</span>
@@ -329,7 +373,7 @@ const SmartLogisticsPage: React.FC = () => {
                 <Building2 className="w-4 h-4 text-[#D4AF37]" /> {detail.company}
               </span>
               <span className="flex items-center gap-2 px-3.5 py-2 bg-[#161616] border border-[#262626] text-xs text-[#d1d5db]">
-                <User className="w-4 h-4 text-[#D4AF37]" /> Kỹ sư Phần mềm & Backend
+                <User className="w-4 h-4 text-[#D4AF37]" /> {detail.role}
               </span>
               <span className="flex items-center gap-2 px-3.5 py-2 bg-[#161616] border border-[#262626] text-xs text-[#d1d5db]">
                 <Clock className="w-4 h-4 text-[#D4AF37]" /> {detail.duration}
@@ -342,10 +386,10 @@ const SmartLogisticsPage: React.FC = () => {
             {/* Metrics cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { val: '–58.2%', sub: 'Quãng đường giao hàng', color: '#34D399', icon: <BarChart3 className="w-5 h-5" /> },
-                { val: '1,321', sub: 'Tọa độ GPS / Giây', color: '#4F9CF9', icon: <Zap className="w-5 h-5" /> },
-                { val: '< 1ms', sub: 'Độ trễ xử lý (P99)', color: '#A78BFA', icon: <Clock className="w-5 h-5" /> },
-                { val: '12/12', sub: 'Kiểm thử đạt (PASS)', color: '#F59E0B', icon: <CheckCircle className="w-5 h-5" /> },
+                { val: '–58.2%', sub: language === 'vi' ? 'Quãng đường giao hàng' : 'Route Distance', color: '#34D399', icon: <BarChart3 className="w-5 h-5" /> },
+                { val: '1,321', sub: language === 'vi' ? 'Tọa độ GPS / Giây' : 'GPS Pings / Sec', color: '#4F9CF9', icon: <Zap className="w-5 h-5" /> },
+                { val: '< 1ms', sub: language === 'vi' ? 'Độ trễ xử lý (P99)' : 'P99 Latency', color: '#A78BFA', icon: <Clock className="w-5 h-5" /> },
+                { val: '12/12', sub: language === 'vi' ? 'Kiểm thử đạt (PASS)' : 'Tests Pass', color: '#F59E0B', icon: <CheckCircle className="w-5 h-5" /> },
               ].map((m, i) => (
                 <div key={i} className="p-6 bg-[#121212] border border-[#262626] flex flex-col gap-2 rounded">
                   <div className="flex items-center gap-2" style={{ color: m.color }}>{m.icon}
@@ -359,37 +403,53 @@ const SmartLogisticsPage: React.FC = () => {
 
           {/* ── AI Pipeline ── */}
           <section id="ai">
-            <SectionTitle icon={<Cpu className="w-5 h-5" />} title="Đường ống 4 Thuật toán Trí tuệ Nhân tạo chia tuyến (AI Routing Pipeline)" badge="100% Thuần TypeScript" />
+            <SectionTitle icon={<Cpu className="w-5 h-5" />}
+              title={language === 'vi' ? 'Đường ống 4 Thuật toán Trí tuệ Nhân tạo chia tuyến (AI Routing Pipeline)' : '4-Module Pure TypeScript AI Routing Pipeline'}
+              badge={language === 'vi' ? '100% Thuần TypeScript' : 'Zero External AI Dependency'} />
             <p className="text-[#d1d5db] text-base mb-8 leading-relaxed font-normal">
-              Toàn bộ động cơ Trí tuệ nhân tạo (AI Engine) được tự phát triển bằng mã nguồn TypeScript thuần mà không phụ thuộc vào thư viện ngoài. Đường ống gồm 4 thuật toán tuần tự phối hợp chặt chẽ nhằm giải quyết bài toán định tuyến xe có giới hạn tải trọng và khung giờ hẹn (Capacitated Vehicle Routing Problem with Time Windows - CVRP/VRPTW) trong vòng chưa tới nửa giây.
+              {language === 'vi'
+                ? 'Toàn bộ động cơ Trí tuệ nhân tạo (AI Engine) được tự phát triển bằng mã nguồn TypeScript thuần mà không phụ thuộc vào thư viện ngoài. Đường ống gồm 4 thuật toán tuần tự phối hợp chặt chẽ nhằm giải quyết bài toán định tuyến xe có giới hạn tải trọng và khung giờ hẹn (Capacitated Vehicle Routing Problem with Time Windows - CVRP/VRPTW) trong vòng chưa tới nửa giây.'
+                : 'The entire optimization engine is engineered in pure TypeScript with zero external black-box dependencies. The 4 sequential algorithms collaborate to solve the NP-Hard Capacitated Vehicle Routing Problem with Time Windows (CVRP+VRPTW) in sub-second execution.'}
             </p>
-            <AIPipelineFlow />
+            <AIPipelineFlow detail={detail} language={language} />
           </section>
 
           {/* ── GPS Telemetry ── */}
           <section id="telemetry">
-            <SectionTitle icon={<Zap className="w-5 h-5" />} title="Hệ thống Truyền phát Định vị Toàn cầu Thời gian thực (Real-Time GPS Telemetry)" badge="1,321 điểm/giây" />
+            <SectionTitle icon={<Zap className="w-5 h-5" />}
+              title={language === 'vi' ? 'Hệ thống Truyền phát Định vị Toàn cầu Thời gian thực (Real-Time GPS Telemetry)' : 'High-Frequency Real-Time GPS Telemetry'}
+              badge="1,321 pings/sec" />
             <p className="text-[#d1d5db] text-base mb-8 leading-relaxed font-normal">
-              Với hơn 500 tài xế gửi tọa độ định kỳ 5 giây/lần tạo ra hơn 6,000 lượt ghi mỗi phút, toàn bộ luồng tọa độ được tiếp nhận và xử lý qua kiến trúc bộ nhớ đệm Redis 2 tầng (2-Tier In-Memory Pipeline) nhằm giải tỏa 100% áp lực ghi trực tiếp lên cơ sở dữ liệu quan hệ PostgreSQL.
+              {language === 'vi'
+                ? 'Với hơn 500 tài xế gửi tọa độ định kỳ 5 giây/lần tạo ra hơn 6,000 lượt ghi mỗi phút, toàn bộ luồng tọa độ được tiếp nhận và xử lý qua kiến trúc bộ nhớ đệm Redis 2 tầng (2-Tier In-Memory Pipeline) nhằm giải tỏa 100% áp lực ghi trực tiếp lên cơ sở dữ liệu quan hệ PostgreSQL.'
+                : 'With 500+ active couriers pinging GPS coordinates every 5 seconds generating 6,000+ writes/minute, the stream is decoupled through a 2-Tier In-Memory Redis architecture to isolate disk I/O from PostgreSQL.'}
             </p>
-            <TelemetryFlow />
+            <TelemetryFlow language={language} />
           </section>
 
           {/* ── Lifecycle ── */}
           <section id="lifecycle">
-            <SectionTitle icon={<GitMerge className="w-5 h-5" />} title="Vòng đời 7 Giai đoạn Xử lý Đơn hàng (7-Stage Fulfillment Lifecycle)" />
+            <SectionTitle icon={<GitMerge className="w-5 h-5" />}
+              title={language === 'vi' ? 'Vòng đời 7 Giai đoạn Xử lý Đơn hàng (7-Stage Fulfillment Lifecycle)' : '7-Stage Supply Chain Fulfillment Lifecycle'} />
             <p className="text-[#d1d5db] text-base mb-8 leading-relaxed font-normal">
-              Mỗi đơn hàng được kiểm soát nghiêm ngặt qua 7 giai đoạn khép kín theo mô hình Máy trạng thái hữu hạn (Finite State Machine - FSM). Mỗi lần chuyển trạng thái đều được tự động lưu vào bảng nhật ký lịch sử (<code className="text-[#D4AF37] font-mono text-sm px-1.5 py-0.5 bg-[#1a1a1a] rounded">order_status_history</code>), tạo thành biên bản kiểm toán bất biến phục vụ việc đối soát và tra cứu hành trình.
+              {language === 'vi'
+                ? 'Mỗi đơn hàng được kiểm soát nghiêm ngặt qua 7 giai đoạn khép kín theo mô hình Máy trạng thái hữu hạn (Finite State Machine - FSM). Mỗi lần chuyển trạng thái đều được tự động lưu vào bảng nhật ký lịch sử (order_status_history), tạo thành biên bản kiểm toán bất biến phục vụ việc đối soát và tra cứu hành trình.'
+                : 'Orders strictly transition across 7 distinct states governed by a Finite State Machine (FSM). Every transition is committed to order_status_history, generating an immutable audit trail.'}
             </p>
-            <FulfillmentFlow />
+            <FulfillmentFlow detail={detail} />
           </section>
 
           {/* ── Database ── */}
           <section id="database">
-            <SectionTitle icon={<Database className="w-5 h-5" />} title="Kiến trúc Cơ sở Dữ liệu Quan hệ (Database Architecture)" />
-            <p className="text-[#d1d5db] text-base mb-8 font-normal">Quy mô 38 bảng · 10 Phân hệ nghiệp vụ độc lập · Cơ sở dữ liệu PostgreSQL 15 + PostGIS · Trình ánh xạ quan hệ đối tượng Prisma ORM 5.x</p>
+            <SectionTitle icon={<Database className="w-5 h-5" />}
+              title={language === 'vi' ? 'Kiến trúc Cơ sở Dữ liệu Quan hệ (Database Architecture)' : 'Relational Database Architecture'} />
+            <p className="text-[#d1d5db] text-base mb-8 font-normal">
+              {language === 'vi'
+                ? 'Quy mô 38 bảng · 10 Phân hệ nghiệp vụ độc lập · Cơ sở dữ liệu PostgreSQL 15 + PostGIS · Trình ánh xạ quan hệ đối tượng Prisma ORM 5.x'
+                : '38 Tables · 10 Bounded Domain Contexts · PostgreSQL 15 + PostGIS · Prisma ORM 5.x'}
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {detail.dbModules!.map((mod) => {
+              {detail.dbModules.map((mod) => {
                 const mColors = ['#4F9CF9','#A78BFA','#34D399','#F59E0B','#F472B6','#60A5FA','#FBBF24','#FB923C','#34D399','#A78BFA'];
                 const c = mColors[(mod.id - 1) % mColors.length];
                 return (
@@ -400,8 +460,8 @@ const SmartLogisticsPage: React.FC = () => {
                       <span className="text-base font-bold text-[#f3f4f6]">{mod.name}</span>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-3">
-                      {mod.tables.map(t => (
-                        <code key={t} className="text-xs px-2 py-1 bg-[#1a1a1a] border border-[#2a2a2a] text-[#9ca3af] font-mono rounded">{t}</code>
+                      {mod.tables.map(tName => (
+                        <code key={tName} className="text-xs px-2 py-1 bg-[#1a1a1a] border border-[#2a2a2a] text-[#9ca3af] font-mono rounded">{tName}</code>
                       ))}
                     </div>
                     <p className="text-sm text-[#d1d5db] leading-relaxed font-normal">{mod.keyFeature}</p>
@@ -413,18 +473,25 @@ const SmartLogisticsPage: React.FC = () => {
 
           {/* ── Tech Stack ── */}
           <section id="techstack">
-            <SectionTitle icon={<Server className="w-5 h-5" />} title="Ngăn xếp Công nghệ & Nền tảng Kỹ thuật (Technology Stack)" />
+            <SectionTitle icon={<Server className="w-5 h-5" />}
+              title={language === 'vi' ? 'Ngăn xếp Công nghệ & Nền tảng Kỹ thuật (Technology Stack)' : 'Technology Stack & Engineering Toolchain'} />
             <div className="border border-[#262626] overflow-hidden rounded">
               <table className="w-full text-base">
                 <thead>
                   <tr className="border-b border-[#262626] bg-[#141414]">
-                    <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-[220px]">Phân tầng kiến trúc</th>
-                    <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-[240px]">Công nghệ / Phiên bản</th>
-                    <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider">Vai trò & Khả năng đáp ứng</th>
+                    <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-[220px]">
+                      {language === 'vi' ? 'Phân tầng kiến trúc' : 'Architectural Layer'}
+                    </th>
+                    <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-[240px]">
+                      {language === 'vi' ? 'Công nghệ / Phiên bản' : 'Technology & Version'}
+                    </th>
+                    <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider">
+                      {language === 'vi' ? 'Vai trò & Khả năng đáp ứng' : 'Role & Engineering Capability'}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {detail.techStack!.map((item, i) => (
+                  {detail.techStack.map((item, i) => (
                     <tr key={i} className="border-b border-[#1c1c1c] hover:bg-[#161616] transition-colors">
                       <td className="px-5 py-3.5 text-sm font-semibold text-[#D4AF37]">{item.layer}</td>
                       <td className="px-5 py-3.5">
@@ -443,38 +510,50 @@ const SmartLogisticsPage: React.FC = () => {
 
           {/* ── Tests ── */}
           <section id="tests">
-            <SectionTitle icon={<CheckCircle className="w-5 h-5" />} title="Báo cáo Kiểm thử Tự động Toàn diện (Master Testing Report)" badge="12/12 Kịch bản Đạt (PASS)" />
+            <SectionTitle icon={<CheckCircle className="w-5 h-5" />}
+              title={language === 'vi' ? 'Báo cáo Kiểm thử Tự động Toàn diện (Master Testing Report)' : 'Master Automated Testing Suite Report'}
+              badge="12/12 PASS" />
             <p className="text-[#d1d5db] text-base mb-8 font-normal">
-              Bộ kịch bản kiểm thử tự động toàn diện được khởi chạy qua lệnh <code className="text-[#D4AF37] text-sm font-mono px-2 py-0.5 bg-[#1a1a1a] rounded">npm run test:master</code>, bao phủ 5 tầng kiến trúc từ thuật toán toán học đến tính toàn vẹn cơ sở dữ liệu và bảo mật phân quyền.
+              {language === 'vi'
+                ? 'Bộ kịch bản kiểm thử tự động toàn diện được khởi chạy qua lệnh npm run test:master, bao phủ 5 tầng kiến trúc từ thuật toán toán học đến tính toàn vẹn cơ sở dữ liệu và bảo mật phân quyền.'
+                : 'Automated CI/CD master test suite executed via npm run test:master covering mathematical algorithm convergence, database concurrency, and gateway security.'}
             </p>
             <div className="border border-[#262626] overflow-hidden rounded">
               <table className="w-full">
                 <thead>
                   <tr className="bg-[#141414] border-b border-[#262626]">
-                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-10">STT</th>
-                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-48">Phân nhóm kiểm thử</th>
-                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider">Kịch bản kiểm thử</th>
-                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-24">Thời gian</th>
-                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-28">Kết quả</th>
+                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-10">#</th>
+                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-48">
+                      {language === 'vi' ? 'Phân nhóm kiểm thử' : 'Test Group'}
+                    </th>
+                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider">
+                      {language === 'vi' ? 'Kịch bản kiểm thử' : 'Test Suite & Assertion'}
+                    </th>
+                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-24">
+                      {language === 'vi' ? 'Thời gian' : 'Time'}
+                    </th>
+                    <th className="text-left px-5 py-3 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-28">
+                      {language === 'vi' ? 'Kết quả' : 'Status'}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {detail.testResults!.map((t, i) => {
-                    const c = groupColors[t.group] || '#9ca3af';
+                  {detail.testResults.map((tItem, i) => {
+                    const c = groupColors[tItem.group] || '#9ca3af';
                     return (
                       <tr key={i} className="border-b border-[#1c1c1c] hover:bg-[#161616] transition-colors">
                         <td className="px-5 py-3.5 text-xs text-[#9ca3af] font-mono">{i + 1}</td>
                         <td className="px-5 py-3.5">
-                          <span className="text-xs font-bold px-2.5 py-1 rounded" style={{ background: `${c}15`, color: c }}>{t.group}</span>
+                          <span className="text-xs font-bold px-2.5 py-1 rounded" style={{ background: `${c}15`, color: c }}>{tItem.group}</span>
                         </td>
                         <td className="px-5 py-3.5 text-sm font-medium text-[#f3f4f6]">
-                          <div>{t.name}</div>
-                          <div className="text-xs text-[#9ca3af] font-normal mt-0.5">{t.result}</div>
+                          <div>{tItem.name}</div>
+                          <div className="text-xs text-[#9ca3af] font-normal mt-0.5">{tItem.result}</div>
                         </td>
-                        <td className="px-5 py-3.5 text-xs font-mono font-bold text-[#9ca3af]">{t.timeMs}</td>
+                        <td className="px-5 py-3.5 text-xs font-mono font-bold text-[#9ca3af]">{tItem.timeMs}</td>
                         <td className="px-5 py-3.5">
                           <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#34D399] px-2.5 py-1 bg-[#34D399]/10 rounded">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#34D399]" /> ĐẠT (PASS)
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#34D399]" /> PASS
                           </span>
                         </td>
                       </tr>
@@ -487,9 +566,10 @@ const SmartLogisticsPage: React.FC = () => {
 
           {/* ── Business Impact ── */}
           <section id="impact">
-            <SectionTitle icon={<BarChart3 className="w-5 h-5" />} title="Chỉ số Tác động Doanh nghiệp & Vận hành (Business Impact)" />
+            <SectionTitle icon={<BarChart3 className="w-5 h-5" />}
+              title={language === 'vi' ? 'Chỉ số Tác động Doanh nghiệp & Vận hành (Business Impact)' : 'Operational & Business Impact'} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {detail.businessImpact!.map((b, i) => {
+              {detail.businessImpact.map((b, i) => {
                 const colors = ['#34D399','#4F9CF9','#A78BFA','#F59E0B','#F472B6','#34D399'];
                 const c = colors[i % colors.length];
                 return (
@@ -509,9 +589,10 @@ const SmartLogisticsPage: React.FC = () => {
 
           {/* ── Challenges ── */}
           <section id="challenges">
-            <SectionTitle icon={<AlertTriangle className="w-5 h-5" />} title="Các Thách thức Kỹ thuật Tiêu biểu & Giải pháp (Engineering Challenges)" />
+            <SectionTitle icon={<AlertTriangle className="w-5 h-5" />}
+              title={language === 'vi' ? 'Các Thách thức Kỹ thuật Tiêu biểu & Giải pháp (Engineering Challenges)' : 'Engineering Challenges & Applied Solutions'} />
             <div className="space-y-4">
-              {detail.challenges!.map((c, i) => (
+              {detail.challenges.map((c, i) => (
                 <div key={i} className="p-6 bg-[#121212] border border-[#262626] hover:border-[#3a3a3a] transition-colors rounded">
                   <h3 className="text-base font-bold text-[#D4AF37] mb-4 flex items-center gap-2.5">
                     <span className="w-6 h-6 flex items-center justify-center text-xs font-black font-mono rounded"
@@ -520,11 +601,11 @@ const SmartLogisticsPage: React.FC = () => {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="p-4 bg-[#1a1215] border border-[#F472B6]/20 rounded">
-                      <span className="text-xs font-bold text-[#F472B6] uppercase tracking-wider block mb-2">Thách thức kỹ thuật đặt ra</span>
+                      <span className="text-xs font-bold text-[#F472B6] uppercase tracking-wider block mb-2">{t.detailCommon.problemLabel}</span>
                       <p className="text-sm text-[#e5e7eb] leading-relaxed font-normal">{c.problem}</p>
                     </div>
                     <div className="p-4 bg-[#0e1915] border border-[#34D399]/20 rounded">
-                      <span className="text-xs font-bold text-[#34D399] uppercase tracking-wider block mb-2">Giải pháp kiến trúc & Triển khai</span>
+                      <span className="text-xs font-bold text-[#34D399] uppercase tracking-wider block mb-2">{t.detailCommon.solutionLabel}</span>
                       <p className="text-sm text-[#e5e7eb] leading-relaxed font-normal">{c.solution}</p>
                     </div>
                   </div>
@@ -537,7 +618,7 @@ const SmartLogisticsPage: React.FC = () => {
           <section className="border-t border-[#222222] pt-12">
             <div className="flex items-center gap-3 mb-5">
               <Layers className="w-5 h-5 text-[#9ca3af]" />
-              <span className="text-xs font-bold text-[#9ca3af] uppercase tracking-wider">Từ khóa công nghệ trọng tâm</span>
+              <span className="text-xs font-bold text-[#9ca3af] uppercase tracking-wider">{t.detailCommon.techKeywords}</span>
             </div>
             <div className="flex flex-wrap gap-2.5">
               {project.tags.map((tag, i) => (
@@ -552,11 +633,11 @@ const SmartLogisticsPage: React.FC = () => {
           <section className="border-t border-[#222222] pt-10 flex flex-col sm:flex-row gap-4 items-start">
             <a href={detail.githubUrl} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-3.5 bg-[#D4AF37] text-[#0e0e0e] font-bold text-sm hover:bg-[#e8c547] transition-colors tracking-wider uppercase rounded">
-              Xem Mã nguồn Dự án trên GitHub <ArrowUpRight className="w-4 h-4" />
+              {t.detailCommon.viewSourceBtn} <ArrowUpRight className="w-4 h-4" />
             </a>
             <button onClick={() => navigate(-1)}
               className="flex items-center gap-2 px-6 py-3.5 border border-[#333333] text-[#9ca3af] font-semibold text-sm hover:border-[#555] hover:text-[#f3f4f6] transition-colors tracking-wider uppercase rounded">
-              <ArrowLeft className="w-4 h-4" /> Quay lại Danh mục Dự án
+              <ArrowLeft className="w-4 h-4" /> {t.detailCommon.backToPortfolioBtn}
             </button>
           </section>
 

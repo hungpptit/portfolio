@@ -1,7 +1,13 @@
 import React from 'react';
 import { SKILL_GROUPS } from '../data/portfolioData';
+import { UI_TRANSLATIONS } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Skills: React.FC = () => {
+  const { language } = useLanguage();
+  const t = UI_TRANSLATIONS[language];
+  const groups = SKILL_GROUPS[language];
+
   return (
     <section id="skills" className="py-24 md:py-36 border-t border-[#2a2a2a] bg-[#111111]">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-20">
@@ -12,21 +18,23 @@ export const Skills: React.FC = () => {
             <div className="flex items-center gap-2.5 mb-3">
               <span className="w-1.5 h-1.5 bg-[#D4AF37]" />
               <span className="label-caps text-[#D4AF37]">
-                SECTION 02 — TECHNICAL DISCIPLINE
+                {t.skills.badge}
               </span>
             </div>
             <h2 className="headline-lg text-[#e4e2e1]">
-              Core Capabilities & Technologies
+              {t.skills.title}
             </h2>
           </div>
           <p className="body-md text-[#8e9192] max-w-md">
-            A comprehensive overview of architectural proficiencies, languages, distributed caches, and backend engineering tools.
+            {language === 'vi'
+              ? 'Tổng quan về kiến trúc hệ thống, ngôn ngữ lập trình, cơ sở dữ liệu quan hệ, bộ nhớ đệm và công cụ kỹ thuật Backend.'
+              : 'A comprehensive overview of architectural proficiencies, languages, distributed caches, and backend engineering tools.'}
           </p>
         </div>
 
         {/* 4 Group Ledger Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-[#2a2a2a] divide-y md:divide-y-0 md:divide-x divide-[#2a2a2a] bg-[#161616]">
-          {SKILL_GROUPS.map((group, idx) => (
+          {groups.map((group, idx) => (
             <div key={idx} className="p-8 flex flex-col justify-between group hover:bg-[#1c1c1c] transition-colors duration-400">
               <div>
                 <span className="label-caps text-[#D4AF37] text-[10px] block mb-4">

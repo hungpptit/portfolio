@@ -1,6 +1,11 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { UI_TRANSLATIONS } from '../data/translations';
 
 export const Capabilities: React.FC = () => {
+  const { language } = useLanguage();
+  const t = UI_TRANSLATIONS[language];
+
   return (
     <section id="capabilities" className="py-24 md:py-36 border-t border-[#2a2a2a] bg-[#111111]">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-20">
@@ -11,20 +16,19 @@ export const Capabilities: React.FC = () => {
             <div className="flex items-center gap-2.5 mb-3">
               <span className="w-1.5 h-1.5 bg-[#D4AF37]" />
               <span className="label-caps text-[#D4AF37]">
-                CORE TECHNICAL COMPETENCIES
+                {t.capabilities.badge}
               </span>
             </div>
             <h2 className="display-lg text-[#e4e2e1] uppercase tracking-tight">
-              MY CAPABILITIES
+              {t.capabilities.title}
             </h2>
           </div>
           <p className="body-md text-[#8e9192] max-w-md md:text-right font-light leading-relaxed">
-            I am always looking to add more skills. <br className="hidden sm:inline" />
-            Here’s what I bring to a build today.
+            {t.capabilities.subtitle}
           </p>
         </div>
 
-        {/* Bento Grid Layout matching screenshot */}
+        {/* Bento Grid Layout */}
         <div className="space-y-6">
           
           {/* Row 1: Core Tools (Wide) + Architecture (Narrow) */}
@@ -56,10 +60,12 @@ export const Capabilities: React.FC = () => {
                 </div>
 
                 <h3 className="font-serif-editorial text-2xl font-bold text-[#e4e2e1] mb-3">
-                  Core & Technical Tools
+                  {language === 'vi' ? 'Công cụ Kỹ thuật Trọng tâm' : 'Core & Technical Tools'}
                 </h3>
                 <p className="body-md text-[#8e9192] font-light leading-relaxed">
-                  Comfortable across the entire backend engineering chain — from distributed architecture design and caching strategies to database query optimization and containerized deployment.
+                  {language === 'vi'
+                    ? 'Làm chủ toàn bộ chuỗi phát triển Backend — từ thiết kế kiến trúc phân tán, chiến lược lưu đệm cache, đến tối ưu hóa truy vấn cơ sở dữ liệu và đóng gói triển khai Docker.'
+                    : 'Comfortable across the entire backend engineering chain — from distributed architecture design and caching strategies to database query optimization and containerized deployment.'}
                 </p>
               </div>
 
@@ -72,7 +78,7 @@ export const Capabilities: React.FC = () => {
             <div className="lg:col-span-5 p-8 md:p-10 border border-[#2a2a2a] bg-[#161616] flex flex-col justify-between group hover:border-[#444748] transition-all duration-300">
               <div>
                 <h3 className="font-serif-editorial text-2xl font-bold text-[#e4e2e1] mb-6">
-                  Architecture & Distributed Systems
+                  {language === 'vi' ? 'Kiến trúc & Hệ thống Phân tán' : 'Architecture & Distributed Systems'}
                 </h3>
 
                 {/* Pill Badges */}
@@ -110,7 +116,7 @@ export const Capabilities: React.FC = () => {
             <div className="lg:col-span-6 p-8 md:p-10 border border-[#2a2a2a] bg-[#161616] flex flex-col justify-between group hover:border-[#444748] transition-all duration-300">
               <div>
                 <h3 className="font-serif-editorial text-2xl font-bold text-[#e4e2e1] mb-6">
-                  Databases & Storage Infrastructure
+                  {language === 'vi' ? 'Cơ sở Dữ liệu & Hạ tầng Lưu trữ' : 'Databases & Storage Infrastructure'}
                 </h3>
 
                 {/* Pill Badges */}
@@ -143,19 +149,19 @@ export const Capabilities: React.FC = () => {
             <div className="lg:col-span-6 p-8 md:p-10 border border-[#2a2a2a] bg-[#161616] flex flex-col justify-between group hover:border-[#444748] transition-all duration-300">
               <div>
                 <h3 className="font-serif-editorial text-2xl font-bold text-[#e4e2e1] mb-6">
-                  Domain Knowledge
+                  {language === 'vi' ? 'Kiến thức Miền Nghiệp vụ' : 'Domain Knowledge'}
                 </h3>
 
                 {/* Pill Badges */}
                 <div className="flex flex-wrap gap-2.5">
                   {[
-                    'High-Traffic Ticketing',
-                    'Logistics & Route Optimization (VRP)',
-                    'Real-Time Retail Ecosystems',
-                    'Multi-Agent AI Chatbots',
-                    'NLP & Intent Recognition (BERT)',
-                    'Embedded & Edge AI (ESP32 / TFLite)',
-                    'Stripe & ZaloPay QR Payments',
+                    language === 'vi' ? 'Đặt vé Phim Chịu tải Cao' : 'High-Traffic Ticketing',
+                    language === 'vi' ? 'Định tuyến Logistics & VRP' : 'Logistics & Route Optimization (VRP)',
+                    language === 'vi' ? 'Thương mại Điện tử Thời gian thực' : 'Real-Time Retail Ecosystems',
+                    language === 'vi' ? 'Trợ lý Trí tuệ Nhân tạo Đa tác tử' : 'Multi-Agent AI Chatbots',
+                    language === 'vi' ? 'Nhận diện Ý định Người dùng (BERT)' : 'NLP & Intent Recognition (BERT)',
+                    language === 'vi' ? 'AI Nhúng & Thiết bị Cạnh (ESP32)' : 'Embedded & Edge AI (ESP32 / TFLite)',
+                    language === 'vi' ? 'Cổng thanh toán Stripe & ZaloPay QR' : 'Stripe & ZaloPay QR Payments',
                   ].map((item, idx) => (
                     <span
                       key={idx}
@@ -174,32 +180,32 @@ export const Capabilities: React.FC = () => {
 
           </div>
 
-          {/* Row 3: Languages & Communication (Compact) + Engineering Practices */}
+          {/* Row 3: Languages & Engineering Practices */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
             {/* Card 5: Languages */}
             <div className="lg:col-span-4 p-8 md:p-10 border border-[#2a2a2a] bg-[#161616] flex flex-col justify-between group hover:border-[#444748] transition-all duration-300">
               <div>
                 <h3 className="font-serif-editorial text-2xl font-bold text-[#e4e2e1] mb-6">
-                  Languages
+                  {language === 'vi' ? 'Năng lực Ngôn ngữ' : 'Languages'}
                 </h3>
 
                 <div className="space-y-3">
                   <div className="px-4 py-3 border border-[#2a2a2a] bg-[#1c1c1c]">
                     <div className="text-xs font-semibold text-[#e4e2e1]">
-                      English
+                      {language === 'vi' ? 'Tiếng Anh (English)' : 'English'}
                     </div>
                     <div className="text-[11px] text-[#8e9192] font-light mt-0.5">
-                      Professional Working Proficiency
+                      {language === 'vi' ? 'Sử dụng thành thạo trong môi trường làm việc chuyên nghiệp' : 'Professional Working Proficiency'}
                     </div>
                   </div>
 
                   <div className="px-4 py-3 border border-[#2a2a2a] bg-[#1c1c1c]">
                     <div className="text-xs font-semibold text-[#e4e2e1]">
-                      Vietnamese
+                      {language === 'vi' ? 'Tiếng Việt (Vietnamese)' : 'Vietnamese'}
                     </div>
                     <div className="text-[11px] text-[#8e9192] font-light mt-0.5">
-                      Native Speaker
+                      {language === 'vi' ? 'Tiếng mẹ đẻ (Native Speaker)' : 'Native Speaker'}
                     </div>
                   </div>
                 </div>
@@ -214,7 +220,7 @@ export const Capabilities: React.FC = () => {
             <div className="lg:col-span-8 p-8 md:p-10 border border-[#2a2a2a] bg-[#161616] flex flex-col justify-between group hover:border-[#444748] transition-all duration-300">
               <div>
                 <h3 className="font-serif-editorial text-2xl font-bold text-[#e4e2e1] mb-6">
-                  Engineering Practices & Delivery
+                  {language === 'vi' ? 'Quy trình Kỹ thuật & Bàn giao Phần mềm' : 'Engineering Practices & Delivery'}
                 </h3>
 
                 <div className="flex flex-wrap gap-2.5">

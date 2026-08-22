@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import { ArrowUpRight, GitBranch, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { PROJECTS } from '../data/portfolioData';
+import { UI_TRANSLATIONS } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 import { ProjectCategory } from '../types';
 
 export const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>('all');
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const t = UI_TRANSLATIONS[language];
+  const projectList = PROJECTS[language];
 
-  const filteredProjects = PROJECTS.filter((project) => {
+  const filteredProjects = projectList.filter((project) => {
     if (activeFilter === 'all') return true;
     if (activeFilter === 'backend') return project.category === 'backend';
     if (activeFilter === 'ai') return project.category === 'ai';
@@ -31,21 +36,21 @@ export const Projects: React.FC = () => {
             <div className="flex items-center gap-2.5 mb-3">
               <span className="w-1.5 h-1.5 bg-[#D4AF37]" />
               <span className="label-caps text-[#D4AF37]">
-                SECTION 01 — CURATED REPERTORY
+                {t.projects.badge}
               </span>
             </div>
             <h2 className="headline-lg text-[#e4e2e1]">
-              Featured Engineering Works
+              {t.projects.title}
             </h2>
           </div>
 
           {/* Filter Bar */}
           <div className="flex items-center flex-wrap gap-6 border-b md:border-b-0 border-[#2a2a2a] pb-4 md:pb-0">
             {[
-              { key: 'all', label: 'ALL WORKS' },
-              { key: 'backend', label: 'BACKEND & CONCURRENCY' },
-              { key: 'ai', label: 'AI & MICROSERVICES' },
-              { key: 'mobile', label: 'MOBILE & ECOSYSTEM' },
+              { key: 'all', label: t.projects.all },
+              { key: 'backend', label: t.projects.backend },
+              { key: 'ai', label: t.projects.ai },
+              { key: 'mobile', label: t.projects.mobile },
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -114,7 +119,7 @@ export const Projects: React.FC = () => {
                   {/* Architecture Highlights */}
                   <div className="p-6 bg-[#111111] border border-[#222222] mb-8">
                     <span className="label-caps text-[#8e9192] text-[10px] block mb-4">
-                      SYSTEM ARCHITECTURE SPECIFICATION
+                      {language === 'vi' ? 'ĐẶC TẢ ĐIỂM NHẤN KIẾN TRÚC HỆ THỐNG' : 'SYSTEM ARCHITECTURE SPECIFICATION'}
                     </span>
                     <ul className="space-y-3">
                       {project.architectureHighlights.map((hl, hIdx) => (
@@ -150,7 +155,7 @@ export const Projects: React.FC = () => {
                         className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#D4AF37]/10 border border-[#D4AF37]/40 text-[#D4AF37] text-[11px] font-bold uppercase tracking-wider hover:bg-[#D4AF37] hover:text-[#0e0e0e] transition-all duration-200 group/btn"
                       >
                         <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
-                        VIEW FULL DETAILS
+                        {t.projects.viewDetails}
                       </button>
                     ) : (
                       <div />
@@ -163,7 +168,7 @@ export const Projects: React.FC = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 label-caps text-[11px] text-[#8e9192] hover:text-[#D4AF37] transition-colors shrink-0 group/link"
                     >
-                      <span>SOURCE REPO</span>
+                      <span>{t.projects.sourceCode}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                     </a>
                   </div>

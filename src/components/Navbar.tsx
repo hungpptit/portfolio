@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { UI_TRANSLATIONS } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
+import { LanguageToggle } from './LanguageToggle';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language } = useLanguage();
+  const t = UI_TRANSLATIONS[language];
+  const info = PERSONAL_INFO[language];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,10 +22,10 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { href: '#capabilities', label: 'CAPABILITIES' },
-    { href: '#projects', label: 'WORKS' },
-    { href: '#experience', label: 'FOUNDATION' },
-    { href: '#contact', label: 'CONTACT' },
+    { href: '#capabilities', label: t.nav.capabilities },
+    { href: '#projects', label: t.nav.works },
+    { href: '#experience', label: t.nav.foundation },
+    { href: '#contact', label: t.nav.contact },
   ];
 
   return (
@@ -42,10 +48,10 @@ export const Navbar: React.FC = () => {
             </div>
             <div className="flex flex-col">
               <span className="font-serif-editorial text-sm font-semibold tracking-wide text-[#e4e2e1] group-hover:text-[#D4AF37] transition-colors duration-300">
-                PHAM TUAN HUNG
+                {info.name.toUpperCase()}
               </span>
               <span className="label-caps text-[9px] text-[#8e9192]">
-                SWE / BACKEND
+                {t.nav.role}
               </span>
             </div>
           </a>
@@ -67,10 +73,11 @@ export const Navbar: React.FC = () => {
             ))}
           </nav>
 
-          {/* Right Action */}
+          {/* Right Action: Language Toggle + GitHub + Contact */}
           <div className="hidden sm:flex items-center gap-4">
+            <LanguageToggle />
             <a
-              href={PERSONAL_INFO.github}
+              href={info.github}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 border border-[#2a2a2a] text-[#8e9192] hover:text-[#e4e2e1] hover:border-[#D4AF37] transition-all duration-300"
@@ -82,18 +89,21 @@ export const Navbar: React.FC = () => {
               href="#contact"
               className="btn-gold-outline text-[10px] py-2.5 px-5"
             >
-              <span>GET IN TOUCH</span>
+              <span>{t.nav.contact}</span>
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-[#e4e2e1] border border-[#2a2a2a] hover:border-[#D4AF37]"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile Menu & Toggle */}
+          <div className="md:hidden flex items-center gap-3">
+            <LanguageToggle showIcon={false} />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-[#e4e2e1] border border-[#2a2a2a] hover:border-[#D4AF37]"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
 
         </div>
       </div>
@@ -114,7 +124,7 @@ export const Navbar: React.FC = () => {
           ))}
           <div className="pt-4 flex items-center justify-between">
             <a
-              href={PERSONAL_INFO.github}
+              href={info.github}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-xs text-[#8e9192] hover:text-[#e4e2e1]"
@@ -127,7 +137,7 @@ export const Navbar: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="btn-gold-outline text-[10px] py-2 px-4"
             >
-              CONTACT
+              {t.nav.contact}
             </a>
           </div>
         </div>

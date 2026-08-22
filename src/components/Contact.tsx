@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import { Copy, ArrowUpRight } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { UI_TRANSLATIONS } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Contact: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { language } = useLanguage();
+  const t = UI_TRANSLATIONS[language];
+  const info = PERSONAL_INFO[language];
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(PERSONAL_INFO.email);
+    navigator.clipboard.writeText(info.email);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   const handleCopyPhone = () => {
-    navigator.clipboard.writeText(PERSONAL_INFO.phone);
+    navigator.clipboard.writeText(info.phone);
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2000);
   };
@@ -39,11 +44,11 @@ export const Contact: React.FC = () => {
           <div className="flex items-center gap-2.5 mb-3">
             <span className="w-1.5 h-1.5 bg-[#D4AF37]" />
             <span className="label-caps text-[#D4AF37]">
-              SECTION 04 — COMMENCE A DIALOGUE
+              {t.contact.badge}
             </span>
           </div>
           <h2 className="display-lg text-[#e4e2e1]">
-            Initiate Connection
+            {t.contact.title}
           </h2>
         </div>
 
@@ -53,7 +58,7 @@ export const Contact: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <p className="body-lg text-[#c4c7c7] font-light leading-relaxed mb-10">
-                Currently open to select <strong className="text-[#e4e2e1] font-medium">Software Engineer</strong> and <strong className="text-[#e4e2e1] font-medium">Backend Developer</strong> opportunities. Whether discussing distributed systems or exploring potential collaboration, inquiries are welcome.
+                {t.contact.subtitle}
               </p>
 
               <div className="space-y-4">
@@ -64,15 +69,17 @@ export const Contact: React.FC = () => {
                 >
                   <div>
                     <span className="label-caps text-[#8e9192] text-[10px] block mb-1">
-                      PRIMARY ELECTRONIC MAIL
+                      {language === 'vi' ? 'ĐỊA CHỈ THƯ ĐIỆN TỬ CHÍNH' : 'PRIMARY ELECTRONIC MAIL'}
                     </span>
                     <div className="font-serif-editorial text-lg text-[#e4e2e1] group-hover:text-[#D4AF37] transition-colors">
-                      {PERSONAL_INFO.email}
+                      {info.email}
                     </div>
                   </div>
                   <div className="text-xs text-[#8e9192] group-hover:text-[#D4AF37]">
                     {copiedEmail ? (
-                      <span className="label-caps text-[10px] text-[#D4AF37]">COPIED</span>
+                      <span className="label-caps text-[10px] text-[#D4AF37] font-bold">
+                        {language === 'vi' ? 'ĐÃ SAO CHÉP' : 'COPIED'}
+                      </span>
                     ) : (
                       <Copy className="w-4 h-4" />
                     )}
@@ -86,109 +93,116 @@ export const Contact: React.FC = () => {
                 >
                   <div>
                     <span className="label-caps text-[#8e9192] text-[10px] block mb-1">
-                      DIRECT CELLULAR & TELEGRAM
+                      {language === 'vi' ? 'ĐIỆN THOẠI DI ĐỘNG & ZALO' : 'DIRECT CELLULAR & TELEGRAM'}
                     </span>
                     <div className="font-serif-editorial text-lg text-[#e4e2e1] group-hover:text-[#D4AF37] transition-colors">
-                      {PERSONAL_INFO.phone}
+                      {info.phone}
                     </div>
                   </div>
                   <div className="text-xs text-[#8e9192] group-hover:text-[#D4AF37]">
                     {copiedPhone ? (
-                      <span className="label-caps text-[10px] text-[#D4AF37]">COPIED</span>
+                      <span className="label-caps text-[10px] text-[#D4AF37] font-bold">
+                        {language === 'vi' ? 'ĐÃ SAO CHÉP' : 'COPIED'}
+                      </span>
                     ) : (
                       <Copy className="w-4 h-4" />
                     )}
                   </div>
                 </div>
-
-                {/* Location */}
-                <div className="p-6 border border-[#2a2a2a] bg-[#161616]">
-                  <span className="label-caps text-[#8e9192] text-[10px] block mb-1">
-                    PRIMARY BASE
-                  </span>
-                  <div className="font-serif-editorial text-lg text-[#e4e2e1]">
-                    {PERSONAL_INFO.location}
-                  </div>
-                </div>
               </div>
             </div>
 
-            <div className="pt-8 mt-8 border-t border-[#2a2a2a] flex items-center gap-4">
+            {/* Social Links Ledger */}
+            <div className="pt-8 mt-8 border-t border-[#222222] flex items-center gap-6">
               <a
-                href={PERSONAL_INFO.github}
+                href={info.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 label-caps text-[11px] text-[#8e9192] hover:text-[#D4AF37] transition-colors"
+                className="flex items-center gap-2 text-xs label-caps text-[#8e9192] hover:text-[#D4AF37] transition-colors"
               >
                 <GithubIcon className="w-4 h-4" />
-                <span>GITHUB / HUNG PPTIT</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>GITHUB</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </a>
+
+              <a
+                href={info.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs label-caps text-[#8e9192] hover:text-[#D4AF37] transition-colors"
+              >
+                <span>LINKEDIN</span>
+                <ArrowUpRight className="w-3 h-3" />
               </a>
             </div>
           </div>
 
-          {/* Right Column: Minimalist Bottom-Border Form */}
-          <div className="lg:col-span-7">
-            <div className="p-8 md:p-12 border border-[#2a2a2a] bg-[#161616]">
-              <span className="label-caps text-[#8e9192] text-[10px] block mb-2">
-                TRANSMISSION DISPATCH
-              </span>
-              <h3 className="headline-md text-[#e4e2e1] mb-8">
-                Send a Direct Message
-              </h3>
-
-              <form onSubmit={handleSubmit} className="space-y-8">
+          {/* Right Column: Communication Transmission Form */}
+          <div className="lg:col-span-7 p-8 md:p-12 border border-[#2a2a2a] bg-[#161616]">
+            {isSubmitted ? (
+              <div className="py-16 text-center">
+                <div className="w-12 h-12 border border-[#D4AF37] flex items-center justify-center mx-auto mb-6">
+                  <span className="w-3 h-3 bg-[#D4AF37]" />
+                </div>
+                <h3 className="font-serif-editorial text-2xl font-bold text-[#e4e2e1] mb-3">
+                  {language === 'vi' ? 'Tin Nhắn Đã Được Gửi' : 'Transmission Dispatched'}
+                </h3>
+                <p className="body-md text-[#8e9192] max-w-md mx-auto">
+                  {t.contact.successMsg}
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="label-caps text-[#8e9192] text-[10px] block mb-2">
-                    YOUR NAME OR ORGANIZATION
+                  <label className="label-caps text-[#8e9192] text-[10px] block mb-2 font-bold">
+                    {t.contact.nameLabel.toUpperCase()}
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Engineering Lead / Technical Recruiter"
-                    className="input-editorial"
+                    placeholder={t.contact.namePlaceholder}
+                    className="w-full px-5 py-4 border border-[#2a2a2a] bg-[#121212] text-[#e4e2e1] text-sm focus:outline-none focus:border-[#D4AF37] transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="label-caps text-[#8e9192] text-[10px] block mb-2">
-                    YOUR ELECTRONIC MAIL ADDRESS
+                  <label className="label-caps text-[#8e9192] text-[10px] block mb-2 font-bold">
+                    {t.contact.emailLabel.toUpperCase()}
                   </label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="name@organization.com"
-                    className="input-editorial"
+                    placeholder={t.contact.emailPlaceholder}
+                    className="w-full px-5 py-4 border border-[#2a2a2a] bg-[#121212] text-[#e4e2e1] text-sm focus:outline-none focus:border-[#D4AF37] transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="label-caps text-[#8e9192] text-[10px] block mb-2">
-                    MESSAGE / PROJECT SCOPE
+                  <label className="label-caps text-[#8e9192] text-[10px] block mb-2 font-bold">
+                    {t.contact.messageLabel.toUpperCase()}
                   </label>
                   <textarea
-                    rows={4}
                     required
+                    rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Outline your engineering requirement or inquiry..."
-                    className="input-editorial resize-none"
+                    placeholder={t.contact.messagePlaceholder}
+                    className="w-full px-5 py-4 border border-[#2a2a2a] bg-[#121212] text-[#e4e2e1] text-sm focus:outline-none focus:border-[#D4AF37] transition-colors resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  disabled={isSubmitted}
-                  className="btn-gold-outline w-full py-4 text-xs tracking-[0.2em]"
+                  className="w-full py-4 border border-[#D4AF37] bg-[#D4AF37] text-[#121212] font-semibold label-caps text-xs hover:bg-[#e8c547] transition-colors duration-300 tracking-[0.2em]"
                 >
-                  {isSubmitted ? 'MESSAGE TRANSMITTED WITH SUCCESS' : 'TRANSMIT INQUIRY'}
+                  {t.contact.sendBtn}
                 </button>
               </form>
-            </div>
+            )}
           </div>
 
         </div>
