@@ -86,7 +86,7 @@ export const UI_TRANSLATIONS = {
       quickInfoTitle: 'Thông tin tóm tắt',
       statusLabel: 'Trạng thái dự án',
       statusInProgress: 'Đang vận hành thực tế',
-      statusCompleted: 'Đã hoàn thành & Kiểm thử',
+      statusCompleted: 'Đã hoàn thành & Đã xác nhận',
       durationLabel: 'Thời gian thực hiện',
       companyLabel: 'Doanh nghiệp triển khai',
       roleLabel: 'Vai trò đảm nhiệm',
