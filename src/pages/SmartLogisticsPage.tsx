@@ -264,7 +264,7 @@ const MyOwnershipSection: React.FC<{ detail: SmartLogisticsData; language: strin
 };
 
 // ─── High-Level System Architecture ────────────────────────────────────────
-const SystemArchitectureSection: React.FC<{ detail: SmartLogisticsData; language: string }> = ({ detail, language }) => {
+const SystemArchitectureSection: React.FC<{ detail?: SmartLogisticsData; language: string }> = ({ language }) => {
   return (
     <div className="p-6 md:p-8 bg-[#111111] border border-[#262626] rounded space-y-6">
 

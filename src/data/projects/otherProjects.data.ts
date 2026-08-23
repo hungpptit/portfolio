@@ -15,22 +15,49 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
   vi: {
     "toeic-ai-microservices": {
       id: "toeic-ai-microservices",
-      overview: "Hệ thống học tập và luyện thi chứng chỉ tiếng Anh quốc tế (TOEIC) toàn diện kết hợp Trợ lý Trí tuệ nhân tạo (AI Chatbot). Hệ thống tích hợp mô hình Xử lý Ngôn ngữ Tự nhiên (Natural Language Processing - NLP) chuẩn BERT để nhận diện ý định học viên, giao diện lập trình ứng dụng Google Gemini API để giải thích chi tiết đáp án, và các thuật toán Học máy (Machine Learning - Naïve Bayes, k-Nearest Neighbors) nhằm phân tích điểm yếu và gợi ý lộ trình ôn tập cá nhân hóa.",
-      role: "Lập trình viên Toàn diện & Tích hợp Trí tuệ Nhân tạo (Full-stack Developer & AI Integration)",
+      overview: "Hệ sinh thái học tập và luyện thi chứng chỉ Tiếng Anh Giao tiếp Quốc tế (TOEIC) toàn diện, giải quyết triệt để bài toán thiếu tương tác cá nhân hóa và chi phí gia sư đắt đỏ của các nền tảng luyện thi truyền thống. Hệ thống kết hợp ba trụ cột cốt lõi: Động cơ thi thử chuẩn hóa 7 Parts với chấm điểm tự động, Trợ lý AI gia sư thông minh (Google Gemini) giải thích ngữ pháp và đối thoại ngữ cảnh tức thì, cùng Đường ống Học máy (Machine Learning Pipeline) tự động chẩn đoán điểm yếu và dự đoán điểm thi của học viên. Nền tảng được vận hành trên Kiến trúc Vi dịch vụ (Microservices) tự chủ hoàn toàn với Cổng thanh toán trực tuyến ZaloPay an toàn, đạt 51/51 Test Cases (100% PASS) kiểm thử toàn diện trên toàn bộ hệ thống API.",
+      role: "Kỹ sư Phần mềm & Lập trình viên Backend (Software Engineer & Backend Developer)",
       duration: "4 tháng",
-      teamSize: "4 thành viên",
+      teamSize: "3 thành viên",
       techStack: [
-        { layer: "Ứng dụng Di động (Mobile)", tech: "Flutter (Dart)", version: "^3.x", role: "Đa nền tảng (Android & iOS), tốc độ khung hình 60 FPS mượt mà, hỗ trợ làm bài tập khi mất mạng" },
-        { layer: "Trợ lý Trí tuệ Nhân tạo", tech: "Google Gemini API", version: "—", role: "Phân tích ngữ cảnh câu hỏi, giải thích ngữ pháp và từ vựng chuyên sâu theo ngôn ngữ tự nhiên" },
-        { layer: "Xử lý Ngôn ngữ Tự nhiên", tech: "Mô hình BERT tinh chỉnh (Fine-tuned BERT)", version: "—", role: "Phân loại ý định của người học (luyện nghe, tra cứu ngữ pháp, phân tích điểm yếu)" },
-        { layer: "Thuật toán Gợi ý Đề thi", tech: "Naïve Bayes & k-Nearest Neighbors (kNN)", version: "—", role: "Phân tích lịch sử làm bài để nhận diện dạng câu hỏi hay làm sai và tự động đề xuất đề luyện tương ứng" },
-        { layer: "Hệ thống Vi dịch vụ Backend", tech: "Node.js / Express.js", version: "v18", role: "Tách biệt Dịch vụ Xác thực tài khoản (Auth), Dịch vụ Ngân hàng câu hỏi (Quiz), Dịch vụ Trợ lý AI (AI Agent)" },
+        { layer: "Kiến trúc hệ thống", tech: "Kiến trúc Vi dịch vụ (Microservices)", version: "—", role: "Phân tách 6 dịch vụ tự chủ hoàn toàn (Database-per-Service): Nginx API Gateway, Auth, Quiz, Chatbot, Payment, Email Worker" },
+        { layer: "Nền tảng thực thi Backend", tech: "Node.js + Express 5", version: "v20 LTS", role: "55+ điểm cuối RESTful API v1 có tài liệu Swagger/OpenAPI 3 tự động" },
+        { layer: "Trình ánh xạ CSDL (ORM)", tech: "Sequelize ORM", version: "^6.x", role: "Ánh xạ quan hệ đối tượng cho SQL Server, parameterized queries chống SQL Injection" },
+        { layer: "Cơ sở dữ liệu quan hệ", tech: "Microsoft SQL Server 2022", version: "2022", role: "4 CSDL cách ly hoàn toàn: ChatbotToeic_Auth, Quiz, Chatbot, Payment" },
+        { layer: "Cổng API & Cân bằng tải", tech: "Nginx Alpine (Reverse Proxy)", version: "Alpine", role: "Điểm truy cập duy nhất, định tuyến yêu cầu theo tiền tố đường dẫn, tiêm tiêu đề bảo mật" },
+        { layer: "Trợ lý Trí tuệ nhân tạo", tech: "Google Gemini 2.5 Flash", version: "2.5 Flash", role: "AI gia sư TOEIC hội thoại đa lượt có ngữ cảnh CSDL; Round-Robin API Key Rotation" },
+        { layer: "Đường ống Học máy", tech: "Python 3.11 + Flask + scikit-learn", version: "3.11", role: "Dự đoán điểm TOEIC & phân tích kỹ năng yếu; tự động retrain hàng ngày lúc 2:00 AM" },
+        { layer: "Hàng đợi thông điệp bất đồng bộ", tech: "RabbitMQ Message Broker", version: "^3.x", role: "Xử lý hàng đợi gửi email xác nhận OTP và thông báo thanh toán VIP" },
+        { layer: "Cổng thanh toán trực tuyến", tech: "ZaloPay Dynamic QR API", version: "Sandbox", role: "Mã QR động thời gian thực; Webhook HMAC-SHA256; tích lũy hạn VIP cộng dồn" },
+        { layer: "Xác thực & Bảo mật", tech: "JWT Dual-Token + bcrypt + OAuth 2.0", version: "—", role: "Access Token 7d + Refresh Token 30d; OTP Email 10m; RBAC Admin/User; rate-limit" },
+        { layer: "Giao diện đa nền tảng", tech: "Flutter 3 + Dart (GetX)", version: "^3.x", role: "Ứng dụng di động đa nền tảng (Android, iOS, Web) từ một mã nguồn duy nhất" },
+        { layer: "Đóng gói & Triển khai", tech: "Docker + Docker Compose", version: "—", role: "Điều phối đồng nhất 9 container; 1 lệnh khởi động toàn bộ kèm auto-seed CSDL" },
       ],
       challenges: [
         {
-          title: "Độ chính xác khi phân loại ý định người học bằng tiếng Việt tự nhiên (Intent Classification)",
-          problem: "Học viên thường nhắn tin bằng tiếng Việt không dấu, viết tắt hoặc dùng từ lóng, khiến các mô hình ngôn ngữ tiếng Anh mặc định không hiểu được đúng nhu cầu.",
-          solution: "Thu thập và gắn nhãn tập dữ liệu hơn 5,000 mẫu câu hỏi luyện thi TOEIC đặc thù, sau đó tiến hành tinh chỉnh (Fine-tuning) mô hình BERT tiếng Việt. Kết quả chỉ số đo lường độ chính xác (F1-score) đạt 87%."
+          title: "Kiểm tra trạng thái VIP xuyên dịch vụ (Cross-Service VIP Check)",
+          problem: "Dịch vụ Chatbot cần xác minh trạng thái VIP để giới hạn 15 tin nhắn/ngày, nhưng Database-per-Service cấm truy cập trực tiếp CSDL Auth.",
+          solution: "Thiết kế VIP Check Middleware gọi điểm cuối nội bộ GET /api/v1/internal/users/:userId trên auth-service trong mạng Docker nội bộ."
+        },
+        {
+          title: "Lỗi khởi động dây chuyền khi SQL Server chưa sẵn sàng",
+          problem: "Node.js khởi động nhanh hơn SQL Server 2022 (cần 30-60s), gây Connection Refused hàng loạt.",
+          solution: "Triển khai wait-for-db.sh probe kết nối + Docker Compose restart: always + import-data.sh tự động tạo schema & seed data."
+        },
+        {
+          title: "Bảo mật Webhook ZaloPay chống giả mạo và Replay Attack",
+          problem: "Webhook có thể bị làm giả hoặc gửi lại payload cũ để kích hoạt VIP gian lận.",
+          solution: "Xác thực HMAC-SHA256 tái tính toán MAC; kiểm tra trùng appTransId trong Transactions table; logic VIP cộng dồn không ghi đè."
+        },
+        {
+          title: "Giới hạn tốc độ của Google Gemini API",
+          problem: "Nhiều người dùng gửi tin nhắn AI đồng thời gây HTTP 429 Too Many Requests.",
+          solution: "Cơ chế Round-Robin API Key Rotation phân tán đều yêu cầu giữa nhiều API keys kết hợp rate limiting 200 req/15min."
+        },
+        {
+          title: "Khởi động nguội mô hình Machine Learning",
+          problem: "Hệ thống mới triển khai chưa có dữ liệu làm bài để huấn luyện mô hình scikit-learn.",
+          solution: "Gieo sẵn Seed Dataset qua db-init + pre-train model mặc định; cron job lúc 2:00 AM tự động thu thập data mới để retrain hàng ngày."
         },
       ],
     },
@@ -79,22 +106,49 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
   en: {
     "toeic-ai-microservices": {
       id: "toeic-ai-microservices",
-      overview: "Comprehensive TOEIC certification learning and examination ecosystem powered by an AI Chatbot Agent. Integrates fine-tuned BERT for natural language intent classification, Google Gemini API for deep contextual explanations, and Machine Learning algorithms (Naïve Bayes, kNN) to diagnose knowledge gaps and generate adaptive study paths.",
-      role: "Full-stack Developer & AI Integration Specialist",
+      overview: "Comprehensive TOEIC certification examination and learning ecosystem engineered to solve the critical challenges of static learning materials, lack of personalized feedback, and prohibitive 1-on-1 tutoring expenses. The platform harmoniously unites three core pillars: an automated 7-Part TOEIC simulation and scoring engine, an intelligent AI tutor (Google Gemini) delivering instant contextual grammar explanations and multi-turn conversational reasoning, and an automated Machine Learning pipeline for personalized weakness diagnosis and score forecasting. Built on an autonomous Microservices architecture with secure ZaloPay payment integration, verified through 51/51 automated and functional test cases (100% PASS rate) across all 55+ API endpoints.",
+      role: "Software Engineer & Backend Developer",
       duration: "4 months",
-      teamSize: "4 members",
+      teamSize: "3 members",
       techStack: [
-        { layer: "Mobile Application", tech: "Flutter (Dart)", version: "^3.x", role: "Cross-platform (Android & iOS) delivery with 60 FPS animation and offline quiz caching" },
-        { layer: "AI Reasoning Agent", tech: "Google Gemini API", version: "—", role: "Contextual grammar analysis, vocabulary synthesis, and natural language query resolution" },
-        { layer: "Natural Language Processing", tech: "Fine-tuned BERT NLP", version: "—", role: "Classifies student intents (listening drill, grammar lookup, weakness diagnostics)" },
-        { layer: "Recommendation Engine", tech: "Naïve Bayes & k-Nearest Neighbors", version: "—", role: "Analyzes historical test performance to generate dynamic personalized mock exams" },
-        { layer: "Microservices Backend", tech: "Node.js / Express.js", version: "v18", role: "Decoupled Authentication, Quiz Bank, and AI Agent Microservices" },
+        { layer: "System Architecture", tech: "Microservices Architecture", version: "—", role: "Decoupled 6 autonomous services (Database-per-Service): Nginx Gateway, Auth, Quiz, Chatbot, Payment, Email Worker" },
+        { layer: "Backend Runtime", tech: "Node.js + Express 5", version: "v20 LTS", role: "55+ versioned RESTful API v1 endpoints with auto-generated Swagger/OpenAPI 3 docs" },
+        { layer: "Database ORM", tech: "Sequelize ORM", version: "^6.x", role: "Object-Relational Mapping for SQL Server with parameterized queries preventing SQL injection" },
+        { layer: "Relational Database", tech: "Microsoft SQL Server 2022", version: "2022", role: "4 isolated databases: ChatbotToeic_Auth, Quiz, Chatbot, Payment" },
+        { layer: "API Gateway", tech: "Nginx Alpine (Reverse Proxy)", version: "Alpine", role: "Single ingress point, path-prefix routing, security header injection, rate limiting" },
+        { layer: "AI Conversational Agent", tech: "Google Gemini 2.5 Flash", version: "2.5 Flash", role: "Multi-turn tutoring chatbot with DB context; Round-Robin API Key Rotation" },
+        { layer: "Machine Learning Pipeline", tech: "Python 3.11 + Flask + scikit-learn", version: "3.11", role: "Score prediction & weak skill analysis; automated daily retrain at 2:00 AM" },
+        { layer: "Message Broker", tech: "RabbitMQ Message Broker", version: "^3.x", role: "Async email delivery queue for OTP registration and VIP payment notices" },
+        { layer: "Payment Gateway", tech: "ZaloPay Dynamic QR API", version: "Sandbox", role: "Dynamic QR codes; HMAC-SHA256 Webhook validation; cumulative VIP expiry extension" },
+        { layer: "Auth & Security", tech: "JWT Dual-Token + bcrypt + OAuth 2.0", version: "—", role: "Access Token 7d + Refresh Token 30d; OTP Email 10m; RBAC Admin/User; rate limiting" },
+        { layer: "Cross-Platform Frontend", tech: "Flutter 3 + Dart (GetX)", version: "^3.x", role: "Cross-platform (Android, iOS, Web) from single codebase with GetX state" },
+        { layer: "Containerization", tech: "Docker + Docker Compose", version: "—", role: "9 containers deployed via single command with automated schema/seed data initialization" },
       ],
       challenges: [
         {
-          title: "Intent Classification Accuracy on Informal Vietnamese User Inputs",
-          problem: "Students frequently typed unaccented Vietnamese, abbreviations, or conversational slang that default English NLP models failed to interpret.",
-          solution: "Curated and labeled a dataset of over 5,000 domain-specific TOEIC queries to fine-tune a Vietnamese BERT model, achieving an 87% F1-score in intent classification."
+          title: "Cross-Service VIP Status Verification Without Direct Database Access",
+          problem: "Chatbot Service needs to enforce 15 msgs/day limit for free users, but Database-per-Service prohibits direct access to Auth DB.",
+          solution: "Engineered VIP Check Middleware making internal REST calls to GET /api/v1/internal/users/:userId on Auth Service within Docker network."
+        },
+        {
+          title: "Cascading Startup Failure When Node.js Services Boot Before SQL Server",
+          problem: "Node.js services start faster than SQL Server 2022 (30-60s), causing Connection Refused errors across all services.",
+          solution: "Implemented wait-for-db.sh probe + Docker Compose restart: always + import-data.sh auto-initialization script."
+        },
+        {
+          title: "ZaloPay Webhook Security Against Forged Requests and Replay Attacks",
+          problem: "Callbacks could be forged or replayed to fraudulently activate or duplicate VIP subscriptions.",
+          solution: "HMAC-SHA256 signature verification; appTransId deduplication in Transactions table; cumulative additive VIP expiry logic."
+        },
+        {
+          title: "Google Gemini API Rate Limiting Disrupting Chatbot Availability",
+          problem: "Single API key hits rate limits under concurrent VIP traffic, returning HTTP 429.",
+          solution: "Round-Robin API Key Rotation distributing load across multiple keys + 200 req/15min gateway rate limiting."
+        },
+        {
+          title: "Machine Learning Model Cold Start on First Deployment",
+          problem: "No initial user test attempt data exists, causing model training to fail on first boot.",
+          solution: "Pre-seeded training dataset via db-init + pre-trained model artifact (.pkl); automated daily cron at 2:00 AM retrains on real data."
         },
       ],
     },
