@@ -27,6 +27,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
 import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const LibraryManagementPage: React.FC = () => {
   const navigate = useNavigate();
@@ -36,6 +37,8 @@ const LibraryManagementPage: React.FC = () => {
   const detail = LIBRARY_MANAGEMENT_DETAIL[language];
   const project = PROJECTS[language].find(p => p.id === 'smart-library')!;
   const t = UI_TRANSLATIONS[language];
+
+  useDocumentTitle(project ? project.title : 'Smart Library Management System');
 
   const accent = '#34D399'; // Green/Enterprise theme
 

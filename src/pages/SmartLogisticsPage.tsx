@@ -40,6 +40,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
 import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 // ─── Business Context & Problem Statement ──────────────────────────────────
 const BusinessContextSection: React.FC<{ detail: SmartLogisticsData; language: string }> = ({ detail, language }) => {
@@ -812,6 +813,8 @@ const SmartLogisticsPage: React.FC = () => {
   const detail = SMART_LOGISTICS_DETAIL[language];
   const project = PROJECTS[language].find(p => p.id === 'smart-logistics')!;
   const t = UI_TRANSLATIONS[language];
+
+  useDocumentTitle(project ? project.title : 'Smart Logistics Platform (SLP)');
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },

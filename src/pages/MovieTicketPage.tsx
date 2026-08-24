@@ -33,6 +33,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
 import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const MovieTicketPage: React.FC = () => {
   const navigate = useNavigate();
@@ -42,6 +43,8 @@ const MovieTicketPage: React.FC = () => {
   const detail = MOVIE_TICKET_DETAIL[language];
   const project = PROJECTS[language].find(p => p.id === 'movie-ticket-booking')!;
   const t = UI_TRANSLATIONS[language];
+
+  useDocumentTitle(project ? project.title : 'Movie Ticket Booking System');
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },

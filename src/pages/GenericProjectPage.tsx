@@ -6,6 +6,7 @@ import { OTHER_PROJECTS_DETAIL } from '../data/projects/otherProjects.data';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const GenericProjectPage: React.FC = () => {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ const GenericProjectPage: React.FC = () => {
 
   const project = PROJECTS[language].find(p => p.id === id);
   const detail = id ? OTHER_PROJECTS_DETAIL[language]?.[id] : undefined;
+
+  useDocumentTitle(project ? project.title : (language === 'vi' ? 'Chi tiết dự án' : 'Project Details'));
 
   const [activeSection, setActiveSection] = useState('overview');
 

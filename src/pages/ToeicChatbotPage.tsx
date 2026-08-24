@@ -31,6 +31,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
 import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const ToeicChatbotPage: React.FC = () => {
   const navigate = useNavigate();
@@ -40,6 +41,8 @@ const ToeicChatbotPage: React.FC = () => {
   const detail = TOEIC_CHATBOT_DETAIL[language];
   const project = PROJECTS[language].find(p => p.id === 'toeic-ai-microservices')!;
   const t = UI_TRANSLATIONS[language];
+
+  useDocumentTitle(project ? project.title : 'TOEIC AI Tutor & Microservices');
 
   const accent = '#A78BFA'; // AI/purple theme
 

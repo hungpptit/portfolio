@@ -21,11 +21,13 @@ import {
   MessageSquare,
   Cpu,
 } from 'lucide-react';
+import { PROJECTS } from '../data/portfolioData';
 import { TECH_STORE_DETAIL } from '../data/projects/techStore.data';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
 import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const TechStorePage: React.FC = () => {
   const navigate = useNavigate();
@@ -33,7 +35,10 @@ const TechStorePage: React.FC = () => {
   const [activeSection, setActiveSection] = useState('overview');
 
   const detail = TECH_STORE_DETAIL[language];
+  const project = PROJECTS[language].find(p => p.id === 'tech-store-ecosystem');
   const t = UI_TRANSLATIONS[language];
+
+  useDocumentTitle(project ? project.title : 'Tech Store Android & Web');
 
   const accent = '#3B82F6'; // Modern Electric Blue Theme
 
