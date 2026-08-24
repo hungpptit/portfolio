@@ -23,8 +23,8 @@ export const PERSONAL_INFO: Record<Language, PersonalInfoType> = {
   vi: {
     name: "Phạm Tuấn Hưng",
     role: "Kỹ sư Phần mềm & Lập trình viên Backend (Software Engineer & Backend Developer)",
-    tagline: "Xây dựng các hệ thống phân tán hiệu năng cao, tối ưu hóa xử lý đồng thời & kiến trúc Vi dịch vụ (Microservices).",
-    bio: "Sinh viên năm cuối ngành Kỹ thuật Phần mềm tại Học viện Công nghệ Bưu chính Viễn thông (PTIT TP.HCM). Đam mê thiết kế kiến trúc hệ thống Backend (Kiến trúc Vi dịch vụ - Microservices, Khóa phân tán - Distributed Locking, Hàng đợi thông điệp - Message Queue), tối ưu hóa cơ sở dữ liệu quan hệ và giải quyết các bài toán định tuyến, điều vận logistics thực tế tại doanh nghiệp.",
+    tagline: "Cung cấp giải pháp kỹ thuật toàn diện, thiết kế kiến trúc backend tin cậy & tối ưu hiệu năng.",
+    bio: "Software engineer & Backend developer tại TP. Hồ Chí Minh — chuyên cung cấp các giải pháp kỹ thuật và kiến trúc phần mềm tin cậy, biến các bài toán nghiệp vụ thực tế thành những hệ thống backend mượt mà, tối ưu hiệu năng, bảo mật và sẵn sàng mở rộng.",
     university: "Học viện Công nghệ Bưu chính Viễn thông (PTIT TP.HCM)",
     major: "Kỹ thuật Phần mềm (Software Engineering)",
     gpa: "3.2 / 4.0",
@@ -45,8 +45,8 @@ export const PERSONAL_INFO: Record<Language, PersonalInfoType> = {
   en: {
     name: "Pham Tuan Hung",
     role: "Software Engineer & Backend Developer",
-    tagline: "Engineering high-throughput distributed systems, strict concurrency control & Microservices architecture.",
-    bio: "Senior Software Engineering student at Posts and Telecommunications Institute of Technology (PTIT HCMC). Passionate about backend systems architecture (Microservices, Redis Distributed Locking, Message Queuing), relational database optimization, and implementing heuristic optimization algorithms for enterprise logistics dispatching.",
+    tagline: "Delivering comprehensive engineering solutions, robust backend architecture & performance optimization.",
+    bio: "Software engineer & Backend developer based in Ho Chi Minh City — delivering robust engineering solutions and reliable software architectures, turning real-world business requirements into high-performance, secure, and scalable backend systems.",
     university: "Posts and Telecommunications Institute of Technology (PTIT HCMC)",
     major: "Software Engineering",
     gpa: "3.2 / 4.0",
@@ -129,20 +129,20 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-library",
       title: "Smart Library Management System",
-      subtitle: "Hệ thống quản trị thư viện số & kiểm soát tài nguyên chặt chẽ",
-      description: "Hệ thống quản lý mượn/trả sách, độc giả, danh mục và phạt quá hạn. Thiết kế mô hình cơ sở dữ liệu quan hệ chuẩn hóa bậc 3 (3NF), đảm bảo tính toàn vẹn dữ liệu giao dịch (ACID) và Phân quyền truy cập dựa trên vai trò (Role-Based Access Control - RBAC).",
+      subtitle: "Hệ thống quản trị thư viện cấp doanh nghiệp · Giao dịch ACID · Hàng đợi FIFO · Máy trạng thái",
+      description: "Hệ thống Quản lý Thư viện cấp doanh nghiệp (Enterprise-Grade LMS) xây dựng bằng NestJS + TypeORM. Giải quyết trọn vẹn bài toán: vòng đời mượn/trả sách theo Máy trạng thái (State Machine), hàng đợi duyệt FIFO, kiểm soát hạn ngạch 5 cuốn/độc giả, tính phạt tự động (Hỏng 50% | Mất 150%), đảm bảo toàn vẹn dữ liệu bằng Database Transactions (ACID) và Guarded Soft Delete. Đạt 95/95 Test Cases (100% PASS).",
       category: "backend",
       featured: false,
-      tags: ["Database Normalization", "SQL Server", "RBAC Auth", "Transaction Management", "Node.js", "React"],
+      tags: ["NestJS", "TypeORM", "TypeScript", "ACID Transactions", "FIFO Queue", "RBAC", "Jest 95 Tests", "SQL Server", "React"],
       architectureHighlights: [
-        "Thiết kế cơ sở dữ liệu quan hệ chuẩn hóa bậc 3 (3NF) với cơ chế giao dịch an toàn khi nhiều thủ thư cùng thao tác.",
-        "Hệ thống phân quyền Role-Based Access Control (RBAC) chặt chẽ cho 3 cấp độ: Quản trị viên, Thủ thư, Độc giả.",
-        "Tự động tính toán phí phạt quá hạn và gửi thông báo nhắc nhở ngày trả.",
-        "Báo cáo thống kê tần suất mượn sách và danh mục sách được quan tâm nhất."
+        "Kiến trúc Module hóa Phân tầng (Controller → Service → Repository → Entity) với NestJS IoC Container và Dependency Injection.",
+        "Giao dịch CSDL nguyên tử (ACID Transactions) bọc đồng thời FineLog + Loan Status + Book Inventory trong 1 transaction.",
+        "Hàng đợi duyệt mượn FIFO Enforcement — bắt buộc duyệt theo thứ tự thời gian gửi yêu cầu, kèm tính năng queue_position thời gian thực.",
+        "Xóa mềm có ràng buộc (Guarded Soft Delete) chặn 100% thao tác xóa sách/độc giả đang có giao dịch hoạt động."
       ],
-      metrics: "Giao dịch toàn vẹn ACID & Phân quyền bảo mật RBAC",
-      githubUrl: "https://github.com/hungpptit/library-management-system",
-      demoUrl: "https://github.com/hungpptit/library-management-system",
+      metrics: "95/95 Tests · ACID Transactions · FIFO Queue · Soft Delete Guard",
+      githubUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
+      demoUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
       hasDetailPage: true
     },
     {
@@ -227,20 +227,20 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-library",
       title: "Smart Library Management System",
-      subtitle: "Digital library resource management with ACID transactions and granular RBAC",
-      description: "Complete digital library resource management system: borrow/return tracking, catalog indexing, automated overdue fee calculations, and Role-Based Access Control (RBAC). Engineered with 3NF database normalization and strict ACID transaction safety.",
+      subtitle: "Enterprise-Grade LMS · ACID Transactions · FIFO Queue · State Machine",
+      description: "Enterprise-Grade Library Management System built with NestJS + TypeORM. Solves complex business challenges: loan lifecycle via State Machine, FIFO Queue Enforcement for fair borrow processing, quota control (max 5 active loans), automated penalty engine (Damaged 50% | Lost 150%), guaranteed data integrity through ACID Database Transactions and Guarded Soft Delete. Achieved 95/95 Test Cases (100% PASS rate).",
       category: "backend",
       featured: false,
-      tags: ["Database Normalization", "SQL Server", "RBAC Auth", "Transaction Management", "Node.js", "React"],
+      tags: ["NestJS", "TypeORM", "TypeScript", "ACID Transactions", "FIFO Queue", "RBAC", "Jest 95 Tests", "SQL Server", "React"],
       architectureHighlights: [
-        "Normalized 3NF relational database schema with row-level locking for concurrent borrow operations.",
-        "Role-Based Access Control (RBAC) security system across 3 permission tiers: Administrator, Librarian, and Reader.",
-        "Automated overdue penalty calculation engine with schedule-driven return reminders.",
-        "Analytical reporting dashboards on circulation frequency and book demand trends."
+        "Layered Modular Architecture (Controller → Service → Repository → Entity) with NestJS IoC Container and Dependency Injection.",
+        "ACID Database Transactions wrapping FineLog creation + Loan status transition + Book inventory adjustment in a single atomic operation.",
+        "FIFO Queue Enforcement — forces chronological approval order for pending borrow requests, with real-time queue_position computation.",
+        "Guarded Soft Delete blocking 100% of delete operations on books/readers with active loan transactions."
       ],
-      metrics: "Strict ACID Transactions & Granular RBAC",
-      githubUrl: "https://github.com/hungpptit/library-management-system",
-      demoUrl: "https://github.com/hungpptit/library-management-system",
+      metrics: "95/95 Tests · ACID Transactions · FIFO Queue · Soft Delete Guard",
+      githubUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
+      demoUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
       hasDetailPage: true
     },
     {

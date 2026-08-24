@@ -30,20 +30,17 @@ export const Hero: React.FC = () => {
 
         {/* Main Introduction */}
         <div className="max-w-4xl mb-12">
-          {/* Status / Role Pill Badge with glowing dot */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 border border-[#2a2a2a] bg-[#1a1a1a] mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]"></span>
-            </span>
-            <span className="label-caps text-[#e4e2e1] text-[11px] font-semibold tracking-[0.18em]">
+          {/* Status / Role Pill Badge with green dot */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#2a2a2a] bg-[#1a1a1a]/90 mb-8 shadow-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#4ade80] shrink-0 animate-pulse" />
+            <span className="label-caps text-[#e4e2e1] text-[11px] font-bold tracking-[0.16em]">
               {language === 'vi' ? 'KỸ SƯ PHẦN MỀM & LẬP TRÌNH VIÊN BACKEND' : 'SOFTWARE ENGINEER & BACKEND DEVELOPER'}
             </span>
           </div>
 
-          {/* Big Editorial Headline */}
+          {/* Big Headline */}
           <h1 className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-bold text-[#e4e2e1] mb-8 uppercase tracking-tight leading-[1.08]">
-            {language === 'vi' ? 'XIN CHÀO, TÔI LÀ ' : 'HI, I AM '}
+            {language === 'vi' ? 'CHÀO BẠN, MÌNH LÀ ' : "HI THERE, I'M "}
             <span className="text-[#D4AF37] italic font-normal whitespace-nowrap">{info.name.toUpperCase()}.</span>
           </h1>
 

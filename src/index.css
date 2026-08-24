@@ -23,7 +23,6 @@
 
   * {
     border-color: var(--border-neutral);
-    border-radius: 0px !important; /* Aurelian Editorial 0px sharp geometric precision */
   }
 
   body {

@@ -63,21 +63,37 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     },
     "smart-library": {
       id: "smart-library",
-      overview: "Hệ thống quản trị thư viện số toàn diện dành cho trường học và tổ chức giáo dục: quản lý mượn/trả sách, kiểm soát tài nguyên, tự động tính phí phạt quá hạn, và Phân quyền truy cập dựa trên vai trò (Role-Based Access Control - RBAC). Hệ thống được chuẩn hóa cơ sở dữ liệu quan hệ theo chuẩn bậc 3 (Third Normal Form - 3NF) và áp dụng cơ chế Giao dịch toàn vẹn (ACID Transactions) để đảm bảo dữ liệu luôn chính xác tuyệt đối.",
-      role: "Lập trình viên Backend & Thiết kế Cơ sở Dữ liệu (Backend Developer & Database Designer)",
+      overview: "Hệ thống Quản lý Thư viện cấp doanh nghiệp (Enterprise-Grade LMS) xây dựng bằng NestJS + TypeORM. Giải quyết trọn vẹn bài toán: vòng đời mượn/trả theo Máy trạng thái (Pending → Borrowing → Returned | Damaged | Lost), hàng đợi duyệt FIFO, hạn ngạch 5 cuốn/độc giả, tính phạt tự động (Hỏng 50% | Mất 150%), đảm bảo toàn vẹn bằng ACID Transactions và Guarded Soft Delete. Đạt 95/95 Test Cases (100% PASS).",
+      role: "Kỹ sư Phần mềm & Lập trình viên Backend chính (Lead Backend Developer)",
       duration: "2 tháng",
-      teamSize: "2 thành viên",
+      teamSize: "3 thành viên",
       techStack: [
-        { layer: "Cơ sở dữ liệu quan hệ", tech: "Microsoft SQL Server (T-SQL)", version: "—", role: "Thiết kế CSDL chuẩn hóa bậc 3 (3NF), viết thủ tục lưu trữ (Stored Procedures), trình kích hoạt (Triggers), tối ưu chỉ mục (Indexes)" },
-        { layer: "Nền tảng thực thi Backend", tech: "Node.js + Express.js", version: "v18", role: "Xây dựng các giao diện lập trình ứng dụng RESTful API phục vụ nghiệp vụ mượn/trả" },
-        { layer: "Xác thực & Phân quyền", tech: "Mã xác thực JWT & Phân quyền RBAC", version: "—", role: "Kiểm soát quyền hạn chặt chẽ theo 3 cấp độ: Quản trị viên (Admin), Thủ thư, Độc giả" },
-        { layer: "Giao diện người dùng", tech: "React.js", version: "^18", role: "Bảng điều khiển quản lý dành cho thủ thư và cổng tra cứu sách trực tuyến cho độc giả" },
+        { layer: "Backend Framework", tech: "NestJS v10 + TypeScript 5", version: "NestJS 10", role: "Kiến trúc Module hóa Phân tầng (Controller → Service → Repository → Entity) với IoC Container, Guards, Pipes, ValidationPipe toàn cục" },
+        { layer: "Trình ánh xạ CSDL", tech: "TypeORM v0.3", version: "^0.3", role: "Entity Relationships đa bảng, @DeleteDateColumn Soft Delete, DataSource Transaction Manager (ACID)" },
+        { layer: "CSDL quan hệ", tech: "MS SQL Server / PostgreSQL", version: "—", role: "Dual-Database: SQL Server (Local Dev + Trigger) / PostgreSQL (Cloud Production)" },
+        { layer: "Xác thực & Bảo mật", tech: "JWT HttpOnly Cookie + bcrypt + RBAC", version: "—", role: "Dual-Source Token (Cookie + Bearer), @Roles() Decorator + RolesGuard, bcrypt hash" },
+        { layer: "Kiểm thử tự động", tech: "Jest 29 + ts-jest", version: "Jest 29", role: "8 Test Suites, 95 Test Cases (100% PASS), Code Coverage 85%+ trên nghiệp vụ cốt lõi" },
       ],
       challenges: [
         {
-          title: "Xử lý tranh chấp khi hai thủ thư cùng thao tác mượn cuốn sách cuối cùng còn lại trong kho",
-          problem: "Khi số lượng sách chỉ còn lại 1 cuốn, nếu 2 thủ thư tại 2 quầy khác nhau cùng nhấn nút 'Mượn sách' tại cùng một thời điểm thì có thể dẫn đến việc hệ thống ghi nhận mượn thành công cho cả 2 người, gây âm số lượng sách trong kho.",
-          solution: "Ứng dụng cơ chế khóa mức dòng (Row-Level Locking) kết hợp mức cô lập giao dịch tuần tự nghiêm ngặt (SERIALIZABLE Isolation Level) trong thủ tục lưu trữ SQL Server. Đảm bảo số lượng sách trong kho luôn được khấu trừ chính xác tuyệt đối."
+          title: "Đảm bảo toàn vẹn dữ liệu khi Trả sách và Tính phạt nhiều bảng cùng lúc",
+          problem: "Khi độc giả trả sách hoặc báo mất/hỏng, hệ thống phải cập nhật đồng thời tiền phạt, trạng thái phiếu và kho sách. Nếu xảy ra lỗi mạng giữa chừng, dữ liệu sẽ bị sai lệch (ví dụ: đã thu tiền phạt nhưng kho sách chưa được hoàn trả).",
+          solution: "Bọc toàn bộ thao tác vào Giao dịch CSDL nguyên tử (ACID Transaction). Nếu bất kỳ bước nào phát sinh lỗi, hệ thống tự động hoàn tác (Rollback) toàn bộ về ban đầu, đảm bảo số liệu kho và tài chính luôn chính xác tuyệt đối."
+        },
+        {
+          title: "Xử lý công bằng khi nhiều độc giả cùng đặt mượn sách có số lượng giới hạn",
+          problem: "Khi một cuốn sách chỉ còn 1 bản nhưng có nhiều người cùng đặt mượn, việc thủ thư duyệt tùy ý dễ gây bất công cho người gửi yêu cầu trước, và độc giả cũng không biết mình đang xếp thứ mấy trong hàng chờ.",
+          solution: "Thiết lập cơ chế hàng đợi ưu tiên theo thời gian gửi (FIFO Queue). Bắt buộc thủ thư duyệt đúng người gửi sớm nhất trước, đồng thời tự động tính và hiển thị số thứ tự hàng chờ thời gian thực cho độc giả."
+        },
+        {
+          title: "Chặn nguy cơ mất dấu lịch sử mượn trả khi xóa tài khoản hoặc đầu sách",
+          problem: "Nếu xóa vĩnh viễn (Hard Delete) một độc giả hoặc cuốn sách đang có giao dịch, toàn bộ lịch sử mượn trả và biên lai phạt cũ sẽ bị mất, gây thất thoát tài sản thư viện và không thể đối soát.",
+          solution: "Áp dụng cơ chế Xóa mềm có điều kiện (Guarded Soft Delete): Hệ thống tự động kiểm tra và chặn 100% thao tác xóa nếu còn phiếu mượn chưa hoàn tất. Dữ liệu sau khi xóa chỉ bị ẩn khỏi giao diện nhưng vẫn được lưu trữ an toàn để phục vụ kiểm toán."
+        },
+        {
+          title: "Bảo vệ phiên đăng nhập an toàn chống đánh cắp mã xác thực (XSS)",
+          problem: "Lưu trữ mã xác thực JWT ở bộ nhớ trình duyệt (LocalStorage) dễ bị mã độc JavaScript đánh cắp (tấn công XSS), dẫn đến nguy cơ bị chiếm quyền tài khoản quản trị viên.",
+          solution: "Chuyển sang lưu trữ token trong Cookie bảo mật (HttpOnly Cookie) — trình duyệt tự động gửi kèm nhưng mã độc không thể đọc được. Kết hợp phân quyền đa tầng (RBAC) để chặn người dùng thường truy cập trái phép vào các trang quản trị."
         },
       ],
     },
@@ -86,7 +102,7 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
       overview: "Hệ sinh thái thương mại điện tử bán lẻ thiết bị công nghệ hoàn chỉnh, bao gồm Ứng dụng di động thuần Android (Android Native - Java hướng đối tượng OOP) dành cho khách hàng mua sắm và Bảng điều khiển quản trị web (Next.js Dashboard) dành cho quản trị viên quản lý kho hàng và đơn hàng theo thời gian thực.",
       role: "Lập trình viên Di động & Toàn diện (Mobile & Full-stack Developer)",
       duration: "3 tháng",
-      teamSize: "2 thành viên",
+      teamSize: "3 thành viên",
       techStack: [
         { layer: "Ứng dụng Di động", tech: "Android Studio (Ngôn ngữ Java thuần)", version: "API 31+", role: "Lập trình hướng đối tượng (OOP), mô hình kiến trúc MVC/MVVM, lưu đệm ngoại tuyến (Offline Caching)" },
         { layer: "Bảng điều khiển Quản trị", tech: "Next.js + Tailwind CSS", version: "^14", role: "Bảng điều khiển theo dõi doanh thu, cập nhật trạng thái đơn hàng và kiểm soát tồn kho tức thì" },
@@ -154,21 +170,37 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     },
     "smart-library": {
       id: "smart-library",
-      overview: "Comprehensive digital library management platform for educational institutions: catalog management, circulation checkout/returns, automated overdue penalty calculations, and Role-Based Access Control (RBAC). Engineered with a 3NF normalized schema and ACID transactions.",
-      role: "Backend Developer & Database Designer",
+      overview: "Enterprise-Grade Library Management System built with NestJS + TypeORM. Solves complex business challenges: loan lifecycle via State Machine (Pending → Borrowing → Returned | Damaged | Lost), FIFO Queue Enforcement, 5-book quota control, automated penalty engine (Damaged 50% | Lost 150%), guaranteed data integrity through ACID Transactions and Guarded Soft Delete. Achieved 95/95 Test Cases (100% PASS).",
+      role: "Software Engineer & Lead Backend Developer",
       duration: "2 months",
-      teamSize: "2 members",
+      teamSize: "3 members",
       techStack: [
-        { layer: "Relational Database", tech: "Microsoft SQL Server (T-SQL)", version: "—", role: "3NF normalized schema, stored procedures, triggers, and query index tuning" },
-        { layer: "Backend Runtime", tech: "Node.js + Express.js", version: "v18", role: "RESTful API services managing circulation and inventory workflows" },
-        { layer: "Auth & Permissions", tech: "JWT & Role-Based Access Control (RBAC)", version: "—", role: "Granular access tiers for Administrators, Librarians, and Students" },
-        { layer: "Web Frontend", tech: "React.js SPA", version: "^18", role: "Librarian administration portal and reader catalog discovery interface" },
+        { layer: "Backend Framework", tech: "NestJS v10 + TypeScript 5", version: "NestJS 10", role: "Layered Modular Architecture (Controller → Service → Repository → Entity) with IoC Container, Guards, Pipes, Global ValidationPipe" },
+        { layer: "Database ORM", tech: "TypeORM v0.3", version: "^0.3", role: "Multi-table Entity Relationships, @DeleteDateColumn Soft Delete, DataSource Transaction Manager (ACID)" },
+        { layer: "Relational Database", tech: "MS SQL Server / PostgreSQL", version: "—", role: "Dual-Database: SQL Server (Local Dev + Triggers) / PostgreSQL (Cloud Production)" },
+        { layer: "Auth & Security", tech: "JWT HttpOnly Cookie + bcrypt + RBAC", version: "—", role: "Dual-Source Token (Cookie + Bearer), @Roles() Decorator + RolesGuard, bcrypt hash" },
+        { layer: "Testing & QA", tech: "Jest 29 + ts-jest", version: "Jest 29", role: "8 Test Suites, 95 Test Cases (100% PASS), 85%+ core business logic coverage" },
       ],
       challenges: [
         {
-          title: "Concurrent Checkout Race Condition on Single-Inventory Book Copies",
-          problem: "When only 1 copy of a high-demand book remained, two librarians simultaneously clicking 'Issue Book' could cause inventory deficit anomalies.",
-          solution: "Implemented Row-Level Locking coupled with SERIALIZABLE transaction isolation within SQL Server stored procedures, guaranteeing zero inventory drift."
+          title: "Multi-Table Data Integrity During Book Return & Penalty Processing",
+          problem: "When returning books or reporting damage/loss, the system must atomically record fines, transition loan statuses, and update physical stock. A network drop mid-process causes data inconsistency (e.g. fines collected but inventory not restored).",
+          solution: "Encapsulated all mutation steps within an atomic ACID Database Transaction. Any runtime failure triggers an immediate automatic rollback, guaranteeing zero discrepancies between inventory and financial records."
+        },
+        {
+          title: "Fair Queue Enforcement for Concurrent Borrow Requests on Limited Stock",
+          problem: "When multiple readers contend for the last available copy of a popular book, arbitrary approval orders cause unfairness for earlier applicants, while readers lack visibility into their waiting queue position.",
+          solution: "Implemented FIFO Queue Enforcement forcing chronological approval order based on request timestamps, paired with real-time queue position computation displayed on the reader dashboard."
+        },
+        {
+          title: "Preventing Audit Trail Loss When Deleting Active Readers or Book Records",
+          problem: "Physically hard-deleting a user account or book with active borrow records permanently destroys loan histories and penalty logs, making financial reconciliation and asset tracking impossible.",
+          solution: "Enforced Guarded Soft Delete: the system strictly blocks deletion attempts if active loans exist. Deleted records are marked inactive and hidden from active views while remaining intact in the database for auditing."
+        },
+        {
+          title: "Hardening JWT Authentication Against Client-Side Token Theft (XSS)",
+          problem: "Storing JWT tokens in browser LocalStorage exposes authentication sessions to Cross-Site Scripting (XSS) attacks, risking unauthorized administrative privilege escalation.",
+          solution: "Migrated token storage to secure HttpOnly Cookies (inaccessible to JavaScript) with Dual-Source extraction fallback, combined with strict Role-Based Access Control (RBAC) guards protecting admin endpoints."
         },
       ],
     },

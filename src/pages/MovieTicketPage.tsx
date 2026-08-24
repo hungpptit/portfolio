@@ -94,10 +94,10 @@ const MovieTicketPage: React.FC = () => {
       <div className="max-w-[1500px] mx-auto px-6 flex gap-0">
         {/* Left Sidebar */}
         <aside className="hidden lg:flex flex-col w-[280px] shrink-0">
-          <div className="sticky top-[65px] pt-10 pb-10 pr-8 flex flex-col gap-8">
+          <div className="sticky top-[65px] max-h-[calc(100vh-65px)] overflow-y-auto pt-8 pb-10 pr-6 flex flex-col gap-6">
             <div>
-              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-4">{t.detailCommon.quickInfoTitle}</p>
-              <div className="space-y-4">
+              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-3">{t.detailCommon.quickInfoTitle}</p>
+              <div className="space-y-3">
                 <div>
                   <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.statusLabel}</p>
                   <div className="flex items-center gap-2">
@@ -123,13 +123,13 @@ const MovieTicketPage: React.FC = () => {
             <div className="border-t border-[#222222]" />
 
             <div>
-              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-4">{t.detailCommon.tocTitle}</p>
+              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-3">{t.detailCommon.tocTitle}</p>
               <nav className="space-y-1">
                 {TOC_SECTIONS.map(s => (
                   <button
                     key={s.id}
                     onClick={() => scrollTo(s.id)}
-                    className={`w-full text-left flex items-center gap-2 py-2 px-0 text-sm transition-colors ${activeSection === s.id
+                    className={`w-full text-left flex items-center gap-2 py-1.5 px-0 text-sm transition-colors ${activeSection === s.id
                         ? 'text-[#D4AF37] font-bold'
                         : 'text-[#9ca3af] hover:text-[#f3f4f6]'
                       }`}
