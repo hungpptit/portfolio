@@ -12,6 +12,7 @@ import SmartLogisticsPage from './pages/SmartLogisticsPage';
 import MovieTicketPage from './pages/MovieTicketPage';
 import ToeicChatbotPage from './pages/ToeicChatbotPage';
 import LibraryManagementPage from './pages/LibraryManagementPage';
+import TechStorePage from './pages/TechStorePage';
 import GenericProjectPage from './pages/GenericProjectPage';
 
 // ─── Home Page ─────────────────────────────────────────────────────────────
@@ -41,6 +42,7 @@ export const App: React.FC = () => {
       <Route path="/project/movie-ticket-booking" element={<MovieTicketPage />} />
       <Route path="/project/toeic-ai-microservices" element={<ToeicChatbotPage />} />
       <Route path="/project/smart-library" element={<LibraryManagementPage />} />
+      <Route path="/project/tech-store-ecosystem" element={<TechStorePage />} />
       <Route path="/project/:id" element={<GenericProjectPage />} />
     </Routes>
   );

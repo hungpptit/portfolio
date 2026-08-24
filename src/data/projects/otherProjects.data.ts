@@ -99,22 +99,38 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     },
     "tech-store-ecosystem": {
       id: "tech-store-ecosystem",
-      overview: "Hệ sinh thái thương mại điện tử bán lẻ thiết bị công nghệ hoàn chỉnh, bao gồm Ứng dụng di động thuần Android (Android Native - Java hướng đối tượng OOP) dành cho khách hàng mua sắm và Bảng điều khiển quản trị web (Next.js Dashboard) dành cho quản trị viên quản lý kho hàng và đơn hàng theo thời gian thực.",
-      role: "Lập trình viên Di động & Toàn diện (Mobile & Full-stack Developer)",
+      overview: "Hệ sinh thái Thương mại điện tử Bán lẻ Thiết bị Công nghệ đa nền tảng kết hợp giữa Ứng dụng di động khách hàng, Bảng điều khiển quản trị doanh nghiệp và Dịch vụ Backend chuyên dụng. Hệ thống số hóa toàn diện quy trình bán lẻ công nghệ: từ duyệt sản phẩm và xử lý giỏ hàng, khóa tồn kho chống bán vượt trong đợt giảm giá cao điểm, thanh toán thẻ quốc tế an toàn, đến chăm sóc khách hàng và kiểm toán biến động kho thời gian thực. Toàn bộ nền tảng đảm bảo tính toàn vẹn dữ liệu và trải nghiệm mượt mà, được kiểm chứng qua 57/57 Test Cases (100% PASS) kiểm thử tự động.",
+      role: "Kỹ sư Phần mềm & Lập trình viên Backend chính (Lead Backend Engineer)",
       duration: "3 tháng",
       teamSize: "3 thành viên",
       techStack: [
-        { layer: "Ứng dụng Di động", tech: "Android Studio (Ngôn ngữ Java thuần)", version: "API 31+", role: "Lập trình hướng đối tượng (OOP), mô hình kiến trúc MVC/MVVM, lưu đệm ngoại tuyến (Offline Caching)" },
-        { layer: "Bảng điều khiển Quản trị", tech: "Next.js + Tailwind CSS", version: "^14", role: "Bảng điều khiển theo dõi doanh thu, cập nhật trạng thái đơn hàng và kiểm soát tồn kho tức thì" },
-        { layer: "Cơ sở dữ liệu thời gian thực", tech: "Google Firebase Firestore", version: "—", role: "Đồng bộ danh mục sản phẩm và trạng thái đơn hàng theo thời gian thực hai chiều" },
-        { layer: "Thông báo đẩy di động", tech: "Firebase Cloud Messaging (FCM)", version: "—", role: "Gửi thông báo đẩy về trạng thái giao hàng và chương trình khuyến mãi đến điện thoại người dùng" },
-        { layer: "Cổng thanh toán quốc tế", tech: "Stripe Payment Gateway API", version: "—", role: "Tích hợp thanh toán thẻ quốc tế bảo mật chuẩn PCI-DSS, tự động xác nhận qua Webhook" },
+        { layer: "Kiến trúc hệ thống", tech: "Hybrid Cloud & Micro-Backend", version: "—", role: "Tách biệt rõ ràng trách nhiệm giữa Android Client, Web Admin ERP và Node.js Micro-Backend" },
+        { layer: "Ứng dụng Di động", tech: "Android Native (Java 11) + MVVM", version: "API 24+", role: "OOP, MVVM, Material Design 3, Glide CDN Caching, Stripe Android SDK" },
+        { layer: "Micro-Backend Service", tech: "Node.js 20+ / Express 4.21 / TS", version: "Node 20+", role: "Stripe Customer Vault, Payment Intent API, Cron Worker giải phóng kho 60s, In-Memory Caching" },
+        { layer: "Cổng Thanh toán Quốc tế", tech: "Stripe API & SDK (PCI-DSS)", version: "Stripe 17.6", role: "Client Tokenization (tok_...), Stripe Customer Vault, Atomic WriteBatch 4 bảng" },
+        { layer: "Cơ sở dữ liệu Đám mây", tech: "Google Cloud Firestore (NoSQL ACID)", version: "—", role: "14 Collections NoSQL, ACID Transactions kiểm soát khóa kho, Snapshot Listeners" },
+        { layer: "Kiểm thử tự động & QA", tech: "Jest 30 + Supertest + JUnit 4", version: "Jest 30", role: "7 Test Suites với 57 Test Cases tự động (100% PASS), 100% Statements Coverage" },
       ],
       challenges: [
         {
-          title: "Đảm bảo trải nghiệm mua sắm mượt mà ngay cả khi thiết bị mất kết nối mạng (Offline-First)",
-          problem: "Khi người dùng đi vào khu vực sóng yếu hoặc mất mạng đột ngột, nếu không có cơ chế lưu trữ cục bộ thì ứng dụng sẽ bị trắng màn hình và giỏ hàng bị mất dữ liệu.",
-          solution: "Tích hợp Cơ sở dữ liệu cục bộ Room (SQLite) trên thiết bị Android để lưu đệm toàn bộ danh mục sản phẩm đã xem, kết hợp cơ chế tự động đồng bộ chênh lệch (Delta Sync) của Firebase Firestore ngay khi có mạng trở lại."
+          title: "Khóa tồn kho chống bán vượt (Overselling) khi nhiều người cùng mua Flash Sale",
+          problem: "Khi một sản phẩm chỉ còn 1 chiếc nhưng có hàng trăm khách hàng cùng bấm 'Thanh toán' trong đợt giảm giá, việc tranh chấp dữ liệu (Race Condition) dễ dẫn đến tình trạng bán âm kho.",
+          solution: "Thiết kế cơ chế Khóa tồn kho bi quan (Pessimistic Reservation) bằng Firestore ACID Transaction trước khi mở cổng thanh toán (TTL 5 phút), kết hợp Cron Worker ngầm quét giải phóng kho mỗi 60s."
+        },
+        {
+          title: "Bảo mật thanh toán thẻ tín dụng quốc tế tuân thủ tiêu chuẩn PCI-DSS",
+          problem: "Lưu trữ hoặc để số thẻ tín dụng thô (PAN/CVV) đi qua máy chủ ứng dụng tiềm ẩn nguy cơ rò rỉ dữ liệu tài chính nghiêm trọng và vi phạm quy định an ninh thẻ quốc tế.",
+          solution: "Áp dụng kỹ thuật Mã hóa tại thiết bị đầu cuối (Client-Side Tokenization) qua Stripe SDK: thông tin thẻ thô gửi trực tiếp lên Stripe để lấy Token đại diện một lần. Backend chỉ lưu trữ mã tham chiếu PaymentMethod trong Vault."
+        },
+        {
+          title: "Triệt tiêu N+1 Query và tối ưu chi phí đọc trên Cơ sở dữ liệu NoSQL Firestore",
+          problem: "Khi hiển thị danh sách hàng trăm đơn hàng trên Web Admin, mỗi đơn lại truy vấn thêm một lần sang bảng người dùng làm tăng vọt chi phí đọc của Cloud Firestore.",
+          solution: "Xây dựng cơ chế Bộ nhớ đệm tra cứu trong bộ nhớ (In-Memory Lookup Caching userCache) tại tầng Controller, giảm 50%+ số lượng truy vấn đọc Firestore và làm sạch dữ liệu trước khi lưu."
+        },
+        {
+          title: "Đồng bộ tin nhắn CSKH tức thì và Đánh thức ứng dụng di động nhận thông báo",
+          problem: "Nhân viên hỗ trợ trên Web Admin phản hồi nhưng khách hàng đã tắt ứng dụng Android thì không nhận được tin nhắn, làm gián đoạn tư vấn.",
+          solution: "Kết hợp Firestore Snapshot Listener (đồng bộ tin nhắn <100ms khi mở app) với Hệ thống kích hoạt thông báo sự kiện qua FCM: Backend tự động phát Push Notification đánh thức điện thoại ngay lập tức."
         },
       ],
     }
@@ -128,43 +144,27 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
       teamSize: "3 members",
       techStack: [
         { layer: "System Architecture", tech: "Microservices Architecture", version: "—", role: "Decoupled 6 autonomous services (Database-per-Service): Nginx Gateway, Auth, Quiz, Chatbot, Payment, Email Worker" },
-        { layer: "Backend Runtime", tech: "Node.js + Express 5", version: "v20 LTS", role: "55+ versioned RESTful API v1 endpoints with auto-generated Swagger/OpenAPI 3 docs" },
-        { layer: "Database ORM", tech: "Sequelize ORM", version: "^6.x", role: "Object-Relational Mapping for SQL Server with parameterized queries preventing SQL injection" },
-        { layer: "Relational Database", tech: "Microsoft SQL Server 2022", version: "2022", role: "4 isolated databases: ChatbotToeic_Auth, Quiz, Chatbot, Payment" },
-        { layer: "API Gateway", tech: "Nginx Alpine (Reverse Proxy)", version: "Alpine", role: "Single ingress point, path-prefix routing, security header injection, rate limiting" },
-        { layer: "AI Conversational Agent", tech: "Google Gemini 2.5 Flash", version: "2.5 Flash", role: "Multi-turn tutoring chatbot with DB context; Round-Robin API Key Rotation" },
-        { layer: "Machine Learning Pipeline", tech: "Python 3.11 + Flask + scikit-learn", version: "3.11", role: "Score prediction & weak skill analysis; automated daily retrain at 2:00 AM" },
-        { layer: "Message Broker", tech: "RabbitMQ Message Broker", version: "^3.x", role: "Async email delivery queue for OTP registration and VIP payment notices" },
-        { layer: "Payment Gateway", tech: "ZaloPay Dynamic QR API", version: "Sandbox", role: "Dynamic QR codes; HMAC-SHA256 Webhook validation; cumulative VIP expiry extension" },
-        { layer: "Auth & Security", tech: "JWT Dual-Token + bcrypt + OAuth 2.0", version: "—", role: "Access Token 7d + Refresh Token 30d; OTP Email 10m; RBAC Admin/User; rate limiting" },
-        { layer: "Cross-Platform Frontend", tech: "Flutter 3 + Dart (GetX)", version: "^3.x", role: "Cross-platform (Android, iOS, Web) from single codebase with GetX state" },
-        { layer: "Containerization", tech: "Docker + Docker Compose", version: "—", role: "9 containers deployed via single command with automated schema/seed data initialization" },
+        { layer: "Backend Runtime", tech: "Node.js 20 LTS + Express.js", version: "Node 20", role: "High-throughput asynchronous event-driven I/O engine powering microservices" },
+        { layer: "AI & Machine Learning", tech: "Google Gemini 2.5 Flash + Python Flask + scikit-learn", version: "Gemini 2.5", role: "Multi-turn tutoring chatbot and ML weakness prediction model with daily 2:00 AM auto-retrain cron" },
+        { layer: "Relational Databases", tech: "Microsoft SQL Server 2022 (4 Isolated DBs)", version: "MSSQL 2022", role: "Database-per-Service pattern ensuring strict domain isolation and data consistency" },
+        { layer: "Payment Integration", tech: "ZaloPay Sandbox Gateway API", version: "—", role: "Dynamic QR Code creation with HMAC-SHA256 signature verification and Replay Attack protection" },
+        { layer: "Testing & QA", tech: "Jest 29 + Supertest + Python unittest", version: "Jest 29", role: "51/51 automated and functional test cases (100% PASS rate) across all 55+ endpoints" },
       ],
       challenges: [
         {
-          title: "Cross-Service VIP Status Verification Without Direct Database Access",
-          problem: "Chatbot Service needs to enforce 15 msgs/day limit for free users, but Database-per-Service prohibits direct access to Auth DB.",
-          solution: "Engineered VIP Check Middleware making internal REST calls to GET /api/v1/internal/users/:userId on Auth Service within Docker network."
+          title: "Synchronizing Multi-Turn Chatbot State Across Distributed Microservices",
+          problem: "Maintaining coherent multi-turn AI context across independent stateless HTTP requests without overloading memory.",
+          solution: "Architected Chatbot Service with dual-layer state persistence: short-term sliding context window in-memory and long-term history in dedicated SQL Server database."
         },
         {
-          title: "Cascading Startup Failure When Node.js Services Boot Before SQL Server",
-          problem: "Node.js services start faster than SQL Server 2022 (30-60s), causing Connection Refused errors across all services.",
-          solution: "Implemented wait-for-db.sh probe + Docker Compose restart: always + import-data.sh auto-initialization script."
+          title: "Dynamic QR Code Payment Security & Replay Attack Defense",
+          problem: "Preventing transaction forgery and replay attacks on asynchronous payment callbacks.",
+          solution: "Enforced HMAC-SHA256 signature validation with dynamic app_trans_id, strict timestamp TTL verification, and idempotency checks before granting VIP privileges."
         },
         {
-          title: "ZaloPay Webhook Security Against Forged Requests and Replay Attacks",
-          problem: "Callbacks could be forged or replayed to fraudulently activate or duplicate VIP subscriptions.",
-          solution: "HMAC-SHA256 signature verification; appTransId deduplication in Transactions table; cumulative additive VIP expiry logic."
-        },
-        {
-          title: "Google Gemini API Rate Limiting Disrupting Chatbot Availability",
-          problem: "Single API key hits rate limits under concurrent VIP traffic, returning HTTP 429.",
-          solution: "Round-Robin API Key Rotation distributing load across multiple keys + 200 req/15min gateway rate limiting."
-        },
-        {
-          title: "Machine Learning Model Cold Start on First Deployment",
-          problem: "No initial user test attempt data exists, causing model training to fail on first boot.",
-          solution: "Pre-seeded training dataset via db-init + pre-trained model artifact (.pkl); automated daily cron at 2:00 AM retrains on real data."
+          title: "Automated ML Pipeline Retraining with Cold Start Handling",
+          problem: "Cold-start lack of training samples and keeping score prediction models updated with fresh user test attempts.",
+          solution: "Seeded initial dataset via db-init + default pre-trained model; automated 2:00 AM Cron Job collecting new test attempts to retrain the scikit-learn model daily."
         },
       ],
     },
@@ -206,22 +206,38 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     },
     "tech-store-ecosystem": {
       id: "tech-store-ecosystem",
-      overview: "Full-cycle tech retail e-commerce ecosystem consisting of an Android Native mobile app (OOP Java) for consumer purchasing and a reactive Next.js Web Admin Dashboard for real-time inventory and order fulfillment management.",
-      role: "Mobile & Full-stack Developer",
+      overview: "Multi-platform Tech Retail E-Commerce Ecosystem seamlessly uniting a Customer Mobile App, an Enterprise Web Admin Portal, and a dedicated Backend Service. The platform comprehensively streamlines end-to-end retail operations: from catalog browsing and smart cart management, pessimistic stock reservation preventing flash-sale overselling, and secure international card checkout, to real-time omnichannel customer support and stock movement audit trails. The system guarantees absolute data integrity and high availability, verified by 57/57 automated test cases (100% PASS rate).",
+      role: "Software Engineer & Lead Backend Developer",
       duration: "3 months",
-      teamSize: "2 members",
+      teamSize: "3 members",
       techStack: [
-        { layer: "Mobile Application", tech: "Android Studio (Native Java)", version: "API 31+", role: "Object-Oriented Programming (OOP), MVC/MVVM patterns, local SQLite/Room caching" },
-        { layer: "Admin Web Portal", tech: "Next.js + Tailwind CSS", version: "^14", role: "Real-time revenue metrics, order pipeline management, and stock auditing" },
-        { layer: "Real-time Database", tech: "Google Firebase Firestore", version: "—", role: "Bidirectional real-time data sync for product catalogs and order status updates" },
-        { layer: "Push Notifications", tech: "Firebase Cloud Messaging (FCM)", version: "—", role: "Dispatches automated order milestone alerts and promotional notifications" },
-        { layer: "Payment Integration", tech: "Stripe Payment Gateway API", version: "—", role: "PCI-DSS compliant international credit card processing with Webhook validation" },
+        { layer: "System Architecture", tech: "Hybrid Cloud & Micro-Backend", version: "—", role: "Strict separation of concerns between Android Client, Web Admin ERP, and Node.js Micro-Backend" },
+        { layer: "Mobile Client App", tech: "Android Native (Java 11) + MVVM", version: "API 24+", role: "OOP, MVVM, Material Design 3, Glide CDN Caching, Stripe Android SDK" },
+        { layer: "Micro-Backend Service", tech: "Node.js 20+ / Express 4.21 / TS", version: "Node 20+", role: "Stripe Customer Vault, Payment Intent API, Cron Worker for stock release 60s, In-Memory Caching" },
+        { layer: "Payment Gateway", tech: "Stripe API & SDK (PCI-DSS)", version: "Stripe 17.6", role: "Client Tokenization (tok_...), Stripe Customer Vault, Atomic WriteBatch across 4 documents" },
+        { layer: "Cloud Database", tech: "Google Cloud Firestore (NoSQL ACID)", version: "—", role: "14 NoSQL Collections, ACID Transactions for stock reservation, Snapshot Listeners" },
+        { layer: "Testing & QA", tech: "Jest 30 + Supertest + JUnit 4", version: "Jest 30", role: "7 Test Suites with 57 automated test cases (100% PASS), 100% Statements Coverage" },
       ],
       challenges: [
         {
-          title: "Offline-First Mobile Cart and Catalog Availability",
-          problem: "When users entered poor network zones, unhandled network drops caused blank screen states and lost shopping carts.",
-          solution: "Integrated an offline-first SQLite/Room cache on the Android client, paired with Firestore delta synchronization to reconcile data seamlessly upon reconnecting."
+          title: "Pessimistic Stock Reservation Preventing Flash Sale Overselling",
+          problem: "When hundreds of concurrent shoppers contend for the last available item during flash sales, race conditions risk overselling physical stock.",
+          solution: "Architected a Pessimistic Stock Reservation mechanism using Firestore ACID Transactions before checkout (TTL 5 minutes), paired with a 60-second background Cron worker for automatic stock recovery."
+        },
+        {
+          title: "PCI-DSS Compliant Credit Card Payment Pipeline via Stripe",
+          problem: "Allowing raw credit card data (PAN/CVV) to touch internal backend servers violates PCI-DSS security standards and exposes the platform to financial data leaks.",
+          solution: "Implemented client-side tokenization via Stripe SDK: raw credentials are exchanged for one-time tokens directly with Stripe. The backend only stores vault PaymentMethod references."
+        },
+        {
+          title: "Eliminating N+1 Queries & Optimizing Read Costs on NoSQL Firestore",
+          problem: "Rendering hundreds of orders on the Web Admin portal caused repetitive queries to the user collection for customer names/emails (N+1 Query issue).",
+          solution: "Implemented an In-Memory Lookup Cache (userCache) at the controller layer, saving 50%+ Firestore read operations and sanitizing payloads before persistence."
+        },
+        {
+          title: "Real-Time CSKH Omnichannel Sync & Background Mobile Wakeup",
+          problem: "When support agents reply from the Web Admin, mobile users who have closed the Android app fail to receive responses.",
+          solution: "Combined Firestore Snapshot Listeners (sub-100ms real-time chat while active) with an Event-Driven Notification Pipeline via FCM to wake up background devices immediately."
         },
       ],
     }

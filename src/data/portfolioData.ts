@@ -148,18 +148,18 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "tech-store-ecosystem",
       title: "Tech Store Android & Web Ecosystem",
-      subtitle: "Hệ sinh thái bán lẻ công nghệ kết hợp Ứng dụng Di động Android & Bảng Quản trị Web",
-      description: "Hệ sinh thái bán hàng công nghệ hoàn chỉnh gồm ứng dụng khách hàng di động Android Native (Java hướng đối tượng OOP) và Bảng điều khiển quản trị web (Next.js Dashboard) quản lý kho hàng và đơn hàng theo thời gian thực.",
+      subtitle: "Hệ sinh thái Bán lẻ Công nghệ — Android Client · Node.js Backend · Stripe PCI-DSS · 57/57 Tests",
+      description: "Hệ sinh thái thương mại điện tử bán lẻ thiết bị công nghệ đa nền tảng kết hợp giữa ứng dụng di động khách hàng, Bảng điều khiển quản trị doanh nghiệp và Dịch vụ Backend chuyên dụng. Giải quyết trọn vẹn bài toán khóa tồn kho bi quan chống bán vượt trong đợt giảm giá cao điểm, cổng thanh toán thẻ quốc tế Stripe bảo mật chuẩn PCI-DSS và trung tâm CSKH thời gian thực tích hợp Firebase FCM.",
       category: "mobile",
       featured: false,
-      tags: ["Java (Android Studio)", "Next.js", "Firebase FCM", "Firestore", "Stripe Payment", "Tailwind CSS"],
+      tags: ["Android (Java 11)", "Node.js Micro-Backend", "Firestore ACID", "Stripe PCI-DSS", "Firebase FCM", "React 18 / Vite Admin", "57/57 Tests"],
       architectureHighlights: [
-        "Ứng dụng Android chuẩn Lập trình hướng đối tượng (OOP) với mô hình kiến trúc MVC/MVVM và xử lý lưu đệm ngoại tuyến (Offline Caching).",
-        "Tích hợp cổng thanh toán thẻ quốc tế Stripe API bảo mật cao.",
-        "Hệ thống thông báo đẩy di động thời gian thực qua Firebase Cloud Messaging (FCM).",
-        "Bảng điều khiển Web đồng bộ trạng thái đơn hàng và tồn kho tức thì."
+        "Cơ chế khóa tồn kho bi quan (Pessimistic Reservation) bằng Firestore ACID Transactions với TTL 5 phút; Cron Worker giải phóng kho tự động mỗi 60s.",
+        "Pipeline thanh toán thẻ quốc tế Stripe SDK bảo mật chuẩn PCI-DSS (Zero Raw Card Exposure); hoàn tất đơn hàng nguyên tử 4 bảng qua WriteBatch.",
+        "Hộp thư CSKH đa kênh đồng bộ thời gian thực (Firestore onSnapshot độ trễ <100ms) kết hợp tự động phát thông báo đẩy Firebase FCM.",
+        "Đạt 57/57 Test Cases (100% PASS Rate) trên cả Node.js Native Runner, Android JUnit 4 JVM và Jest 30 (100% Statements Coverage trên Web Admin Backend)."
       ],
-      metrics: "Đồng bộ thời gian thực & Thanh toán quốc tế Stripe",
+      metrics: "57/57 Tests · Pessimistic Lock · Stripe Vault · FCM Push",
       githubUrl: "https://github.com/hungpptit/tech-store-mobile",
       demoUrl: "https://github.com/hungpptit/tech-store-mobile",
       hasDetailPage: true
@@ -246,18 +246,18 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "tech-store-ecosystem",
       title: "Tech Store Android & Web Ecosystem",
-      subtitle: "Retail e-commerce ecosystem with Native Android Mobile App & Web Admin Dashboard",
-      description: "Production-ready tech retail ecosystem comprising a native Android mobile application (OOP Java) for shoppers and a responsive Next.js Web Admin Dashboard for real-time inventory and order lifecycle tracking.",
+      subtitle: "Retail E-Commerce Ecosystem — Android Client · Node.js Backend · Stripe PCI-DSS · 57/57 Tests",
+      description: "Multi-platform tech retail ecosystem combining a customer mobile app, an enterprise web admin portal, and a dedicated backend service. Solves flash-sale overselling via pessimistic stock reservation with a 60s background Cron worker, guarantees PCI-DSS compliant card tokenization via Stripe Vault, and provides real-time omnichannel support with Firebase FCM.",
       category: "mobile",
       featured: false,
-      tags: ["Java (Android Studio)", "Next.js", "Firebase FCM", "Firestore", "Stripe Payment", "Tailwind CSS"],
+      tags: ["Android (Java 11)", "Node.js Micro-Backend", "Firestore ACID", "Stripe PCI-DSS", "Firebase FCM", "React 18 / Vite Admin", "57/57 Tests"],
       architectureHighlights: [
-        "Native Android OOP implementation utilizing MVC/MVVM patterns with local SQLite/Room offline caching.",
-        "Integrated Stripe Payment Gateway API for secure international credit card transactions.",
-        "Real-time push notification and order tracking pipeline via Firebase Cloud Messaging (FCM).",
-        "Reactive Next.js Web Admin Dashboard with instant inventory and revenue metrics synchronization."
+        "Pessimistic Stock Reservation mechanism via Firestore ACID Transactions with 5-minute TTL; automated 60-second Cron worker for expired stock reconciliation.",
+        "PCI-DSS Level 1 compliant Stripe SDK payment pipeline (Zero Raw Card Exposure); atomic 4-document order finalization via Firebase WriteBatch.",
+        "Omnichannel real-time customer support inbox (Firestore onSnapshot sub-100ms latency) with event-driven Firebase FCM push notifications.",
+        "Achieved 57/57 automated test cases (100% PASS rate) across Node.js Native Runner, Android JUnit 4 JVM, and Jest 30 (100% Statements Coverage on Web Admin Backend)."
       ],
-      metrics: "Real-time Sync & International Stripe Checkout",
+      metrics: "57/57 Tests · Pessimistic Lock · Stripe Vault · FCM Push",
       githubUrl: "https://github.com/hungpptit/tech-store-mobile",
       demoUrl: "https://github.com/hungpptit/tech-store-mobile",
       hasDetailPage: true
