@@ -32,6 +32,7 @@ import { MOVIE_TICKET_DETAIL } from '../data/projects/movieTicket.data';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
+import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
 
 const MovieTicketPage: React.FC = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const MovieTicketPage: React.FC = () => {
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },
+    { id: 'showcase', label: language === 'vi' ? 'Khung Demo Sản phẩm (PC Web)' : 'Interactive Web Showcase' },
     { id: 'context', label: language === 'vi' ? 'Bối cảnh & Đặt vấn đề' : 'Context & Problem Statement' },
     { id: 'scope', label: language === 'vi' ? 'Mục tiêu & Phạm vi dự án' : 'Objectives & Project Scope' },
     { id: 'ownership', label: language === 'vi' ? 'Trách nhiệm kỹ thuật cá nhân' : 'My Engineering Ownership' },
@@ -175,6 +177,19 @@ const MovieTicketPage: React.FC = () => {
                 <span className="text-2xl font-bold font-mono text-[#F59E0B]">{language === 'vi' ? '10 Phút Tự Giải Phóng' : '10-Min Auto TTL'}</span>
               </div>
             </div>
+          </section>
+
+          {/* ── Section: Interactive Device Mockup Showcase ── */}
+          <section id="showcase" className="space-y-6">
+            <ProjectShowcaseGallery
+              projectId="movie-ticket"
+              defaultTab="desktop"
+              availableTabs={['desktop', 'terminal']}
+              desktopTitle={language === 'vi' ? 'Sơ Đồ Chọn Ghế Trực Tuyến & Cổng Thanh Toán (Web App)' : 'Real-time Cinema Seat Picker & Checkout (Web App)'}
+              desktopUrl="http://localhost:3000"
+              themeColor="#4F9CF9"
+              terminalCommand="npm test -- --coverage --testPathPattern=booking.spec.ts"
+            />
           </section>
 
           {/* ── Business Context & Problem Statement ── */}

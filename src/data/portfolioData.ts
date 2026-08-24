@@ -375,6 +375,18 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
       ]
     },
     {
+      period: "Tháng 08/2025 - Tháng 05/2026",
+      role: "Thực tập sinh Lập trình Backend (Backend Developer Intern)",
+      organization: "Công ty Cổ phần Phước Thành Việt Nam (PHUOC THANH VIET NAM JSC)",
+      location: "TP. Hồ Chí Minh, Việt Nam",
+      description: "Tham gia phát triển website cổng thông tin doanh nghiệp và xây dựng hệ thống phần mềm Quản lý Chấm công & Nhân sự (HRM & Attendance System) phục vụ số hóa quy trình vận hành nội bộ.",
+      highlights: [
+        "Thiết kế và xây dựng các dịch vụ RESTful API bằng Node.js (NestJS/Express) & SQL Server phục vụ quản lý hồ sơ nhân viên, quy trình xin nghỉ phép và chấm công.",
+        "Triển khai hệ thống phân quyền đa cấp (RBAC) kết hợp máy trạng thái (State Machine) kiểm soát luồng phê duyệt đơn từ (Pending → Approved → Rejected) minh bạch.",
+        "Xây dựng tác vụ tự động hóa (Cron Job Worker) đối soát dữ liệu check-in/check-out hàng ngày và xuất báo cáo bảng công, phiếu lương định kỳ (Excel/PDF) chính xác 100%."
+      ]
+    },
+    {
       period: "2023 - 2027 (Dự kiến)",
       role: "Sinh viên ngành Kỹ thuật Phần mềm (Software Engineering)",
       organization: "Học viện Công nghệ Bưu chính Viễn thông (PTIT TP.HCM)",
@@ -398,6 +410,18 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
         "Engineered a pure TypeScript 4-module AI Pipeline (DBSCAN → K-Means → Genetic Algorithm GA → Hungarian Algorithm) reducing fleet transit distance by 58.2%.",
         "Architected a 38-table PostgreSQL 3NF schema featuring PII data separation, 17-state Order FSM, and Clean Architecture layer isolation.",
         "Built a Redis In-Memory GPS Telemetry pipeline handling 1,321 coordinates/sec with sub-millisecond P99 latency.",
+      ]
+    },
+    {
+      period: "Aug 2025 - May 2026",
+      role: "Backend Developer Intern",
+      organization: "Phuoc Thanh Viet Nam Joint Stock Company (PHUOC THANH VIET NAM JSC)",
+      location: "Ho Chi Minh City, Vietnam",
+      description: "Contributed to developing the corporate web portal and engineered the internal Human Resource & Timekeeping Management System (HRM) to digitize enterprise operations.",
+      highlights: [
+        "Designed and implemented layered RESTful APIs using Node.js (NestJS/Express) & SQL Server for employee profiling, leave management, and daily attendance tracking.",
+        "Engineered granular Role-Based Access Control (RBAC) and approval workflow state machines (Pending → Approved → Rejected) across departmental hierarchies.",
+        "Built automated Cron Job workers for daily check-in/out reconciliation, timesheet aggregation, and automated payroll report generation (Excel/PDF)."
       ]
     },
     {

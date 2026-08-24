@@ -30,6 +30,7 @@ import { TOEIC_CHATBOT_DETAIL } from '../data/projects/toeicChatbot.data';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
+import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
 
 const ToeicChatbotPage: React.FC = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const ToeicChatbotPage: React.FC = () => {
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },
+    { id: 'showcase', label: language === 'vi' ? 'Khung Demo Sản phẩm (PC & Mobile)' : 'Interactive Device Showcase' },
     { id: 'context', label: language === 'vi' ? 'Bối cảnh & Đặt vấn đề' : 'Context & Problem Statement' },
     { id: 'scope', label: language === 'vi' ? 'Mục tiêu & Phạm vi dự án' : 'Objectives & Project Scope' },
     { id: 'ownership', label: language === 'vi' ? 'Trách nhiệm kỹ thuật cá nhân' : 'My Engineering Ownership' },
@@ -174,6 +176,20 @@ const ToeicChatbotPage: React.FC = () => {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* ── Section: Interactive Device Mockup Showcase ── */}
+          <section id="showcase" className="space-y-6">
+            <ProjectShowcaseGallery
+              projectId="toeic-chatbot"
+              defaultTab="dual"
+              availableTabs={['dual', 'desktop', 'mobile', 'terminal']}
+              desktopTitle={language === 'vi' ? 'Bảng Điều Khiển Swagger API Gateway & Python ML Pipeline' : 'API Gateway Swagger & Python ML Pipeline'}
+              mobileTitle={language === 'vi' ? 'App Gia Sư Luyện Thi & Chatbot Gemini (Flutter)' : 'Flutter AI Tutoring & Gemini Chatbot App'}
+              desktopUrl="http://localhost:8000/docs"
+              themeColor="#A78BFA"
+              terminalCommand="docker compose ps && pytest ml_service/tests/"
+            />
           </section>
 
           {/* ── Business Context & Problem Statement ── */}

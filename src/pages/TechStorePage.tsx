@@ -25,6 +25,7 @@ import { TECH_STORE_DETAIL } from '../data/projects/techStore.data';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
+import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
 
 const TechStorePage: React.FC = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const TechStorePage: React.FC = () => {
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },
+    { id: 'showcase', label: language === 'vi' ? 'Khung Demo Sản phẩm (PC & Mobile)' : 'Interactive Device Showcase' },
     { id: 'context', label: language === 'vi' ? 'Bối cảnh & Đặt vấn đề' : 'Context & Problem Statement' },
     { id: 'scope', label: language === 'vi' ? 'Mục tiêu & Phạm vi dự án' : 'Objectives & Project Scope' },
     { id: 'ownership', label: language === 'vi' ? 'Trách nhiệm kỹ thuật cá nhân' : 'My Engineering Ownership' },
@@ -196,6 +198,20 @@ const TechStorePage: React.FC = () => {
                 </span>
               ))}
             </div>
+          </section>
+
+          {/* Section: Interactive Device Mockup Showcase */}
+          <section id="showcase" className="space-y-6">
+            <ProjectShowcaseGallery
+              projectId="tech-store"
+              defaultTab="dual"
+              availableTabs={['dual', 'desktop', 'mobile', 'terminal']}
+              desktopTitle={language === 'vi' ? 'Cổng Quản Trị Doanh Nghiệp (React 18 Admin ERP)' : 'Enterprise Admin Web Portal (React 18)'}
+              mobileTitle={language === 'vi' ? 'Ứng Dụng Khách Hàng (Native Android Java 11)' : 'Native Android Customer App (Java 11)'}
+              desktopUrl="http://localhost:5173"
+              themeColor="#3B82F6"
+              terminalCommand="npm test -- --coverage --runInBand"
+            />
           </section>
 
           {/* Section 2: Context & Problem Statement */}

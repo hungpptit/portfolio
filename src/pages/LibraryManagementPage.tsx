@@ -26,6 +26,7 @@ import { LIBRARY_MANAGEMENT_DETAIL } from '../data/projects/libraryManagement.da
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
+import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
 
 const LibraryManagementPage: React.FC = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const LibraryManagementPage: React.FC = () => {
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },
+    { id: 'showcase', label: language === 'vi' ? 'Khung Demo Sản phẩm (PC & Terminal)' : 'Interactive Device Showcase' },
     { id: 'context', label: language === 'vi' ? 'Bối cảnh & Đặt vấn đề' : 'Context & Problem Statement' },
     { id: 'scope', label: language === 'vi' ? 'Mục tiêu & Phạm vi dự án' : 'Objectives & Project Scope' },
     { id: 'ownership', label: language === 'vi' ? 'Trách nhiệm kỹ thuật cá nhân' : 'My Engineering Ownership' },
@@ -171,6 +173,19 @@ const LibraryManagementPage: React.FC = () => {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* ── Section: Interactive Device Mockup Showcase ── */}
+          <section id="showcase" className="space-y-6">
+            <ProjectShowcaseGallery
+              projectId="smart-library"
+              defaultTab="desktop"
+              availableTabs={['desktop', 'terminal']}
+              desktopTitle={language === 'vi' ? 'Cổng Quản Trị Thư Viện Doanh Nghiệp (React Web)' : 'Enterprise Library Management Portal (React Web)'}
+              desktopUrl="http://localhost:3000"
+              themeColor="#34D399"
+              terminalCommand="npm test -- --coverage --verbose --detectOpenHandles"
+            />
           </section>
 
           {/* ── Business Context & Problem Statement ── */}

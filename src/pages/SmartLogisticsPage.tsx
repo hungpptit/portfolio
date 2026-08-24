@@ -39,6 +39,7 @@ import { SMART_LOGISTICS_DETAIL, SmartLogisticsData, ProblemPoint } from '../dat
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
+import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
 
 // ─── Business Context & Problem Statement ──────────────────────────────────
 const BusinessContextSection: React.FC<{ detail: SmartLogisticsData; language: string }> = ({ detail, language }) => {
@@ -814,6 +815,7 @@ const SmartLogisticsPage: React.FC = () => {
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },
+    { id: 'showcase', label: language === 'vi' ? 'Khung Demo Sản phẩm (PC & Mobile)' : 'Interactive Device Showcase' },
     { id: 'context', label: language === 'vi' ? 'Bối cảnh & Đặt vấn đề' : 'Business Context & Problem' },
     { id: 'scope', label: language === 'vi' ? 'Mục tiêu & Phạm vi toàn quốc' : 'Scope & Nationwide Coverage' },
     { id: 'ownership', label: language === 'vi' ? 'Trách nhiệm kỹ thuật cá nhân' : 'My Engineering Ownership' },
@@ -993,6 +995,20 @@ const SmartLogisticsPage: React.FC = () => {
                 })}
               </div>
             </div>
+          </section>
+
+          {/* ── Section: Interactive Device Mockup Showcase ── */}
+          <section id="showcase" className="space-y-6">
+            <ProjectShowcaseGallery
+              projectId="smart-logistics"
+              defaultTab="dual"
+              availableTabs={['dual', 'desktop', 'mobile', 'terminal']}
+              desktopTitle={language === 'vi' ? 'Trung Tâm Điều Vận Radar & Bản Đồ Số (Web Portal)' : 'Dispatch Radar & Live Geospatial Map (Web Portal)'}
+              mobileTitle={language === 'vi' ? 'App Tài Xế & Ký Nhận POD (Flutter Mobile)' : 'Driver Routing & Electronic POD App (Flutter)'}
+              desktopUrl="http://localhost:3000"
+              themeColor="#34D399"
+              terminalCommand="npm test -- --testPathPattern=algorithms.spec.ts"
+            />
           </section>
 
           {/* ── Business Context & Problem Statement ── */}
