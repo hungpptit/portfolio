@@ -18,13 +18,15 @@ export const Hero: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-10 border-b border-slate-200/80">
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-[#5E6AD2] shadow-[0_0_8px_#5E6AD2]" />
-            <span className="label-caps text-[#5E6AD2] tracking-[0.16em]">
-              PORTFOLIO PROFILE & VALUE PROPOSITION
+            <span className="label-caps text-[#5E6AD2] tracking-[0.14em]">
+              {language === 'vi' ? 'HỒ SƠ NĂNG LỰC & ĐỊNH HƯỚNG KỸ THUẬT' : 'PORTFOLIO PROFILE & VALUE PROPOSITION'}
             </span>
           </div>
-          <div className="flex items-center gap-2 label-caps text-[#64748B] text-[10px]">
+          <div className="flex items-center gap-2 label-caps text-[#64748B] text-[10px] tracking-[0.08em]">
             <MapPin className="w-3.5 h-3.5 text-[#5E6AD2]" />
-            <span>{info.location.toUpperCase()} • PTIT CLASS OF 2027</span>
+            <span>
+              {info.location.toUpperCase()} • {language === 'vi' ? 'KỸ THUẬT PHẦN MỀM PTIT (2023 - 2027)' : 'PTIT CLASS OF 2027'}
+            </span>
           </div>
         </div>
 
@@ -33,13 +35,13 @@ export const Hero: React.FC = () => {
           {/* Status / Role Pill Badge with green dot */}
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-slate-200/90 bg-white/80 backdrop-blur-md mb-8 shadow-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] shrink-0 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-            <span className="label-caps text-[#0B0E17] text-[11px] font-bold tracking-[0.14em]">
+            <span className="label-caps text-[#0B0E17] text-[11px] font-bold tracking-[0.12em]">
               {language === 'vi' ? 'KỸ SƯ PHẦN MỀM & LẬP TRÌNH VIÊN BACKEND' : 'SOFTWARE ENGINEER & BACKEND DEVELOPER'}
             </span>
           </div>
 
-          {/* Big Headline */}
-          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-extrabold text-[#0B0E17] mb-8 uppercase tracking-tight leading-[1.08]">
+          {/* Big Headline — relaxed tracking & line height for smooth diacritics */}
+          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[70px] font-extrabold text-[#0B0E17] mb-8 uppercase tracking-[0.015em] sm:tracking-[0.02em] leading-[1.22] sm:leading-[1.15]">
             {language === 'vi' ? 'CHÀO BẠN, MÌNH LÀ ' : "HI THERE, I'M "}
             <span className="text-iris-gradient whitespace-nowrap">{info.name.toUpperCase()}.</span>
           </h1>
@@ -63,7 +65,7 @@ export const Hero: React.FC = () => {
               className="btn-neutral-outline"
             >
               <GithubIcon className="w-4 h-4 mr-2" />
-              <span>GITHUB PROFILE</span>
+              <span>{language === 'vi' ? 'HỒ SƠ GITHUB' : 'GITHUB PROFILE'}</span>
             </a>
 
             <a href="#contact" className="btn-neutral-outline">

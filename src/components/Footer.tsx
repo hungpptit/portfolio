@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
               href="#hero"
               className="label-caps text-[#64748B] hover:text-[#5E6AD2] transition-colors font-bold"
             >
-              INDEX
+              {language === 'vi' ? 'TRANG CHỦ' : 'INDEX'}
             </a>
             <a
               href="#projects"
@@ -78,7 +78,10 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} {info.name}. {t.footer.rights}
           </div>
           <div className="label-caps text-[10px] text-[#64748B] font-semibold">
-            STATUS: <span className="text-[#10B981] font-bold">ACTIVE DEPLOYMENT</span>
+            {language === 'vi' ? 'TRẠNG THÁI: ' : 'STATUS: '}
+            <span className="text-[#10B981] font-bold">
+              {language === 'vi' ? 'ĐANG SẴN SÀNG' : 'ACTIVE DEPLOYMENT'}
+            </span>
           </div>
         </div>
 

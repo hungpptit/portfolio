@@ -24,7 +24,7 @@ export const PERSONAL_INFO: Record<Language, PersonalInfoType> = {
     name: "Phạm Tuấn Hưng",
     role: "Kỹ sư Phần mềm & Lập trình viên Backend (Software Engineer & Backend Developer)",
     tagline: "Cung cấp giải pháp kỹ thuật toàn diện, thiết kế kiến trúc backend tin cậy & tối ưu hiệu năng.",
-    bio: "Software engineer & Backend developer tại TP. Hồ Chí Minh — chuyên cung cấp các giải pháp kỹ thuật và kiến trúc phần mềm tin cậy, biến các bài toán nghiệp vụ thực tế thành những hệ thống backend mượt mà, tối ưu hiệu năng, bảo mật và sẵn sàng mở rộng.",
+    bio: "Kỹ sư Phần mềm & Lập trình viên Backend tại TP. Hồ Chí Minh — chuyên cung cấp các giải pháp kỹ thuật và kiến trúc phần mềm tin cậy, biến các bài toán nghiệp vụ thực tế thành những hệ thống backend mượt mà, tối ưu hiệu năng, bảo mật và sẵn sàng mở rộng.",
     university: "Học viện Công nghệ Bưu chính Viễn thông (PTIT TP.HCM)",
     major: "Kỹ thuật Phần mềm (Software Engineering)",
     gpa: "3.2 / 4.0",

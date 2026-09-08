@@ -70,7 +70,7 @@ export const Capabilities: React.FC = () => {
               </div>
 
               <div className="mt-8 pt-4 border-t border-slate-100 label-caps text-[10px] text-[#5E6AD2] font-bold">
-                PRODUCTION STACK • CLEAN ARCHITECTURE
+                {language === 'vi' ? 'CÔNG NGHỆ THỰC CHIẾN • KIẾN TRÚC PHẦN MỀM SẠCH' : 'PRODUCTION STACK • CLEAN ARCHITECTURE'}
               </div>
             </div>
 
@@ -84,13 +84,13 @@ export const Capabilities: React.FC = () => {
                 {/* Pill Badges */}
                 <div className="flex flex-wrap gap-2">
                   {[
-                    'Microservices Architecture',
-                    'Distributed Locking (Redis)',
-                    'Message Queuing (RabbitMQ)',
-                    'Event-Driven Systems',
-                    'API Gateway Design',
-                    'Concurrency Control',
-                    'RESTful API Standards',
+                    language === 'vi' ? 'Kiến trúc Vi dịch vụ (Microservices)' : 'Microservices Architecture',
+                    language === 'vi' ? 'Khóa phân tán (Redis Distributed Lock)' : 'Distributed Locking (Redis)',
+                    language === 'vi' ? 'Hàng đợi thông điệp (RabbitMQ)' : 'Message Queuing (RabbitMQ)',
+                    language === 'vi' ? 'Kiến trúc Hướng sự kiện (Event-Driven)' : 'Event-Driven Systems',
+                    language === 'vi' ? 'Thiết kế API Gateway' : 'API Gateway Design',
+                    language === 'vi' ? 'Kiểm soát Xung đột Đồng thời (Concurrency)' : 'Concurrency Control',
+                    language === 'vi' ? 'Chuẩn RESTful API' : 'RESTful API Standards',
                   ].map((item, idx) => (
                     <span
                       key={idx}
@@ -103,7 +103,7 @@ export const Capabilities: React.FC = () => {
               </div>
 
               <div className="mt-8 pt-4 border-t border-slate-100 label-caps text-[10px] text-[#64748B]">
-                HIGH-THROUGHPUT • FAULT-TOLERANT
+                {language === 'vi' ? 'XỬ LÝ CHỊU TẢI CAO • CHỊU LỖI PHÂN TÁN' : 'HIGH-THROUGHPUT • FAULT-TOLERANT'}
               </div>
             </div>
 
@@ -123,12 +123,12 @@ export const Capabilities: React.FC = () => {
                 <div className="flex flex-wrap gap-2">
                   {[
                     'SQL Server (T-SQL, CTEs)',
-                    'Database Normalization (3NF)',
+                    language === 'vi' ? 'Chuẩn hóa CSDL (3NF)' : 'Database Normalization (3NF)',
                     'PostgreSQL / PostGIS',
-                    'Redis In-Memory Cache (TTL)',
-                    'ACID Transactions & Isolation',
+                    language === 'vi' ? 'Bộ nhớ đệm Redis (TTL)' : 'Redis In-Memory Cache (TTL)',
+                    language === 'vi' ? 'Giao dịch Toàn vẹn ACID' : 'ACID Transactions & Isolation',
                     'Firebase Firestore & FCM',
-                    'Index Optimization',
+                    language === 'vi' ? 'Tối ưu hóa Chỉ mục (Index)' : 'Index Optimization',
                   ].map((item, idx) => (
                     <span
                       key={idx}
@@ -141,7 +141,7 @@ export const Capabilities: React.FC = () => {
               </div>
 
               <div className="mt-8 pt-4 border-t border-slate-100 label-caps text-[10px] text-[#64748B]">
-                ZERO DATA LOSS • RELATIONAL & NOSQL
+                {language === 'vi' ? 'BẢO TOÀN DỮ LIỆU • QUAN HỆ & PHI QUAN HỆ' : 'ZERO DATA LOSS • RELATIONAL & NOSQL'}
               </div>
             </div>
 
@@ -174,7 +174,7 @@ export const Capabilities: React.FC = () => {
               </div>
 
               <div className="mt-8 pt-4 border-t border-slate-100 label-caps text-[10px] text-[#64748B]">
-                REAL-WORLD PRODUCTION DOMAINS
+                {language === 'vi' ? 'NGHIỆP VỤ HỆ THỐNG THỰC TẾ DOANH NGHIỆP' : 'REAL-WORLD PRODUCTION DOMAINS'}
               </div>
             </div>
 
@@ -212,7 +212,7 @@ export const Capabilities: React.FC = () => {
               </div>
 
               <div className="mt-8 pt-4 border-t border-slate-100 label-caps text-[10px] text-[#64748B]">
-                GLOBAL COLLABORATION READY
+                {language === 'vi' ? 'SẴN SÀNG HỢP TÁC MÔI TRƯỜNG QUỐC TẾ' : 'GLOBAL COLLABORATION READY'}
               </div>
             </div>
 
@@ -225,14 +225,14 @@ export const Capabilities: React.FC = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {[
-                    'Agile / Scrum Methodology',
-                    'Git & Monorepo Workflows',
-                    'CI/CD Pipeline Integration',
-                    'System Design & Architecture Modeling',
-                    'API Contract & Swagger Documentation',
-                    'Unit & Integration Testing',
-                    'Clean Code & SOLID Principles',
-                    'Postman & Automated Testing',
+                    language === 'vi' ? 'Quy trình Agile / Scrum' : 'Agile / Scrum Methodology',
+                    language === 'vi' ? 'Quy trình Git & Monorepo' : 'Git & Monorepo Workflows',
+                    language === 'vi' ? 'Tích hợp Đường ống CI/CD' : 'CI/CD Pipeline Integration',
+                    language === 'vi' ? 'Mô hình hóa Kiến trúc Hệ thống' : 'System Design & Architecture Modeling',
+                    language === 'vi' ? 'Đặc tả Hợp đồng API & Swagger' : 'API Contract & Swagger Documentation',
+                    language === 'vi' ? 'Kiểm thử Tự động Unit & Integration' : 'Unit & Integration Testing',
+                    language === 'vi' ? 'Nguyên lý Clean Code & SOLID' : 'Clean Code & SOLID Principles',
+                    language === 'vi' ? 'Postman & Kiểm thử Tự động' : 'Postman & Automated Testing',
                   ].map((item, idx) => (
                     <span
                       key={idx}
@@ -245,7 +245,7 @@ export const Capabilities: React.FC = () => {
               </div>
 
               <div className="mt-8 pt-4 border-t border-slate-100 label-caps text-[10px] text-[#64748B]">
-                SDLC • TEST-DRIVEN & RELIABLE
+                {language === 'vi' ? 'QUY TRÌNH CHUẨN • HƯỚNG KIỂM THỬ VÀ ĐỘ TIN CẬY' : 'SDLC • TEST-DRIVEN & RELIABLE'}
               </div>
             </div>
 
