@@ -43,12 +43,12 @@ const GenericProjectPage: React.FC = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#0e0e0e] flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-[#9ca3af] mb-4 text-base">
+      <div className="min-h-screen bg-[#FAFAFC] bg-linear-grid flex items-center justify-center">
+        <div className="text-center p-8 linear-card max-w-md mx-auto">
+          <p className="text-[#64748B] mb-4 text-base">
             {language === 'vi' ? 'Không tìm thấy thông tin dự án yêu cầu' : 'Project specification not found'}
           </p>
-          <button onClick={() => navigate('/')} className="text-[#D4AF37] underline text-sm font-semibold">
+          <button onClick={() => navigate('/')} className="btn-linear-primary text-xs cursor-pointer">
             {language === 'vi' ? 'Quay lại Trang chủ Danh mục Dự án' : 'Return to Portfolio Home'}
           </button>
         </div>
@@ -57,9 +57,9 @@ const GenericProjectPage: React.FC = () => {
   }
 
   const catColors: Record<string, string> = {
-    backend: '#4F9CF9', ai: '#A78BFA', mobile: '#34D399', microservices: '#F59E0B', fullstack: '#F472B6'
+    backend: '#5E6AD2', ai: '#8B5CF6', mobile: '#10B981', microservices: '#F59E0B', fullstack: '#EC4899'
   };
-  const accent = catColors[project.category] || '#D4AF37';
+  const accent = catColors[project.category] || '#5E6AD2';
 
   const scrollTo = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -67,20 +67,20 @@ const GenericProjectPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0e0e0e] text-[#e4e2e1]">
+    <div className="min-h-screen bg-[#FAFAFC] bg-linear-grid text-[#0B0E17]">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[#222222] bg-[#0e0e0e]/95 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-xl">
         <div className="max-w-[1500px] mx-auto px-6 py-4 flex items-center justify-between">
           <button onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-[#9ca3af] hover:text-[#D4AF37] transition-colors text-sm font-semibold tracking-wider uppercase">
+            className="flex items-center gap-2 text-[#64748B] hover:text-[#5E6AD2] transition-colors text-sm font-bold tracking-wider uppercase cursor-pointer">
             <ArrowLeft className="w-4 h-4" /> {t.detailCommon.backBtn}
           </button>
 
           <div className="flex items-center gap-4">
             <LanguageToggle />
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold hover:bg-[#D4AF37]/10 transition-colors tracking-wider rounded">
-              {t.detailCommon.sourceRepo} <ArrowUpRight className="w-4 h-4" />
+              className="btn-linear-primary text-xs py-2 px-4 shadow-xs">
+              {t.detailCommon.sourceRepo} <ArrowUpRight className="w-4 h-4 ml-1.5" />
             </a>
           </div>
         </div>
@@ -91,57 +91,57 @@ const GenericProjectPage: React.FC = () => {
         <aside className="hidden lg:flex flex-col w-[280px] shrink-0">
           <div className="sticky top-[65px] max-h-[calc(100vh-65px)] overflow-y-auto pt-8 pb-10 pr-6 flex flex-col gap-6">
             <div>
-              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-3">{t.detailCommon.quickInfoTitle}</p>
+              <p className="text-xs text-[#64748B] uppercase tracking-wider font-bold mb-3">{t.detailCommon.quickInfoTitle}</p>
               <div className="space-y-3">
                 <div>
-                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.statusLabel}</p>
+                  <p className="text-xs text-[#64748B] mb-1 font-medium">{t.detailCommon.statusLabel}</p>
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#34D399]" />
-                    <span className="text-sm text-[#f3f4f6] font-semibold">{t.detailCommon.statusCompleted}</span>
+                    <span className="w-2 h-2 rounded-full bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                    <span className="text-sm text-[#0B0E17] font-bold">{t.detailCommon.statusCompleted}</span>
                   </div>
                 </div>
                 {detail?.duration && (
                   <div>
-                    <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.durationLabel}</p>
-                    <p className="text-sm text-[#f3f4f6] font-semibold">{detail.duration}</p>
+                    <p className="text-xs text-[#64748B] mb-1 font-medium">{t.detailCommon.durationLabel}</p>
+                    <p className="text-sm text-[#0B0E17] font-semibold">{detail.duration}</p>
                   </div>
                 )}
                 {detail?.role && (
                   <div>
-                    <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.roleLabel}</p>
-                    <p className="text-sm text-[#f3f4f6] font-semibold">{detail.role}</p>
+                    <p className="text-xs text-[#64748B] mb-1 font-medium">{t.detailCommon.roleLabel}</p>
+                    <p className="text-sm text-[#0B0E17] font-semibold">{detail.role}</p>
                   </div>
                 )}
                 {detail?.teamSize && (
                   <div>
-                    <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.teamLabel}</p>
-                    <p className="text-sm text-[#f3f4f6] font-semibold">{detail.teamSize}</p>
+                    <p className="text-xs text-[#64748B] mb-1 font-medium">{t.detailCommon.teamLabel}</p>
+                    <p className="text-sm text-[#0B0E17] font-semibold">{detail.teamSize}</p>
                   </div>
                 )}
                 <div>
-                  <p className="text-xs text-[#9ca3af] mb-1 font-medium">{t.detailCommon.categoryLabel}</p>
+                  <p className="text-xs text-[#64748B] mb-1 font-medium">{t.detailCommon.categoryLabel}</p>
                   <p className="text-sm font-mono font-bold uppercase" style={{ color: accent }}>{project.category}</p>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-[#222222]" />
+            <div className="border-t border-slate-200/80" />
 
             <div>
-              <p className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold mb-3">{t.detailCommon.tocTitle}</p>
+              <p className="text-xs text-[#64748B] uppercase tracking-wider font-bold mb-3">{t.detailCommon.tocTitle}</p>
               <nav className="space-y-1">
                 {TOC_SECTIONS.map(s => (
                   <button
                     key={s.id}
                     onClick={() => scrollTo(s.id)}
-                    className={`w-full text-left flex items-center gap-2 py-1.5 px-0 text-sm transition-colors ${
+                    className={`w-full text-left flex items-center gap-2 py-1.5 px-0 text-sm transition-colors cursor-pointer ${
                       activeSection === s.id
-                        ? 'text-[#D4AF37] font-bold'
-                        : 'text-[#9ca3af] hover:text-[#f3f4f6]'
+                        ? 'text-[#5E6AD2] font-bold'
+                        : 'text-[#64748B] hover:text-[#0B0E17]'
                     }`}
                   >
                     {activeSection === s.id && (
-                      <span className="w-3.5 h-[2px] bg-[#D4AF37] shrink-0" />
+                      <span className="w-3.5 h-[2px] bg-[#5E6AD2] shrink-0" />
                     )}
                     <span>{s.label}</span>
                   </button>
@@ -152,27 +152,27 @@ const GenericProjectPage: React.FC = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 min-w-0 border-l border-[#222222] pl-10 py-10 space-y-20">
+        <main className="flex-1 min-w-0 border-l border-slate-200/80 pl-10 py-10 space-y-16">
           {/* Hero */}
           <section id="overview">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2" style={{ background: accent }} />
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2 h-2 rounded-full" style={{ background: accent }} />
               <span className="text-xs font-bold tracking-wider uppercase" style={{ color: accent }}>
                 {language === 'vi' ? 'DỰ ÁN CHUYÊN SÂU' : 'SPECIALIZED SYSTEM'} · {project.category.toUpperCase()}
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-[#f3f4f6] tracking-tight mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B0E17] tracking-tight mb-6 leading-tight">
               {project.title.split(' ').slice(0, -1).join(' ')}<br />
               <span style={{ color: accent }}>{project.title.split(' ').slice(-1)}</span>
             </h1>
-            <p className="text-[#d1d5db] leading-relaxed mb-10 max-w-3xl font-normal text-lg">
+            <p className="text-[#334155] leading-relaxed mb-8 max-w-3xl font-normal text-lg">
               {detail?.overview || project.description}
             </p>
 
             {project.metrics && (
-              <div className="p-5 bg-[#121212] border border-[#262626] inline-flex items-center gap-3 rounded">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]">{t.detailCommon.highlightsTitle}</span>
-                <span className="text-base font-bold font-mono" style={{ color: accent }}>{project.metrics}</span>
+              <div className="p-4 bg-gradient-to-r from-[#5E6AD2]/10 to-[#06B6D4]/10 border border-[#5E6AD2]/25 inline-flex items-center gap-3 rounded-xl shadow-xs">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#64748B]">{t.detailCommon.highlightsTitle}</span>
+                <span className="text-base font-bold font-mono text-[#5E6AD2]">{project.metrics}</span>
               </div>
             )}
           </section>
@@ -181,13 +181,13 @@ const GenericProjectPage: React.FC = () => {
           <section id="architecture">
             <div className="flex items-center gap-3 mb-6">
               <Layers className="w-5 h-5" style={{ color: accent }} />
-              <h2 className="text-2xl font-black text-[#f3f4f6]">{t.detailCommon.systemArchTitle}</h2>
+              <h2 className="text-2xl font-bold text-[#0B0E17]">{t.detailCommon.systemArchTitle}</h2>
             </div>
-            <div className="p-7 bg-[#121212] border border-[#262626] rounded">
+            <div className="p-7 linear-card">
               <ul className="space-y-4">
                 {project.architectureHighlights.map((hl, i) => (
-                  <li key={i} className="text-base text-[#d1d5db] flex items-start gap-3.5 leading-relaxed font-normal">
-                    <span className="w-2 h-2 mt-2 shrink-0 rounded-full" style={{ background: accent }} />
+                  <li key={i} className="text-base text-[#334155] flex items-start gap-3.5 leading-relaxed font-normal">
+                    <span className="w-2 h-2 mt-2 shrink-0 rounded-full shadow-[0_0_6px_#5E6AD2]" style={{ background: accent }} />
                     <span>{hl}</span>
                   </li>
                 ))}
@@ -200,29 +200,29 @@ const GenericProjectPage: React.FC = () => {
             <section id="techstack">
               <div className="flex items-center gap-3 mb-6">
                 <Server className="w-5 h-5" style={{ color: accent }} />
-                <h2 className="text-2xl font-black text-[#f3f4f6]">{t.detailCommon.techStackTitle}</h2>
+                <h2 className="text-2xl font-bold text-[#0B0E17]">{t.detailCommon.techStackTitle}</h2>
               </div>
-              <div className="border border-[#262626] overflow-hidden rounded">
+              <div className="border border-slate-200/80 overflow-hidden rounded-2xl shadow-xs bg-white">
                 <table className="w-full text-base">
                   <thead>
-                    <tr className="border-b border-[#262626] bg-[#141414]">
-                      <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-[220px]">
+                    <tr className="border-b border-slate-200/80 bg-slate-100/80">
+                      <th className="text-left px-5 py-3.5 text-xs font-bold text-[#475569] uppercase tracking-wider w-[220px]">
                         {language === 'vi' ? 'Phân tầng kiến trúc' : 'Architectural Layer'}
                       </th>
-                      <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider w-[240px]">
+                      <th className="text-left px-5 py-3.5 text-xs font-bold text-[#475569] uppercase tracking-wider w-[240px]">
                         {language === 'vi' ? 'Công nghệ' : 'Technology'}
                       </th>
-                      <th className="text-left px-5 py-3.5 text-xs font-bold text-[#9ca3af] uppercase tracking-wider">
+                      <th className="text-left px-5 py-3.5 text-xs font-bold text-[#475569] uppercase tracking-wider">
                         {language === 'vi' ? 'Vai trò đảm nhiệm' : 'Role & Responsibility'}
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {detail.techStack.map((item, i) => (
-                      <tr key={i} className="border-b border-[#1c1c1c] hover:bg-[#161616] transition-colors">
-                        <td className="px-5 py-3.5 text-sm font-semibold text-[#D4AF37]">{item.layer}</td>
-                        <td className="px-5 py-3.5 font-mono text-sm text-[#f3f4f6] font-semibold">{item.tech}</td>
-                        <td className="px-5 py-3.5 text-sm text-[#d1d5db] font-normal leading-relaxed">{item.role}</td>
+                      <tr key={i} className="border-b border-slate-100 hover:bg-slate-50/80 transition-colors">
+                        <td className="px-5 py-3.5 text-sm font-bold text-[#5E6AD2]">{item.layer}</td>
+                        <td className="px-5 py-3.5 font-mono text-sm text-[#0B0E17] font-bold">{item.tech}</td>
+                        <td className="px-5 py-3.5 text-sm text-[#475569] font-normal leading-relaxed">{item.role}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -236,20 +236,20 @@ const GenericProjectPage: React.FC = () => {
             <section id="challenges">
               <div className="flex items-center gap-3 mb-6">
                 <AlertTriangle className="w-5 h-5 text-[#F59E0B]" />
-                <h2 className="text-2xl font-black text-[#f3f4f6]">{t.detailCommon.challengesTitle}</h2>
+                <h2 className="text-2xl font-bold text-[#0B0E17]">{t.detailCommon.challengesTitle}</h2>
               </div>
               <div className="space-y-4">
                 {detail.challenges.map((c, i) => (
-                  <div key={i} className="p-6 bg-[#121212] border border-[#262626] hover:border-[#3a3a3a] transition-colors rounded">
+                  <div key={i} className="p-6 linear-card">
                     <h3 className="text-base font-bold mb-4" style={{ color: accent }}>{c.title}</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="p-4 bg-[#1a1215] border border-[#F472B6]/20 rounded">
-                        <span className="text-xs font-bold text-[#F472B6] uppercase tracking-wider block mb-2">{t.detailCommon.problemLabel}</span>
-                        <p className="text-sm text-[#e5e7eb] leading-relaxed font-normal">{c.problem}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div className="p-4 bg-[#FFF1F2] border border-[#FECDD3] rounded-xl">
+                        <span className="text-xs font-bold text-[#E11D48] uppercase tracking-wider block mb-2">{t.detailCommon.problemLabel}</span>
+                        <p className="text-sm text-[#4C0519] leading-relaxed font-normal">{c.problem}</p>
                       </div>
-                      <div className="p-4 bg-[#0e1915] border border-[#34D399]/20 rounded">
-                        <span className="text-xs font-bold text-[#34D399] uppercase tracking-wider block mb-2">{t.detailCommon.solutionLabel}</span>
-                        <p className="text-sm text-[#e5e7eb] leading-relaxed font-normal">{c.solution}</p>
+                      <div className="p-4 bg-[#ECFDF5] border border-[#A7F3D0] rounded-xl">
+                        <span className="text-xs font-bold text-[#059669] uppercase tracking-wider block mb-2">{t.detailCommon.solutionLabel}</span>
+                        <p className="text-sm text-[#064E3B] leading-relaxed font-normal">{c.solution}</p>
                       </div>
                     </div>
                   </div>
@@ -259,20 +259,20 @@ const GenericProjectPage: React.FC = () => {
           )}
 
           {/* Tags + CTA */}
-          <section className="border-t border-[#222222] pt-10">
-            <div className="flex flex-wrap gap-2.5 mb-8">
+          <section className="border-t border-slate-200/80 pt-10">
+            <div className="flex flex-wrap gap-2 mb-8">
               {project.tags.map((tag, i) => (
-                <span key={i} className="text-xs px-3 py-1.5 border border-[#2a2a2a] text-[#9ca3af] font-mono rounded">{tag}</span>
+                <span key={i} className="text-xs px-3 py-1.5 border border-slate-200/80 bg-white text-[#334155] font-mono rounded-lg font-medium shadow-2xs">{tag}</span>
               ))}
             </div>
             <div className="flex gap-4">
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3.5 bg-[#D4AF37] text-[#0e0e0e] font-bold text-sm hover:bg-[#e8c547] transition-colors tracking-wider uppercase rounded">
-                {t.detailCommon.viewSourceBtn} <ArrowUpRight className="w-4 h-4" />
+                className="btn-linear-primary text-sm px-6 py-3.5 rounded-xl shadow-xs">
+                {t.detailCommon.viewSourceBtn} <ArrowUpRight className="w-4 h-4 ml-1.5" />
               </a>
               <button onClick={() => navigate(-1)}
-                className="flex items-center gap-2 px-6 py-3.5 border border-[#333333] text-[#9ca3af] font-semibold text-sm hover:border-[#555] hover:text-[#f3f4f6] transition-colors tracking-wider uppercase rounded">
-                <ArrowLeft className="w-4 h-4" /> {t.detailCommon.backToPortfolioBtn}
+                className="btn-neutral-outline text-sm px-6 py-3.5 rounded-xl cursor-pointer">
+                <ArrowLeft className="w-4 h-4 mr-1.5" /> {t.detailCommon.backToPortfolioBtn}
               </button>
             </div>
           </section>

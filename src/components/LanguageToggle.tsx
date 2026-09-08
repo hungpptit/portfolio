@@ -12,22 +12,22 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({ className = '', 
 
   return (
     <div
-      className={`inline-flex items-center p-0.5 border border-[#2a2a2a] bg-[#141414] rounded-full transition-all duration-300 ${className}`}
+      className={`inline-flex items-center p-0.5 border border-slate-200/90 bg-white/90 backdrop-blur-md rounded-full shadow-xs transition-all duration-300 ${className}`}
       role="group"
       aria-label="Language selector"
     >
       {showIcon && (
-        <span className="pl-2 pr-1 text-[#8e9192]">
-          <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
+        <span className="pl-2 pr-1 text-[#64748B]">
+          <Globe className="w-3.5 h-3.5 text-[#5E6AD2]" />
         </span>
       )}
       <button
         type="button"
         onClick={() => setLanguage('vi')}
-        className={`px-2.5 py-1 text-xs font-mono font-bold rounded-full transition-all duration-200 ${
+        className={`px-2.5 py-1 text-xs font-mono font-bold rounded-full transition-all duration-200 cursor-pointer ${
           language === 'vi'
-            ? 'bg-[#D4AF37] text-[#0e0e0e] shadow-sm'
-            : 'text-[#8e9192] hover:text-[#e4e2e1]'
+            ? 'bg-gradient-to-r from-[#5E6AD2] to-[#4F46E5] text-white shadow-xs'
+            : 'text-[#64748B] hover:text-[#0B0E17]'
         }`}
         title="Tiếng Việt"
       >
@@ -36,10 +36,10 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({ className = '', 
       <button
         type="button"
         onClick={() => setLanguage('en')}
-        className={`px-2.5 py-1 text-xs font-mono font-bold rounded-full transition-all duration-200 ${
+        className={`px-2.5 py-1 text-xs font-mono font-bold rounded-full transition-all duration-200 cursor-pointer ${
           language === 'en'
-            ? 'bg-[#D4AF37] text-[#0e0e0e] shadow-sm'
-            : 'text-[#8e9192] hover:text-[#e4e2e1]'
+            ? 'bg-gradient-to-r from-[#5E6AD2] to-[#4F46E5] text-white shadow-xs'
+            : 'text-[#64748B] hover:text-[#0B0E17]'
         }`}
         title="English"
       >

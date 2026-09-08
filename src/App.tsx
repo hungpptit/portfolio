@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
   useDocumentTitle();
 
   return (
-    <div className="relative min-h-screen bg-[#131313] text-[#e4e2e1] overflow-x-hidden selection:bg-[#D4AF37] selection:text-[#121212]">
+    <div className="relative min-h-screen bg-[#FAFAFC] bg-linear-grid text-[#0B0E17] overflow-x-hidden selection:bg-[#5E6AD2] selection:text-white">
       <CustomCursor />
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />

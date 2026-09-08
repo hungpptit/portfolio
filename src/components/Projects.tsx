@@ -27,25 +27,25 @@ export const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-24 md:py-36 border-t border-[#2a2a2a]">
+    <section id="projects" className="py-20 md:py-32 border-t border-slate-200/80 bg-white/40">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-20">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-8 border-b border-[#2a2a2a] gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-8 border-b border-slate-200/80 gap-8">
           <div>
             <div className="flex items-center gap-2.5 mb-3">
-              <span className="w-1.5 h-1.5 bg-[#D4AF37]" />
-              <span className="label-caps text-[#D4AF37]">
+              <span className="w-2 h-2 rounded-full bg-[#5E6AD2] shadow-[0_0_8px_#5E6AD2]" />
+              <span className="label-caps text-[#5E6AD2]">
                 {t.projects.badge}
               </span>
             </div>
-            <h2 className="headline-lg text-[#e4e2e1]">
+            <h2 className="headline-lg text-[#0B0E17]">
               {t.projects.title}
             </h2>
           </div>
 
           {/* Filter Bar */}
-          <div className="flex items-center flex-wrap gap-6 border-b md:border-b-0 border-[#2a2a2a] pb-4 md:pb-0">
+          <div className="flex items-center flex-wrap gap-2.5 border-b md:border-b-0 border-slate-200/80 pb-4 md:pb-0">
             {[
               { key: 'all', label: t.projects.all },
               { key: 'backend', label: t.projects.backend },
@@ -55,14 +55,14 @@ export const Projects: React.FC = () => {
               <button
                 key={tab.key}
                 onClick={() => setActiveFilter(tab.key as ProjectCategory)}
-                className={`relative py-1 text-xs label-caps transition-all duration-300 flex items-center gap-2 ${
+                className={`relative py-1.5 px-3.5 rounded-xl text-xs label-caps transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                   activeFilter === tab.key
-                    ? 'text-[#D4AF37] font-bold'
-                    : 'text-[#8e9192] hover:text-[#e4e2e1]'
+                    ? 'bg-[#5E6AD2]/10 text-[#5E6AD2] font-bold border border-[#5E6AD2]/30 shadow-xs'
+                    : 'text-[#64748B] hover:text-[#0B0E17] hover:bg-slate-100/80'
                 }`}
               >
                 {activeFilter === tab.key && (
-                  <span className="w-1 h-1 bg-[#D4AF37]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#5E6AD2]" />
                 )}
                 <span>{tab.label}</span>
               </button>
@@ -71,7 +71,7 @@ export const Projects: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {filteredProjects.map((project, idx) => {
             const isFeatured = idx === 0 && activeFilter === 'all';
             const hasDetailPage = !!project.hasDetailPage;
@@ -79,52 +79,52 @@ export const Projects: React.FC = () => {
             return (
               <div
                 key={project.id}
-                className={`p-8 md:p-12 border border-[#2a2a2a] bg-[#161616] hover:bg-[#1b1c1c] transition-all duration-400 flex flex-col justify-between group ${
-                  isFeatured ? 'md:col-span-2 border-[#444748] bg-[#191919]' : ''
+                className={`p-8 md:p-10 linear-card flex flex-col justify-between group ${
+                  isFeatured ? 'md:col-span-2 border-[#5E6AD2]/35 bg-gradient-to-b from-white/95 to-[#5E6AD2]/5' : ''
                 }`}
               >
                 <div>
                   {/* Top Metadata */}
-                  <div className="flex items-center justify-between gap-4 pb-6 mb-6 border-b border-[#2a2a2a]">
+                  <div className="flex items-center justify-between gap-4 pb-5 mb-6 border-b border-slate-200/70">
                     <div className="flex items-center gap-3">
-                      <span className="label-caps text-[#D4AF37] text-[10px]">
+                      <span className="label-caps text-[#5E6AD2] text-[10px] font-bold">
                         {project.category.toUpperCase()} / #{String(idx + 1).padStart(2, '0')}
                       </span>
                       {project.branch && (
-                        <span className="font-mono-code text-[11px] text-[#8e9192] flex items-center gap-1 border-l border-[#2a2a2a] pl-3">
-                          <GitBranch className="w-3 h-3 text-[#8e9192]" />
+                        <span className="font-mono-code text-[11px] text-[#64748B] flex items-center gap-1 border-l border-slate-200 pl-3">
+                          <GitBranch className="w-3.5 h-3.5 text-[#64748B]" />
                           {project.branch}
                         </span>
                       )}
                     </div>
                     {project.metrics && (
-                      <span className="label-caps text-[10px] text-[#e4e2e1] bg-[#2a2a2a] px-2.5 py-1">
+                      <span className="label-caps text-[10px] text-[#5E6AD2] bg-gradient-to-r from-[#5E6AD2]/10 to-[#06B6D4]/10 border border-[#5E6AD2]/25 px-3 py-1 rounded-lg font-bold shadow-2xs">
                         {project.metrics}
                       </span>
                     )}
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="headline-md text-[#e4e2e1] group-hover:text-[#D4AF37] transition-colors duration-300 mb-3">
+                  <h3 className="headline-md text-[#0B0E17] group-hover:text-[#5E6AD2] transition-colors duration-200 mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-xs uppercase tracking-wider text-[#8e9192] font-semibold mb-6">
+                  <p className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-5">
                     {project.subtitle}
                   </p>
 
-                  <p className="body-md text-[#c4c7c7] mb-8 font-light leading-relaxed">
+                  <p className="body-md text-[#334155] mb-6 font-normal leading-relaxed">
                     {project.description}
                   </p>
 
                   {/* Architecture Highlights */}
-                  <div className="p-6 bg-[#111111] border border-[#222222] mb-8">
-                    <span className="label-caps text-[#8e9192] text-[10px] block mb-4">
+                  <div className="p-6 bg-slate-50/80 border border-slate-200/70 rounded-2xl mb-6">
+                    <span className="label-caps text-[#64748B] text-[10px] block mb-3 font-bold">
                       {language === 'vi' ? 'ĐẶC TẢ ĐIỂM NHẤN KIẾN TRÚC HỆ THỐNG' : 'SYSTEM ARCHITECTURE SPECIFICATION'}
                     </span>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2.5">
                       {project.architectureHighlights.map((hl, hIdx) => (
-                        <li key={hIdx} className="text-xs text-[#c4c7c7] flex items-start gap-3 leading-relaxed font-light">
-                          <span className="w-1 h-1 bg-[#D4AF37] mt-1.5 shrink-0" />
+                        <li key={hIdx} className="text-xs text-[#334155] flex items-start gap-2.5 leading-relaxed font-normal">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#5E6AD2] mt-1.5 shrink-0 shadow-[0_0_6px_#5E6AD2]" />
                           <span>{hl}</span>
                         </li>
                       ))}
@@ -133,13 +133,13 @@ export const Projects: React.FC = () => {
                 </div>
 
                 {/* Footer: Tags & Actions */}
-                <div className="pt-6 border-t border-[#2a2a2a] flex flex-col gap-5">
+                <div className="pt-6 border-t border-slate-200/70 flex flex-col gap-5">
                   {/* Tech stack badges */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className="font-mono-code text-[11px] px-2.5 py-1 bg-[#1f2020] border border-[#2a2a2a] text-[#c4c7c7]"
+                        className="font-mono-code text-[11px] px-2.5 py-1 bg-white border border-slate-200/80 text-[#334155] rounded-lg font-medium shadow-2xs"
                       >
                         {tag}
                       </span>
@@ -152,9 +152,9 @@ export const Projects: React.FC = () => {
                     {hasDetailPage ? (
                       <button
                         onClick={() => handleViewDetail(project.id)}
-                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#D4AF37]/10 border border-[#D4AF37]/40 text-[#D4AF37] text-[11px] font-bold uppercase tracking-wider hover:bg-[#D4AF37] hover:text-[#0e0e0e] transition-all duration-200 group/btn"
+                        className="btn-linear-primary text-[11px] px-4 py-2.5 rounded-xl group/btn"
                       >
-                        <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
+                        <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform mr-1.5" />
                         {t.projects.viewDetails}
                       </button>
                     ) : (
@@ -166,7 +166,7 @@ export const Projects: React.FC = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 label-caps text-[11px] text-[#8e9192] hover:text-[#D4AF37] transition-colors shrink-0 group/link"
+                      className="inline-flex items-center gap-1.5 label-caps text-[11px] text-[#64748B] hover:text-[#5E6AD2] transition-colors shrink-0 group/link font-semibold"
                     >
                       <span>{t.projects.sourceCode}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />

@@ -47,24 +47,25 @@ export const CustomCursor: React.FC = () => {
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
-          width: isHovered ? '44px' : '24px',
-          height: isHovered ? '44px' : '24px',
+          width: isHovered ? '40px' : '22px',
+          height: isHovered ? '40px' : '22px',
           transform: 'translate(-50%, -50%)',
-          border: isHovered ? '1px solid #D4AF37' : '1px solid rgba(212, 175, 55, 0.4)',
-          backgroundColor: isHovered ? 'rgba(212, 175, 55, 0.05)' : 'transparent',
-          boxShadow: isHovered ? '0 0 15px rgba(212, 175, 55, 0.2)' : 'none',
+          border: isHovered ? '1.5px solid #5E6AD2' : '1px solid rgba(94, 106, 210, 0.4)',
+          backgroundColor: isHovered ? 'rgba(94, 106, 210, 0.1)' : 'transparent',
+          boxShadow: isHovered ? '0 0 14px rgba(94, 106, 210, 0.3)' : 'none',
         }}
       />
-      {/* Center 8px Gold Dot */}
+      {/* Center Iris Dot */}
       <div
-        className="fixed rounded-full pointer-events-none bg-[#D4AF37]"
+        className="fixed rounded-full pointer-events-none bg-[#5E6AD2]"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
-          width: isHovered ? '4px' : '6px',
-          height: isHovered ? '4px' : '6px',
+          width: isHovered ? '4px' : '5px',
+          height: isHovered ? '4px' : '5px',
           transform: 'translate(-50%, -50%)',
           transition: 'width 0.2s, height 0.2s',
+          boxShadow: '0 0 8px #5E6AD2',
         }}
       />
     </div>

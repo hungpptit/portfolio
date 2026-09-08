@@ -41,7 +41,7 @@ export const ProjectShowcaseGallery: React.FC<ProjectShowcaseGalleryProps> = ({
   mobileTitle = 'Mobile Client Application',
   terminalCommand = 'npm test -- --coverage',
   terminalOutput,
-  themeColor = '#D4AF37',
+  themeColor = '#2563EB',
   caption,
   className = '',
 }) => {
@@ -88,9 +88,9 @@ export const ProjectShowcaseGallery: React.FC<ProjectShowcaseGalleryProps> = ({
   const resolvedMobileSrc = mobileSrc || defaultMobileSources;
 
   return (
-    <div className={`flex flex-col gap-6 p-6 sm:p-8 rounded-2xl bg-[#121212] border border-[#262626] shadow-2xl ${className}`}>
+    <div className={`flex flex-col gap-6 p-6 sm:p-8 rounded-2xl bg-white border border-[#E2E8F0] shadow-md ${className}`}>
       {/* Gallery Header & Device Selector Tabs */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#222]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2E8F0]">
         <div className="flex items-center gap-3">
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center border text-xs font-bold"
@@ -103,27 +103,27 @@ export const ProjectShowcaseGallery: React.FC<ProjectShowcaseGalleryProps> = ({
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-[#f3f4f6] tracking-wide uppercase font-mono">
+            <h3 className="text-sm font-bold text-[#0F172A] tracking-wide uppercase font-mono">
               {language === 'vi' ? 'Khung Trực Quan Hóa Sản Phẩm (Device Showcase)' : 'Interactive Device Mockup & Visuals'}
             </h3>
-            <p className="text-xs text-[#8e9192]">
+            <p className="text-xs text-[#64748B]">
               {t.hint}
             </p>
           </div>
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex items-center gap-1.5 p-1 bg-[#181818] border border-[#2a2a2a] rounded-lg overflow-x-auto">
+        <div className="flex items-center gap-1.5 p-1 bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl overflow-x-auto">
           {availableTabs.includes('dual') && (
             <button
               onClick={() => setActiveTab('dual')}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 activeTab === 'dual'
-                  ? 'bg-[#2a2a2a] text-white shadow-sm font-bold'
-                  : 'text-[#9ca3af] hover:text-white'
+                  ? 'bg-white text-[#2563EB] shadow-xs font-bold'
+                  : 'text-[#64748B] hover:text-[#0F172A]'
               }`}
             >
-              <Layers className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <Layers className="w-3.5 h-3.5 text-[#2563EB]" />
               <span className="hidden sm:inline">{t.dual}</span>
               <span className="sm:hidden">Dual</span>
             </button>
@@ -132,13 +132,13 @@ export const ProjectShowcaseGallery: React.FC<ProjectShowcaseGalleryProps> = ({
           {availableTabs.includes('desktop') && (
             <button
               onClick={() => setActiveTab('desktop')}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 activeTab === 'desktop'
-                  ? 'bg-[#2a2a2a] text-white shadow-sm font-bold'
-                  : 'text-[#9ca3af] hover:text-white'
+                  ? 'bg-white text-[#2563EB] shadow-xs font-bold'
+                  : 'text-[#64748B] hover:text-[#0F172A]'
               }`}
             >
-              <Monitor className="w-3.5 h-3.5 text-[#60A5FA]" />
+              <Monitor className="w-3.5 h-3.5 text-[#2563EB]" />
               <span className="hidden sm:inline">{t.desktop}</span>
               <span className="sm:hidden">PC Web</span>
             </button>
@@ -147,13 +147,13 @@ export const ProjectShowcaseGallery: React.FC<ProjectShowcaseGalleryProps> = ({
           {availableTabs.includes('mobile') && (
             <button
               onClick={() => setActiveTab('mobile')}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 activeTab === 'mobile'
-                  ? 'bg-[#2a2a2a] text-white shadow-sm font-bold'
-                  : 'text-[#9ca3af] hover:text-white'
+                  ? 'bg-white text-[#2563EB] shadow-xs font-bold'
+                  : 'text-[#64748B] hover:text-[#0F172A]'
               }`}
             >
-              <Smartphone className="w-3.5 h-3.5 text-[#34D399]" />
+              <Smartphone className="w-3.5 h-3.5 text-[#10B981]" />
               <span className="hidden sm:inline">{t.mobile}</span>
               <span className="sm:hidden">Mobile</span>
             </button>
@@ -162,10 +162,10 @@ export const ProjectShowcaseGallery: React.FC<ProjectShowcaseGalleryProps> = ({
           {availableTabs.includes('terminal') && (
             <button
               onClick={() => setActiveTab('terminal')}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 activeTab === 'terminal'
-                  ? 'bg-[#2a2a2a] text-white shadow-sm font-bold'
-                  : 'text-[#9ca3af] hover:text-white'
+                  ? 'bg-white text-[#2563EB] shadow-xs font-bold'
+                  : 'text-[#64748B] hover:text-[#0F172A]'
               }`}
             >
               <Terminal className="w-3.5 h-3.5 text-[#F59E0B]" />
