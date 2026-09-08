@@ -71,19 +71,18 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-logistics",
       title: "Smart Logistics Platform",
-      subtitle: "Hệ thống điều vận và tối ưu hóa tuyến đường giao hàng tự động (Công ty TNHH CITARES)",
-      description: "Nền tảng logistics cấp doanh nghiệp được thiết kế theo Kiến trúc phần mềm sạch (Clean Architecture) và Phương pháp thiết kế hướng miền (Domain-Driven Design - DDD), phát triển tại Công ty TNHH CITARES. Tự động hóa toàn bộ chuỗi cung ứng: gom hàng, phân loại kho, trung chuyển liên kho, tối ưu giao hàng chặng cuối bằng đường ống 4 thuật toán Trí tuệ nhân tạo (AI Pipeline) thuần TypeScript.",
+      subtitle: "Hệ thống điều vận và tối ưu hóa tuyến đường giao hàng tự động (Dự án Doanh nghiệp tại CITARES)",
+      description: "Nền tảng logistics cấp doanh nghiệp được thiết kế theo Kiến trúc phần mềm sạch (Clean Architecture) và Phương pháp thiết kế hướng miền (Domain-Driven Design - DDD), phát triển tại Công ty TNHH CITARES. Tự động hóa chuỗi cung ứng: gom hàng, phân loại kho, trung chuyển liên kho, tối ưu giao hàng chặng cuối bằng đường ống 4 thuật toán Trí tuệ nhân tạo (AI Pipeline) thuần TypeScript.",
       category: "backend",
       tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "DBSCAN", "K-Means", "Hungarian Algorithm", "Prisma ORM", "RabbitMQ", "Docker", "Flutter"],
       architectureHighlights: [
-        "Đường ống Trí tuệ nhân tạo (AI Pipeline) 4 thuật toán thuần TypeScript: DBSCAN → K-Means → Giải thuật Di truyền (GA) → Thuật toán ghép cặp Hungarian.",
-        "Đường ống xử lý tọa độ định vị toàn cầu (GPS Telemetry) trên bộ nhớ đệm Redis tiếp nhận 1,321 điểm/giây với độ trễ P99 dưới 1 mili-giây.",
-        "Kiến trúc 38 bảng cơ sở dữ liệu PostgreSQL chuẩn hóa bậc 3 (3NF), tách biệt thông tin cá nhân (PII), kiểm soát 17 trạng thái vòng đời đơn và đảm bảo tính toàn vẹn giao dịch (ACID).",
-        "Vi dịch vụ tính toán AI độc lập (Dedicated AI Microservice) tách rời tải nặng qua hàng đợi thông điệp RabbitMQ.",
+        "Tham gia hiện thực hóa đường ống Trí tuệ nhân tạo (AI Pipeline) 4 thuật toán thuần TypeScript: DBSCAN → K-Means → Giải thuật Di truyền (GA) → Thuật toán ghép cặp Hungarian.",
+        "Xây dựng đường ống xử lý tọa độ định vị toàn cầu (GPS Telemetry) trên bộ nhớ đệm Redis tiếp nhận 1,321 điểm/giây với độ trễ P99 dưới 1 mili-giây.",
+        "Tham gia phát triển và tối ưu cấu trúc cơ sở dữ liệu PostgreSQL chuẩn hóa bậc 3 (3NF), kiểm soát 17 trạng thái vòng đời đơn và đảm bảo tính toàn vẹn giao dịch (ACID).",
+        "Tích hợp vi dịch vụ tính toán AI độc lập tách rời tải nặng qua hàng đợi thông điệp RabbitMQ.",
       ],
       metrics: "Hệ thống Doanh nghiệp • Giảm 58.2% quãng đường giao hàng",
-      githubUrl: "https://github.com/hungpptit/smart-logistics-platform/tree/SWE_BE",
-      demoUrl: "https://github.com/hungpptit/smart-logistics-platform/tree/SWE_BE",
+      isPrivateRepo: true,
       hasDetailPage: true
     },
     {
@@ -169,19 +168,18 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-logistics",
       title: "Smart Logistics Platform",
-      subtitle: "Enterprise automated dispatching & AI route optimization system (CITARES Co., Ltd.)",
+      subtitle: "Enterprise automated dispatching & AI route optimization system (Enterprise Project at CITARES)",
       description: "Enterprise-grade logistics platform engineered with Clean Architecture & Domain-Driven Design (DDD), deployed at CITARES Co., Ltd. Automates end-to-end supply chain execution: pickup dispatch, zone sorting, line-haul transfers, and last-mile route optimization via a pure TypeScript 4-module AI pipeline.",
       category: "backend",
       tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "DBSCAN", "K-Means", "Hungarian Algorithm", "Prisma ORM", "RabbitMQ", "Docker", "Flutter"],
       architectureHighlights: [
-        "Pure TypeScript 4-Module AI Pipeline: DBSCAN spatial clustering → K-Means capacity partition → Genetic Algorithm (GA) CVRP+VRPTW solver → Hungarian bipartite driver matching.",
-        "Redis In-Memory GPS Telemetry pipeline handling 1,321 pings/sec with sub-millisecond P99 latency.",
-        "38-table PostgreSQL 3NF schema featuring PII data separation, 17-state Order FSM, and strict ACID transaction guarantees.",
-        "Dedicated AI Microservice offloading heavy computational workloads asynchronously via RabbitMQ queues.",
+        "Contributed to implementing the pure TypeScript 4-module AI pipeline: DBSCAN spatial clustering → K-Means capacity partition → Genetic Algorithm (GA) CVRP+VRPTW solver → Hungarian driver matching.",
+        "Engineered high-throughput GPS Telemetry streaming over Redis in-memory cache, ingesting 1,321 coordinates/sec with sub-millisecond P99 latency.",
+        "Participated in developing and tuning 38-table PostgreSQL 3NF schema, handling 17-state order lifecycle state machines and ensuring strict ACID transaction integrity.",
+        "Integrated asynchronous AI microservice workload offloading via RabbitMQ message queues.",
       ],
       metrics: "Enterprise Grade • –58.2% Total Travel Distance",
-      githubUrl: "https://github.com/hungpptit/smart-logistics-platform/tree/SWE_BE",
-      demoUrl: "https://github.com/hungpptit/smart-logistics-platform/tree/SWE_BE",
+      isPrivateRepo: true,
       hasDetailPage: true
     },
     {
@@ -364,14 +362,14 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
   vi: [
     {
       period: "Tháng 03/2026 - Tháng 08/2026",
-      role: "Lập trình viên Backend & Kỹ sư Tối ưu hóa Tuyến đường (Backend Developer)",
+      role: "Thực tập sinh Lập trình Backend (Backend Developer Intern)",
       organization: "Công ty TNHH CITARES (CITARES Co., Ltd.)",
       location: "TP. Hồ Chí Minh, Việt Nam",
-      description: "Phát triển hệ thống điều vận thông minh Smart Logistics Platform (SLP), tự động hóa tối ưu hóa tuyến đường xe giao hàng và xây dựng các dịch vụ backend xử lý dữ liệu định vị địa lý không gian thời gian thực.",
+      description: "Tham gia cùng nhóm kỹ thuật Backend phát triển nền tảng điều vận thông minh Smart Logistics Platform (SLP), tập trung vào hiện thực hóa các module API nghiệp vụ, tích hợp giải thuật tối ưu tuyến đường và xử lý luồng dữ liệu định vị thời gian thực.",
       highlights: [
-        "Xây dựng đường ống Trí tuệ nhân tạo (AI Pipeline) 4 thuật toán thuần TypeScript (DBSCAN → K-Means → Giải thuật Di truyền GA → Thuật toán Hungarian) giúp giảm 58.2% tổng quãng đường di chuyển.",
-        "Thiết kế cấu trúc 38 bảng cơ sở dữ liệu PostgreSQL chuẩn hóa bậc 3 (3NF) với cơ chế tách biệt thông tin cá nhân (PII), kiểm soát 17 trạng thái đơn hàng (FSM) và kiến trúc phần mềm sạch (Clean Architecture).",
-        "Xây dựng đường ống xử lý định vị GPS trên bộ nhớ đệm Redis đạt thông lượng 1,321 điểm tọa độ/giây với độ trễ P99 dưới 1 mili-giây.",
+        "Tham gia lập trình các API dịch vụ nghiệp vụ điều vận, kiểm soát vòng đời 17 trạng thái đơn hàng (FSM) và phân quyền người dùng (RBAC) bằng Node.js & TypeScript theo kiến trúc Clean Architecture & DDD.",
+        "Hiện thực hóa và tích hợp đường ống 4 thuật toán tối ưu tuyến đường (DBSCAN, K-Means, Genetic Algorithm, Hungarian) bằng TypeScript, giúp giảm 58.2% tổng quãng đường di chuyển của đội xe.",
+        "Xây dựng luồng tiếp nhận định vị GPS thời gian thực qua Redis In-Memory & Socket.io (độ trễ P99 < 1ms), hỗ trợ tối ưu các câu truy vấn PostgreSQL và viết bộ kịch bản kiểm thử tự động (12 Test Scenarios) bảo đảm tính toàn vẹn giao dịch (ACID)."
       ]
     },
     {
@@ -402,14 +400,14 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
   en: [
     {
       period: "Mar 2026 - Aug 2026",
-      role: "Backend Developer & Route Optimization Engineer",
+      role: "Backend Developer Intern",
       organization: "CITARES Co., Ltd.",
       location: "Ho Chi Minh City, Vietnam",
-      description: "Engineering the Smart Logistics Platform (SLP), automating fleet dispatching and route optimization while building real-time high-throughput geospatial backend microservices.",
+      description: "Participated in engineering the Smart Logistics Platform (SLP) within the backend team, focusing on implementing core business API modules, integrating vehicle routing optimization algorithms, and building real-time GPS telemetry pipelines.",
       highlights: [
-        "Engineered a pure TypeScript 4-module AI Pipeline (DBSCAN → K-Means → Genetic Algorithm GA → Hungarian Algorithm) reducing fleet transit distance by 58.2%.",
-        "Architected a 38-table PostgreSQL 3NF schema featuring PII data separation, 17-state Order FSM, and Clean Architecture layer isolation.",
-        "Built a Redis In-Memory GPS Telemetry pipeline handling 1,321 coordinates/sec with sub-millisecond P99 latency.",
+        "Developed dispatch management RESTful APIs, handled 17-state order lifecycle state machines (FSM), and enforced RBAC security using Node.js & TypeScript under Clean Architecture & DDD.",
+        "Collaborated on implementing the 4-stage algorithmic routing pipeline in TypeScript (DBSCAN, K-Means, Genetic Algorithm, Hungarian), achieving a 58.2% reduction in fleet transit distance.",
+        "Engineered real-time GPS telemetry ingestion via Redis In-Memory & Socket.io (sub-millisecond P99 latency), assisted in PostgreSQL query tuning, and authored 12 automated test scenarios (100% PASS)."
       ]
     },
     {

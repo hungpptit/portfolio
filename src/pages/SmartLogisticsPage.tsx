@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
-  ArrowUpRight,
   CheckCircle,
   Clock,
   Zap,
@@ -33,6 +32,7 @@ import {
   Navigation,
   CircleDollarSign,
   EyeOff,
+  Lock,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { SMART_LOGISTICS_DETAIL, SmartLogisticsData, ProblemPoint } from '../data/projects/smartLogistics.data';
@@ -222,18 +222,18 @@ const MyOwnershipSection: React.FC<{ detail: SmartLogisticsData; language: strin
           <div>
             <h3 className="text-base font-bold text-[#0B0E17]">
               {language === 'vi'
-                ? 'Kỹ sư Phần mềm & Lập trình viên Backend — Phụ trách Khối Kỹ thuật Lõi'
-                : 'Lead Backend & AI Algorithm Engineer — 100% Core Technical Ownership'}
+                ? 'Thực tập sinh Lập trình Backend — Tham gia Phát triển Khối Nghiệp vụ & Giải thuật'
+                : 'Backend Developer Intern — Core Contributor (APIs & Algorithm Integration)'}
             </h3>
             <p className="text-xs text-[#475569] mt-0.5 font-normal">
               {language === 'vi'
-                ? 'Chịu trách nhiệm thiết kế kiến trúc hệ thống, cơ sở dữ liệu, động cơ toán học AI và API Contracts.'
-                : 'Solely responsible for end-to-end system architecture, database modeling, pure TypeScript AI solvers, and API Contracts.'}
+                ? 'Được hướng dẫn bởi các kỹ sư đàn anh, tham gia học hỏi và đóng góp vào việc hiện thực hóa các API điều vận, tích hợp giải thuật chia tuyến và luồng dữ liệu GPS.'
+                : 'Guided by senior engineers, learned and contributed to implementing dispatch API modules, integrating routing algorithms, and building real-time GPS telemetry pipelines.'}
             </p>
           </div>
         </div>
         <span className="px-3.5 py-1.5 bg-[#5E6AD2] text-white font-black text-xs font-mono uppercase tracking-wider rounded-xl shadow-xs shrink-0 self-start md:self-auto">
-          100% BACKEND & AI
+          BACKEND CONTRIBUTOR
         </span>
       </div>
 
@@ -870,12 +870,15 @@ const SmartLogisticsPage: React.FC = () => {
             <ArrowLeft className="w-4 h-4" /> {t.detailCommon.backBtn}
           </button>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <LanguageToggle />
-            <a href={detail.githubUrl} target="_blank" rel="noopener noreferrer"
-              className="btn-linear-primary text-xs py-2 px-4 shadow-xs">
-              {t.detailCommon.sourceRepo} <ArrowUpRight className="w-4 h-4 ml-1.5" />
-            </a>
+            <div
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100/90 border border-slate-300/80 text-[#475569] rounded-xl text-xs font-semibold shadow-2xs cursor-help"
+              title={detail.ndaNotice}
+            >
+              <Lock className="w-3.5 h-3.5 text-[#64748B]" />
+              <span>{language === 'vi' ? 'Mã nguồn Nội bộ (NDA)' : 'Private Repo (NDA)'}</span>
+            </div>
           </div>
         </div>
       </header>
@@ -909,6 +912,13 @@ const SmartLogisticsPage: React.FC = () => {
                 <div>
                   <p className="text-xs text-[#64748B] mb-1 font-medium">{t.detailCommon.roleLabel}</p>
                   <p className="text-sm text-[#0B0E17] font-semibold">{detail.role}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-[#64748B] mb-1 font-medium">{language === 'vi' ? 'Quyền sở hữu mã nguồn' : 'Source Code License'}</p>
+                  <p className="text-xs text-[#475569] font-semibold flex items-center gap-1.5">
+                    <Lock className="w-3 h-3 text-[#64748B]" />
+                    {language === 'vi' ? 'Bảo mật NDA (Nội bộ)' : 'NDA Protected (Internal)'}
+                  </p>
                 </div>
               </div>
             </div>
@@ -955,7 +965,15 @@ const SmartLogisticsPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-black text-[#0B0E17] tracking-tight mb-6 leading-tight">
               Smart Logistics<br /><span className="text-[#5E6AD2]">Platform (SLP)</span>
             </h1>
-            <p className="text-[#334155] leading-relaxed mb-8 max-w-3xl font-normal text-lg">{detail.overview}</p>
+            <p className="text-[#334155] leading-relaxed mb-6 max-w-3xl font-normal text-lg">{detail.overview}</p>
+
+            {/* NDA & Intellectual Property Notice */}
+            <div className="p-4 bg-slate-100/90 border border-slate-200/90 rounded-2xl flex items-start gap-3 mb-8 max-w-3xl shadow-2xs">
+              <Lock className="w-4 h-4 text-[#5E6AD2] shrink-0 mt-0.5" />
+              <p className="text-xs text-[#475569] leading-relaxed font-normal">
+                {detail.ndaNotice}
+              </p>
+            </div>
 
             {/* Mobile quick info */}
             <div className="lg:hidden flex flex-wrap gap-3 mb-8">
@@ -1043,12 +1061,12 @@ const SmartLogisticsPage: React.FC = () => {
           {/* ── My Engineering Ownership ── */}
           <section id="ownership">
             <SectionTitle icon={<Award className="w-5 h-5" />}
-              title={language === 'vi' ? 'Trách nhiệm & Đóng góp Kỹ thuật Cá nhân (My Engineering Ownership)' : 'My Engineering Ownership & Contributions'}
-              badge="100% Backend & AI" />
+              title={language === 'vi' ? 'Trách nhiệm & Đóng góp Kỹ thuật Cá nhân (My Engineering Contributions)' : 'My Engineering Contributions'}
+              badge={language === 'vi' ? 'Backend & Algorithms' : 'Backend & Algorithms'} />
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Trong nhóm 4 thành viên (gồm Frontend Web & Mobile Flutter), tôi đảm nhiệm vai trò Kỹ sư Phần mềm & Lập trình viên Backend chính, phụ trách 100% toàn bộ nền tảng Backend, CSDL PostgreSQL/PostGIS, Động cơ AI thuần TypeScript và Hệ thống kiểm thử tự động.'
-                : 'Across the 4-person engineering team (including Web Frontend and Flutter Mobile), I served as the Lead Backend & Algorithm Engineer, with 100% ownership over system architecture, PostgreSQL/PostGIS schema, pure TypeScript AI solvers, and automated CI/CD suites.'}
+                ? 'Trong đội ngũ kỹ thuật tại CITARES, tôi tham gia với vai trò Thực tập sinh Lập trình Backend (Backend Developer Intern) — học hỏi từ các kỹ sư đi trước và đóng góp vào việc phát triển các API nghiệp vụ điều vận, tích hợp giải thuật tối ưu tuyến đường, xử lý luồng định vị GPS thời gian thực và viết kịch bản kiểm thử tự động.'
+                : 'As a Backend Developer Intern within the CITARES engineering team, I collaborated with senior engineers to learn and contribute to developing dispatch API modules, integrating vehicle routing optimization algorithms, handling real-time GPS telemetry streams, and authoring automated test suites.'}
             </p>
             <MyOwnershipSection detail={detail} language={language} />
           </section>
@@ -1272,13 +1290,16 @@ const SmartLogisticsPage: React.FC = () => {
           </section>
 
           {/* ── CTA ── */}
-          <section className="border-t border-slate-200/80 pt-10 flex flex-col sm:flex-row gap-4 items-start">
-            <a href={detail.githubUrl} target="_blank" rel="noopener noreferrer"
-              className="btn-linear-primary text-sm px-6 py-3.5 rounded-xl shadow-xs">
-              {t.detailCommon.viewSourceBtn} <ArrowUpRight className="w-4 h-4 ml-1.5" />
-            </a>
+          <section className="border-t border-slate-200/80 pt-10 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <div
+              className="inline-flex items-center gap-2 px-4 py-3 bg-slate-100 border border-slate-200/90 text-[#475569] text-xs font-semibold rounded-xl"
+              title={detail.ndaNotice}
+            >
+              <Lock className="w-4 h-4 text-[#5E6AD2] shrink-0" />
+              <span>{language === 'vi' ? 'Mã nguồn Dự án thuộc quyền sở hữu của Doanh nghiệp (Tuân thủ NDA)' : 'Enterprise Source Code Protected Under Commercial NDA Agreement'}</span>
+            </div>
             <button onClick={() => navigate(-1)}
-              className="btn-neutral-outline text-sm px-6 py-3.5 rounded-xl cursor-pointer">
+              className="btn-linear-primary text-sm px-6 py-3 rounded-xl cursor-pointer">
               <ArrowLeft className="w-4 h-4 mr-1.5" /> {t.detailCommon.backToPortfolioBtn}
             </button>
           </section>

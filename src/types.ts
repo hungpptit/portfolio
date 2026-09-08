@@ -54,10 +54,11 @@ export interface Project {
   tags: string[];
   architectureHighlights: string[];
   metrics?: string;
-  githubUrl: string;
+  githubUrl?: string;
   demoUrl?: string;
   branch?: string;
   hasDetailPage?: boolean;
+  isPrivateRepo?: boolean;
 }
 
 export interface SkillGroup {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, GitBranch, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, GitBranch, ExternalLink, Lock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { PROJECTS } from '../data/portfolioData';
 import { UI_TRANSLATIONS } from '../data/translations';
@@ -161,16 +161,26 @@ export const Projects: React.FC = () => {
                       <div />
                     )}
 
-                    {/* GitHub link */}
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 label-caps text-[11px] text-[#64748B] hover:text-[#5E6AD2] transition-colors shrink-0 group/link font-semibold"
-                    >
-                      <span>{t.projects.sourceCode}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                    </a>
+                    {/* GitHub link or Private NDA badge */}
+                    {project.isPrivateRepo ? (
+                      <span
+                        title={language === 'vi' ? 'Mã nguồn nội bộ thuộc sở hữu của CITARES Co., Ltd. & Khách hàng 3PL (Bảo mật theo thỏa thuận NDA)' : 'Proprietary enterprise source code protected by CITARES Co., Ltd. NDA policy'}
+                        className="inline-flex items-center gap-1.5 text-[11px] text-[#64748B] bg-slate-100/90 border border-slate-200/80 px-2.5 py-1 rounded-lg font-semibold cursor-help"
+                      >
+                        <Lock className="w-3.5 h-3.5 text-[#64748B]" />
+                        <span>{language === 'vi' ? 'Mã nguồn Nội bộ (NDA)' : 'Private Repo (NDA)'}</span>
+                      </span>
+                    ) : (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 label-caps text-[11px] text-[#64748B] hover:text-[#5E6AD2] transition-colors shrink-0 group/link font-semibold"
+                      >
+                        <span>{t.projects.sourceCode}</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                      </a>
+                    )}
                   </div>
                 </div>
 
