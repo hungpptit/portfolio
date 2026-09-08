@@ -28,7 +28,7 @@ export const PERSONAL_INFO: Record<Language, PersonalInfoType> = {
     university: "Học viện Công nghệ Bưu chính Viễn thông (PTIT TP.HCM)",
     major: "Kỹ thuật Phần mềm (Software Engineering)",
     gpa: "3.2 / 4.0",
-    graduation: "Dự kiến 2027",
+    graduation: "Dự kiến 2026",
     email: "phamtuanhung242004@gmail.com",
     phone: "0785535224",
     location: "TP. Hồ Chí Minh, Việt Nam",
@@ -50,7 +50,7 @@ export const PERSONAL_INFO: Record<Language, PersonalInfoType> = {
     university: "Posts and Telecommunications Institute of Technology (PTIT HCMC)",
     major: "Software Engineering",
     gpa: "3.2 / 4.0",
-    graduation: "Expected 2027",
+    graduation: "Expected 2026",
     email: "phamtuanhung242004@gmail.com",
     phone: "0785535224",
     location: "Ho Chi Minh City, Vietnam",
@@ -363,7 +363,7 @@ export const SKILL_GROUPS: Record<Language, SkillGroup[]> = {
 export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
   vi: [
     {
-      period: "Tháng 06/2026 - Hiện tại",
+      period: "Tháng 03/2026 - Tháng 08/2026",
       role: "Lập trình viên Backend & Kỹ sư Tối ưu hóa Tuyến đường (Backend Developer)",
       organization: "Công ty TNHH CITARES (CITARES Co., Ltd.)",
       location: "TP. Hồ Chí Minh, Việt Nam",
@@ -375,7 +375,7 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
       ]
     },
     {
-      period: "Tháng 08/2025 - Tháng 05/2026",
+      period: "Tháng 08/2025 - Tháng 02/2026",
       role: "Thực tập sinh Lập trình Backend (Backend Developer Intern)",
       organization: "Công ty Cổ phần Phước Thành Việt Nam (PHUOC THANH VIET NAM JSC)",
       location: "TP. Hồ Chí Minh, Việt Nam",
@@ -387,7 +387,7 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
       ]
     },
     {
-      period: "2023 - 2027 (Dự kiến)",
+      period: "2022 - 2026 (Dự kiến)",
       role: "Sinh viên ngành Kỹ thuật Phần mềm (Software Engineering)",
       organization: "Học viện Công nghệ Bưu chính Viễn thông (PTIT TP.HCM)",
       location: "TP. Hồ Chí Minh, Việt Nam",
@@ -401,7 +401,7 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
   ],
   en: [
     {
-      period: "June 2026 - Present",
+      period: "Mar 2026 - Aug 2026",
       role: "Backend Developer & Route Optimization Engineer",
       organization: "CITARES Co., Ltd.",
       location: "Ho Chi Minh City, Vietnam",
@@ -413,7 +413,7 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
       ]
     },
     {
-      period: "Aug 2025 - May 2026",
+      period: "Aug 2025 - Feb 2026",
       role: "Backend Developer Intern",
       organization: "Phuoc Thanh Viet Nam Joint Stock Company (PHUOC THANH VIET NAM JSC)",
       location: "Ho Chi Minh City, Vietnam",
@@ -425,7 +425,7 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
       ]
     },
     {
-      period: "2023 - 2027 (Expected)",
+      period: "2022 - 2026 (Expected)",
       role: "Software Engineering Student",
       organization: "Posts and Telecommunications Institute of Technology (PTIT HCMC)",
       location: "Ho Chi Minh City, Vietnam",

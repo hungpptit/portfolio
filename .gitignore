@@ -35,3 +35,7 @@ scratch/
 .env.test.local
 .env.production.local
 *.tsbuildinfo
+
+# Ignore all PDF files
+*.pdf
+

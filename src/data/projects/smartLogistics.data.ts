@@ -89,7 +89,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
     role: "Kỹ sư Phần mềm & Lập trình viên Backend (Software Engineer & Backend Developer)",
     company: "Công ty TNHH CITARES",
     clientType: "Dự án nhận thầu cho Đơn vị Vận tải & Logistics (3PL Platform)",
-    duration: "Tháng 06/2026 – Đã hoàn thành",
+    duration: "Tháng 03/2026 – Tháng 08/2026 (Hoàn thành)",
     teamSize: "4 thành viên",
     githubUrl: "https://github.com/hungpptit/smart-logistics-platform/tree/SWE_BE",
 
@@ -417,7 +417,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
     role: "Software Engineer & Backend Developer",
     company: "CITARES Co., Ltd.",
     clientType: "Contracted Enterprise Solution for Logistics & Transport Partner (3PL)",
-    duration: "June 2026 – Completed",
+    duration: "Mar 2026 – Aug 2026 (Completed)",
     teamSize: "4 members",
     githubUrl: "https://github.com/hungpptit/smart-logistics-platform/tree/SWE_BE",
 
