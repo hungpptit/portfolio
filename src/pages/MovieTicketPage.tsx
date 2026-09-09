@@ -632,8 +632,8 @@ const MovieTicketPage: React.FC = () => {
                   <div className="mt-4 text-center">
                     <span className="text-[11px] font-mono bg-emerald-50 text-emerald-800 px-3.5 py-1.5 rounded-full border border-emerald-200 font-bold shadow-2xs">
                       {language === 'vi'
-                        ? '⚡ Database-per-Service: 5 CSDL SQL Server độc lập; Notification Service hoạt động stateless không cần persistent DB — liên kết các domain qua logical IDs'
-                        : '⚡ Database-per-Service: 5 isolated SQL Server databases; Notification Service operates statelessly without a persistent DB — domains linked strictly via logical IDs'}
+                        ? 'Database-per-Service: 5 CSDL SQL Server độc lập; Notification Service hoạt động stateless không cần persistent DB — liên kết các domain qua logical IDs'
+                        : 'Database-per-Service: 5 isolated SQL Server databases; Notification Service operates statelessly without a persistent DB — domains linked strictly via logical IDs'}
                     </span>
                   </div>
                 </div>

@@ -24,6 +24,8 @@ import {
   Cpu,
   Headphones,
   Container,
+  Network,
+  Zap,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { TOEIC_CHATBOT_DETAIL } from '../data/projects/toeicChatbot.data';
@@ -53,6 +55,7 @@ const ToeicChatbotPage: React.FC = () => {
     { id: 'scope', label: language === 'vi' ? 'Mục tiêu & Phạm vi dự án' : 'Objectives & Project Scope' },
     { id: 'ownership', label: language === 'vi' ? 'Trách nhiệm kỹ thuật cá nhân' : 'My Engineering Ownership' },
     { id: 'architecture', label: language === 'vi' ? 'Kiến trúc Hệ thống Tổng thể' : 'System Architecture' },
+    { id: 'coordination', label: language === 'vi' ? 'Cơ chế Phối hợp & Chịu lỗi Liên dịch vụ' : 'Inter-Service Coordination & Resilience' },
     { id: 'techstack', label: language === 'vi' ? 'Ngăn xếp công nghệ' : 'Technology Stack' },
     { id: 'testing', label: language === 'vi' ? 'Báo cáo Kiểm thử Tự động' : 'Automated Testing Report' },
     { id: 'challenges', label: language === 'vi' ? 'Thách thức kỹ thuật & Giải pháp' : 'Engineering Challenges' },
@@ -191,7 +194,7 @@ const ToeicChatbotPage: React.FC = () => {
               mobileTitle={language === 'vi' ? 'App Gia Sư Luyện Thi & Chatbot Gemini (Flutter)' : 'Flutter AI Tutoring & Gemini Chatbot App'}
               desktopUrl="http://localhost:8000/docs"
               themeColor="#5E6AD2"
-              terminalCommand="docker compose ps && pytest ml_service/tests/"
+              terminalCommand="docker compose ps && curl -s http://localhost:8080/health"
             />
           </section>
 
@@ -277,8 +280,8 @@ const ToeicChatbotPage: React.FC = () => {
               </div>
               <p className="text-base text-emerald-950 font-medium leading-relaxed">
                 {language === 'vi'
-                  ? 'Xây dựng nền tảng luyện thi TOEIC toàn diện trên Kiến trúc Vi dịch vụ (Microservices) với 3 trụ cột: (1) Động cơ Bài thi TOEIC đầy đủ 7 Parts với chấm điểm tự động, (2) Trợ lý AI Chatbot (Google Gemini 2.5 Flash) hỏi đáp tức thì như gia sư riêng, (3) Đường ống Học máy dự đoán điểm và phân tích kỹ năng yếu cá nhân hóa.'
-                  : 'Built a comprehensive TOEIC preparation platform on Microservices Architecture with 3 pillars: (1) Full 7-Part TOEIC test engine with automated scoring, (2) AI Chatbot tutor (Google Gemini 2.5 Flash) for instant personalized Q&A, (3) Machine Learning pipeline for score prediction and personalized weak skill diagnosis.'}
+                  ? 'Thiết kế nền tảng luyện thi TOEIC theo Kiến trúc Vi dịch vụ (Microservices), triển khai 3 năng lực cốt lõi: (1) TOEIC Exam Engine hỗ trợ đầy đủ 7 Parts và tự động chấm điểm, (2) AI Chatbot tích hợp Google Gemini 2.5 Flash để cung cấp hỏi đáp theo ngữ cảnh, và (3) ML Pipeline dự đoán điểm số và phân tích kỹ năng yếu phục vụ cá nhân hóa học tập.'
+                  : 'Architected a TOEIC preparation platform on a Microservices Architecture, implementing 3 core capabilities: (1) TOEIC Exam Engine supporting all 7 Parts with automated scoring, (2) AI Chatbot integrating Google Gemini 2.5 Flash for context-aware Q&A, and (3) ML Pipeline for score forecasting and weak-skill diagnosis to power personalized learning.'}
               </p>
             </div>
           </section>
@@ -342,7 +345,7 @@ const ToeicChatbotPage: React.FC = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { value: '6', label: language === 'vi' ? 'Vi dịch vụ tự chủ' : 'Autonomous Microservices', color: '#5E6AD2' },
-                  { value: '4', label: language === 'vi' ? 'CSDL cách ly (DB-per-Svc)' : 'Isolated Databases', color: '#06B6D4' },
+                  { value: '4', label: language === 'vi' ? 'CSDL (Database-per-Service)' : 'DBs (Database-per-Service)', color: '#06B6D4' },
                   { value: '51/51', label: language === 'vi' ? 'Test Cases (100% PASS)' : 'Test Cases (100% PASS)', color: '#10B981' },
                   { value: '55+', label: language === 'vi' ? 'API Endpoints (Swagger)' : 'API Endpoints (Swagger)', color: '#F59E0B' },
                 ].map((m, i) => (
@@ -375,12 +378,12 @@ const ToeicChatbotPage: React.FC = () => {
                   badge: '100% Ownership',
                   color: '#5E6AD2',
                   items: language === 'vi' ? [
-                    'Thiết kế kiến trúc 6 vi dịch vụ độc lập với Database-per-Service pattern (4 CSDL SQL Server cách ly)',
+                    'Thiết kế kiến trúc 6 vi dịch vụ độc lập với Database-per-Service pattern (4 CSDL SQL Server sở hữu riêng theo domain)',
                     'Cấu hình Nginx API Gateway routing theo tiền tố đường dẫn cho toàn bộ hệ thống',
                     'Triển khai JWT dual-token (Access 7d + Refresh 30d), Google OAuth 2.0, OTP Email, RBAC (Admin/User)',
                     'Thiết kế VIP middleware kiểm tra giới hạn tin nhắn Chatbot xuyên dịch vụ (cross-service)',
                   ] : [
-                    'Designed 6 autonomous microservices with Database-per-Service pattern (4 isolated SQL Server databases)',
+                    'Designed 6 autonomous microservices with Database-per-Service pattern (4 domain-owned SQL Server databases)',
                     'Configured Nginx API Gateway with path-prefix routing for all services',
                     'Implemented JWT dual-token strategy (Access 7d + Refresh 30d), Google OAuth 2.0, Email OTP, RBAC',
                     'Engineered VIP middleware for cross-service chatbot message limit enforcement',
@@ -570,8 +573,8 @@ const ToeicChatbotPage: React.FC = () => {
                   <div className="mt-4 text-center">
                     <span className="text-[11px] font-mono bg-purple-50 text-purple-800 px-3.5 py-1.5 rounded-full border border-purple-200 font-bold shadow-2xs">
                       {language === 'vi'
-                        ? '⚡ Mỗi dịch vụ có Database riêng — hỏng 1 cái không ảnh hưởng 5 cái còn lại'
-                        : '⚡ Each service owns its own database — one failure doesn\'t cascade to others'}
+                        ? 'Database-per-Service: Mỗi service sở hữu database riêng — giảm coupling và giới hạn blast radius giữa các domain'
+                        : 'Database-per-Service: Each service owns its database — reducing coupling and bounding failure blast radius across domains'}
                     </span>
                   </div>
                 </div>
@@ -602,7 +605,9 @@ const ToeicChatbotPage: React.FC = () => {
                         <span className="text-xs font-bold text-[#0B0E17]">SQL Server 2022</span>
                       </div>
                       <p className="text-[11px] text-[#475569] leading-relaxed">
-                        {language === 'vi' ? '4 CSDL cách ly hoàn toàn (Auth, Quiz, Chatbot, Payment)' : '4 fully isolated databases (Auth, Quiz, Chatbot, Payment)'}
+                        {language === 'vi'
+                          ? '4 CSDL độc lập (Auth, Quiz, Chatbot, Payment) — không cross-DB joins'
+                          : '4 independent databases (Auth, Quiz, Chatbot, Payment) — zero cross-DB joins'}
                       </p>
                     </div>
                     <div className="p-4 rounded-xl bg-white border border-amber-200 shadow-2xs">
@@ -611,7 +616,9 @@ const ToeicChatbotPage: React.FC = () => {
                         <span className="text-xs font-bold text-[#0B0E17]">RabbitMQ</span>
                       </div>
                       <p className="text-[11px] text-[#475569] leading-relaxed">
-                        {language === 'vi' ? 'Hàng đợi email bất đồng bộ (OTP, thông báo VIP)' : 'Async email queue (OTP, VIP notifications)'}
+                        {language === 'vi'
+                          ? 'Hàng đợi event kích hoạt VIP & email worker bất đồng bộ'
+                          : 'Async VIP activation event queue & email worker'}
                       </p>
                     </div>
                     <div className="p-4 rounded-xl bg-white border border-[#5E6AD2]/30 shadow-2xs">
@@ -620,7 +627,9 @@ const ToeicChatbotPage: React.FC = () => {
                         <span className="text-xs font-bold text-[#0B0E17]">Gemini AI + ZaloPay</span>
                       </div>
                       <p className="text-[11px] text-[#475569] leading-relaxed">
-                        {language === 'vi' ? 'AI Chatbot REST API & Cổng thanh toán QR' : 'AI Chatbot REST API & QR Payment Gateway'}
+                        {language === 'vi'
+                          ? 'AI Chatbot Smart Context & Thanh toán ZaloPay HMAC Idempotent'
+                          : 'Smart Context AI Chatbot & Idempotent HMAC ZaloPay'}
                       </p>
                     </div>
                     <div className="p-4 rounded-xl bg-white border border-emerald-200 shadow-2xs">
@@ -629,12 +638,525 @@ const ToeicChatbotPage: React.FC = () => {
                         <span className="text-xs font-bold text-[#0B0E17]">Docker Compose</span>
                       </div>
                       <p className="text-[11px] text-[#475569] leading-relaxed">
-                        {language === 'vi' ? '9 containers, 1 lệnh khởi động toàn bộ' : '9 containers, single-command deployment'}
+                        {language === 'vi'
+                          ? '9 containers điều phối đồng nhất (5 Node + 1 Python + 1 Nginx + 1 SQL + 1 MQ)'
+                          : '9 orchestrated containers (5 Node + 1 Python + 1 Nginx + 1 SQL + 1 MQ)'}
                       </p>
                     </div>
                   </div>
                 </div>
 
+              </div>
+            </div>
+          </section>
+
+          {/* ── Inter-Service Coordination & Fault-Tolerant Resilience ── */}
+          <section id="coordination">
+            <div className="flex items-center gap-3 mb-2">
+              <Network className="w-5 h-5 text-[#5E6AD2]" />
+              <h2 className="text-2xl font-black text-[#0B0E17]">
+                {language === 'vi'
+                  ? 'Cơ chế Phối hợp & Chịu lỗi Liên dịch vụ (Inter-Service Coordination & Resilience)'
+                  : 'Inter-Service Coordination & Fault-Tolerant Resilience'}
+              </h2>
+            </div>
+            <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
+              {language === 'vi'
+                ? 'Đặc tả 3 mẫu hình kiến trúc then chốt giải quyết bài toán phân lập dữ liệu (Database-per-Service), đảm bảo tính nhất quán cuối cùng và ngăn ngừa lỗi dây chuyền (Cascading Failure) trên toàn hệ thống.'
+                : 'Architectural specifications of 3 critical inter-service interaction patterns enabling strict Database-per-Service isolation, eventual consistency, and cascading failure prevention.'}
+            </p>
+
+            <div className="space-y-6">
+              {/* Pattern 1: RabbitMQ Event-Driven VIP Activation */}
+              <div className="p-6 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center font-mono text-xs font-bold shrink-0 border border-purple-200">
+                      01
+                    </span>
+                    <div>
+                      <h3 className="text-base font-bold text-[#0B0E17]">
+                        {language === 'vi'
+                          ? 'Luồng Kích hoạt VIP Bất đồng bộ qua RabbitMQ (Event-Driven + HTTP Sync Fallback)'
+                          : 'Asynchronous Event-Driven VIP Activation via RabbitMQ with HTTP Sync Fallback'}
+                      </h3>
+                      <p className="text-xs text-[#64748B] font-mono">payment-service ➔ rabbitmq (vip_activation_queue) ➔ auth-service</p>
+                    </div>
+                  </div>
+                  <span className="text-xs px-2.5 py-1 rounded-full font-mono font-bold bg-purple-100 text-purple-800 border border-purple-200">
+                    Two-Layer Resilience
+                  </span>
+                </div>
+
+                {/* Visual Pipeline Flow */}
+                <div className="bg-slate-900 text-slate-100 rounded-2xl p-5 mb-4 border border-slate-800 shadow-md">
+                  <div className="flex flex-wrap items-center justify-between pb-3 border-b border-slate-800/80 mb-4 gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse" />
+                      <span className="text-xs font-mono font-bold text-purple-300 uppercase tracking-wider">
+                        {language === 'vi' ? 'Quy trình Điều phối Bất đồng bộ (Happy Path)' : 'Event Pipeline (Happy Path)'}
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-mono text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-700">
+                      Payment ➔ RabbitMQ ➔ Auth
+                    </span>
+                  </div>
+
+                  {/* Steps Flow Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-purple-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-purple-300 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800">
+                            {language === 'vi' ? 'BƯỚC 1' : 'STEP 1'}
+                          </span>
+                          <CreditCard className="w-3.5 h-3.5 text-purple-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">ZaloPay Webhook</div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Xác thực HMAC-SHA256, kiểm tra idempotency và commit giao dịch vào CSDL ChatbotToeic_Payment.'
+                            : 'Verifies HMAC-SHA256 signature, checks idempotency, and commits transaction into ChatbotToeic_Payment.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-purple-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-purple-300 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800">
+                            {language === 'vi' ? 'BƯỚC 2' : 'STEP 2'}
+                          </span>
+                          <Layers className="w-3.5 h-3.5 text-purple-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">RabbitMQ Publish</div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Bắn event vào hàng đợi vip_activation_queue với cờ persistent (durable) đảm bảo an toàn dữ liệu.'
+                            : 'Publishes event to vip_activation_queue with message persistence flags enabled.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-purple-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-purple-300 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800">
+                            {language === 'vi' ? 'BƯỚC 3' : 'STEP 3'}
+                          </span>
+                          <Server className="w-3.5 h-3.5 text-purple-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">Auth Worker Consume</div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Auth Service nhận message, tính hạn VIP cộng dồn tiếp nối ngày cũ và cập nhật DB người dùng.'
+                            : 'Auth Service consumes event, computes cumulative VIP expiry date, and updates user DB record.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-emerald-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                            {language === 'vi' ? 'HOÀN TẤT' : 'FINISH'}
+                          </span>
+                          <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">
+                          {language === 'vi' ? 'Xác nhận & Gửi Email' : 'Ack & Queue Email'}
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Gửi channel.ack() giải phóng message khỏi queue; đẩy tác vụ gửi email thông báo sang email_queue.'
+                            : 'Sends channel.ack() to remove message from queue; dispatches congratulatory email task to email_queue.'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Resilience Fallback Track */}
+                  <div className="p-3.5 bg-amber-950/40 border border-amber-500/40 rounded-xl flex items-start gap-3">
+                    <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 shrink-0 mt-0.5">
+                      <Zap className="w-4 h-4" />
+                    </div>
+                    <div className="text-xs leading-relaxed">
+                      <span className="font-bold text-amber-300 block mb-0.5">
+                        {language === 'vi'
+                          ? 'Lớp Dự phòng Sự cố (Resilience Fallback): HTTP Sync Fallback'
+                          : 'Resilience Fallback Path: HTTP Sync Fallback'}
+                      </span>
+                      <p className="text-slate-300 text-[11px] leading-relaxed">
+                        {language === 'vi'
+                          ? 'Nếu broker RabbitMQ ngắt kết nối hoặc lỗi kết nối mạng, Payment Service tự động kích hoạt chế độ dự phòng gọi trực tiếp endpoint nội bộ PATCH /api/v1/internal/users/:userId sang Auth Service, đảm bảo gói VIP của khách hàng luôn được kích hoạt ngay.'
+                          : 'If RabbitMQ broker is temporarily unreachable, Payment Service automatically triggers a direct HTTP call to PATCH /api/v1/internal/users/:userId on Auth Service, ensuring instant VIP activation with zero customer impact.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-purple-700 block mb-1">
+                      {language === 'vi' ? 'Ngăn chặn Lỗi dây chuyền' : 'Zero Cascading Failures'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Nếu Auth Service tạm thời ngắt kết nối hoặc khởi động lại, message vẫn được lưu trữ bền vững (persistent) trên RabbitMQ chờ xử lý, không làm mất giao dịch của khách hàng.'
+                        : 'If Auth Service restarts or undergoes brief network partitions, messages remain safely queued and persistent in RabbitMQ without dropping user transactions.'}
+                    </p>
+                  </div>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-purple-700 block mb-1">
+                      {language === 'vi' ? 'HTTP Sync Fallback Tự động' : 'Auto HTTP Sync Fallback'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Khi broker RabbitMQ gặp sự cố, payment-service tự động kích hoạt lớp dự phòng gọi trực tiếp HTTP internal endpoint sang Auth Service để kích hoạt ngay.'
+                        : 'If the RabbitMQ broker itself becomes unreachable, payment-service activates a secondary fallback calling Auth Service internal REST endpoint directly.'}
+                    </p>
+                  </div>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-purple-700 block mb-1">
+                      {language === 'vi' ? 'Tính toán Gia hạn Cộng dồn' : 'Additive VIP Duration'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Hạn sử dụng VIP được cộng dồn tiếp nối từ thời điểm vipExpireAt hiện tại nếu gói cũ còn hiệu lực, tránh ghi đè làm thiệt thòi ngày sử dụng của người dùng.'
+                        : 'VIP expiration dates extend additively from the active vipExpireAt rather than overwriting from today, preserving remaining user subscription days.'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pattern 2: Stateless ML Pipeline & Rule-based Fallback */}
+              <div className="p-6 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-mono text-xs font-bold shrink-0 border border-emerald-200">
+                      02
+                    </span>
+                    <div>
+                      <h3 className="text-base font-bold text-[#0B0E17]">
+                        {language === 'vi'
+                          ? 'Đường ống Học máy Stateless In-Memory & Tự suy thoái Rule-based (Graceful Fallback)'
+                          : 'Stateless In-Memory ML Pipeline with Rule-Based Fallback (Graceful Fallback)'}
+                      </h3>
+                      <p className="text-xs text-[#64748B] font-mono">quiz-service ➔ HTTP POST /predict ➔ python-ml-service (:5000)</p>
+                    </div>
+                  </div>
+                  <span className="text-xs px-2.5 py-1 rounded-full font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    Stateless Inference
+                  </span>
+                </div>
+
+                {/* Visual Pipeline Flow */}
+                <div className="bg-slate-900 text-slate-100 rounded-2xl p-5 mb-4 border border-slate-800 shadow-md">
+                  <div className="flex flex-wrap items-center justify-between pb-3 border-b border-slate-800/80 mb-4 gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="text-xs font-mono font-bold text-emerald-300 uppercase tracking-wider">
+                        {language === 'vi' ? 'Đường ống Dự đoán Học máy (ML Pipeline Flow)' : 'ML Pipeline Flow (Happy Path)'}
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-mono text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-700">
+                      Quiz ➔ setImmediate ➔ Flask ML ➔ Quiz DB
+                    </span>
+                  </div>
+
+                  {/* Steps Flow Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-emerald-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                            {language === 'vi' ? 'BƯỚC 1' : 'STEP 1'}
+                          </span>
+                          <BookOpen className="w-3.5 h-3.5 text-emerald-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">
+                          {language === 'vi' ? 'Nộp Bài Thi' : 'Submit Test Attempt'}
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Quiz Service lưu kết quả thi của học viên vào CSDL ChatbotToeic_Quiz và trả phản hồi ngay.'
+                            : 'Quiz Service stores student test attempt into ChatbotToeic_Quiz and responds promptly.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-emerald-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                            {language === 'vi' ? 'BƯỚC 2' : 'STEP 2'}
+                          </span>
+                          <Cpu className="w-3.5 h-3.5 text-emerald-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">
+                          {language === 'vi' ? 'Tách Luồng Nền' : 'Background Offload'}
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Đẩy tác vụ qua setImmediate(), trích xuất đặc trưng điểm số & độ chính xác 7 Parts ra khỏi request path.'
+                            : 'Offloaded via setImmediate(), extracting 7-Part accuracy feature vectors outside request path.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-emerald-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                            {language === 'vi' ? 'BƯỚC 3' : 'STEP 3'}
+                          </span>
+                          <Brain className="w-3.5 h-3.5 text-emerald-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">In-Memory Inference</div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Gửi POST /predict (JSON) sang Python Flask; model scikit-learn suy luận in-memory không cần DB.'
+                            : 'POST /predict (JSON) to Python Flask; scikit-learn executes purely in RAM without database queries.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-emerald-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                            {language === 'vi' ? 'KẾT QUẢ' : 'RESULT'}
+                          </span>
+                          <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">
+                          {language === 'vi' ? 'Cập Nhật & Gợi Ý' : 'Forecast & Suggest'}
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Lưu điểm dự đoán và tự động sinh danh sách đề xuất ID câu hỏi ôn luyện tập trung theo kỹ năng yếu.'
+                            : 'Stores forecasted score and generates recommended practice question IDs targeting weak skills.'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Resilience Fallback Track */}
+                  <div className="p-3.5 bg-amber-950/40 border border-amber-500/40 rounded-xl flex items-start gap-3">
+                    <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 shrink-0 mt-0.5">
+                      <Zap className="w-4 h-4" />
+                    </div>
+                    <div className="text-xs leading-relaxed">
+                      <span className="font-bold text-amber-300 block mb-0.5">
+                        {language === 'vi'
+                          ? 'Lớp Dự phòng Sự cố (Resilience Fallback): Rule-Based Fallback'
+                          : 'Resilience Fallback Path: Rule-Based Fallback'}
+                      </span>
+                      <p className="text-slate-300 text-[11px] leading-relaxed">
+                        {language === 'vi'
+                          ? 'Nếu Python ML Service gặp sự cố hoặc timeout quá 3 giây, Quiz Service tự động áp dụng bộ luật heuristic nội bộ (đánh dấu kỹ năng yếu cho mọi Part có độ chính xác < 50%), đảm bảo học viên luôn nhận được báo cáo mà không bao giờ gặp lỗi.'
+                          : 'If Python ML Service times out or goes offline, Quiz Service automatically falls back to internal heuristics (classifying any Part with < 50% accuracy as a weak skill), guaranteeing continuous diagnosis.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-emerald-700 block mb-1">
+                      {language === 'vi' ? 'Suy luận Thuần túy trên RAM' : 'Pure In-Memory Inference'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Python ML Service không kết nối CSDL trong luồng dự đoán; nhận toàn bộ đặc trưng qua REST JSON và chạy mô hình trong bộ nhớ, dễ dàng scale ngang nhiều instance.'
+                        : 'Python ML Service makes zero database queries during inference; it ingests features via JSON and evaluates models purely in-memory, scaling horizontally effortlessly.'}
+                    </p>
+                  </div>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-emerald-700 block mb-1">
+                      {language === 'vi' ? 'Non-Blocking Background Job' : 'Non-Blocking Execution'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Đẩy tác vụ chẩn đoán ML chạy nền qua setImmediate() ra khỏi request-response path, giúp giảm latency của API nộp bài thi.'
+                        : 'Score forecasting is offloaded to the background via setImmediate(), decoupling ML inference from the request-response path and minimizing test submission latency.'}
+                    </p>
+                  </div>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-emerald-700 block mb-1">
+                      {language === 'vi' ? 'Tự động Huấn luyện lại (Auto-Retrain)' : 'Scheduled Retraining'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Tác vụ Cron Job tự động kích hoạt POST /retrain trên ML service định kỳ, thu hoạch dữ liệu bài thi mới để tái huấn luyện và cải thiện độ chính xác.'
+                        : 'A scheduled cron job triggers POST /retrain on the ML service, harvesting fresh test attempt datasets to continuously improve prediction accuracy.'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pattern 3: Context-Aware AI Chatbot with Graceful Degradation */}
+              <div className="p-6 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center font-mono text-xs font-bold shrink-0 border border-sky-200">
+                      03
+                    </span>
+                    <div>
+                      <h3 className="text-base font-bold text-[#0B0E17]">
+                        {language === 'vi'
+                          ? 'Trợ lý AI Chatbot với Context Retrieval Liên dịch vụ & Suy thoái Mềm (Graceful Degradation)'
+                          : 'Context-Aware AI Chatbot with Inter-Service Retrieval & Graceful Degradation'}
+                      </h3>
+                      <p className="text-xs text-[#64748B] font-mono">chatbot-service ➔ internal REST ➔ quiz-service ➔ Gemini 2.5 Flash</p>
+                    </div>
+                  </div>
+                  <span className="text-xs px-2.5 py-1 rounded-full font-mono font-bold bg-sky-100 text-sky-800 border border-sky-200">
+                    Smart RAG Context
+                  </span>
+                </div>
+
+                {/* Visual Pipeline Flow */}
+                <div className="bg-slate-900 text-slate-100 rounded-2xl p-5 mb-4 border border-slate-800 shadow-md">
+                  <div className="flex flex-wrap items-center justify-between pb-3 border-b border-slate-800/80 mb-4 gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse" />
+                      <span className="text-xs font-mono font-bold text-sky-300 uppercase tracking-wider">
+                        {language === 'vi' ? 'Quy trình Tra Cứu Ngữ Cảnh Đề Thi (Smart Context Flow)' : 'Smart Context Retrieval Flow (Happy Path)'}
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-mono text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-700">
+                      Chatbot ➔ Quiz REST ➔ Gemini 2.5 Flash
+                    </span>
+                  </div>
+
+                  {/* Steps Flow Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-sky-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-sky-300 bg-sky-950/80 px-2 py-0.5 rounded border border-sky-800">
+                            {language === 'vi' ? 'BƯỚC 1' : 'STEP 1'}
+                          </span>
+                          <MessageSquare className="w-3.5 h-3.5 text-sky-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">
+                          {language === 'vi' ? 'Gửi Câu Hỏi & Gating' : 'Question & VIP Gating'}
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Chatbot Service nhận tin nhắn, gọi Auth Service kiểm tra quota và quyền hạn gói VIP.'
+                            : 'Chatbot Service receives message, verifies user quota and active VIP status with Auth Service.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-sky-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-sky-300 bg-sky-950/80 px-2 py-0.5 rounded border border-sky-800">
+                            {language === 'vi' ? 'BƯỚC 2' : 'STEP 2'}
+                          </span>
+                          <Network className="w-3.5 h-3.5 text-sky-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">Internal REST Call</div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Gọi endpoint nội bộ POST /api/v1/internal/smart-context sang Quiz Service (:8082).'
+                            : 'Calls internal endpoint POST /api/v1/internal/smart-context on Quiz Service (:8082).'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-sky-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-sky-300 bg-sky-950/80 px-2 py-0.5 rounded border border-sky-800">
+                            {language === 'vi' ? 'BƯỚC 3' : 'STEP 3'}
+                          </span>
+                          <Database className="w-3.5 h-3.5 text-sky-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">
+                          {language === 'vi' ? 'Trích Xuất Ground-Truth' : 'Ground-Truth Extraction'}
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Quiz Service trích xuất nội dung câu hỏi, 4 phương án, đáp án đúng và giải thích ngữ pháp từ CSDL Quiz.'
+                            : 'Quiz Service extracts question stem, 4 options, official answer, and grammar rationale from Quiz DB.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-800/70 rounded-xl border border-slate-700/70 flex flex-col justify-between hover:border-sky-500/50 transition-colors">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-mono font-bold text-sky-300 bg-sky-950/80 px-2 py-0.5 rounded border border-sky-800">
+                            {language === 'vi' ? 'PHẢN HỒI' : 'REPLY'}
+                          </span>
+                          <Brain className="w-3.5 h-3.5 text-sky-400" />
+                        </div>
+                        <div className="text-xs font-bold text-white mb-1">Gemini 2.5 Flash</div>
+                        <p className="text-[11px] text-slate-300 leading-snug">
+                          {language === 'vi'
+                            ? 'Nạp ngữ cảnh đề thi vào Prompt gửi Gemini (có cơ chế xoay vòng Key), phản hồi chính xác đến học viên.'
+                            : 'Injects exam context into Gemini prompt (with Key Rotation), returning grounded explanations to learner.'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Resilience Fallback Track */}
+                  <div className="p-3.5 bg-amber-950/40 border border-amber-500/40 rounded-xl flex items-start gap-3">
+                    <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 shrink-0 mt-0.5">
+                      <Zap className="w-4 h-4" />
+                    </div>
+                    <div className="text-xs leading-relaxed">
+                      <span className="font-bold text-amber-300 block mb-0.5">
+                        {language === 'vi'
+                          ? 'Lớp Dự phòng Sự cố (Resilience Fallback): General-AI Fallback'
+                          : 'Resilience Fallback Path: General-AI Fallback'}
+                      </span>
+                      <p className="text-slate-300 text-[11px] leading-relaxed">
+                        {language === 'vi'
+                          ? 'Nếu Quiz Service bận hoặc timeout không lấy được ngữ cảnh đề thi, Chatbot tự động chuyển sang chế độ General-AI, trợ lý tiếp tục đối thoại giải thích ngữ pháp tổng quát mà không ngắt quãng trải nghiệm của người học.'
+                          : 'If Quiz Service times out or fails to fetch question context, Chatbot gracefully degrades to General-AI mode, allowing Gemini to explain general concepts without throwing 500 errors.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-sky-700 block mb-1">
+                      {language === 'vi' ? 'Ngữ cảnh Đề thi Thực tế' : 'Ground-Truth Context'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Thay vì hỏi AI trả lời chung chung, hệ thống trích xuất câu hỏi gốc, đáp án chính thức và giải thích ngữ pháp từ CSDL Quiz để cung cấp ngữ cảnh từ dữ liệu đề thi nội bộ, giúp giảm câu trả lời chung chung và hallucination.'
+                        : 'Instead of generic AI output, the system retrieves ground-truth question items, official answers, and grammar explanations from Quiz Service to provide internal context, reducing generic responses and LLM hallucinations.'}
+                    </p>
+                  </div>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-sky-700 block mb-1">
+                      {language === 'vi' ? 'Suy thoái Mềm (Graceful Degradation)' : 'Graceful Degradation'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Khi Quiz Service gặp sự cố hoặc quá tải, Chatbot Service không báo lỗi mà tự động chuyển sang chế độ General-AI, đảm bảo cuộc trò chuyện diễn ra liên tục.'
+                        : 'If Quiz Service times out or fails, Chatbot Service does not error out; it gracefully degrades to General-AI mode, ensuring an uninterrupted chat experience.'}
+                    </p>
+                  </div>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="font-bold text-sky-700 block mb-1">
+                      {language === 'vi' ? 'Dự phòng Xoay vòng Khóa API' : 'API Key Fallback Rotation'}
+                    </span>
+                    <p className="text-[#475569] leading-relaxed">
+                      {language === 'vi'
+                        ? 'Vòng lặp tự động chuyển tiếp sang khóa tiếp theo trong GEMINI_API_KEYS khi gặp lỗi HTTP 429 hoặc quota, duy trì khả năng phục vụ liên tục.'
+                        : 'Automatic failover iteration through GEMINI_API_KEYS upon HTTP 429 or quota exhaustion, maintaining continuous AI availability.'}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -685,8 +1207,8 @@ const ToeicChatbotPage: React.FC = () => {
             </div>
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Hệ thống đã trải qua bộ 51 trường hợp kiểm thử (51 Test Cases) bao phủ toàn diện 9 phân hệ chức năng, tính an toàn và bảo mật trên toàn bộ 6 vi dịch vụ với tỷ lệ đạt tuyệt đối 100% PASS.'
-                : 'The system underwent a comprehensive 51-test-case validation suite covering all 9 functional and security domains across 6 microservices with a 100% PASS rate.'}
+                ? 'Hệ thống được xác thực qua bộ 51 trường hợp kiểm thử (51 Test Cases) bao phủ các workflow chức năng, integration và security chính trên toàn bộ 6 vi dịch vụ với tỷ lệ đạt 100% PASS.'
+                : 'The system is verified through a 51-test-case validation suite covering primary functional workflows, inter-service integration, and security across 6 microservices with a 100% PASS rate.'}
             </p>
 
             {/* Test Summary Metrics Banner */}
@@ -784,10 +1306,10 @@ const ToeicChatbotPage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 {
-                  title: language === 'vi' ? 'Bảo mật Webhook HMAC-SHA256' : 'HMAC-SHA256 Webhook Security',
+                  title: language === 'vi' ? 'Bảo mật Webhook & Idempotency' : 'Webhook Security & Idempotency',
                   detail: language === 'vi'
-                    ? 'Tái tính toán MAC bằng secret key, chặn 100% callback giả mạo và chống Replay Attack qua kiểm tra trùng appTransId.'
-                    : 'Recomputes MAC with secret key; rejects 100% forged callbacks and prevents Replay Attacks via appTransId deduplication.',
+                    ? 'Tái tính toán MAC bằng secret key loại bỏ callback giả mạo; kiểm tra Idempotency trên bảng Transactions chống xử lý trùng lặp webhook.'
+                    : 'Recomputes MAC with secret key rejecting forged callbacks; enforces database-level Idempotency on Transactions table against duplicate webhook deliveries.',
                 },
                 {
                   title: language === 'vi' ? 'Gating VIP Xuyên Dịch Vụ' : 'Cross-Service VIP Gating',

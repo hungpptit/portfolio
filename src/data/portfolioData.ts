@@ -116,7 +116,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       tags: ["Microservices", "API Gateway", "Database-per-Service", "RabbitMQ", "SQL Server 2022", "Google Gemini AI", "Python ML", "ZaloPay QR", "Docker Compose", "Flutter 3"],
       architectureHighlights: [
         "Microservices & Database-per-Service: 6 application services độc lập (Auth, Quiz, Payment, Chatbot, Email, ML); mỗi service sở hữu dữ liệu riêng, loại bỏ hoàn toàn cross-database queries/joins; toàn bộ application stack đóng gói 9 containers qua Docker Compose.",
-        "Event-Driven Processing: RabbitMQ AMQP xử lý workflow kích hoạt VIP và gửi email bất đồng bộ với cơ chế Ack/Nack, retry và synchronous HTTP fallback đảm bảo tính sẵn sàng cao.",
+        "Event-Driven Processing: RabbitMQ AMQP xử lý workflow kích hoạt VIP và gửi email bất đồng bộ với cơ chế Ack/Nack, retry và synchronous HTTP fallback giúp tăng khả năng chịu lỗi của workflow.",
         "Stateless ML Inference: Python Flask + scikit-learn cung cấp endpoint POST /predict suy luận in-memory; Rule-based Fallback đảm bảo trả kết quả dự đoán ngay cả khi ML service ngắt kết nối, kèm Cron Job tự động huấn luyện lại.",
         "Context-Aware AI Chatbot: Gemini 2.5 Flash kết hợp dữ liệu ngữ cảnh đề thi từ Quiz Service thông qua internal REST API (/api/v1/internal/smart-context), hỗ trợ hội thoại đa lượt, fallback sang General-AI và cơ chế xoay vòng khóa API (Key Fallback).",
         "Payment Integration: ZaloPay Sandbox Dynamic QR với xác thực chữ ký HMAC-SHA256 kết hợp kiểm tra idempotency trạng thái giao dịch chống xử lý trùng lặp webhook callback."
@@ -214,7 +214,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       tags: ["Microservices", "API Gateway", "Database-per-Service", "RabbitMQ", "SQL Server 2022", "Google Gemini AI", "Python ML", "ZaloPay QR", "Docker Compose", "Flutter 3"],
       architectureHighlights: [
         "Microservices & Database-per-Service: 6 independent application services (Auth, Quiz, Payment, Chatbot, Email, ML); each owning isolated data without cross-database queries/joins; entire application stack containerized across 9 Docker containers.",
-        "Event-Driven Processing: RabbitMQ AMQP handles asynchronous VIP activation and email delivery with Ack/Nack, retry, and synchronous HTTP fallback ensuring high fault tolerance.",
+        "Event-Driven Processing: RabbitMQ AMQP handles asynchronous VIP activation and email delivery with Ack/Nack, retry, and synchronous HTTP fallback to enhance workflow fault tolerance.",
         "Stateless ML Inference: Python Flask + scikit-learn exposes POST /predict for in-memory score and skill diagnosis; Rule-based Fallback guarantees continuous service during outages, with scheduled retraining Cron Jobs.",
         "Context-Aware AI Chatbot: Gemini 2.5 Flash integrates live TOEIC question context from Quiz Service via internal REST API (/api/v1/internal/smart-context), multi-turn conversations, General-AI fallback, and API Key Fallback Rotation.",
         "Payment Integration: ZaloPay Sandbox Dynamic QR with HMAC-SHA256 signature verification coupled with transaction idempotency checks preventing duplicate webhook processing."
