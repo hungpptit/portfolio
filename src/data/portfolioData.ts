@@ -108,19 +108,20 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "toeic-ai-microservices",
       title: "TOEIC Learning & AI Chatbot Ecosystem",
-      subtitle: "Hệ sinh thái luyện thi TOEIC — 6 Vi dịch vụ · Google Gemini 2.5 Flash · Python ML Pipeline · ZaloPay QR",
-      description: "Hệ sinh thái học và luyện thi chứng chỉ TOEIC cấp sản xuất theo Kiến trúc Vi dịch vụ (6 dịch vụ độc lập, Database-per-Service) với 4 CSDL SQL Server 2022 cách ly hoàn toàn. Tích hợp Trợ lý Trí tuệ Nhân tạo Google Gemini 2.5 Flash hội thoại đa lượt có ngữ cảnh, Đường ống Học máy (Python Flask + scikit-learn) tự động huấn luyện lại hàng ngày lúc 2:00 AM để dự đoán điểm thi và chẩn đoán kỹ năng yếu, cùng Cổng thanh toán ZaloPay Dynamic QR xác thực chữ ký số HMAC-SHA256 chống giả mạo Webhook. Toàn bộ hệ thống gồm 9 Docker containers khởi động bằng 1 lệnh duy nhất với 55+ API endpoints có tài liệu Swagger/OpenAPI 3 tự động.",
+      subtitle: "Hệ sinh thái học và luyện thi TOEIC xây dựng theo kiến trúc Microservices · Database-per-Service · Event-Driven · AI/ML · ZaloPay",
+      description: "Hệ thống được thiết kế theo kiến trúc Microservices với 6 dịch vụ độc lập phía sau Nginx API Gateway, áp dụng mô hình Database-per-Service với 4 CSDL SQL Server 2022 được sở hữu và quản lý độc lập bởi từng domain, không sử dụng cross-database queries/joins. Các service giao tiếp bất đồng bộ qua RabbitMQ cho các luồng nghiệp vụ như kích hoạt VIP và gửi email, đồng thời duy trì cơ chế retry và HTTP sync fallback nhằm tăng khả năng chịu lỗi. Hệ sinh thái tích hợp Stateless ML Service (Python Flask + scikit-learn) suy luận hoàn toàn in-memory để dự đoán điểm thi và kỹ năng yếu kèm cơ chế Rule-based Fallback; Trợ lý AI Chatbot Google Gemini 2.5 Flash truy xuất ngữ cảnh đề thi nội bộ; cùng Cổng thanh toán ZaloPay Dynamic QR xác thực chữ ký HMAC-SHA256 kết hợp kiểm tra idempotency.",
       category: "ai",
       featured: false,
       branch: "tree/SWE_BE3",
-      tags: ["Microservices", "Docker Compose", "Node.js 20", "SQL Server 2022", "Google Gemini AI", "Python ML", "ZaloPay QR", "RabbitMQ", "Flutter 3"],
+      tags: ["Microservices", "API Gateway", "Database-per-Service", "RabbitMQ", "SQL Server 2022", "Google Gemini AI", "Python ML", "ZaloPay QR", "Docker Compose", "Flutter 3"],
       architectureHighlights: [
-        "Kiến trúc 6 Vi dịch vụ tự chủ (Database-per-Service) với 4 CSDL SQL Server 2022 cách ly hoàn toàn qua Cổng API Nginx duy nhất, đóng gói đồng nhất 9 container bằng Docker Compose.",
-        "Trợ lý AI Chatbot gia sư tiếng Anh tích hợp Google Gemini 2.5 Flash hỗ trợ hội thoại đa lượt có ngữ cảnh từ CSDL; cơ chế xoay vòng khóa API (Round-Robin Key Rotation) phân tán tải và VIP Check Middleware xuyên dịch vụ.",
-        "Đường ống Học máy (Python Flask + scikit-learn) tự động huấn luyện lại hàng ngày lúc 2:00 AM (Cron Job) thu thập dữ liệu TestAttempts để dự đoán điểm TOEIC và phân tích kỹ năng yếu theo từng Part.",
-        "Cổng thanh toán ZaloPay Sandbox Dynamic QR Code với xác thực chữ ký HMAC-SHA256 trên mọi Webhook callback, chống Replay Attack và tích lũy hạn VIP cộng dồn; hàng đợi RabbitMQ gửi email OTP & thông báo bất đồng bộ."
+        "Microservices & Database-per-Service: 6 application services độc lập (Auth, Quiz, Payment, Chatbot, Email, ML); mỗi service sở hữu dữ liệu riêng, loại bỏ hoàn toàn cross-database queries/joins; toàn bộ application stack đóng gói 9 containers qua Docker Compose.",
+        "Event-Driven Processing: RabbitMQ AMQP xử lý workflow kích hoạt VIP và gửi email bất đồng bộ với cơ chế Ack/Nack, retry và synchronous HTTP fallback đảm bảo tính sẵn sàng cao.",
+        "Stateless ML Inference: Python Flask + scikit-learn cung cấp endpoint POST /predict suy luận in-memory; Rule-based Fallback đảm bảo trả kết quả dự đoán ngay cả khi ML service ngắt kết nối, kèm Cron Job tự động huấn luyện lại.",
+        "Context-Aware AI Chatbot: Gemini 2.5 Flash kết hợp dữ liệu ngữ cảnh đề thi từ Quiz Service thông qua internal REST API (/api/v1/internal/smart-context), hỗ trợ hội thoại đa lượt, fallback sang General-AI và cơ chế xoay vòng khóa API (Key Fallback).",
+        "Payment Integration: ZaloPay Sandbox Dynamic QR với xác thực chữ ký HMAC-SHA256 kết hợp kiểm tra idempotency trạng thái giao dịch chống xử lý trùng lặp webhook callback."
       ],
-      metrics: "6 Microservices · 55+ Endpoints · 9 Containers · 51/51 Tests",
+      metrics: "Microservices · Database-per-Service · RabbitMQ Event-Driven · Stateless ML · 51/51 Tests",
       githubUrl: "https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3",
       demoUrl: "https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3",
       hasDetailPage: true
@@ -205,19 +206,20 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "toeic-ai-microservices",
       title: "TOEIC Learning & AI Chatbot Ecosystem",
-      subtitle: "TOEIC Preparation Ecosystem — 6 Microservices · Google Gemini 2.5 Flash · Python ML Pipeline · ZaloPay QR",
-      description: "Production-grade TOEIC certification learning platform engineered with a Microservices architecture (6 independent services, Database-per-Service pattern) and 4 isolated SQL Server 2022 databases behind an Nginx API Gateway. Features a Google Gemini 2.5 Flash AI Chatbot with database-persisted multi-turn context, a Python Flask + scikit-learn ML pipeline with automated daily retraining at 2:00 AM for score prediction and weak skill diagnosis, and a ZaloPay Dynamic QR payment gateway secured with HMAC-SHA256 signature verification. Spans 9 Docker containers deployable via single command, exposing 55+ RESTful API endpoints with Swagger/OpenAPI 3 documentation.",
+      subtitle: "TOEIC Preparation Ecosystem engineered with Microservices · Database-per-Service · Event-Driven · AI/ML · ZaloPay",
+      description: "Engineered with a Microservices Architecture comprising 6 independent services behind a unified Nginx API Gateway, strictly applying the Database-per-Service pattern with 4 SQL Server 2022 databases independently owned by each domain, eliminating cross-database queries/joins. Services communicate asynchronously via RabbitMQ for workflows such as VIP activation and transactional emails, accompanied by retry policies and synchronous HTTP fallbacks for resilience. Integrates a Stateless ML Service (Python Flask + scikit-learn) executing in-memory inference with Rule-based Fallback, a Google Gemini 2.5 Flash AI Chatbot with inter-service smart context lookup, and ZaloPay Dynamic QR payment with HMAC-SHA256 signature verification and idempotency checks.",
       category: "ai",
       featured: false,
       branch: "tree/SWE_BE3",
-      tags: ["Microservices", "Docker Compose", "Node.js 20", "SQL Server 2022", "Google Gemini AI", "Python ML", "ZaloPay QR", "RabbitMQ", "Flutter 3"],
+      tags: ["Microservices", "API Gateway", "Database-per-Service", "RabbitMQ", "SQL Server 2022", "Google Gemini AI", "Python ML", "ZaloPay QR", "Docker Compose", "Flutter 3"],
       architectureHighlights: [
-        "6 autonomous Microservices (Database-per-Service) with 4 isolated SQL Server 2022 databases behind a unified Nginx API Gateway, orchestrated via Docker Compose (9 containers).",
-        "Google Gemini 2.5 Flash AI Tutoring Chatbot with multi-turn conversation context; Round-Robin API Key Rotation and VIP Check Middleware enforcing 15 msgs/day free tier limit across service boundaries.",
-        "Python Flask + scikit-learn ML Pipeline with automated daily retraining at 2:00 AM (Cron Job) collecting TestAttempts data for score prediction and per-Part weak skill diagnosis.",
-        "ZaloPay Sandbox Dynamic QR Code payment with HMAC-SHA256 signature verification on all Webhook callbacks, Replay Attack prevention, and cumulative VIP expiry extension; RabbitMQ async email worker."
+        "Microservices & Database-per-Service: 6 independent application services (Auth, Quiz, Payment, Chatbot, Email, ML); each owning isolated data without cross-database queries/joins; entire application stack containerized across 9 Docker containers.",
+        "Event-Driven Processing: RabbitMQ AMQP handles asynchronous VIP activation and email delivery with Ack/Nack, retry, and synchronous HTTP fallback ensuring high fault tolerance.",
+        "Stateless ML Inference: Python Flask + scikit-learn exposes POST /predict for in-memory score and skill diagnosis; Rule-based Fallback guarantees continuous service during outages, with scheduled retraining Cron Jobs.",
+        "Context-Aware AI Chatbot: Gemini 2.5 Flash integrates live TOEIC question context from Quiz Service via internal REST API (/api/v1/internal/smart-context), multi-turn conversations, General-AI fallback, and API Key Fallback Rotation.",
+        "Payment Integration: ZaloPay Sandbox Dynamic QR with HMAC-SHA256 signature verification coupled with transaction idempotency checks preventing duplicate webhook processing."
       ],
-      metrics: "6 Microservices · 55+ Endpoints · 9 Containers · 51/51 Tests",
+      metrics: "Microservices · Database-per-Service · RabbitMQ Event-Driven · Stateless ML · 51/51 Tests",
       githubUrl: "https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3",
       demoUrl: "https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3",
       hasDetailPage: true
