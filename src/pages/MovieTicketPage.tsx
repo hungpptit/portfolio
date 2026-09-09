@@ -166,18 +166,22 @@ const MovieTicketPage: React.FC = () => {
             </h1>
             <p className="text-[#334155] leading-relaxed mb-10 max-w-3xl font-normal text-lg">{detail.overview}</p>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="p-6 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
                 <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Bảo đảm Ghế ngồi' : 'Concurrency Control'}</span>
-                <span className="text-2xl font-bold font-mono text-emerald-700">{language === 'vi' ? 'Không Bán Trùng' : 'Zero Double-Book'}</span>
+                <span className="text-xl font-bold font-mono text-emerald-700">{language === 'vi' ? 'Chống Bán Trùng' : 'Anti Double-Book'}</span>
               </div>
-              <div className="p-6 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
+              <div className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
                 <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Kiến trúc Phân tán' : 'Microservices'}</span>
-                <span className="text-2xl font-bold font-mono text-[#5E6AD2]">{language === 'vi' ? '6 Vi dịch vụ' : '6 Autonomous Svcs'}</span>
+                <span className="text-xl font-bold font-mono text-[#5E6AD2]">{language === 'vi' ? '6 Services + Gateway' : '6 Services + Gateway'}</span>
               </div>
-              <div className="p-6 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
-                <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Thời hạn giữ chỗ' : 'Lock Expiration TTL'}</span>
-                <span className="text-2xl font-bold font-mono text-amber-700">{language === 'vi' ? '10 Phút Tự Giải Phóng' : '10-Min Auto TTL'}</span>
+              <div className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
+                <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Giao dịch phân tán' : 'Distributed Consistency'}</span>
+                <span className="text-xl font-bold font-mono text-amber-700">SAGA Choreography</span>
+              </div>
+              <div className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
+                <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Khả năng phục hồi' : 'Fault Tolerance'}</span>
+                <span className="text-xl font-bold font-mono text-purple-700">Circuit Breakers</span>
               </div>
             </div>
           </section>
@@ -219,8 +223,8 @@ const MovieTicketPage: React.FC = () => {
               </div>
               <p className="text-base text-amber-950 font-medium leading-relaxed">
                 {language === 'vi'
-                  ? 'Khi một suất chiếu hot mở bán, hàng ngàn người dùng đồng thời nhấn "Đặt vé" cho cùng một ghế trong khoảng thời gian 50ms. Kiến trúc Monolithic truyền thống với READ-THEN-WRITE không thể xử lý Race Condition này — dẫn đến bán 2 vé cho cùng 1 ghế (Double-Booking).'
-                  : 'When a blockbuster premiere goes on sale, thousands of users simultaneously click "Book" for the same seat within a 50ms window. Traditional Monolithic READ-THEN-WRITE architecture cannot handle this Race Condition — resulting in duplicate ticket sales for the same physical seat (Double-Booking).'}
+                  ? 'Khi một suất chiếu hot mở bán, nhiều người dùng đồng thời nhấn "Đặt vé" cho cùng một ghế trong khoảng thời gian ngắn. Cách tiếp cận READ-THEN-WRITE thông thường không đảm bảo an toàn dưới concurrent requests, có thể dẫn đến Race Condition và Double-Booking.'
+                  : 'When a blockbuster premiere goes on sale, multiple users concurrently click "Book" for the same seat within milliseconds. Conventional READ-THEN-WRITE approaches without distributed synchronization fail under high concurrency, resulting in severe Race Conditions and Double-Booking.'}
               </p>
             </div>
 
@@ -241,10 +245,10 @@ const MovieTicketPage: React.FC = () => {
                   },
                   {
                     color: '#F59E0B',
-                    title: language === 'vi' ? 'Bottleneck giao dịch CSDL' : 'Database Transaction Bottleneck',
+                    title: language === 'vi' ? 'Database Lock Contention' : 'Database Lock Contention',
                     detail: language === 'vi'
-                      ? 'Transaction-level locking toàn bảng hoặc toàn hàng gây nghẽn cổ chai nghiêm trọng khi có hàng nghìn concurrent users.'
-                      : 'Table-level or row-level DB transaction locks create catastrophic throughput bottlenecks under thousands of concurrent sessions.',
+                      ? 'Khi nhiều request đồng thời tranh chấp cùng tài nguyên, việc phụ thuộc hoàn toàn vào database locking có thể làm tăng lock contention, lock wait và áp lực lên CSDL.'
+                      : 'Under high concurrency on identical resources, relying solely on database locking increases lock contention, wait times, and database transaction pressure.',
                   },
                   {
                     color: '#EF4444',
@@ -282,8 +286,8 @@ const MovieTicketPage: React.FC = () => {
               </div>
               <p className="text-base text-emerald-950 font-medium leading-relaxed">
                 {language === 'vi'
-                  ? 'Xây dựng lại hoàn toàn trên nền Kiến trúc Vi dịch vụ (Microservices) với 6 dịch vụ độc lập (Database-per-Service). Áp dụng Khóa phân tán Redis (SET NX EX) như lớp đồng bộ hóa nguyên tử tốc độ cao — chỉ 1 trong 1,000 request giành được ghế, 999 request còn lại nhận 409 Conflict ngay lập tức, không cần chờ DB.'
-                  : 'Rebuilt entirely on Microservices Architecture with 6 autonomous services (Database-per-Service). Applied Redis Distributed Locking (atomic SET NX EX) as a high-speed atomic synchronization layer — exactly 1 of 1,000 concurrent requests acquires the seat, 999 receive immediate HTTP 409 Conflict without touching the database.'}
+                  ? 'Xây dựng trên nền Kiến trúc Vi dịch vụ (Microservices) với 6 dịch vụ nghiệp vụ phía sau API Gateway (Database-per-Service). Áp dụng Khóa phân tán Redis (SET NX PX 120s) như lớp đồng bộ hóa nguyên tử tốc độ cao — chỉ request đầu tiên acquire lock thành công; các request tranh chấp còn lại nhận HTTP 409 Conflict ngay tại Redis, giảm tải tối đa cho database.'
+                  : 'Engineered with a Microservices Architecture featuring 6 business services behind a centralized API Gateway (Database-per-Service). Applied Redis Distributed Locking (atomic SET NX PX 120s) as an in-memory synchronization layer — only the first request successfully acquires the lock, while concurrent contenders receive an immediate HTTP 409 Conflict at the Redis layer, offloading database pressure.'}
               </p>
             </div>
           </section>
@@ -298,8 +302,8 @@ const MovieTicketPage: React.FC = () => {
             </div>
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? '3 mục tiêu kỹ thuật cốt lõi, 9+ mẫu thiết kế hệ thống phân tán được áp dụng và các chỉ số kỹ thuật đạt được của dự án.'
-                : '3 core engineering objectives, 9+ distributed system design patterns applied, and measurable technical achievements of the project.'}
+                ? '3 mục tiêu kỹ thuật cốt lõi, 12+ mẫu kiến trúc & thiết kế phân tán (Architecture & Design Patterns) được áp dụng và các chỉ số kỹ thuật đạt được của dự án.'
+                : '3 core engineering objectives, 12+ distributed architecture & design patterns applied, and measurable technical achievements of the project.'}
             </p>
 
             {/* 3 Core Goals */}
@@ -312,18 +316,18 @@ const MovieTicketPage: React.FC = () => {
                   {
                     color: '#5E6AD2',
                     num: '01',
-                    title: language === 'vi' ? 'Zero Double-Booking' : 'Zero Double-Booking',
+                    title: language === 'vi' ? 'Chống Bán Trùng Ghế' : 'Anti Double-Booking',
                     desc: language === 'vi'
-                      ? 'Tuyệt đối không xảy ra lỗi bán trùng ghế dưới bất kỳ mức tải đồng thời nào, kể cả khi 1,000 users cùng tranh 1 ghế trong 50ms.'
-                      : 'Absolute zero duplicate seat sales under any concurrency level, including 1,000 users contending for 1 seat within 50ms.',
+                      ? 'Ngăn ngừa tranh chấp và bảo toàn trạng thái ghế đơn dưới tải lượng truy cập đồng thời cao (Concurrency Control).'
+                      : 'Prevents seat contention and ensures single-seat reservation integrity under concurrent user traffic.',
                   },
                   {
                     color: '#8B5CF6',
                     num: '02',
-                    title: language === 'vi' ? 'Kiến trúc có thể Mở rộng' : 'Independently Scalable',
+                    title: language === 'vi' ? 'Mở rộng Độc lập' : 'Independently Scalable',
                     desc: language === 'vi'
-                      ? 'Mỗi vi dịch vụ tự chủ hoàn toàn (Database-per-Service), có thể scale độc lập theo nhu cầu tải của từng domain nghiệp vụ.'
-                      : 'Each microservice fully autonomous (Database-per-Service), independently scalable per domain load without affecting others.',
+                      ? '6 vi dịch vụ tự chủ (Database-per-Service) phía sau API Gateway, có thể scale riêng lẻ theo tải của từng domain.'
+                      : '6 autonomous microservices (Database-per-Service) behind an API Gateway, independently scalable per domain load.',
                   },
                   {
                     color: '#10B981',
@@ -350,13 +354,37 @@ const MovieTicketPage: React.FC = () => {
             <div className="mb-8">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#64748B] mb-4 flex items-center gap-2">
                 <GitBranch className="w-3.5 h-3.5" />
-                {language === 'vi' ? '9+ Mẫu Thiết kế Hệ thống Phân tán được Áp dụng' : '9+ Distributed System Design Patterns Applied'}
+                {language === 'vi' ? '12+ Mẫu Kiến trúc & Thiết kế Phân tán (Architecture & Design Patterns)' : '12+ Distributed Architecture & Design Patterns Applied'}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[
-                  { cat: language === 'vi' ? 'Kiến trúc' : 'Architectural', patterns: ['API Gateway Pattern', 'Database-per-Service', 'Event-Driven (Pub/Sub)'] },
-                  { cat: language === 'vi' ? 'Đồng thời & Phân tán' : 'Concurrency & Distributed', patterns: ['Distributed Lock (Redis SET NX)', 'Pessimistic Concurrency Control', 'Cache-Aside (Lazy Loading)'] },
-                  { cat: language === 'vi' ? 'Cấu trúc & Hành vi' : 'Structural & Behavioral', patterns: ['Singleton (DB/Redis conn)', 'Factory Method (Sequelize Model)', 'Facade (bookingService)', 'Adapter (ZaloPay)', 'Chain of Responsibility (Middleware)', 'Resilience + Fallback'] },
+                  {
+                    cat: language === 'vi' ? 'Kiến trúc & Phân rã Domain' : 'Architecture & Domain Decomposition',
+                    patterns: [
+                      'API Gateway Pattern (Centralized Entry)',
+                      'Database-per-Service (Isolated Data Stores)',
+                      'Single Source of Truth (Seat Service)',
+                      'Event-Driven Architecture (Pub/Sub)'
+                    ]
+                  },
+                  {
+                    cat: language === 'vi' ? 'Giao dịch Phân tán & Chịu lỗi' : 'Distributed Transactions & Resilience',
+                    patterns: [
+                      'SAGA Choreography (RabbitMQ Messaging)',
+                      'Compensating Transaction (Auto Refund)',
+                      'Circuit Breaker Pattern (Opossum 8.x)',
+                      'Distributed Tracing (Correlation ID)'
+                    ]
+                  },
+                  {
+                    cat: language === 'vi' ? 'Đồng thời & Tối ưu Hiệu năng' : 'Concurrency & High Performance',
+                    patterns: [
+                      'Distributed Lock (Redis SET NX PX 120s)',
+                      'Pessimistic Concurrency Fallback (DB Lock)',
+                      'Batch Query (O(N) → O(1) Network Round Trips)',
+                      'Cache-Aside Pattern (Showtime Metadata)'
+                    ]
+                  },
                 ].map((group, idx) => (
                   <div key={idx} className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
                     <span className="text-xs font-bold text-[#5E6AD2] uppercase tracking-wider block mb-3 font-mono">{group.cat}</span>
@@ -381,10 +409,10 @@ const MovieTicketPage: React.FC = () => {
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { value: '6', label: language === 'vi' ? 'Vi dịch vụ độc lập' : 'Autonomous Microservices', color: '#5E6AD2' },
-                  { value: '5', label: language === 'vi' ? 'Database riêng biệt' : 'Isolated Databases', color: '#8B5CF6' },
-                  { value: '25/25', label: language === 'vi' ? 'Unit Tests PASS' : 'Unit Tests PASS', color: '#10B981' },
-                  { value: '9+', label: language === 'vi' ? 'Design Patterns' : 'Design Patterns', color: '#F59E0B' },
+                  { value: '6 + 1', label: language === 'vi' ? 'Microservices + Gateway' : 'Microservices + Gateway', color: '#5E6AD2' },
+                  { value: '5', label: language === 'vi' ? 'Database độc lập (Stateless Notification)' : 'Isolated Databases (Stateless Notification)', color: '#8B5CF6' },
+                  { value: '25/25', label: language === 'vi' ? 'Unit Tests PASS (100%)' : 'Unit Tests PASS (100%)', color: '#10B981' },
+                  { value: '12+', label: language === 'vi' ? 'Architecture & Design Patterns' : 'Architecture & Design Patterns', color: '#F59E0B' },
                 ].map((m, i) => (
                   <div key={i} className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs text-center">
                     <div className="text-3xl font-black font-mono mb-1" style={{ color: m.color }}>{m.value}</div>
@@ -429,12 +457,12 @@ const MovieTicketPage: React.FC = () => {
                   badge: language === 'vi' ? 'Core Backend' : 'Core Backend',
                   color: '#10B981',
                   items: language === 'vi' ? [
-                    'Triển khai lệnh nguyên tử SET NX EX cho seat locking với TTL 10 phút',
-                    'Xây dựng Cache-Aside pattern cho Movie Service (TTL 3600s, auto-invalidation)',
+                    'Triển khai lệnh nguyên tử SET NX PX cho seat locking với TTL 120s',
+                    'Xây dựng Cache-Aside pattern cho Movie Service (TTL 5 phút, tránh flood request)',
                     'Fallback tự động sang Sequelize t.LOCK.UPDATE khi Redis ngoại tuyến',
                   ] : [
-                    'Implemented atomic SET NX EX seat locking with 10-minute TTL',
-                    'Built Cache-Aside pattern for Movie Service (TTL 3600s, auto-invalidation)',
+                    'Implemented atomic SET NX PX seat locking with 120s TTL',
+                    'Built Cache-Aside pattern for Movie Service (5-min TTL, preventing request flooding)',
                     'Automatic fallback to Sequelize t.LOCK.UPDATE when Redis is offline',
                   ],
                 },
@@ -536,7 +564,7 @@ const MovieTicketPage: React.FC = () => {
 
                 {/* ─── STEP 2: API Gateway ─── */}
                 <div className="flex justify-center">
-                  <div className="px-8 py-4 bg-amber-50/80 border-2 border-amber-300 rounded-2xl flex items-center gap-4 shadow-2xs max-w-[500px] w-full">
+                  <div className="px-8 py-4 bg-amber-50/80 border-2 border-amber-300 rounded-2xl flex items-center gap-4 shadow-2xs max-w-[540px] w-full">
                     <div className="w-11 h-11 rounded-xl bg-white border border-amber-200 flex items-center justify-center shrink-0 shadow-2xs">
                       <Shield className="w-6 h-6 text-amber-600" />
                     </div>
@@ -544,13 +572,13 @@ const MovieTicketPage: React.FC = () => {
                       <div className="flex items-center gap-2 mb-0.5">
                         <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full font-mono">STEP 2</span>
                         <span className="text-sm font-bold text-[#0B0E17]">
-                          {language === 'vi' ? 'Cổng Bảo vệ Trung tâm (API Gateway)' : 'Central Security Gateway'}
+                          {language === 'vi' ? 'Cổng API Gateway & Circuit Breaker' : 'API Gateway & Circuit Breakers'}
                         </span>
                       </div>
                       <p className="text-xs text-[#475569] leading-relaxed">
                         {language === 'vi'
-                          ? 'Mọi yêu cầu đều phải đi qua cổng duy nhất (Port :8080). Tại đây hệ thống xác minh danh tính người dùng (JWT Token) rồi điều hướng đến đúng dịch vụ phụ trách.'
-                          : 'Every request passes through a single entry point (Port :8080). The gateway verifies user identity (JWT Token) then routes to the correct responsible service.'}
+                          ? 'Cổng duy nhất (:8080) xác thực JWT, sinh Correlation ID (x-request-id) để truy vết phân tán xuyên suốt hệ thống. Tích hợp Circuit Breaker (Opossum) với ngưỡng lỗi 50% và timeout 6s; khi downstream vượt ngưỡng lỗi, mạch tự động chuyển sang Open và Gateway trả về HTTP 503, giúp ngăn lỗi lan truyền.'
+                          : 'Single entry point (:8080) authenticating JWTs and injecting Correlation IDs (x-request-id) for distributed tracing. Configured with Opossum Circuit Breakers (50% error threshold, 6s timeout) to trip Open and return HTTP 503 when downstream fails, preventing cascading outages.'}
                       </p>
                     </div>
                   </div>
@@ -572,18 +600,18 @@ const MovieTicketPage: React.FC = () => {
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-xs font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full font-mono">STEP 3</span>
                     <span className="text-sm font-bold text-[#0B0E17]">
-                      {language === 'vi' ? '6 Dịch vụ Độc lập — Mỗi dịch vụ làm đúng 1 việc' : '6 Independent Services — Each Does Exactly One Job'}
+                      {language === 'vi' ? '6 Dịch vụ Nghiệp vụ phía sau API Gateway (Database-per-Service)' : '6 Business Services behind API Gateway (Database-per-Service)'}
                     </span>
                   </div>
 
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {[
-                      { icon: <User className="w-4 h-4" />, name: language === 'vi' ? 'Người dùng' : 'User', desc: language === 'vi' ? 'Đăng ký, đăng nhập, quản lý tài khoản' : 'Register, login, account management', color: '#8B5CF6', port: ':4001' },
-                      { icon: <Film className="w-4 h-4" />, name: language === 'vi' ? 'Phim & Suất chiếu' : 'Movie Catalog', desc: language === 'vi' ? 'Danh sách phim, lịch chiếu, tìm kiếm' : 'Movie listings, showtimes, search', color: '#EC4899', port: ':4002' },
-                      { icon: <Grid className="w-4 h-4" />, name: language === 'vi' ? 'Ghế ngồi' : 'Seat Map', desc: language === 'vi' ? 'Sơ đồ phòng chiếu, trạng thái từng ghế' : 'Auditorium layout, per-seat availability', color: '#06B6D4', port: ':4003' },
-                      { icon: <Ticket className="w-4 h-4" />, name: language === 'vi' ? 'Đặt vé' : 'Booking', desc: language === 'vi' ? 'Giữ chỗ ghế, chống bán trùng, tạo vé' : 'Seat reservation, anti-collision, ticketing', color: '#10B981', port: ':4004', highlight: true },
-                      { icon: <CreditCard className="w-4 h-4" />, name: language === 'vi' ? 'Thanh toán' : 'Payment', desc: language === 'vi' ? 'Tạo mã QR ZaloPay, xác nhận giao dịch' : 'ZaloPay QR generation, settlement', color: '#F59E0B', port: ':4005' },
-                      { icon: <Bell className="w-4 h-4" />, name: language === 'vi' ? 'Thông báo' : 'Notification', desc: language === 'vi' ? 'Gửi email vé điện tử kèm mã QR' : 'Sends e-ticket email with QR code', color: '#FB923C', port: ':4006' },
+                      { icon: <User className="w-4 h-4" />, name: language === 'vi' ? 'Người dùng' : 'User Service', desc: language === 'vi' ? 'Đăng ký, đăng nhập, JWT, quản lý profile' : 'Register, login, JWT auth, user profiles', color: '#8B5CF6', port: ':4001' },
+                      { icon: <Film className="w-4 h-4" />, name: language === 'vi' ? 'Phim & Suất chiếu' : 'Movie Catalog', desc: language === 'vi' ? 'Danh sách phim, lịch chiếu, Batch API O(1) Round Trips' : 'Movie catalog, showtimes, Batch API O(1) Round Trips', color: '#EC4899', port: ':4002' },
+                      { icon: <Grid className="w-4 h-4" />, name: language === 'vi' ? 'Ghế ngồi (Single Source)' : 'Seat Map (Single Source)', desc: language === 'vi' ? 'Sơ đồ phòng chiếu, Single Source of Truth, Batch Seats O(1)' : 'Auditorium layout, Single Source of Truth, Batch Seats O(1)', color: '#06B6D4', port: ':4003', highlight: true },
+                      { icon: <Ticket className="w-4 h-4" />, name: language === 'vi' ? 'Đặt vé' : 'Booking Service', desc: language === 'vi' ? 'Khóa phân tán Redis 120s, SAGA consumer, xuất vé' : 'Redis distributed lock 120s, SAGA consumer', color: '#10B981', port: ':4004', highlight: true },
+                      { icon: <CreditCard className="w-4 h-4" />, name: language === 'vi' ? 'Thanh toán' : 'Payment Service', desc: language === 'vi' ? 'ZaloPay QR, SAGA Publisher, Compensating Refund' : 'ZaloPay QR, SAGA Publisher, Compensating Refund', color: '#F59E0B', port: ':4005' },
+                      { icon: <Bell className="w-4 h-4" />, name: language === 'vi' ? 'Thông báo' : 'Notification Service', desc: language === 'vi' ? 'RabbitMQ async consumer, sinh QR vé, gửi email' : 'RabbitMQ async consumer, QR tickets, emails', color: '#FB923C', port: ':4006' },
                     ].map((svc, i) => (
                       <div key={i} className={`p-4 rounded-xl border bg-white shadow-2xs transition-all ${svc.highlight ? 'ring-2 ring-emerald-400' : ''}`}
                         style={{ borderColor: `${svc.color}40` }}>
@@ -604,8 +632,8 @@ const MovieTicketPage: React.FC = () => {
                   <div className="mt-4 text-center">
                     <span className="text-[11px] font-mono bg-emerald-50 text-emerald-800 px-3.5 py-1.5 rounded-full border border-emerald-200 font-bold shadow-2xs">
                       {language === 'vi'
-                        ? '⚡ Mỗi dịch vụ có Database riêng — hỏng 1 cái không ảnh hưởng 5 cái còn lại'
-                        : '⚡ Each service owns its own database — one failure doesn\'t cascade to others'}
+                        ? '⚡ Database-per-Service: 5 CSDL SQL Server độc lập; Notification Service hoạt động stateless không cần persistent DB — liên kết các domain qua logical IDs'
+                        : '⚡ Database-per-Service: 5 isolated SQL Server databases; Notification Service operates statelessly without a persistent DB — domains linked strictly via logical IDs'}
                     </span>
                   </div>
                 </div>
@@ -626,7 +654,7 @@ const MovieTicketPage: React.FC = () => {
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-xs font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded-full font-mono">STEP 4</span>
                     <span className="text-sm font-bold text-[#0B0E17]">
-                      {language === 'vi' ? 'Hạ tầng Lưu trữ & Giao tiếp' : 'Storage & Communication Infrastructure'}
+                      {language === 'vi' ? 'Hạ tầng Lưu trữ & Giao dịch Phân tán' : 'Storage & Distributed Messaging Infrastructure'}
                     </span>
                   </div>
 
@@ -644,8 +672,8 @@ const MovieTicketPage: React.FC = () => {
                       </div>
                       <p className="text-[11px] text-[#475569] leading-relaxed">
                         {language === 'vi'
-                          ? 'Lưu trữ dữ liệu vĩnh viễn: người dùng, phim, ghế, vé đã đặt, giao dịch thanh toán. Mỗi dịch vụ chỉ truy cập Database của riêng mình.'
-                          : 'Persistent data storage: users, movies, seats, bookings, payment transactions. Each service can only access its own database.'}
+                          ? '5 CSDL riêng biệt: XemPhim_User, Movie, Seat, Booking, Payment. Cô lập schema hoàn toàn; Notification Service chạy stateless không cần persistent DB.'
+                          : '5 isolated databases: XemPhim_User, Movie, Seat, Booking, Payment. Complete schema isolation; Notification Service operates statelessly without a persistent DB.'}
                       </p>
                     </div>
 
@@ -656,14 +684,14 @@ const MovieTicketPage: React.FC = () => {
                           <Zap className="w-4.5 h-4.5 text-emerald-600" />
                         </div>
                         <div>
-                          <div className="text-xs font-bold text-[#0B0E17]">Redis</div>
-                          <div className="text-[10px] text-[#64748B] font-mono">{language === 'vi' ? 'Bộ nhớ siêu nhanh' : 'In-memory speed layer'}</div>
+                          <div className="text-xs font-bold text-[#0B0E17]">Redis 7</div>
+                          <div className="text-[10px] text-[#64748B] font-mono">{language === 'vi' ? 'Khóa phân tán & Cache' : 'Distributed Lock & Cache'}</div>
                         </div>
                       </div>
                       <p className="text-[11px] text-[#475569] leading-relaxed">
                         {language === 'vi'
-                          ? '2 vai trò: (1) Khóa phân tán — đảm bảo chỉ 1 người giữ được 1 ghế cùng lúc. (2) Bộ đệm — tăng tốc truy vấn danh sách phim.'
-                          : 'Two roles: (1) Distributed Lock — ensures only 1 person holds a seat at a time. (2) Cache — speeds up movie catalog queries.'}
+                          ? '2 vai trò: (1) Khóa phân tán SET NX PX (120s) chống bán trùng ghế tại RAM. (2) Cache metadata suất chiếu TTL 5 phút tránh flood request.'
+                          : 'Two roles: (1) Atomic SET NX PX lock (120s) eliminating double-booking in RAM. (2) 5-min showtime metadata cache preventing service floods.'}
                       </p>
                     </div>
 
@@ -674,14 +702,14 @@ const MovieTicketPage: React.FC = () => {
                           <Radio className="w-4.5 h-4.5 text-amber-600" />
                         </div>
                         <div>
-                          <div className="text-xs font-bold text-[#0B0E17]">RabbitMQ</div>
-                          <div className="text-[10px] text-[#64748B] font-mono">{language === 'vi' ? 'Hàng đợi tin nhắn' : 'Message queue'}</div>
+                          <div className="text-xs font-bold text-[#0B0E17]">RabbitMQ (SAGA)</div>
+                          <div className="text-[10px] text-[#64748B] font-mono">{language === 'vi' ? 'Giao dịch bù trừ' : 'SAGA Choreography'}</div>
                         </div>
                       </div>
                       <p className="text-[11px] text-[#475569] leading-relaxed">
                         {language === 'vi'
-                          ? 'Khi đặt vé xong, hệ thống gửi tin nhắn "hãy gửi email vé" vào hàng đợi. Dịch vụ thông báo nhận và gửi email — không làm chậm người dùng.'
-                          : 'After booking, the system queues a "send ticket email" message. Notification service picks it up and sends email — without slowing the user down.'}
+                          ? 'SAGA Choreography (Durable Queues & Message Persistence): (1) payment.successful → Booking xác nhận vé. (2) booking.failed → Payment tự động hoàn tiền ZaloPay bù trừ.'
+                          : 'SAGA Choreography (Durable Queues & Message Persistence): (1) payment.successful → Booking confirms ticket. (2) booking.failed → Payment triggers automated ZaloPay refund.'}
                       </p>
                     </div>
                   </div>
@@ -710,8 +738,8 @@ const MovieTicketPage: React.FC = () => {
                       </div>
                       <p className="text-xs text-[#475569] leading-relaxed">
                         {language === 'vi'
-                          ? 'Dịch vụ bên ngoài: tạo mã QR để quét thanh toán, sau đó gọi ngược lại xác nhận giao dịch thành công (Webhook).'
-                          : 'External partner: generates QR code for payment scanning, then calls back to confirm successful transaction (Webhook).'}
+                          ? 'Đối tác ngoại vi: sinh mã Dynamic QR thanh toán, gửi Webhook có chữ ký số HMAC-SHA256, và cung cấp API hoàn tiền tự động khi hủy đơn.'
+                          : 'External partner: generates dynamic QR payments, dispatches HMAC-SHA256 verified Webhooks, and processes automated refund transactions.'}
                       </p>
                     </div>
                   </div>
@@ -732,18 +760,18 @@ const MovieTicketPage: React.FC = () => {
                       <th className="text-left px-4 py-3 text-[#475569] font-bold uppercase tracking-wider">Service</th>
                       <th className="text-left px-4 py-3 text-[#475569] font-bold uppercase tracking-wider">Port</th>
                       <th className="text-left px-4 py-3 text-[#475569] font-bold uppercase tracking-wider">Database</th>
-                      <th className="text-left px-4 py-3 text-[#475569] font-bold uppercase tracking-wider">{language === 'vi' ? 'Trách nhiệm' : 'Responsibility'}</th>
+                      <th className="text-left px-4 py-3 text-[#475569] font-bold uppercase tracking-wider">{language === 'vi' ? 'Trách nhiệm kỹ thuật' : 'Technical Responsibility'}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {[
-                      { name: 'API Gateway', port: ':8080', db: '—', resp: language === 'vi' ? 'JWT Auth · CORS · Reverse Proxy → các service' : 'JWT Auth · CORS · Reverse Proxy to services', color: '#5E6AD2' },
-                      { name: 'User Service', port: ':4001', db: 'XemPhim_User', resp: language === 'vi' ? 'Đăng ký / Đăng nhập · bcrypt · Profile' : 'Register / Login · bcrypt · Profile', color: '#8B5CF6' },
-                      { name: 'Movie Service', port: ':4002', db: 'XemPhim_Movie', resp: language === 'vi' ? 'Phim · Suất chiếu · Cache-Aside Redis (TTL 3600s)' : 'Movies · Showtimes · Cache-Aside Redis (TTL 3600s)', color: '#EC4899' },
-                      { name: 'Seat Service', port: ':4003', db: 'XemPhim_Seat', resp: language === 'vi' ? 'Sơ đồ ghế · Trạng thái khả dụng · Phòng chiếu' : 'Seat map · Availability status · Auditorium layout', color: '#06B6D4' },
-                      { name: 'Booking Service', port: ':4004', db: 'XemPhim_Booking', resp: language === 'vi' ? 'Đặt vé · Redis SET NX EX Lock (TTL 10m) · RabbitMQ publish' : 'Booking · Redis SET NX EX Lock (TTL 10m) · RabbitMQ publish', color: '#10B981' },
-                      { name: 'Payment Service', port: ':4005', db: 'XemPhim_Payment', resp: language === 'vi' ? 'ZaloPay QR · HMAC-SHA256 Webhook · Refund Flow' : 'ZaloPay QR · HMAC-SHA256 Webhook · Refund Flow', color: '#F59E0B' },
-                      { name: 'Notification Svc', port: ':4006', db: '—', resp: language === 'vi' ? 'RabbitMQ consume · QR vé · Email Nodemailer (bất đồng bộ)' : 'RabbitMQ consume · QR ticket · Email via Nodemailer (async)', color: '#FB923C' },
+                      { name: 'API Gateway', port: ':8080', db: '—', resp: language === 'vi' ? 'JWT Auth · Circuit Breakers (Opossum) · Distributed Tracing (x-request-id) · Reverse Proxy' : 'JWT Auth · Circuit Breakers (Opossum) · Distributed Tracing (x-request-id) · Reverse Proxy', color: '#5E6AD2' },
+                      { name: 'User Service', port: ':4001', db: 'XemPhim_User', resp: language === 'vi' ? 'Đăng ký / Đăng nhập · bcrypt hashing · User Profile' : 'Register / Login · bcrypt hashing · User Profiles', color: '#8B5CF6' },
+                      { name: 'Movie Service', port: ':4002', db: 'XemPhim_Movie', resp: language === 'vi' ? 'Phim · Suất chiếu · Rạp · Cache-Aside Redis · Batch Showtimes O(1) Round Trips' : 'Movies · Showtimes · Cinemas · Cache-Aside Redis · Batch Showtimes O(1) Round Trips', color: '#EC4899' },
+                      { name: 'Seat Service', port: ':4003', db: 'XemPhim_Seat', resp: language === 'vi' ? 'Single Source of Truth cho ghế · Sơ đồ phòng chiếu · Batch Seats O(1) Round Trips' : 'Single Source of Truth for seats · Auditorium layout · Batch Seats O(1) Round Trips', color: '#06B6D4' },
+                      { name: 'Booking Service', port: ':4004', db: 'XemPhim_Booking', resp: language === 'vi' ? 'Đặt vé · Khóa phân tán Redis SET NX PX 120s · SAGA Choreography Consumer' : 'Booking · Redis SET NX PX 120s lock · SAGA Choreography Consumer', color: '#10B981' },
+                      { name: 'Payment Service', port: ':4005', db: 'XemPhim_Payment', resp: language === 'vi' ? 'ZaloPay QR · HMAC-SHA256 Webhook · SAGA Publisher & Compensating Refund' : 'ZaloPay QR · HMAC-SHA256 Webhook · SAGA Publisher & Compensating Refund', color: '#F59E0B' },
+                      { name: 'Notification Svc', port: ':4006', db: '— (Stateless)', resp: language === 'vi' ? 'RabbitMQ Consumer · Sinh QR vé điện tử · Email Nodemailer (Stateless, không CSDL)' : 'RabbitMQ Consumer · QR ticket generator · Email via Nodemailer (Stateless, no DB)', color: '#FB923C' },
                     ].map((row, i) => (
                       <tr key={i} className="border-b border-slate-100 hover:bg-slate-50/80 transition-colors">
                         <td className="px-4 py-3 font-bold font-mono" style={{ color: row.color }}>{row.name}</td>
@@ -763,7 +791,7 @@ const MovieTicketPage: React.FC = () => {
             <div className="flex items-center gap-3 mb-6">
               <Lock className="w-5 h-5 text-emerald-600" />
               <h2 className="text-2xl font-black text-[#0B0E17]">
-                {language === 'vi' ? 'Quy trình Khóa Phân tán Chống Trùng Ghế (Redis Distributed Locking Flow)' : 'Zero Double-Booking Distributed Locking Protocol'}
+                {language === 'vi' ? 'Quy trình Khóa Phân tán Chống Trùng Ghế (Redis Distributed Locking Flow)' : 'Anti Double-Booking Distributed Locking Protocol'}
               </h2>
             </div>
             <div className="p-7 bg-white/90 border border-slate-200/80 space-y-6 rounded-2xl shadow-xs">
@@ -786,12 +814,12 @@ const MovieTicketPage: React.FC = () => {
                   <span className="w-7 h-7 rounded-full bg-[#5E6AD2]/20 text-[#5E6AD2] flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
                   <div>
                     <span className="text-sm font-bold text-[#0B0E17] block mb-1">
-                      {language === 'vi' ? 'Thực thi lệnh nguyên tử SET NX EX trên Redis' : 'Atomic SET NX EX Execution on Redis'}
+                      {language === 'vi' ? 'Thực thi lệnh nguyên tử SET NX PX trên Redis' : 'Atomic SET NX PX Execution on Redis'}
                     </span>
                     <p className="text-sm text-[#334155] font-normal leading-relaxed">
                       {language === 'vi'
-                        ? 'Thực thi lệnh khóa: SET lock:seat:{showtimeId}:{seatId} {userId} NX EX 600. Chỉ có yêu cầu đến đầu tiên ghi thành công khóa (trả về OK).'
-                        : 'Executes atomic lock: SET lock:seat:{showtimeId}:{seatId} {userId} NX EX 600. Exactly 1 request succeeds.'}
+                        ? 'Thực thi lệnh khóa: SET lock:seat:{showtimeId}:{seatId} {userId} NX PX 120000. Chỉ có yêu cầu đến đầu tiên ghi thành công khóa (trả về OK).'
+                        : 'Executes atomic lock: SET lock:seat:{showtimeId}:{seatId} {userId} NX PX 120000. Exactly 1 request succeeds.'}
                     </p>
                   </div>
                 </div>
@@ -818,8 +846,8 @@ const MovieTicketPage: React.FC = () => {
                     </span>
                     <p className="text-sm text-[#334155] font-normal leading-relaxed">
                       {language === 'vi'
-                        ? 'Nếu thanh toán thành công, hệ thống ghi cố định vé vào CSDL SQL Server và đẩy thông điệp vào RabbitMQ để gửi email. Nếu quá 10 phút chưa thanh toán, Redis tự hủy khóa để người khác có thể chọn.'
-                        : 'On payment confirmation, ticket commits to SQL Server and RabbitMQ emits email job. On timeout, Redis evicts lock.'}
+                        ? 'Nếu thanh toán thành công, hệ thống ghi cố định vé vào CSDL SQL Server và đẩy thông điệp vào RabbitMQ để gửi email. Nếu quá 120 giây chưa thanh toán, Redis tự hủy khóa để người khác có thể chọn.'
+                        : 'On payment confirmation, ticket commits to SQL Server and RabbitMQ emits email job. On timeout (120s TTL), Redis evicts lock.'}
                     </p>
                   </div>
                 </div>
@@ -828,12 +856,12 @@ const MovieTicketPage: React.FC = () => {
                   <span className="w-7 h-7 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">5</span>
                   <div>
                     <span className="text-sm font-bold text-[#0B0E17] block mb-1">
-                      {language === 'vi' ? 'Thoát web / Đóng tab → Nhả ghế ngay lập tức' : 'Browser Exit / Tab Close → Instant Seat Release'}
+                      {language === 'vi' ? 'Thoát web / Đóng tab → Chủ động giải phóng ghế' : 'Browser Exit / Tab Close → Proactive Seat Release'}
                     </span>
                     <p className="text-sm text-[#334155] font-normal leading-relaxed">
                       {language === 'vi'
-                        ? 'Khi người dùng đóng tab, F5, hoặc rời trang thanh toán → trình duyệt bắn sự kiện beforeunload → gọi API cancel booking (keepalive: true) → Backend chạy releaseSeatLocks() xóa khóa Redis ngay lập tức → ghế trở lại trạng thái khả dụng gần như realtime. Nếu mất mạng, Redis tự hủy khóa sau 10 phút (TTL fallback).'
-                        : 'When user closes tab, refreshes (F5), or leaves payment page → browser fires beforeunload → calls cancel booking API (keepalive: true) → Backend runs releaseSeatLocks() deleting Redis keys immediately → seat becomes available in near-realtime. If network fails, Redis auto-evicts lock after 10 min (TTL fallback).'}
+                        ? 'Khi người dùng đóng tab, F5 hoặc rời trang thanh toán, trình duyệt gửi yêu cầu cancel với keepalive: true; Backend chủ động giải phóng Redis lock. Nếu request không tới được server do mất mạng hoặc ngắt trình duyệt, cơ chế TTL 120s đảm bảo khóa tự động hết hạn.'
+                        : 'When user closes tab, refreshes (F5), or leaves payment page, the browser dispatches a cancellation request with keepalive: true, prompting the Backend to proactively delete Redis locks. If network disruption prevents delivery, the 120s TTL fallback guarantees automated lock expiration.'}
                     </p>
                   </div>
                 </div>
@@ -861,7 +889,7 @@ const MovieTicketPage: React.FC = () => {
                     {/* Row 2: Redis Lock */}
                     <div className="flex justify-center">
                       <div className="px-5 py-3 bg-white border-2 border-emerald-300 rounded-xl text-center shadow-2xs">
-                        <div className="text-sm font-bold text-emerald-700 mb-1">Redis SET NX EX 600</div>
+                        <div className="text-sm font-bold text-emerald-700 mb-1">Redis SET NX PX 120000</div>
                         <div className="text-xs text-[#64748B] font-mono">lock:showtime:{'{'}id{'}'}:seat:{'{'}id{'}'}</div>
                       </div>
                     </div>
@@ -871,11 +899,11 @@ const MovieTicketPage: React.FC = () => {
                     <div className="flex justify-center gap-6">
                       <div className="px-4 py-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-center flex-1 max-w-[200px] shadow-2xs">
                         <div className="text-xs font-bold text-emerald-700">✓ OK</div>
-                        <div className="text-[11px] text-[#475569]">{language === 'vi' ? 'Giành được ghế' : 'Lock Acquired'}</div>
+                        <div className="text-[11px] text-[#475569]">{language === 'vi' ? 'Giành được ghế (RAM)' : 'Lock Acquired (RAM)'}</div>
                       </div>
                       <div className="px-4 py-2.5 bg-rose-50 border border-rose-200 rounded-xl text-center flex-1 max-w-[200px] shadow-2xs">
                         <div className="text-xs font-bold text-rose-700">✗ NULL</div>
-                        <div className="text-[11px] text-[#475569]">{language === 'vi' ? 'HTTP 409 → Ghế đã bị giữ' : 'HTTP 409 → Seat Taken'}</div>
+                        <div className="text-[11px] text-[#475569]">{language === 'vi' ? 'HTTP 409 → Ghế đang giữ' : 'HTTP 409 → Seat Contended'}</div>
                       </div>
                     </div>
                     <div className="flex justify-center py-1.5"><ArrowDown className="w-4 h-4 text-amber-500" /></div>
@@ -885,7 +913,7 @@ const MovieTicketPage: React.FC = () => {
                       <div className="px-5 py-3 bg-white border-2 border-amber-300 rounded-xl flex items-center gap-3 shadow-2xs">
                         <CreditCard className="w-5 h-5 text-amber-600" />
                         <span className="text-sm font-bold text-[#0B0E17]">
-                          {language === 'vi' ? 'Quét mã QR thanh toán ZaloPay' : 'Scan ZaloPay QR Payment'}
+                          {language === 'vi' ? 'Quét mã QR thanh toán ZaloPay (HMAC-SHA256 Webhook)' : 'Scan ZaloPay Dynamic QR (HMAC-SHA256 Webhook)'}
                         </span>
                       </div>
                     </div>
@@ -898,21 +926,21 @@ const MovieTicketPage: React.FC = () => {
                         <div className="flex items-center gap-2 mb-2">
                           <CheckCircle className="w-4 h-4 text-emerald-600" />
                           <span className="text-xs font-bold text-emerald-700">
-                            {language === 'vi' ? 'Thanh toán OK' : 'Payment OK'}
+                            {language === 'vi' ? 'SAGA Thành công' : 'SAGA Success'}
                           </span>
                         </div>
                         <div className="space-y-1.5">
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-emerald-600 shrink-0 font-bold">→</span>
-                            <span>{language === 'vi' ? 'Ghi vé vào SQL Server' : 'Commit ticket to SQL Server'}</span>
+                            <span>RabbitMQ: payment.successful</span>
                           </div>
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-emerald-600 shrink-0 font-bold">→</span>
-                            <span>{language === 'vi' ? 'Gửi email qua RabbitMQ' : 'Queue email via RabbitMQ'}</span>
+                            <span>{language === 'vi' ? 'Booking ghi DB + gửi email QR' : 'Booking commits DB + QR email'}</span>
                           </div>
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-emerald-600 shrink-0 font-bold">→</span>
-                            <span>{language === 'vi' ? 'Xóa khóa Redis' : 'Delete Redis lock'}</span>
+                            <span>{language === 'vi' ? 'Giải phóng khóa Redis' : 'Delete Redis lock keys'}</span>
                           </div>
                         </div>
                       </div>
@@ -922,45 +950,45 @@ const MovieTicketPage: React.FC = () => {
                         <div className="flex items-center gap-2 mb-2">
                           <AlertTriangle className="w-4 h-4 text-rose-600" />
                           <span className="text-xs font-bold text-rose-700">
-                            {language === 'vi' ? 'Đóng tab / Thoát' : 'Tab Close / Exit'}
+                            {language === 'vi' ? 'Đóng tab / Hủy vé' : 'Tab Close / Cancel'}
                           </span>
                         </div>
                         <div className="space-y-1.5">
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-rose-600 shrink-0 font-bold">→</span>
-                            <span>beforeunload event</span>
+                            <span>beforeunload / POST /cancel</span>
                           </div>
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-rose-600 shrink-0 font-bold">→</span>
-                            <span>POST /cancel (keepalive)</span>
+                            <span>releaseSeatLocks()</span>
                           </div>
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-rose-600 shrink-0 font-bold">→</span>
-                            <span>{language === 'vi' ? 'Redis DEL → Nhả ghế ngay' : 'Redis DEL → Instant release'}</span>
+                            <span>{language === 'vi' ? 'Chủ động nhả ghế trên Redis' : 'Proactive Redis seat unlock'}</span>
                           </div>
                         </div>
                       </div>
 
-                      {/* Scenario C: Timeout */}
+                      {/* Scenario C: Timeout or SAGA Compensating */}
                       <div className="p-4 rounded-xl border-2 border-amber-300 bg-white shadow-2xs">
                         <div className="flex items-center gap-2 mb-2">
                           <Zap className="w-4 h-4 text-amber-600" />
                           <span className="text-xs font-bold text-amber-700">
-                            {language === 'vi' ? 'Hết 10 phút (TTL)' : '10-Min Timeout (TTL)'}
+                            {language === 'vi' ? 'SAGA Bù trừ / Hết hạn' : 'SAGA Refund / Expiry'}
                           </span>
                         </div>
                         <div className="space-y-1.5">
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-amber-600 shrink-0 font-bold">→</span>
-                            <span>{language === 'vi' ? 'Redis tự hủy khóa (EX)' : 'Redis auto-evicts key (EX)'}</span>
+                            <span>{language === 'vi' ? 'Hết hạn 120s: Redis tự evict' : '120s TTL: Redis auto-evicts'}</span>
                           </div>
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-amber-600 shrink-0 font-bold">→</span>
-                            <span>{language === 'vi' ? 'Booking → status: expired' : 'Booking → status: expired'}</span>
+                            <span>RabbitMQ: booking.failed</span>
                           </div>
                           <div className="text-[11px] text-[#475569] flex items-start gap-1.5">
                             <span className="text-amber-600 shrink-0 font-bold">→</span>
-                            <span>{language === 'vi' ? 'Ghế mở khóa tự động' : 'Seat unlocked automatically'}</span>
+                            <span>{language === 'vi' ? 'ZaloPay Auto Refund hoàn tiền' : 'ZaloPay Auto Refund executed'}</span>
                           </div>
                         </div>
                       </div>

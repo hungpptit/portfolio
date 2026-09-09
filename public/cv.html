@@ -464,14 +464,14 @@
               </svg>
               GitHub
             </a>
-            <span style="font-size: 8.1pt; color: #333333; font-weight: 500;">(React Frontend, Microservices, Redis Lock, RabbitMQ, SQL Server)</span>
+            <span style="font-size: 8.1pt; color: #333333; font-weight: 500;">(React Frontend, Microservices, SAGA Pattern, Circuit Breaker, Redis Lock, RabbitMQ, SQL Server)</span>
           </div>
         </div>
         <ul class="bullet-list">
-          <li>Architected 6 microservices managed via centralized API Gateway (Reverse Proxy), implementing JWT authentication and service-level authorization isolating internal microservices.</li>
-          <li>Built interactive React SPA seat selection matrix with real-time countdown; applied <strong>Redis Distributed Lock (atomic SET NX EX, 10-min TTL)</strong> to eliminate race conditions.</li>
-          <li>Integrated RabbitMQ message broker for async QR-coded e-ticket delivery via Nodemailer worker, and connected ZaloPay Dynamic QR payment with HMAC-SHA256 signature verification.</li>
-          <li>Configured automated Jest test suite covering reservation state machines, seat locking, and checkout workflows, achieving <strong>100% unit & integration test pass rate</strong>.</li>
+          <li>Architected 6 business microservices behind a centralized API Gateway (Database-per-Service) with <strong>Opossum Circuit Breakers</strong> and <strong>Distributed Tracing (x-request-id)</strong>.</li>
+          <li>Engineered <strong>Redis Distributed Locking (atomic SET NX PX 120s)</strong> preventing double-booking under concurrent contention, with automatic fallback to Sequelize pessimistic DB transaction locking.</li>
+          <li>Implemented <strong>asynchronous SAGA Choreography over RabbitMQ</strong> with automated ZaloPay compensating refund transactions on booking failures, plus batch query APIs reducing network round trips from O(N) to O(1).</li>
+          <li>Secured ZaloPay Dynamic QR payments via HMAC-SHA256 signature verification and authored comprehensive Jest unit test suites with <strong>100% test pass rate (25/25 tests)</strong>.</li>
         </ul>
       </div>
 
