@@ -26,7 +26,6 @@ import {
   Zap,
   Radio,
   ArrowDown,
-  Copy,
   Maximize2,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
@@ -35,12 +34,14 @@ import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { UI_TRANSLATIONS } from '../data/translations';
 import { ProjectShowcaseGallery } from '../components/ProjectShowcaseGallery';
+import { LightboxModal } from '../components/DeviceMockup';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const MovieTicketPage: React.FC = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [activeSection, setActiveSection] = useState('overview');
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const detail = MOVIE_TICKET_DETAIL[language];
   const project = PROJECTS[language].find(p => p.id === 'movie-ticket-booking')!;
@@ -88,8 +89,15 @@ const MovieTicketPage: React.FC = () => {
             <ArrowLeft className="w-4 h-4" /> {t.detailCommon.backBtn}
           </button>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <LanguageToggle />
+            <a href={detail.demoUrl} target="_blank" rel="noopener noreferrer"
+              title={language === 'vi' ? 'Xem Demo Giao diện UI/UX (Frontend)' : 'Live UI/UX Demo (Frontend Only)'}
+              className="inline-flex items-center gap-1.5 px-3 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 text-xs font-bold rounded-xl transition-all shadow-2xs">
+              <Globe className="w-3.5 h-3.5 text-emerald-600" />
+              <span>{language === 'vi' ? 'Live Demo (UI/UX)' : 'Live UI/UX Demo'}</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
+            </a>
             <a href={detail.githubUrl} target="_blank" rel="noopener noreferrer"
               className="btn-linear-primary text-xs py-2 px-4 shadow-xs">
               {t.detailCommon.sourceRepo} <ArrowUpRight className="w-4 h-4 ml-1.5" />
@@ -123,6 +131,16 @@ const MovieTicketPage: React.FC = () => {
                 <div>
                   <p className="text-xs text-[#64748B] mb-1 font-medium">{t.detailCommon.teamLabel}</p>
                   <p className="text-sm text-[#0B0E17] font-semibold">{detail.teamSize}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-[#64748B] mb-1 font-medium">{language === 'vi' ? 'Bản Demo Giao diện' : 'Live UI/UX Demo'}</p>
+                  <a href={detail.demoUrl} target="_blank" rel="noopener noreferrer"
+                    className="text-xs text-[#5E6AD2] hover:text-[#4338CA] font-semibold inline-flex items-center gap-1 hover:underline">
+                    xemphim-three.vercel.app <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                  <p className="text-[10px] text-slate-400 mt-0.5 leading-snug">
+                    {language === 'vi' ? '* Demo UI/UX, không bao gồm logic backend' : '* UI/UX demo only, no backend logic'}
+                  </p>
                 </div>
               </div>
             </div>
@@ -160,11 +178,11 @@ const MovieTicketPage: React.FC = () => {
             <div className="p-6 md:p-8 bg-white border border-slate-200/90 rounded-3xl shadow-sm">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
-                {/* Left Column: Visual Seat Selection Mockup (Light Theme Browser Window) */}
+                {/* Left Column: Real Project Screenshot inside Sleek Browser Frame */}
                 <div className="lg:col-span-6 flex flex-col gap-3">
-                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-md">
+                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-md hover:shadow-lg transition-all duration-300 group">
                     {/* Browser Chrome Header */}
-                    <div className="bg-[#1E1E24] px-4 py-2.5 flex items-center justify-between text-xs">
+                    <div className="bg-[#1E1E24] px-4 py-2.5 flex items-center justify-between text-xs select-none">
                       {/* Window Controls */}
                       <div className="flex items-center gap-1.5">
                         <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
@@ -173,105 +191,69 @@ const MovieTicketPage: React.FC = () => {
                       </div>
 
                       {/* URL Bar */}
-                      <div className="bg-slate-800/90 border border-slate-700/60 text-slate-300 px-3 py-0.5 rounded-md text-[11px] font-mono flex items-center gap-1.5 max-w-[260px] w-full justify-between shadow-inner">
+                      <a
+                        href={detail.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-slate-800/90 hover:bg-slate-800 border border-slate-700/60 hover:border-slate-600 text-slate-300 px-3 py-0.5 rounded-md text-[11px] font-mono flex items-center gap-1.5 max-w-[280px] w-full justify-between shadow-inner transition-colors"
+                        title={language === 'vi' ? 'Nhấp để mở live demo' : 'Click to open live demo'}
+                      >
                         <div className="flex items-center gap-1.5 truncate">
                           <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
-                          <span className="truncate">http://galaxy.cinema.internal</span>
+                          <span className="truncate">https://xemphim-three.vercel.app</span>
                         </div>
-                        <Copy className="w-2.5 h-2.5 text-slate-400 shrink-0 opacity-60" />
-                      </div>
+                        <ArrowUpRight className="w-3 h-3 text-slate-400 shrink-0 opacity-70" />
+                      </a>
 
                       {/* Right Tags */}
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[9px] font-bold text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-400/20">
-                          SEAT ENGINE
+                        <span className="font-mono text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-400/20">
+                          UI/UX DEMO
                         </span>
-                        <Maximize2 className="w-3 h-3 text-slate-400" />
+                        <button
+                          onClick={() => setLightboxOpen(true)}
+                          className="text-slate-400 hover:text-white transition-colors cursor-pointer"
+                          title={language === 'vi' ? 'Xem ảnh toàn màn hình' : 'View fullscreen image'}
+                        >
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                     </div>
 
-                    {/* Cinema Banner Subheader */}
-                    <div className="bg-slate-50 px-4 py-2 border-b border-slate-200/80 flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_#10B981]" />
-                        <span className="font-mono font-bold text-slate-800">GALAXY CINEMA · RẠP 03</span>
-                      </div>
-                      <span className="font-mono text-amber-800 font-bold bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[11px]">
-                        {language === 'vi' ? 'KHÓA REDIS: 01:59' : 'LOCK TTL: 01:59'}
-                      </span>
-                    </div>
-
-                    {/* Interactive Seat Matrix Preview (Light Canvas) */}
-                    <div className="p-4 flex flex-col items-center bg-[#F8FAFC]">
-                      {/* Cinema Screen Curve */}
-                      <div className="w-56 h-2.5 bg-gradient-to-b from-[#5E6AD2]/30 via-sky-400/20 to-transparent rounded-t-full mb-1 border-t-2 border-[#5E6AD2]/40" />
-                      <div className="text-[10px] uppercase font-mono tracking-widest text-slate-400 mb-3 font-semibold">
-                        {language === 'vi' ? 'MÀN HÌNH CHIẾU (SCREEN)' : 'CINEMA SCREEN'}
-                      </div>
-
-                      {/* Mini Seat Rows */}
-                      <div className="space-y-1.5 mb-4">
-                        {[
-                          ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8'],
-                          ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8'],
-                          ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8'],
-                          ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8'],
-                        ].map((row, rIdx) => (
-                          <div key={rIdx} className="flex gap-1.5">
-                            {row.map((seat, sIdx) => {
-                              const isSold = (rIdx === 0 && (sIdx === 2 || sIdx === 3)) || (rIdx === 2 && sIdx === 4);
-                              const isHolding = (rIdx === 1 && sIdx === 3) || (rIdx === 1 && sIdx === 4);
-                              const isSelected = rIdx === 2 && (sIdx === 2 || sIdx === 3);
-                              return (
-                                <div
-                                  key={seat}
-                                  title={`${seat}: ${isSold ? 'Đã bán' : isHolding ? 'Đang giữ chỗ (Redis Lock)' : isSelected ? 'Đang chọn' : 'Ghế trống'}`}
-                                  className={`w-6 h-6 rounded-md text-[9px] font-mono font-bold flex items-center justify-center transition-all ${
-                                    isSold
-                                      ? 'bg-slate-200 text-slate-400 border border-slate-200 cursor-not-allowed'
-                                      : isHolding
-                                      ? 'bg-amber-100 text-amber-900 border border-amber-300 animate-pulse shadow-2xs'
-                                      : isSelected
-                                      ? 'bg-[#5E6AD2] text-white shadow-2xs'
-                                      : 'bg-white text-slate-700 border border-slate-300 hover:border-[#5E6AD2] shadow-2xs'
-                                  }`}
-                                >
-                                  {seat}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Legend */}
-                      <div className="flex items-center gap-3 text-[10px] font-mono text-slate-500 border-t border-slate-200/80 pt-2.5 w-full justify-center">
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-xs bg-white border border-slate-300 shadow-2xs" />
-                          <span>{language === 'vi' ? 'Trống' : 'Available'}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-xs bg-amber-100 border border-amber-300" />
-                          <span className="text-amber-800 font-semibold">{language === 'vi' ? 'Khóa Redis' : 'Redis Lock'}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-xs bg-[#5E6AD2]" />
-                          <span className="text-indigo-600 font-semibold">{language === 'vi' ? 'Đang chọn' : 'Selected'}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-xs bg-slate-200 border border-slate-200" />
-                          <span className="text-slate-400">{language === 'vi' ? 'Đã bán' : 'Sold'}</span>
-                        </div>
+                    {/* Screenshot Preview with Zoom on Click */}
+                    <div
+                      className="relative overflow-hidden cursor-pointer bg-[#0A0D14]"
+                      onClick={() => setLightboxOpen(true)}
+                    >
+                      <img
+                        src="/assets/projects/movie-ticket/demo1.png"
+                        alt="XEMPHIM Cinema Platform Live Preview"
+                        className="w-full h-auto max-h-[350px] object-cover object-top transition-transform duration-300 group-hover:scale-[1.015]"
+                        loading="eager"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <span className="px-3.5 py-2 bg-black/80 backdrop-blur-sm text-white text-xs font-medium rounded-xl flex items-center gap-2 shadow-xl">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                          {language === 'vi' ? 'Nhấp để phóng to ảnh' : 'Click to enlarge'}
+                        </span>
                       </div>
                     </div>
 
                     {/* Bottom Engineering Status Strip */}
                     <div className="bg-slate-50 px-3.5 py-2 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono">
-                      <span className="text-slate-500 font-medium flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        Redlock (Distributed Lock) · SAGA Pattern
+                      <span className="text-slate-600 font-medium flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#10B981]" />
+                        XEMPHIM Cinema Platform · React 18 SPA
                       </span>
-                      <span className="text-emerald-700 font-bold">100% Zero Race Condition</span>
+                      <a
+                        href={detail.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-700 hover:text-emerald-800 font-bold hover:underline inline-flex items-center gap-1"
+                      >
+                        <span>xemphim-three.vercel.app</span>
+                        <ArrowUpRight className="w-3 h-3" />
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -327,10 +309,20 @@ const MovieTicketPage: React.FC = () => {
                     {/* Action Buttons */}
                     <div className="flex flex-wrap items-center gap-3 pt-2">
                       <a
+                        href={detail.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                      >
+                        <Globe className="w-4 h-4" />
+                        {language === 'vi' ? 'Trải Nghiệm Demo UI/UX' : 'Live UI/UX Demo'}
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                      <a
                         href={detail.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0B0E17] hover:bg-[#1E293B] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0B0E17] hover:bg-[#1E293B] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
                       >
                         <GitBranch className="w-4 h-4" /> {t.detailCommon.sourceRepo}
                       </a>
@@ -349,6 +341,11 @@ const MovieTicketPage: React.FC = () => {
                         {language === 'vi' ? 'Cơ Chế Khóa Phân Tán' : 'Distributed Lock Protocol'}
                       </button>
                     </div>
+                    <p className="text-[11px] text-slate-500 font-mono mt-2">
+                      {language === 'vi'
+                        ? '💡 Ghi chú: Bản Live Demo trên Vercel là bản mô phỏng giao diện người dùng (UI/UX Frontend Demo), không kết nối cụm 6 vi dịch vụ backend & CSDL phân tán.'
+                        : '💡 Note: The Vercel live demo is a frontend UI/UX demonstration, without active connections to the 6-microservices backend & distributed databases.'}
+                    </p>
                   </div>
                 </div>
 
@@ -496,11 +493,27 @@ const MovieTicketPage: React.FC = () => {
               projectId="movie-ticket"
               defaultTab="desktop"
               availableTabs={['desktop', 'terminal']}
-              desktopTitle={language === 'vi' ? 'Sơ Đồ Chọn Ghế Trực Tuyến & Cổng Thanh Toán (Web App)' : 'Real-time Cinema Seat Picker & Checkout (Web App)'}
-              desktopUrl="http://localhost:3000"
+              desktopSrc={['/assets/projects/movie-ticket/demo1.png', '/assets/projects/movie-ticket/desktop.png']}
+              desktopTitle={language === 'vi' ? 'Giao Diện Xem Phim & Đặt Vé Trực Tuyến (Web App)' : 'Cinema Streaming & Ticket Booking Platform (Web App)'}
+              desktopUrl={detail.demoUrl}
               themeColor="#5E6AD2"
               terminalCommand="npm test -- --coverage --testPathPattern=booking.spec.ts"
             />
+            <div className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600">
+              <span className="flex items-center gap-2 font-medium">
+                <Globe className="w-4 h-4 text-emerald-600" />
+                {language === 'vi' ? 'Bản Demo UI/UX trực tiếp trên Vercel (chỉ giao diện frontend):' : 'Live UI/UX Demo on Vercel (frontend interface only):'}
+              </span>
+              <a
+                href={detail.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors"
+              >
+                <span>{language === 'vi' ? 'Mở Demo UI/UX' : 'Open UI/UX Demo'}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </section>
 
           {/* ── Business Context & Problem Statement ── */}
@@ -1387,6 +1400,16 @@ const MovieTicketPage: React.FC = () => {
           </section>
         </main>
       </div>
+
+      {/* Lightbox Preview Modal */}
+      <LightboxModal
+        isOpen={lightboxOpen}
+        src="/assets/projects/movie-ticket/demo1.png"
+        alt="XEMPHIM Cinema - Online Movie Ticket Booking Platform"
+        title="XEMPHIM Cinemas - Movie Ticket Booking UI/UX Demo"
+        caption="Live demo web app: https://xemphim-three.vercel.app/"
+        onClose={() => setLightboxOpen(false)}
+      />
     </div>
   );
 };

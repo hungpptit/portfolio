@@ -8,6 +8,7 @@ export interface MovieTicketData {
   teamSize: string;
   branch: string;
   githubUrl: string;
+  demoUrl: string;
   techStack: TechStackItem[];
   challenges: ProjectChallenge[];
 }
@@ -20,6 +21,7 @@ export const MOVIE_TICKET_DETAIL: Record<Language, MovieTicketData> = {
     teamSize: "3 thành viên",
     branch: "tree/SWE_BE_1",
     githubUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
+    demoUrl: "https://xemphim-three.vercel.app/",
 
     techStack: [
       { layer: "Kiến trúc hệ thống", tech: "Microservices Architecture", version: "—", role: "6 vi dịch vụ nghiệp vụ phía sau API Gateway (Database-per-Service): User, Movie, Seat, Booking, Payment, Notification; loại bỏ liên kết cơ sở dữ liệu chéo (cross-service DB coupling)" },
@@ -59,6 +61,7 @@ export const MOVIE_TICKET_DETAIL: Record<Language, MovieTicketData> = {
     teamSize: "3 members",
     branch: "tree/SWE_BE_1",
     githubUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
+    demoUrl: "https://xemphim-three.vercel.app/",
 
     techStack: [
       { layer: "System Architecture", tech: "Microservices Architecture", version: "—", role: "6 business microservices behind a centralized API Gateway (Database-per-Service): User, Movie, Seat, Booking, Payment, Notification; eliminating cross-service database coupling" },

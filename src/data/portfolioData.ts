@@ -96,7 +96,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       featured: true,
       branch: "tree/SWE_BE_1",
       role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
-      image: "/assets/projects/movie-ticket/desktop.png",
+      image: "/assets/projects/movie-ticket/demo2.png",
       tags: ["Node.js & Express", "React 18", "Microservices (6 Services)", "Redis Distributed Lock", "RabbitMQ SAGA", "SQL Server", "ZaloPay QR", "Docker Compose"],
       architectureHighlights: [
         "Kiến trúc 6 vi dịch vụ nghiệp vụ phía sau API Gateway (Database-per-Service): tách biệt User, Movie, Seat, Booking, Payment, Notification; loại bỏ liên kết cơ sở dữ liệu chéo (cross-service DB coupling).",
@@ -106,7 +106,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       ],
       metrics: "Anti Double-Booking · SAGA Pattern · 25/25 Tests",
       githubUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
-      demoUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
+      demoUrl: "https://xemphim-three.vercel.app/",
       hasDetailPage: true
     },
     {
@@ -206,7 +206,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       featured: true,
       branch: "tree/SWE_BE_1",
       role: "Technical Lead & System Designer",
-      image: "/assets/projects/movie-ticket/desktop.png",
+      image: "/assets/projects/movie-ticket/demo2.png",
       tags: ["Node.js & Express", "React 18", "Microservices (6 Services)", "Redis Distributed Lock", "RabbitMQ SAGA", "SQL Server", "ZaloPay QR", "Docker Compose"],
       architectureHighlights: [
         "6 business microservices behind a centralized API Gateway (Database-per-Service): User, Movie, Seat, Booking, Payment, Notification; eliminating cross-service database coupling.",
@@ -216,7 +216,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       ],
       metrics: "Anti Double-Booking · SAGA Pattern · 25/25 Tests",
       githubUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
-      demoUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
+      demoUrl: "https://xemphim-three.vercel.app/",
       hasDetailPage: true
     },
     {
