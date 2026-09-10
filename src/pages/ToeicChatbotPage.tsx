@@ -26,6 +26,7 @@ import {
   Container,
   Network,
   Zap,
+  GitBranch,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { TOEIC_CHATBOT_DETAIL } from '../data/projects/toeicChatbot.data';
@@ -45,8 +46,6 @@ const ToeicChatbotPage: React.FC = () => {
   const t = UI_TRANSLATIONS[language];
 
   useDocumentTitle(project ? project.title : 'TOEIC AI Microservices');
-
-  const accent = '#5E6AD2';
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },
@@ -155,32 +154,291 @@ const ToeicChatbotPage: React.FC = () => {
 
         {/* Main Content */}
         <main className="flex-1 min-w-0 border-l border-slate-200/80 pl-10 py-10 space-y-20">
-          {/* Hero Overview */}
-          <section id="overview">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 rounded-full shadow-[0_0_8px_#5E6AD2]" style={{ background: accent }} />
-              <span className="text-xs font-bold tracking-wider uppercase text-[#5E6AD2]">
-                {language === 'vi' ? 'HỆ THỐNG VI DỊCH VỤ · TRÍ TUỆ NHÂN TẠO · HỌC MÁY' : 'MICROSERVICES · AI CHATBOT · MACHINE LEARNING'}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-black text-[#0B0E17] tracking-tight mb-6 leading-tight">
-              TOEIC Learning &amp;<br />
-              <span className="text-[#5E6AD2]">AI Chatbot Ecosystem</span>
-            </h1>
-            <p className="text-[#334155] leading-relaxed mb-10 max-w-3xl font-normal text-lg">{detail.overview}</p>
+          {/* ── SECTION 1: EXECUTIVE PROJECT SNAPSHOT (30-Second High-Level Scan) ── */}
+          <section id="overview" className="space-y-8">
+            {/* Top Card: Visual Showcase + Key Details */}
+            <div className="p-6 md:p-8 bg-white border border-slate-200/90 rounded-3xl shadow-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* Left Column: Visual AI Chatbot & ML Pipeline Mockup (Light Modern Theme) */}
+                <div className="lg:col-span-5 flex flex-col gap-3">
+                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-sm">
+                    {/* Chatbot Header */}
+                    <div className="bg-slate-50 px-4 py-3 border-b border-slate-200/80 flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_#10B981]" />
+                        <span className="font-mono font-bold text-slate-800">GEMINI 2.5 FLASH · AI TUTOR</span>
+                      </div>
+                      <span className="font-mono text-cyan-800 font-bold bg-cyan-50 px-2 py-0.5 rounded border border-cyan-200">
+                        {language === 'vi' ? 'ML INFERENCE: 18ms' : 'ML INFERENCE: 18ms'}
+                      </span>
+                    </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { value: '6', label: language === 'vi' ? 'Vi dịch vụ độc lập' : 'Microservices', color: '#5E6AD2' },
-                { value: '55+', label: language === 'vi' ? 'API Endpoints' : 'API Endpoints', color: '#06B6D4' },
-                { value: '9', label: language === 'vi' ? 'Docker Containers' : 'Docker Containers', color: '#10B981' },
-                { value: '51/51', label: language === 'vi' ? 'Test Cases PASS' : 'Test Cases PASS', color: '#F59E0B' },
-              ].map((m, i) => (
-                <div key={i} className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs text-center">
-                  <div className="text-2xl font-black font-mono mb-1" style={{ color: m.color }}>{m.value}</div>
-                  <div className="text-xs text-[#64748B] font-medium leading-tight">{m.label}</div>
+                    {/* Interactive Chat & ML Preview Box */}
+                    <div className="p-4 space-y-3 font-sans text-xs">
+                      {/* User message */}
+                      <div className="flex items-start gap-2.5 justify-end">
+                        <div className="bg-[#5E6AD2] text-white p-3 rounded-2xl rounded-tr-xs max-w-[85%] shadow-xs leading-relaxed font-medium">
+                          {language === 'vi' 
+                            ? 'Giải thích giúp mình câu 105 Part 5 đề ETS 2024 vừa làm với ạ?' 
+                            : 'Can you explain Question 105 Part 5 from the test I just took?'}
+                        </div>
+                      </div>
+
+                      {/* AI Agent Thinking & Internal Smart-Context Call */}
+                      <div className="p-2.5 bg-slate-50 border border-slate-200/80 rounded-xl text-[11px] font-mono text-slate-600 flex items-center justify-between">
+                        <span className="text-amber-700 flex items-center gap-1.5 font-semibold">
+                          <Zap className="w-3.5 h-3.5" />
+                          <span>REST /api/v1/internal/smart-context</span>
+                        </span>
+                        <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">200 OK (3ms)</span>
+                      </div>
+
+                      {/* AI Response message */}
+                      <div className="flex items-start gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center shrink-0 text-[#5E6AD2] font-bold shadow-2xs">
+                          <Brain className="w-4 h-4" />
+                        </div>
+                        <div className="bg-slate-50/80 text-[#334155] p-3.5 rounded-2xl rounded-tl-xs max-w-[88%] border border-slate-200/90 leading-relaxed space-y-1.5 shadow-2xs">
+                          <p className="font-bold text-[#0B0E17]">
+                            {language === 'vi' ? 'Câu 105 (Từ loại - Word Form):' : 'Question 105 (Word Form):'}
+                          </p>
+                          <p className="text-[#334155]">
+                            {language === 'vi' 
+                              ? 'Chỗ trống đứng sau mạo từ "the" và trước giới từ "of" nên cần một Danh từ → Đáp án là (C) decision.' 
+                              : 'The blank follows the article "the" and precedes "of", requiring a Noun → Correct option is (C) decision.'}
+                          </p>
+                          <div className="pt-1.5 border-t border-slate-200 flex items-center justify-between text-[10px] font-mono text-[#64748B]">
+                            <span>GaussianNB ML: Part 5 Acc 64%</span>
+                            <span className="text-[#5E6AD2] font-bold">Weak Skill: Word Form</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Microservices Architecture Callout */}
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl flex items-center justify-between text-xs">
+                    <span className="text-slate-500 font-medium">
+                      {language === 'vi' ? 'Cấu trúc Hệ thống:' : 'Architecture:'}
+                    </span>
+                    <span className="font-mono font-bold text-[#5E6AD2]">
+                      6 Services · Nginx Gateway · 4 DBs · ML Pipeline
+                    </span>
+                  </div>
                 </div>
-              ))}
+
+                {/* Right Column: Title, Role, Tech Stack Pills, and CTAs */}
+                <div className="lg:col-span-7 flex flex-col justify-between h-full">
+                  <div>
+                    {/* Category Badge */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-2 h-2 rounded-full bg-[#5E6AD2] shadow-[0_0_8px_#5E6AD2]" />
+                      <span className="text-xs font-bold tracking-wider text-[#5E6AD2] uppercase font-mono">
+                        {language === 'vi' ? 'HỆ THỐNG VI DỊCH VỤ · TRÍ TUỆ NHÂN TẠO · HỌC MÁY' : 'MICROSERVICES · AI CHATBOT · MACHINE LEARNING'}
+                      </span>
+                    </div>
+
+                    {/* Main Title */}
+                    <h1 className="text-3xl md:text-4xl font-black text-[#0B0E17] tracking-tight mb-2 leading-tight">
+                      TOEIC Learning &amp; AI Chatbot Ecosystem
+                    </h1>
+
+                    {/* Role & Metadata */}
+                    <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-sm text-[#475569] mb-5 font-medium">
+                      <span className="text-[#0B0E17] font-bold">
+                        {language === 'vi' ? 'Vai trò:' : 'Role:'} {detail.role}
+                      </span>
+                      <span>•</span>
+                      <span>{detail.duration}</span>
+                      <span>•</span>
+                      <span>{detail.teamSize}</span>
+                    </div>
+
+                    {/* Tech Stack Pills (Clean, standardized technologies) */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {[
+                        'Google Gemini 2.5 Flash API',
+                        'Python Flask & scikit-learn',
+                        'Node.js & Express Microservices',
+                        'Flutter 3 (Mobile Client)',
+                        'RabbitMQ Message Broker',
+                        'Microsoft SQL Server 2022',
+                        'Nginx Reverse Proxy & Gateway',
+                        'Docker Compose (9 Containers)',
+                      ].map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 text-xs font-mono font-medium rounded-lg bg-slate-100/90 hover:bg-slate-200/80 text-slate-800 border border-slate-200/90 shadow-2xs transition-all"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                      <a
+                        href={detail.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0B0E17] hover:bg-[#1E293B] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                      >
+                        <GitBranch className="w-4 h-4" /> {t.detailCommon.sourceRepo}
+                      </a>
+                      <button
+                        onClick={() => scrollTo('architecture')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-50 text-[#0B0E17] border border-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Layers className="w-4 h-4 text-[#5E6AD2]" />
+                        {language === 'vi' ? 'Xem Sơ Đồ Kiến Trúc' : 'System Architecture'}
+                      </button>
+                      <button
+                        onClick={() => scrollTo('coordination')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#5E6AD2]/10 hover:bg-[#5E6AD2]/20 text-[#5E6AD2] border border-[#5E6AD2]/30 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Brain className="w-4 h-4" />
+                        {language === 'vi' ? 'Trợ Lý AI & ML Pipeline' : 'AI & ML Pipeline'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Quick 3-Block Summary (Overview - Key Features - Core Challenge) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Block 1: Overview */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-[#5E6AD2]">
+                    <Globe className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'TỔNG QUAN BÀI TOÁN (OVERVIEW)' : 'EXECUTIVE OVERVIEW'}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-[#334155] leading-relaxed font-normal">
+                    {language === 'vi'
+                      ? 'Hệ sinh thái luyện thi TOEIC toàn diện giải quyết thách thức học thụ động và thiếu gia sư kèm cặp. Hệ thống sử dụng kiến trúc Microservices với 6 dịch vụ độc lập xây dựng bằng Node.js / Express phía sau Nginx API Gateway và ứng dụng Flutter đa nền tảng. Dự án tích hợp Google Gemini 2.5 Flash làm trợ lý AI ngữ cảnh nội bộ qua REST endpoint (/api/v1/internal/smart-context), kết hợp Stateless ML Pipeline (scikit-learn) chẩn đoán điểm yếu thời gian thực và hàng đợi RabbitMQ kích hoạt tài khoản VIP bất đồng bộ trên 4 CSDL SQL Server biệt lập.'
+                      : 'Comprehensive TOEIC preparation platform built to replace static exam drilling with personalized AI tutoring. The application leverages a Microservices architecture consisting of 6 decoupled services built with Node.js / Express behind an Nginx API Gateway and Flutter mobile client. It integrates Google Gemini 2.5 Flash for context-aware question explanations via internal REST endpoints (/api/v1/internal/smart-context), a Stateless ML Pipeline (scikit-learn) for in-memory weakness diagnosis, and RabbitMQ message queues for asynchronous VIP account activation across 4 isolated SQL Server databases.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-[#64748B] font-mono">
+                  <span>Architecture: 6 Microservices</span>
+                  <span className="text-emerald-700 font-bold">51/51 Tests PASS</span>
+                </div>
+              </div>
+
+              {/* Block 2: Key Features */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-emerald-700">
+                    <CheckCircle className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'ĐIỂM NHẤN KỸ THUẬT (KEY FEATURES)' : 'KEY ENGINEERING HIGHLIGHTS'}
+                    </h3>
+                  </div>
+                  <ul className="space-y-2 text-xs text-[#334155] leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Trợ lý AI Gemini 2.5 Flash' : 'Gemini 2.5 Flash AI Tutor'}</strong>: Tra cứu ngữ cảnh đề thi nội bộ qua REST & xoay vòng API Key.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Stateless ML Pipeline' : 'Stateless ML Pipeline'}</strong>: GaussianNB suy luận in-memory & tự động fallback Rule-based.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'RabbitMQ Event-Driven' : 'RabbitMQ Event-Driven'}</strong>: Kích hoạt VIP & gửi mail bất đồng bộ kèm HTTP sync fallback.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? '4 CSDL SQL Server biệt lập' : '4 Isolated SQL Server DBs'}</strong>: Tuân thủ nghiêm ngặt Database-per-Service.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Thanh toán ZaloPay Sandbox' : 'ZaloPay Dynamic QR'}</strong>: Chữ ký HMAC-SHA256 & Idempotency chống replay callback.</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-800 font-mono font-semibold">
+                  {language === 'vi' ? 'Đạt 51/51 Test Cases (100% PASS)' : 'Verified: 51/51 Automated Tests PASS'}
+                </div>
+              </div>
+
+              {/* Block 3: Challenges & Solution */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-amber-700">
+                    <Shield className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'THỬ THÁCH LỚN NHẤT & GIẢI PHÁP' : 'CORE CHALLENGE & SOLUTION'}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-[#334155] leading-relaxed mb-3">
+                    <strong className="text-amber-900 block mb-1">
+                      {language === 'vi' ? 'Thách thức: Đồng bộ giao dịch kích hoạt VIP xuyên CSDL' : 'Challenge: Cross-Database VIP Activation'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Payment Service và Auth Service sở hữu 2 CSDL riêng biệt. Nếu gọi HTTP đồng bộ khi mạng chập chờn, khách hàng thanh toán thành công nhưng tài khoản không được nâng VIP.'
+                      : 'Payment and Auth Services own isolated databases. Direct sync HTTP calls fail under network partitions, risking paid users losing VIP entitlements.'}
+                  </p>
+                  <p className="text-xs text-[#334155] leading-relaxed">
+                    <strong className="text-emerald-900 block mb-1">
+                      {language === 'vi' ? 'Giải pháp: Event-Driven 2 lớp (RabbitMQ + HTTP Fallback)' : 'Solution: 2-Tier Event-Driven Architecture'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Payment phát sự kiện vào RabbitMQ queue bền vững (Durable) với Ack/Nack, tự động kích hoạt HTTP Sync Fallback nếu Broker mất kết nối; kết hợp kiểm tra Idempotency chống duplicate callback.'
+                      : 'Payment publishes events to durable RabbitMQ queues with Ack/Nack and auto HTTP sync fallback upon broker outage, coupled with HMAC-SHA256 idempotency checks.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-amber-800 font-mono">
+                  <span>Eventual Consistency</span>
+                  <span className="font-bold">Zero VIP Lost</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Transition Banner: Deep-Dive Indicator */}
+            <div className="p-5 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl text-white shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#5E6AD2]/30 border border-[#5E6AD2]/50 flex items-center justify-center shrink-0">
+                  <Layers className="w-5 h-5 text-indigo-300" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-wider font-mono text-indigo-200">
+                    {language === 'vi' ? 'PHÂN TÍCH KỸ THUẬT CHUYÊN SÂU (ENGINEERING DEEP DIVE)' : 'DETAILED TECHNICAL DEEP DIVE'}
+                  </h4>
+                  <p className="text-xs text-slate-300 font-normal">
+                    {language === 'vi'
+                      ? 'Bao gồm sơ đồ kiến trúc 6 vi dịch vụ, cơ chế phối hợp liên service, pipeline Machine Learning và kết quả 51/51 tests.'
+                      : 'Comprehensive 6-microservice architecture diagrams, inter-service coordination, ML pipeline, and test suites.'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => scrollTo('architecture')}
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '1. Kiến Trúc ↓' : '1. Architecture ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('coordination')}
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '2. Phối Hợp Service ↓' : '2. Coordination ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('challenges')}
+                  className="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer"
+                >
+                  {language === 'vi' ? '3. Thách Thức & Giải Pháp ↓' : '3. Challenges ↓'}
+                </button>
+              </div>
             </div>
           </section>
 
@@ -368,8 +626,8 @@ const ToeicChatbotPage: React.FC = () => {
             </div>
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Trong nhóm 3 thành viên, tôi đảm nhiệm vai trò Kỹ sư Phần mềm & Lập trình viên Backend chính — phụ trách toàn bộ thiết kế kiến trúc Microservices, phát triển 5 dịch vụ Backend, tích hợp AI Chatbot, ML Pipeline, thanh toán ZaloPay và hạ tầng DevOps Docker.'
-                : 'In the 3-person team, I served as the primary Software Engineer & Backend Developer — owning the entire Microservices architecture design, all 5 Backend service implementations, AI Chatbot integration, ML Pipeline, ZaloPay payment, and Docker DevOps infrastructure.'}
+                ? 'Trong nhóm 3 thành viên, tôi đảm nhiệm vai trò Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer) — chịu trách nhiệm thiết kế toàn bộ kiến trúc Microservices, phát triển 5 dịch vụ Backend, tích hợp AI Chatbot, ML Pipeline, thanh toán ZaloPay và hạ tầng DevOps Docker.'
+                : 'In the 3-person team, I served as the Technical Lead & System Designer — owning the entire Microservices architecture design, all 5 Backend service implementations, AI Chatbot integration, ML Pipeline, ZaloPay payment, and Docker DevOps infrastructure.'}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[

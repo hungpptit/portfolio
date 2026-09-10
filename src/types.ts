@@ -51,6 +51,8 @@ export interface Project {
   description: string;
   category: ProjectCategory;
   featured?: boolean;
+  role?: string;
+  image?: string;
   tags: string[];
   architectureHighlights: string[];
   metrics?: string;

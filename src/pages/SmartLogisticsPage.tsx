@@ -9,18 +9,14 @@ import {
   Server,
   Cpu,
   GitMerge,
-  BarChart3,
   AlertTriangle,
   Layers,
-  Building2,
-  User,
   Smartphone,
   Radio,
   MapPin,
   Share2,
   Workflow,
   Network,
-  ChevronRight,
   HelpCircle,
   Globe,
   Users,
@@ -33,6 +29,9 @@ import {
   CircleDollarSign,
   EyeOff,
   Lock,
+  Shield,
+  X,
+  Maximize2,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { SMART_LOGISTICS_DETAIL, SmartLogisticsData, ProblemPoint } from '../data/projects/smartLogistics.data';
@@ -809,6 +808,7 @@ const SmartLogisticsPage: React.FC = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [activeSection, setActiveSection] = useState('overview');
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const detail = SMART_LOGISTICS_DETAIL[language];
   const project = PROJECTS[language].find(p => p.id === 'smart-logistics')!;
@@ -954,66 +954,288 @@ const SmartLogisticsPage: React.FC = () => {
         {/* ── Main Content ── */}
         <main className="flex-1 min-w-0 border-l border-slate-200/80 pl-10 py-10 space-y-20">
 
-          {/* ── Overview & Quantifiable Impact ── */}
-          <section id="overview">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 bg-[#5E6AD2] rounded-full shadow-[0_0_8px_#5E6AD2]" />
-              <span className="text-xs font-bold tracking-wider text-[#5E6AD2] uppercase">
-                {language === 'vi' ? 'Hệ thống Cấp Doanh nghiệp · Công ty TNHH CITARES' : 'Enterprise Logistics System · CITARES Co., Ltd.'}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black text-[#0B0E17] tracking-tight mb-6 leading-tight">
-              Smart Logistics<br /><span className="text-[#5E6AD2]">Platform (SLP)</span>
-            </h1>
-            <p className="text-[#334155] leading-relaxed mb-6 max-w-3xl font-normal text-lg">{detail.overview}</p>
-
-            {/* NDA & Intellectual Property Notice */}
-            <div className="p-4 bg-slate-100/90 border border-slate-200/90 rounded-2xl flex items-start gap-3 mb-8 max-w-3xl shadow-2xs">
-              <Lock className="w-4 h-4 text-[#5E6AD2] shrink-0 mt-0.5" />
-              <p className="text-xs text-[#475569] leading-relaxed font-normal">
-                {detail.ndaNotice}
-              </p>
-            </div>
-
-            {/* Mobile quick info */}
-            <div className="lg:hidden flex flex-wrap gap-3 mb-8">
-              <span className="flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-200 text-xs text-[#334155] rounded-xl shadow-2xs">
-                <Building2 className="w-4 h-4 text-[#5E6AD2]" /> {detail.company}
-              </span>
-              <span className="flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-200 text-xs text-[#334155] rounded-xl shadow-2xs">
-                <User className="w-4 h-4 text-[#5E6AD2]" /> {detail.role}
-              </span>
-              <span className="flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-200 text-xs text-[#334155] rounded-xl shadow-2xs">
-                <Clock className="w-4 h-4 text-[#5E6AD2]" /> {detail.duration}
-              </span>
-            </div>
-
-            {/* Business & Operational Impact Cards (Before vs After) */}
-            <div className="mt-8">
-              <div className="flex items-center gap-2.5 mb-4">
-                <BarChart3 className="w-5 h-5 text-[#5E6AD2]" />
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#5E6AD2] font-mono">
-                  {language === 'vi'
-                    ? 'CHỈ SỐ TÁC ĐỘNG VẬN HÀNH & DOANH NGHIỆP (BEFORE VS AFTER)'
-                    : 'QUANTIFIABLE OPERATIONAL & BUSINESS IMPACT (BEFORE VS AFTER)'}
-                </h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {detail.businessImpact.map((b, i) => {
-                  const colors = ['#10B981', '#5E6AD2', '#8B5CF6', '#F59E0B', '#EC4899', '#10B981'];
-                  const c = colors[i % colors.length];
-                  return (
-                    <div key={i} className="p-5 bg-white/90 border border-slate-200/80 hover:border-[#5E6AD2]/50 hover:shadow-md transition-all flex flex-col justify-between gap-3 rounded-2xl shadow-xs">
-                      <span className="text-xs font-bold text-[#64748B] uppercase tracking-wider">{b.metric}</span>
-                      <div className="flex items-center gap-2 text-xs">
-                        <span className="text-[#94A3B8] font-normal">{b.before}</span>
-                        <ChevronRight className="w-3.5 h-3.5 text-[#CBD5E1] shrink-0" />
-                        <span className="text-[#334155] font-semibold">{b.after}</span>
+          {/* ── SECTION 1: EXECUTIVE PROJECT SNAPSHOT (30-Second High-Level Scan) ── */}
+          <section id="overview" className="space-y-8">
+            {/* Top Card: Visual Showcase + Key Details */}
+            <div className="p-6 md:p-8 bg-white border border-slate-200/90 rounded-3xl shadow-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* Left Column: Visual Real Demo Showcase (Smart Logistics Live Route Monitoring & Dispatch) */}
+                <div className="lg:col-span-5 flex flex-col gap-3">
+                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-sm group">
+                    {/* Header */}
+                    <div className="bg-slate-50 px-3.5 py-2.5 border-b border-slate-200/80 flex items-center justify-between gap-2 text-xs">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                        </div>
+                        <span className="font-mono font-bold text-slate-800 text-[11px] truncate ml-1">
+                          {language === 'vi' ? 'GIÁM SÁT LỘ TRÌNH' : 'ROUTE MONITORING'}
+                        </span>
                       </div>
-                      <div className="text-3xl font-black font-mono mt-1" style={{ color: c }}>{b.delta}</div>
+                      <span className="font-mono text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 text-[10px] whitespace-nowrap shrink-0 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        1,321 PINGS/S · REDIS 7
+                      </span>
                     </div>
-                  );
-                })}
+
+                    {/* Real Demo Screenshot Showcase */}
+                    <div 
+                      onClick={() => setPreviewImage('/assets/projects/smart-logistics/desktop2.png')}
+                      className="relative overflow-hidden bg-slate-100 aspect-[16/10] cursor-pointer group/img"
+                    >
+                      <img
+                        src="/assets/projects/smart-logistics/desktop2.png"
+                        alt={language === 'vi' ? 'Giao diện thực tế Smart Logistics - Bảng điều khiển Giám sát lộ trình giao hàng Goong Map' : 'Smart Logistics Real Demo - Live Route Monitoring & Goong Map'}
+                        className="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                        loading="eager"
+                      />
+                      {/* Hover view full badge */}
+                      <div className="absolute inset-0 bg-slate-950/0 group-hover/img:bg-slate-950/25 transition-colors duration-300 flex items-center justify-center">
+                        <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 px-3.5 py-2 bg-white/95 backdrop-blur-xs text-slate-900 text-xs font-bold rounded-xl shadow-md flex items-center gap-1.5">
+                          <Maximize2 className="w-3.5 h-3.5 text-[#5E6AD2]" />
+                          {language === 'vi' ? 'Phóng to ảnh Demo thực tế' : 'Enlarge Demo Screenshot'}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Telemetry info bar */}
+                    <div className="px-3.5 py-2 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono">
+                      <span className="text-slate-600 truncate flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                        <span>{language === 'vi' ? 'Bưu cục Đặng Văn Bi · Điều phối giao hàng' : 'Dang Van Bi Hub · Dispatch Radar'}</span>
+                      </span>
+                      <span className="text-indigo-700 font-bold shrink-0 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200 text-[10px]">
+                        {language === 'vi' ? 'AI GOM CỤM DBSCAN' : 'DBSCAN CLUSTERING'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Architecture Callout */}
+                  <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl flex items-center justify-between text-xs">
+                    <span className="text-slate-500 font-medium">
+                      {language === 'vi' ? 'Cấu trúc Hệ thống:' : 'Architecture:'}
+                    </span>
+                    <span className="font-mono font-bold text-[#5E6AD2]">
+                      Clean Architecture · DDD · Redis 7 · PostGIS
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right Column: Title, Role, Tech Stack Pills, and CTAs */}
+                <div className="lg:col-span-7 flex flex-col justify-between h-full">
+                  <div>
+                    {/* Category Badge & NDA */}
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <span className="w-2 h-2 rounded-full bg-[#5E6AD2] shadow-[0_0_8px_#5E6AD2]" />
+                      <span className="text-xs font-bold tracking-wider text-[#5E6AD2] uppercase font-mono">
+                        {language === 'vi' ? 'HỆ THỐNG DOANH NGHIỆP · CÔNG TY TNHH CITARES' : 'ENTERPRISE 3PL PLATFORM · CITARES CO., LTD.'}
+                      </span>
+                      <span className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-semibold flex items-center gap-1 border border-slate-200">
+                        <Lock className="w-3 h-3 text-slate-500" /> NDA Protected
+                      </span>
+                    </div>
+
+                    {/* Main Title */}
+                    <h1 className="text-3xl md:text-4xl font-black text-[#0B0E17] tracking-tight mb-2 leading-tight">
+                      Smart Logistics Platform (SLP)
+                    </h1>
+
+                    {/* Role & Metadata (Clear Intern Label) */}
+                    <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-sm text-[#475569] mb-5 font-medium">
+                      <span className="text-[#0B0E17] font-bold">
+                        {language === 'vi' ? 'Vai trò:' : 'Role:'} {detail.role}
+                      </span>
+                      <span>•</span>
+                      <span>{detail.company}</span>
+                      <span>•</span>
+                      <span>{detail.duration}</span>
+                    </div>
+
+                    {/* Tech Stack Pills (Clean, standardized technologies) */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {[
+                        'Node.js & TypeScript',
+                        'PostgreSQL 15 & PostGIS',
+                        'Redis 7 (Geospatial & Pub/Sub)',
+                        'Socket.io (Live Radar)',
+                        'React 19 & Vite (Dispatcher UI)',
+                        'Flutter (Driver Mobile App)',
+                        'Genetic Algorithm (VRPTW Solver)',
+                        'Docker & Nginx',
+                      ].map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 text-xs font-mono font-medium rounded-lg bg-slate-100/90 hover:bg-slate-200/80 text-slate-800 border border-slate-200/90 shadow-2xs transition-all"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                      <button
+                        onClick={() => scrollTo('architecture')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-50 text-[#0B0E17] border border-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Layers className="w-4 h-4 text-[#5E6AD2]" />
+                        {language === 'vi' ? 'Xem Sơ Đồ Kiến Trúc' : 'System Architecture'}
+                      </button>
+                      <button
+                        onClick={() => scrollTo('ai')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#5E6AD2]/10 hover:bg-[#5E6AD2]/20 text-[#5E6AD2] border border-[#5E6AD2]/30 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Truck className="w-4 h-4" />
+                        {language === 'vi' ? 'Thuật Toán Tối Ưu Tuyến' : 'Route Optimization Engine'}
+                      </button>
+                      <button
+                        onClick={() => scrollTo('telemetry')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Radio className="w-4 h-4" />
+                        {language === 'vi' ? 'GPS Telemetry Redis' : 'GPS Telemetry'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Quick 3-Block Summary (Overview - Key Features - Core Challenge) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Block 1: Overview */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-[#5E6AD2]">
+                    <Globe className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'TỔNG QUAN BÀI TOÁN (OVERVIEW)' : 'EXECUTIVE OVERVIEW'}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-[#334155] leading-relaxed font-normal">
+                    {language === 'vi'
+                      ? 'Smart Logistics Platform (SLP) là nền tảng quản lý điều vận và tối ưu giao hàng cấp doanh nghiệp (3PL Logistics Platform) phát triển tại Công ty TNHH CITARES. Hệ thống số hóa toàn diện 7 giai đoạn chuỗi cung ứng khép kín trên nền tảng Clean Architecture & Domain-Driven Design (DDD): tạo đơn hàng, gom hàng tận nơi, phân loại kho, trung chuyển liên kho, tối ưu tuyến đường giao chặng cuối, chữ ký số điện tử POD và giám sát định vị GPS thời gian thực trên bản đồ radar.'
+                      : 'Smart Logistics Platform (SLP) is an enterprise-grade automated dispatching and routing platform (3PL Logistics Platform) developed at CITARES Co., Ltd. Engineered with Clean Architecture and Domain-Driven Design (DDD), it digitizes the end-to-end supply chain across 7 closed-loop fulfillment stages: order ingestion, pickup dispatch, cross-dock facility sorting, line-haul transfers, last-mile route optimization, digital POD, and real-time GPS telemetry radar monitoring.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-[#64748B] font-mono">
+                  <span>Architecture: Clean Architecture</span>
+                  <span className="text-emerald-700 font-bold">1,321 pings/s GPS</span>
+                </div>
+              </div>
+
+              {/* Block 2: Key Features */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-emerald-700">
+                    <CheckCircle className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'ĐIỂM NHẤN KỸ THUẬT (KEY FEATURES)' : 'KEY ENGINEERING HIGHLIGHTS'}
+                    </h3>
+                  </div>
+                  <ul className="space-y-2 text-xs text-[#334155] leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Đường ống 4 thuật toán tối ưu' : '4-Stage Route Pipeline'}</strong>: DBSCAN → K-Means → Genetic Algorithm → Hungarian (giảm 58.2% quãng đường).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'GPS Telemetry trên Redis 7' : 'Redis 7 GPS Telemetry'}</strong>: Tiếp nhận 1,321 điểm/giây với độ trễ P99 &lt; 1ms, không nghẽn disk I/O.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Socket.io Radar Viewports' : 'Socket.io Fleet Radar'}</strong>: Truyền phát vị trí tài xế và đổi màu trạng thái đơn hàng thời gian thực.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Máy trạng thái 17 bước FSM' : '17-State Fulfillment FSM'}</strong>: Kiểm soát nghiêm ngặt toàn bộ hành trình đơn hàng và quét sọt Tote Bag.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Kiểm thử 12 kịch bản tự động' : '12 Automated Scenarios'}</strong>: 100% PASS bao phủ routing, rollback ACID và bảo mật RBAC.</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-800 font-mono font-semibold">
+                  {language === 'vi' ? 'Đạt 12/12 Test Scenarios (100% PASS)' : 'Verified: 12/12 Test Scenarios PASS'}
+                </div>
+              </div>
+
+              {/* Block 3: Challenges & Solution */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-amber-700">
+                    <Shield className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'THỬ THÁCH LỚN NHẤT & GIẢI PHÁP' : 'CORE CHALLENGE & SOLUTION'}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-[#334155] leading-relaxed mb-3">
+                    <strong className="text-amber-900 block mb-1">
+                      {language === 'vi' ? 'Thách thức: Nghẽn I/O cơ sở dữ liệu khi nhận luồng GPS liên tục' : 'Challenge: Database Disk I/O GPS Ingestion Bottlenecks'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Hàng ngàn tài xế gửi tọa độ mỗi 5 giây. Nếu ghi trực tiếp vào PostgreSQL sẽ làm bão hòa Disk I/O và treo toàn bộ các truy vấn tạo/quét đơn hàng của hệ thống.'
+                      : 'Thousands of drivers transmitting GPS pings every 5 seconds. Directly persisting to PostgreSQL saturates disk I/O, freezing dispatching operations.'}
+                  </p>
+                  <p className="text-xs text-[#334155] leading-relaxed">
+                    <strong className="text-emerald-900 block mb-1">
+                      {language === 'vi' ? 'Giải pháp: Đường ống đệm 2 tầng (Redis Hot Cache + Cold Store)' : 'Solution: 2-Tier Telemetry Architecture'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Đệm tọa độ trực tiếp vào Redis 7 (HSET/GEOADD) trên RAM và phát sóng qua Socket.io. Chỉ ghi xuống PostgreSQL khi phát sinh sự kiện chuyển mốc trạng thái nghiệp vụ hoặc lưu chữ ký POD.'
+                      : 'Buffers high-frequency GPS into Redis 7 RAM (HSET/GEOADD) and broadcasts via Socket.io. Persists to PostgreSQL cold storage only on major milestone state transitions.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-amber-800 font-mono">
+                  <span>Sub-ms Latency</span>
+                  <span className="font-bold">Zero Disk Saturation</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Transition Banner: Deep-Dive Indicator */}
+            <div className="p-5 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl text-white shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#5E6AD2]/30 border border-[#5E6AD2]/50 flex items-center justify-center shrink-0">
+                  <Layers className="w-5 h-5 text-indigo-300" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-wider font-mono text-indigo-200">
+                    {language === 'vi' ? 'PHÂN TÍCH KỸ THUẬT CHUYÊN SÂU (ENGINEERING DEEP DIVE)' : 'DETAILED TECHNICAL DEEP DIVE'}
+                  </h4>
+                  <p className="text-xs text-slate-300 font-normal">
+                    {language === 'vi'
+                      ? 'Bao gồm sơ đồ kiến trúc Clean Architecture, thuật toán định tuyến GA, luồng GPS Telemetry và báo cáo 12 test scenarios.'
+                      : 'Comprehensive Clean Architecture diagrams, Genetic Algorithm math models, GPS telemetry pipelines, and test suites.'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => scrollTo('architecture')}
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '1. Kiến Trúc ↓' : '1. Architecture ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('ai')}
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '2. Thuật Toán AI ↓' : '2. Algorithms ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('challenges')}
+                  className="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer"
+                >
+                  {language === 'vi' ? '3. Thách Thức & Giải Pháp ↓' : '3. Challenges ↓'}
+                </button>
               </div>
             </div>
           </section>
@@ -1022,6 +1244,7 @@ const SmartLogisticsPage: React.FC = () => {
           <section id="showcase" className="space-y-6">
             <ProjectShowcaseGallery
               projectId="smart-logistics"
+              desktopSrc="/assets/projects/smart-logistics/desktop.jpg"
               defaultTab="dual"
               availableTabs={['dual', 'desktop', 'mobile', 'terminal']}
               desktopTitle={language === 'vi' ? 'Trung Tâm Điều Vận Radar & Bản Đồ Số (Web Portal)' : 'Dispatch Radar & Live Geospatial Map (Web Portal)'}
@@ -1306,6 +1529,42 @@ const SmartLogisticsPage: React.FC = () => {
 
         </main>
       </div>
+
+      {/* Lightbox Preview Modal */}
+      {previewImage && (
+        <div
+          className="fixed inset-0 z-[999] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8 animate-fadeIn"
+          onClick={() => setPreviewImage(null)}
+        >
+          <div
+            className="relative max-w-6xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-5 py-3.5 bg-slate-900 text-white text-xs font-mono border-b border-slate-800">
+              <div className="flex items-center gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse" />
+                <span className="font-bold">
+                  {language === 'vi' ? 'Smart Logistics · Demo Giao diện Thực tế (Goong Map & Điều vận)' : 'Smart Logistics · Real System Demo (Goong Map & Dispatching)'}
+                </span>
+              </div>
+              <button
+                onClick={() => setPreviewImage(null)}
+                className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                title="Đóng (Close)"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-2 bg-slate-950/40">
+              <img
+                src={previewImage}
+                alt="Demo Fullscreen Preview"
+                className="w-full h-auto max-h-[82vh] object-contain rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

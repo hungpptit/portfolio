@@ -20,6 +20,12 @@ import {
   Users,
   FileCheck,
   GitBranch,
+  Lock,
+  LayoutDashboard,
+  Copy,
+  Maximize2,
+  AlertCircle,
+  TrendingUp,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { LIBRARY_MANAGEMENT_DETAIL } from '../data/projects/libraryManagement.data';
@@ -39,8 +45,6 @@ const LibraryManagementPage: React.FC = () => {
   const t = UI_TRANSLATIONS[language];
 
   useDocumentTitle(project ? project.title : 'Smart Library Management System');
-
-  const accent = '#5E6AD2';
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },
@@ -149,32 +153,397 @@ const LibraryManagementPage: React.FC = () => {
 
         {/* Main Content */}
         <main className="flex-1 min-w-0 border-l border-slate-200/80 pl-10 py-10 space-y-20">
-          {/* Hero Overview */}
-          <section id="overview">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 rounded-full shadow-[0_0_8px_#5E6AD2]" style={{ background: accent }} />
-              <span className="text-xs font-bold tracking-wider uppercase text-[#5E6AD2]">
-                {language === 'vi' ? 'KIẾN TRÚC MODULE HÓA · GIAO DỊCH ACID · KIỂM THỬ TỰ ĐỘNG' : 'MODULAR ARCHITECTURE · ACID TRANSACTIONS · AUTOMATED TESTING'}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-black text-[#0B0E17] tracking-tight mb-6 leading-tight">
-              Smart Library<br />
-              <span className="text-[#5E6AD2]">{language === 'vi' ? 'Management System' : 'Management Platform'}</span>
-            </h1>
-            <p className="text-[#334155] leading-relaxed mb-10 max-w-3xl font-normal text-lg">{detail.overview}</p>
+          {/* ── SECTION 1: EXECUTIVE PROJECT SNAPSHOT (30-Second High-Level Scan) ── */}
+          <section id="overview" className="space-y-8">
+            {/* Top Card: Visual Showcase + Key Details */}
+            <div className="p-6 md:p-8 bg-white border border-slate-200/90 rounded-3xl shadow-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* Left Column: Authentic Light Theme Web Admin Mockup (Matching User App Screenshot) */}
+                <div className="lg:col-span-6 flex flex-col gap-3">
+                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-md">
+                    {/* Browser Chrome Header */}
+                    <div className="bg-[#1E1E24] px-4 py-2.5 flex items-center justify-between text-xs">
+                      {/* Window Controls */}
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+                      </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { value: '95/95', label: language === 'vi' ? 'Test Cases (100% PASS)' : 'Test Cases (100% PASS)', color: '#10B981' },
-                { value: '3', label: language === 'vi' ? 'Module nghiệp vụ độc lập' : 'Business Modules', color: '#5E6AD2' },
-                { value: '85%+', label: language === 'vi' ? 'Code Coverage nghiệp vụ' : 'Business Code Coverage', color: '#8B5CF6' },
-                { value: 'ACID', label: language === 'vi' ? 'Transaction toàn vẹn' : 'Transaction Integrity', color: '#F59E0B' },
-              ].map((m, i) => (
-                <div key={i} className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs text-center">
-                  <div className="text-2xl font-black font-mono mb-1" style={{ color: m.color }}>{m.value}</div>
-                  <div className="text-xs text-[#64748B] font-medium leading-tight">{m.label}</div>
+                      {/* URL Bar */}
+                      <div className="bg-slate-800/90 border border-slate-700/60 text-slate-300 px-3 py-0.5 rounded-md text-[11px] font-mono flex items-center gap-1.5 max-w-[260px] w-full justify-between shadow-inner">
+                        <div className="flex items-center gap-1.5 truncate">
+                          <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
+                          <span className="truncate">http://localhost:3000</span>
+                        </div>
+                        <Copy className="w-2.5 h-2.5 text-slate-400 shrink-0 opacity-60" />
+                      </div>
+
+                      {/* Right Tags */}
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[9px] font-bold text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-400/20">
+                          WEB ADMIN / DESKTOP
+                        </span>
+                        <Maximize2 className="w-3 h-3 text-slate-400" />
+                      </div>
+                    </div>
+
+                    {/* App Internal Navigation Bar */}
+                    <div className="bg-white border-b border-slate-100 px-4 py-2 flex items-center justify-center gap-6 text-xs">
+                      <div className="flex items-center gap-1.5 text-sky-600 font-semibold border-b-2 border-sky-500 pb-1 -mb-2">
+                        <LayoutDashboard className="w-3.5 h-3.5" />
+                        <span>Dashboard</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-400 hover:text-slate-600">
+                        <BookOpen className="w-3.5 h-3.5" />
+                        <span>Books</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-400 hover:text-slate-600">
+                        <BookOpen className="w-3.5 h-3.5" />
+                        <span>Loans</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-400 hover:text-slate-600">
+                        <Users className="w-3.5 h-3.5" />
+                        <span>Readers</span>
+                      </div>
+                    </div>
+
+                    {/* App Dashboard Canvas */}
+                    <div className="p-4 space-y-3 bg-[#F8FAFC]">
+                      {/* Top KPI Stat Cards (4 in a row) */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                        {/* Total Books */}
+                        <div className="bg-white border border-slate-200/90 rounded-xl p-2.5 shadow-2xs flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-sky-50 border border-sky-100 text-sky-600 flex items-center justify-center shrink-0">
+                            <BookOpen className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-[9px] uppercase tracking-wider font-bold text-sky-600 font-mono">TOTAL BOOKS</p>
+                            <p className="text-base font-black text-slate-900 leading-tight">33</p>
+                          </div>
+                        </div>
+
+                        {/* Total Readers */}
+                        <div className="bg-white border border-slate-200/90 rounded-xl p-2.5 shadow-2xs flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                            <Users className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-[9px] uppercase tracking-wider font-bold text-emerald-600 font-mono">TOTAL READERS</p>
+                            <p className="text-base font-black text-slate-900 leading-tight">10</p>
+                          </div>
+                        </div>
+
+                        {/* Active Loans */}
+                        <div className="bg-white border border-slate-200/90 rounded-xl p-2.5 shadow-2xs flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                            <TrendingUp className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-[9px] uppercase tracking-wider font-bold text-amber-600 font-mono">ACTIVE LOANS</p>
+                            <p className="text-base font-black text-slate-900 leading-tight">1</p>
+                          </div>
+                        </div>
+
+                        {/* Overdue */}
+                        <div className="bg-white border border-slate-200/90 rounded-xl p-2.5 shadow-2xs flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-rose-50 border border-rose-100 text-rose-600 flex items-center justify-center shrink-0">
+                            <AlertCircle className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-[9px] uppercase tracking-wider font-bold text-rose-600 font-mono">OVERDUE</p>
+                            <p className="text-base font-black text-slate-900 leading-tight">1</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Split Analytics & Most Borrowed View */}
+                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-stretch">
+                        {/* Left: Borrowing Trends Chart */}
+                        <div className="sm:col-span-7 bg-white border border-slate-200/90 rounded-xl p-3 shadow-2xs flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center justify-between">
+                              <h4 className="text-xs font-bold text-slate-900">Borrowing Trends</h4>
+                              <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                                ACID Safe
+                              </span>
+                            </div>
+                            <p className="text-[10px] text-slate-400">Number of books borrowed in the last 7 days</p>
+                          </div>
+
+                          {/* Chart SVG */}
+                          <div className="relative h-18 w-full mt-2">
+                            <svg className="w-full h-full overflow-visible" viewBox="0 0 200 55" preserveAspectRatio="none">
+                              <defs>
+                                <linearGradient id="libTrendGrad" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.25" />
+                                  <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.0" />
+                                </linearGradient>
+                              </defs>
+                              <path d="M 0,48 L 20,48 Q 45,48 55,16 Q 65,16 75,48 L 200,48 Z" fill="url(#libTrendGrad)" />
+                              <path d="M 0,48 L 20,48 Q 45,48 55,16 Q 65,16 75,48 L 200,48" fill="none" stroke="#0ea5e9" strokeWidth="2.2" strokeLinecap="round" />
+                              <circle cx="55" cy="16" r="3" fill="#0284c7" stroke="#fff" strokeWidth="1.5" />
+                            </svg>
+                            <div className="flex justify-between text-[9px] font-mono text-slate-400 border-t border-slate-100 pt-1">
+                              <span>Aug 18</span>
+                              <span className="font-bold text-sky-600">Aug 19</span>
+                              <span>Aug 20</span>
+                              <span>Aug 22</span>
+                              <span>Aug 24</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Right: Most Borrowed Book Card */}
+                        <div className="sm:col-span-5 bg-white border border-slate-200/90 rounded-xl p-3 shadow-2xs flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center justify-between mb-1">
+                              <h4 className="text-xs font-bold text-slate-900">Most Borrowed</h4>
+                              <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-mono">
+                                AVAILABLE
+                              </span>
+                            </div>
+                            <p className="text-[10px] text-slate-400">Top books in demand</p>
+                          </div>
+
+                          <div className="p-2 bg-slate-50 border border-slate-100 rounded-lg flex items-center gap-2 mt-2">
+                            <div className="w-10 h-14 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded border border-slate-700 shadow-xs flex flex-col items-center justify-center p-1 shrink-0">
+                              <div className="w-4 h-0.5 bg-amber-400 mb-1" />
+                              <span className="text-[6px] text-amber-200 font-serif text-center uppercase tracking-tighter leading-tight">Gatsby</span>
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[11px] font-bold text-slate-900 truncate">The Great Gatsby</p>
+                              <p className="text-[10px] text-slate-500 truncate">F. Scott Fitzgerald</p>
+                              <p className="text-[9px] font-mono text-indigo-600 font-semibold mt-0.5">FIFO Queue: 0 Wait</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Engineering Status Strip */}
+                    <div className="bg-slate-50 px-3.5 py-2 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono">
+                      <span className="text-slate-500 font-medium flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        NestJS 10 · TypeORM · ACID Transactions
+                      </span>
+                      <span className="text-emerald-700 font-bold">100% Concurrency Safe</span>
+                    </div>
+                  </div>
                 </div>
-              ))}
+
+                {/* Right Column: Title, Role, Tech Stack Pills, and CTAs */}
+                <div className="lg:col-span-6 flex flex-col justify-between h-full">
+                  <div>
+                    {/* Category Badge */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-2 h-2 rounded-full bg-[#5E6AD2] shadow-[0_0_8px_#5E6AD2]" />
+                      <span className="text-xs font-bold tracking-wider text-[#5E6AD2] uppercase font-mono">
+                        {language === 'vi' ? 'KIẾN TRÚC MODULE HÓA · GIAO DỊCH ACID · KIỂM THỬ TỰ ĐỘNG' : 'MODULAR ARCHITECTURE · ACID TRANSACTIONS · AUTOMATED TESTING'}
+                      </span>
+                    </div>
+
+                    {/* Main Title */}
+                    <h1 className="text-3xl md:text-4xl font-black text-[#0B0E17] tracking-tight mb-2 leading-tight">
+                      Smart Library Management System
+                    </h1>
+
+                    {/* Role & Metadata */}
+                    <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-sm text-[#475569] mb-5 font-medium">
+                      <span className="text-[#0B0E17] font-bold">
+                        {language === 'vi' ? 'Vai trò:' : 'Role:'} {detail.role}
+                      </span>
+                      <span>•</span>
+                      <span>{detail.duration}</span>
+                      <span>•</span>
+                      <span>{detail.teamSize}</span>
+                    </div>
+
+                    {/* Tech Stack Pills (Clean, standardized technologies) */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {[
+                        'NestJS 10',
+                        'TypeScript 5',
+                        'TypeORM v0.3',
+                        'PostgreSQL & MS SQL Server',
+                        'JWT HttpOnly & RBAC',
+                        'class-validator & DTOs',
+                        'Jest & Supertest',
+                        'Docker Compose',
+                      ].map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 text-xs font-mono font-medium rounded-lg bg-slate-100/90 hover:bg-slate-200/80 text-slate-800 border border-slate-200/90 shadow-2xs transition-all"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                      <a
+                        href={detail.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0B0E17] hover:bg-[#1E293B] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                      >
+                        <GitBranch className="w-4 h-4" /> {t.detailCommon.sourceRepo}
+                      </a>
+                      <button
+                        onClick={() => scrollTo('architecture')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-50 text-[#0B0E17] border border-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Layers className="w-4 h-4 text-[#5E6AD2]" />
+                        {language === 'vi' ? 'Xem Sơ Đồ Kiến Trúc' : 'System Architecture'}
+                      </button>
+                      <button
+                        onClick={() => scrollTo('fifo')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#5E6AD2]/10 hover:bg-[#5E6AD2]/20 text-[#5E6AD2] border border-[#5E6AD2]/30 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Shield className="w-4 h-4" />
+                        {language === 'vi' ? 'Hàng Đợi FIFO & ACID' : 'FIFO & ACID Protocol'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Quick 3-Block Summary (Overview - Key Features - Core Challenge) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Block 1: Overview */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-[#5E6AD2]">
+                    <Globe className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'TỔNG QUAN BÀI TOÁN (OVERVIEW)' : 'EXECUTIVE OVERVIEW'}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-[#334155] leading-relaxed font-normal">
+                    {language === 'vi'
+                      ? 'Hệ thống Quản lý Thư viện cấp doanh nghiệp (Enterprise-Grade LMS) được xây dựng trên nền tảng NestJS 10 và TypeORM nhằm giải quyết triệt để các bài toán vận hành phức tạp: kiểm soát vòng đời mượn trả bằng Máy trạng thái, hàng đợi ưu tiên duyệt mượn FIFO tránh thiên vị, giới hạn hạn ngạch 5 cuốn/độc giả, tự động tính phạt khi làm hỏng hoặc mất sách, và đảm bảo toàn vẹn dữ liệu đa bảng bằng ACID Transactions và Guarded Soft Delete.'
+                      : 'Enterprise-Grade Library Management System engineered with NestJS 10 and TypeORM to resolve complex operational challenges: loan lifecycle management via State Machines, FIFO Queue Enforcement for fair borrow approvals, quota caps (max 5 active loans), automated damage/loss penalty calculation, and strict multi-table data integrity backed by ACID Transactions and Guarded Soft Deletes.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-[#64748B] font-mono">
+                  <span>Architecture: Modular Monolith</span>
+                  <span className="text-emerald-700 font-bold">95/95 Tests PASS</span>
+                </div>
+              </div>
+
+              {/* Block 2: Key Features */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-emerald-700">
+                    <CheckCircle className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'ĐIỂM NHẤN KỸ THUẬT (KEY FEATURES)' : 'KEY ENGINEERING HIGHLIGHTS'}
+                    </h3>
+                  </div>
+                  <ul className="space-y-2 text-xs text-[#334155] leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Hàng đợi FIFO Enforcement' : 'FIFO Queue Enforcement'}</strong>: Bắt buộc duyệt mượn công bằng theo mốc thời gian.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Giao dịch ACID nguyên tử' : 'ACID Atomic Transactions'}</strong>: Bọc đồng thời cập nhật kho + biên lai phạt + đổi trạng thái.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Xóa mềm có điều kiện' : 'Guarded Soft Delete'}</strong>: Chặn 100% xóa tài liệu hoặc độc giả có giao dịch chưa hoàn tất.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Kiến trúc Module hóa NestJS' : 'Layered Modular NestJS'}</strong>: Controller → Service → Repository với IoC Container.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Kiểm thử tự động Jest' : 'Jest Test Suites'}</strong>: Đạt 95/95 Test Cases (100% PASS), 85%+ Code Coverage.</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-800 font-mono font-semibold">
+                  {language === 'vi' ? 'Đạt 95/95 Test Cases (100% PASS)' : 'Verified: 95/95 Automated Tests PASS'}
+                </div>
+              </div>
+
+              {/* Block 3: Challenges & Solution */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-amber-700">
+                    <Shield className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'THỬ THÁCH LỚN NHẤT & GIẢI PHÁP' : 'CORE CHALLENGE & SOLUTION'}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-[#334155] leading-relaxed mb-3">
+                    <strong className="text-amber-900 block mb-1">
+                      {language === 'vi' ? 'Thách thức: Toàn vẹn dữ liệu khi Trả sách & Tính phạt đồng thời' : 'Challenge: Multi-Table Transaction Integrity'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Khi độc giả trả sách hoặc báo mất/hỏng, hệ thống phải cập nhật song song kho sách, tạo biên lai phạt và chuyển trạng thái phiếu. Nếu đứt mạng giữa chừng sẽ gây lệch số liệu tài chính.'
+                      : 'Returning damaged/lost books requires concurrently updating stock inventory, issuing fine logs, and altering loan states. Mid-stream failures cause serious financial discrepancies.'}
+                  </p>
+                  <p className="text-xs text-[#334155] leading-relaxed">
+                    <strong className="text-emerald-900 block mb-1">
+                      {language === 'vi' ? 'Giải pháp: ACID Transaction bọc nguyên tử qua TypeORM' : 'Solution: Atomic ACID Database Transactions'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Bọc toàn bộ chuỗi ghi vào DataSource Transaction Manager. Bất kỳ bước con nào phát sinh lỗi đều kích hoạt Rollback hoàn tác 100%, bảo vệ dữ liệu kho và tiền phạt an toàn tuyệt đối.'
+                      : 'Encapsulated multi-step mutations within TypeORM DataSource Transaction Manager. Any failure triggers 100% rollback, ensuring absolute financial and inventory consistency.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-amber-800 font-mono">
+                  <span>ACID Rollback</span>
+                  <span className="font-bold">Zero Data Drift</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Transition Banner: Deep-Dive Indicator */}
+            <div className="p-5 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl text-white shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#5E6AD2]/30 border border-[#5E6AD2]/50 flex items-center justify-center shrink-0">
+                  <Layers className="w-5 h-5 text-indigo-300" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-wider font-mono text-indigo-200">
+                    {language === 'vi' ? 'PHÂN TÍCH KỸ THUẬT CHUYÊN SÂU (ENGINEERING DEEP DIVE)' : 'DETAILED TECHNICAL DEEP DIVE'}
+                  </h4>
+                  <p className="text-xs text-slate-300 font-normal">
+                    {language === 'vi'
+                      ? 'Bao gồm sơ đồ kiến trúc module hóa NestJS, lược đồ ERD quan hệ bảng, giao dịch ACID và kết quả 95/95 tests.'
+                      : 'Comprehensive NestJS modular diagrams, ERD schema, ACID transaction flows, and 95 test case reports.'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => scrollTo('architecture')}
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '1. Kiến Trúc ↓' : '1. Architecture ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('fifo')}
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '2. Hàng Đợi FIFO ↓' : '2. FIFO Queue ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('challenges')}
+                  className="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer"
+                >
+                  {language === 'vi' ? '3. Thách Thức & Giải Pháp ↓' : '3. Challenges ↓'}
+                </button>
+              </div>
             </div>
           </section>
 
@@ -361,8 +730,8 @@ const LibraryManagementPage: React.FC = () => {
             </div>
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Trong nhóm 3 thành viên, tôi đảm nhiệm vai trò Kỹ sư Phần mềm & Lập trình viên Backend chính — phụ trách toàn bộ thiết kế kiến trúc phân tầng, trực tiếp phát triển 3 module nghiệp vụ cốt lõi (Users, Books, Loans), triển khai cơ chế bảo mật đa lớp, và xây dựng bộ 95 Test Cases kiểm thử tự động.'
-                : 'In the 3-person team, I served as the Lead Software Engineer & Backend Developer — owning the entire layered architecture design, directly developing all 3 core business modules (Users, Books, Loans), implementing multi-layer security mechanisms, and building the complete 95-test automated testing suite.'}
+                ? 'Trong nhóm 3 thành viên, tôi đảm nhiệm vai trò Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer) — chịu trách nhiệm thiết kế toàn bộ kiến trúc phân tầng, trực tiếp phát triển 3 module nghiệp vụ cốt lõi (Users, Books, Loans), triển khai cơ chế bảo mật đa lớp, và xây dựng bộ 95 Test Cases kiểm thử tự động.'
+                : 'In the 3-person team, I served as the Technical Lead & System Designer — owning the entire layered architecture design, directly developing all 3 core business modules (Users, Books, Loans), implementing multi-layer security mechanisms, and building the complete 95-test automated testing suite.'}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[

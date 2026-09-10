@@ -24,7 +24,7 @@ export const PERSONAL_INFO: Record<Language, PersonalInfoType> = {
     name: "Phạm Tuấn Hưng",
     role: "Kỹ sư Phần mềm & Lập trình viên Backend (Software Engineer & Backend Developer)",
     tagline: "Cung cấp giải pháp kỹ thuật toàn diện, thiết kế kiến trúc backend tin cậy & tối ưu hiệu năng.",
-    bio: "Kỹ sư Phần mềm & Lập trình viên Backend tại TP. Hồ Chí Minh — chuyên cung cấp các giải pháp kỹ thuật và kiến trúc phần mềm tin cậy, biến các bài toán nghiệp vụ thực tế thành những hệ thống backend mượt mà, tối ưu hiệu năng, bảo mật và sẵn sàng mở rộng.",
+    bio: "Sinh viên ngành Kỹ thuật Phần mềm tại Học viện Công nghệ Bưu chính Viễn thông (PTIT TP.HCM) với nền tảng cốt lõi về phát triển hệ thống Backend, kiến trúc phân tán và tự động hóa tích hợp AI. Có kinh nghiệm thiết kế cơ sở dữ liệu chuyên sâu (PostgreSQL, SQL Server), tối ưu API hiệu năng cao (Node.js, Spring Boot, Python) và tích hợp các mô hình ngôn ngữ lớn (Gemini LLM) vào bài toán thực tế. Sẵn sàng mang tư duy giải quyết vấn đề kỹ thuật và định hướng sản phẩm đóng góp cho các đội ngũ công nghệ năng động.",
     university: "Học viện Công nghệ Bưu chính Viễn thông (PTIT TP.HCM)",
     major: "Kỹ thuật Phần mềm (Software Engineering)",
     gpa: "3.2 / 4.0",
@@ -46,7 +46,7 @@ export const PERSONAL_INFO: Record<Language, PersonalInfoType> = {
     name: "Pham Tuan Hung",
     role: "Software Engineer & Backend Developer",
     tagline: "Delivering comprehensive engineering solutions, robust backend architecture & performance optimization.",
-    bio: "Software engineer & Backend developer based in Ho Chi Minh City — delivering robust engineering solutions and reliable software architectures, turning real-world business requirements into high-performance, secure, and scalable backend systems.",
+    bio: "Software Engineering student at PTIT with a strong foundation in backend development, scalable architectures, and AI-integrated automation. Experienced in designing robust databases (PostgreSQL, SQL Server), optimizing high-performance APIs (Node.js, Spring Boot, Python), and integrating Large Language Model (LLM) APIs (Vertex AI/Gemini) into real-world workflows. Eager to bring strong technical problem-solving skills and a product-focused mindset to fast-paced engineering teams.",
     university: "Posts and Telecommunications Institute of Technology (PTIT HCMC)",
     major: "Software Engineering",
     gpa: "3.2 / 4.0",
@@ -71,36 +71,40 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-logistics",
       title: "Smart Logistics Platform",
-      subtitle: "Hệ thống điều vận và tối ưu hóa tuyến đường giao hàng tự động (Dự án Doanh nghiệp tại CITARES)",
-      description: "Nền tảng logistics cấp doanh nghiệp được thiết kế theo Kiến trúc phần mềm sạch (Clean Architecture) và Phương pháp thiết kế hướng miền (Domain-Driven Design - DDD), phát triển tại Công ty TNHH CITARES. Tự động hóa chuỗi cung ứng: gom hàng, phân loại kho, trung chuyển liên kho, tối ưu giao hàng chặng cuối bằng đường ống 4 thuật toán tối ưu tuyến đường (Route Optimization Pipeline) thuần TypeScript.",
+      subtitle: "Hệ thống điều vận và tối ưu hóa tuyến đường giao hàng tự động",
+      description: "Nền tảng logistics cấp doanh nghiệp phát triển tại CITARES Co., Ltd. Tự động hóa chuỗi cung ứng điều vận và tối ưu tuyến đường giao hàng qua đường ống giải thuật di truyền (GA) và xử lý GPS thời gian thực.",
       category: "backend",
-      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "DBSCAN", "K-Means", "Hungarian Algorithm", "Prisma ORM", "RabbitMQ", "Docker", "React SPA", "Flutter"],
+      role: "Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern)",
+      image: "/assets/projects/smart-logistics/desktop.jpg",
+      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "RabbitMQ", "Docker", "React SPA", "Flutter"],
       architectureHighlights: [
         "Tham gia hiện thực hóa đường ống 4 thuật toán tối ưu tuyến đường thuần TypeScript: DBSCAN → K-Means → Giải thuật Di truyền (GA) → Thuật toán ghép cặp Hungarian.",
         "Xây dựng đường ống xử lý tọa độ định vị toàn cầu (GPS Telemetry) trên bộ nhớ đệm Redis tiếp nhận 1,321 điểm/giây với độ trễ P99 dưới 1 mili-giây.",
         "Tham gia phát triển module Backend & RESTful API (Clean Architecture & DDD), thiết kế CSDL quan hệ PostgreSQL/PostGIS và hỗ trợ xây dựng React SPA Dispatcher Dashboard.",
         "Tích hợp dịch vụ tính toán định tuyến tách rời tải nặng qua hàng đợi thông điệp RabbitMQ.",
       ],
-      metrics: "Hệ thống Doanh nghiệp • Giảm 58.2% quãng đường giao hàng",
+      metrics: "Hệ thống Doanh nghiệp • Giảm 58.2% quãng đường",
       isPrivateRepo: true,
       hasDetailPage: true
     },
     {
       id: "movie-ticket-booking",
       title: "Online Movie Ticket Booking System",
-      subtitle: "Hệ thống đặt vé xem phim phân tán — 6 Microservices behind API Gateway · SAGA Pattern · Redis Lock · 25/25 Tests",
-      description: "Nền tảng đặt vé xem phim trực tuyến xây dựng theo Kiến trúc Vi dịch vụ gồm 6 service nghiệp vụ phía sau API Gateway tập trung (Database-per-Service). Xử lý tranh chấp giữ ghế dưới tải đồng thời bằng Khóa phân tán Redis (SET NX PX) kết hợp Database Pessimistic Lock dự phòng. Đảm bảo tính nhất quán giữa Thanh toán và Đặt vé qua SAGA Choreography trên RabbitMQ, kèm cơ chế hoàn tiền bù trừ tự động. Tích hợp Circuit Breaker chống lỗi lan tầng, Distributed Tracing (x-request-id) và xác thực thanh toán ZaloPay bằng HMAC-SHA256.",
+      subtitle: "Hệ thống đặt vé xem phim phân tán Microservices",
+      description: "Nền tảng đặt vé xem phim trực tuyến xây dựng theo kiến trúc 6 Vi dịch vụ độc lập. Xử lý giữ ghế đồng thời bằng Khóa phân tán Redis, điều phối giao dịch thanh toán SAGA qua RabbitMQ và tích hợp ZaloPay Dynamic QR.",
       category: "backend",
       featured: true,
       branch: "tree/SWE_BE_1",
-      tags: ["Microservices", "API Gateway", "SAGA Pattern", "RabbitMQ", "Redis Distributed Lock", "Circuit Breaker", "SQL Server", "ZaloPay QR", "Docker Compose", "Jest Tests", "React"],
+      role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
+      image: "/assets/projects/movie-ticket/desktop.png",
+      tags: ["Node.js & Express", "React 18", "Microservices (6 Services)", "Redis Distributed Lock", "RabbitMQ SAGA", "SQL Server", "ZaloPay QR", "Docker Compose"],
       architectureHighlights: [
         "Kiến trúc 6 vi dịch vụ nghiệp vụ phía sau API Gateway (Database-per-Service): tách biệt User, Movie, Seat, Booking, Payment, Notification; loại bỏ liên kết cơ sở dữ liệu chéo (cross-service DB coupling).",
         "Khóa phân tán Redis (SET NX PX 120s) chống đặt trùng ghế dưới tải đồng thời cao (Concurrency Control), tự động fallback sang Pessimistic Lock tại CSDL khi Redis mất kết nối.",
         "Điều phối giao dịch SAGA Choreography qua RabbitMQ (Durable Queues & Message Persistence): xử lý sự kiện payment.successful và tự động hoàn tiền ZaloPay qua giao dịch bù trừ (Compensating Transaction) khi giữ vé thất bại.",
         "Tăng cường độ tin cậy và hiệu năng: Cấu hình Circuit Breaker (Opossum) tại Gateway ngăn lỗi dây chuyền; gắn Correlation ID (x-request-id) truy vết luồng; tối ưu Batch API, giảm network round trips từ O(N) xuống O(1) và Redis cache.",
       ],
-      metrics: "Anti Double-Booking · SAGA Pattern · Circuit Breaker · 25/25 Tests",
+      metrics: "Anti Double-Booking · SAGA Pattern · 25/25 Tests",
       githubUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
       demoUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
       hasDetailPage: true
@@ -108,12 +112,14 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "toeic-ai-microservices",
       title: "TOEIC Learning & AI Chatbot Ecosystem",
-      subtitle: "Hệ sinh thái học và luyện thi TOEIC xây dựng theo kiến trúc Microservices · Database-per-Service · Event-Driven · AI/ML · ZaloPay",
-      description: "Hệ thống được thiết kế theo kiến trúc Microservices với 6 dịch vụ độc lập phía sau Nginx API Gateway, áp dụng mô hình Database-per-Service với 4 CSDL SQL Server 2022 được sở hữu và quản lý độc lập bởi từng domain, không sử dụng cross-database queries/joins. Các service giao tiếp bất đồng bộ qua RabbitMQ cho các luồng nghiệp vụ như kích hoạt VIP và gửi email, đồng thời duy trì cơ chế retry và HTTP sync fallback nhằm tăng khả năng chịu lỗi. Hệ sinh thái tích hợp Stateless ML Service (Python Flask + scikit-learn) suy luận hoàn toàn in-memory để dự đoán điểm thi và kỹ năng yếu kèm cơ chế Rule-based Fallback; Trợ lý AI Chatbot Google Gemini 2.5 Flash truy xuất ngữ cảnh đề thi nội bộ; cùng Cổng thanh toán ZaloPay Dynamic QR xác thực chữ ký HMAC-SHA256 kết hợp kiểm tra idempotency.",
+      subtitle: "Hệ sinh thái học và luyện thi TOEIC thông minh",
+      description: "Hệ sinh thái luyện thi TOEIC kết hợp kiến trúc Microservices và Trợ lý AI Gemini 2.5 Flash. Tích hợp mô hình học máy (ML) in-memory dự đoán điểm thi và quy trình kích hoạt VIP bất đồng bộ qua RabbitMQ.",
       category: "ai",
       featured: false,
       branch: "tree/SWE_BE3",
-      tags: ["Microservices", "API Gateway", "Database-per-Service", "RabbitMQ", "SQL Server 2022", "Google Gemini AI", "Python ML", "ZaloPay QR", "Docker Compose", "Flutter 3"],
+      role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
+      image: "/assets/projects/toeic-chatbot/desktop.png",
+      tags: ["Google Gemini AI", "Python ML", "Node.js Microservices", "RabbitMQ", "SQL Server 2022", "Flutter 3", "Docker Compose"],
       architectureHighlights: [
         "Microservices & Database-per-Service: 6 application services độc lập (Auth, Quiz, Payment, Chatbot, Email, ML); mỗi service sở hữu dữ liệu riêng, loại bỏ hoàn toàn cross-database queries/joins; toàn bộ application stack đóng gói 9 containers qua Docker Compose.",
         "Event-Driven Processing: RabbitMQ AMQP xử lý workflow kích hoạt VIP và gửi email bất đồng bộ với cơ chế Ack/Nack, retry và synchronous HTTP fallback giúp tăng khả năng chịu lỗi của workflow.",
@@ -121,7 +127,7 @@ export const PROJECTS: Record<Language, Project[]> = {
         "Context-Aware AI Chatbot: Gemini 2.5 Flash kết hợp dữ liệu ngữ cảnh đề thi từ Quiz Service thông qua internal REST API (/api/v1/internal/smart-context), hỗ trợ hội thoại đa lượt, fallback sang General-AI và cơ chế xoay vòng khóa API (Key Fallback).",
         "Payment Integration: ZaloPay Sandbox Dynamic QR với xác thực chữ ký HMAC-SHA256 kết hợp kiểm tra idempotency trạng thái giao dịch chống xử lý trùng lặp webhook callback."
       ],
-      metrics: "Microservices · Database-per-Service · RabbitMQ Event-Driven · Stateless ML · 51/51 Tests",
+      metrics: "Database-per-Service · Gemini AI · 51/51 Tests",
       githubUrl: "https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3",
       demoUrl: "https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3",
       hasDetailPage: true
@@ -129,18 +135,21 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-library",
       title: "Smart Library Management System",
-      subtitle: "Hệ thống quản trị thư viện cấp doanh nghiệp · Giao dịch ACID · Hàng đợi FIFO · Máy trạng thái",
-      description: "Hệ thống Quản lý Thư viện cấp doanh nghiệp (Enterprise-Grade LMS) xây dựng bằng NestJS + TypeORM. Giải quyết trọn vẹn bài toán: vòng đời mượn/trả sách theo Máy trạng thái (State Machine), hàng đợi duyệt FIFO, kiểm soát hạn ngạch 5 cuốn/độc giả, tính phạt tự động (Hỏng 50% | Mất 150%), đảm bảo toàn vẹn dữ liệu bằng Database Transactions (ACID) và Guarded Soft Delete. Đạt 95/95 Test Cases (100% PASS).",
+      subtitle: "Hệ thống quản trị thư viện số cấp doanh nghiệp",
+      description: "Hệ thống quản lý thư viện số hóa toàn diện quy trình mượn - trả sách. Đảm bảo toàn vẹn dữ liệu với giao dịch CSDL nguyên tử (ACID), hàng đợi duyệt FIFO tự động và cơ chế xóa mềm an toàn.",
       category: "backend",
       featured: false,
-      tags: ["NestJS", "TypeORM", "TypeScript", "ACID Transactions", "FIFO Queue", "RBAC", "Jest 95 Tests", "SQL Server", "React"],
+      branch: "tree/SWE_BE4",
+      role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
+      image: "/assets/projects/smart-library/desktop.png",
+      tags: ["NestJS 10", "TypeORM v0.3", "TypeScript 5", "PostgreSQL & MSSQL", "FIFO Queue", "ACID Transactions", "Jest 95 Tests"],
       architectureHighlights: [
         "Kiến trúc Module hóa Phân tầng (Controller → Service → Repository → Entity) với NestJS IoC Container và Dependency Injection.",
         "Giao dịch CSDL nguyên tử (ACID Transactions) bọc đồng thời FineLog + Loan Status + Book Inventory trong 1 transaction.",
         "Hàng đợi duyệt mượn FIFO Enforcement — bắt buộc duyệt theo thứ tự thời gian gửi yêu cầu, kèm tính năng queue_position thời gian thực.",
         "Xóa mềm có ràng buộc (Guarded Soft Delete) chặn 100% thao tác xóa sách/độc giả đang có giao dịch hoạt động."
       ],
-      metrics: "95/95 Tests · ACID Transactions · FIFO Queue · Soft Delete Guard",
+      metrics: "ACID Transactions · FIFO Queue · 95/95 Tests",
       githubUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
       demoUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
       hasDetailPage: true
@@ -148,18 +157,21 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "tech-store-ecosystem",
       title: "Tech Store Android & Web Ecosystem",
-      subtitle: "Hệ sinh thái Bán lẻ Công nghệ — Android Client · Node.js Backend · Stripe PCI-DSS · 57/57 Tests",
-      description: "Hệ sinh thái thương mại điện tử bán lẻ thiết bị công nghệ đa nền tảng kết hợp giữa ứng dụng di động khách hàng, Bảng điều khiển quản trị doanh nghiệp và Dịch vụ Backend chuyên dụng. Giải quyết trọn vẹn bài toán khóa tồn kho bi quan chống bán vượt trong đợt giảm giá cao điểm, cổng thanh toán thẻ quốc tế Stripe bảo mật chuẩn PCI-DSS và trung tâm CSKH thời gian thực tích hợp Firebase FCM.",
+      subtitle: "Hệ sinh thái thương mại điện tử bán lẻ thiết bị công nghệ",
+      description: "Hệ sinh thái bán lẻ đa nền tảng kết hợp ứng dụng Android Native (Java 11) và Web Admin React 18. Khóa tồn kho bi quan chống bán vượt Flash Sale và tích hợp cổng thanh toán quốc tế Stripe PCI-DSS.",
       category: "mobile",
       featured: false,
-      tags: ["Android (Java 11)", "Node.js Micro-Backend", "Firestore ACID", "Stripe PCI-DSS", "Firebase FCM", "React 18 / Vite Admin", "57/57 Tests"],
+      branch: "tree/SWE_BE5",
+      role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
+      image: "/assets/projects/tech-store/desktop.png",
+      tags: ["Android (Java 11)", "Node.js 20 & Express", "React 18 & TypeScript", "Cloud Firestore", "Stripe SDK", "Firebase FCM"],
       architectureHighlights: [
         "Cơ chế khóa tồn kho bi quan (Pessimistic Reservation) bằng Firestore ACID Transactions với TTL 5 phút; Cron Worker giải phóng kho tự động mỗi 60s.",
         "Pipeline thanh toán thẻ quốc tế Stripe SDK bảo mật chuẩn PCI-DSS (Zero Raw Card Exposure); hoàn tất đơn hàng nguyên tử 4 bảng qua WriteBatch.",
         "Hộp thư CSKH đa kênh đồng bộ thời gian thực (Firestore onSnapshot độ trễ <100ms) kết hợp tự động phát thông báo đẩy Firebase FCM.",
         "Đạt 57/57 Test Cases (100% PASS Rate) trên cả Node.js Native Runner, Android JUnit 4 JVM và Jest 30 (100% Statements Coverage trên Web Admin Backend)."
       ],
-      metrics: "57/57 Tests · Pessimistic Lock · Stripe Vault · FCM Push",
+      metrics: "Pessimistic Lock · Stripe Vault · 57/57 Tests",
       githubUrl: "https://github.com/hungpptit/tech-store-mobile",
       demoUrl: "https://github.com/hungpptit/tech-store-mobile",
       hasDetailPage: true
@@ -169,36 +181,40 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-logistics",
       title: "Smart Logistics Platform",
-      subtitle: "Enterprise automated dispatching & route optimization system (Enterprise Project at CITARES)",
-      description: "Enterprise-grade logistics platform engineered with Clean Architecture & Domain-Driven Design (DDD), deployed at CITARES Co., Ltd. Automates end-to-end supply chain execution: pickup dispatch, zone sorting, line-haul transfers, and last-mile route optimization via a pure TypeScript 4-module route optimization pipeline.",
+      subtitle: "Enterprise automated dispatching & route optimization system",
+      description: "Enterprise-grade logistics platform engineered at CITARES Co., Ltd. Automates supply chain dispatching and route optimization through a pure TypeScript genetic algorithm pipeline and real-time GPS telemetry.",
       category: "backend",
-      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "DBSCAN", "K-Means", "Hungarian Algorithm", "Prisma ORM", "RabbitMQ", "Docker", "React SPA", "Flutter"],
+      role: "Fullstack Developer Intern",
+      image: "/assets/projects/smart-logistics/desktop.jpg",
+      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "RabbitMQ", "Docker", "React SPA", "Flutter"],
       architectureHighlights: [
         "Contributed to implementing the pure TypeScript 4-module route optimization pipeline: DBSCAN spatial clustering → K-Means capacity partition → Genetic Algorithm (GA) CVRP+VRPTW solver → Hungarian driver matching.",
         "Engineered high-throughput GPS Telemetry streaming over Redis in-memory cache, ingesting 1,321 coordinates/sec with sub-millisecond P99 latency.",
         "Participated in developing backend modules (Clean Architecture & DDD), relational PostgreSQL/PostGIS schema, and assisted in building the React SPA Dispatcher Dashboard.",
         "Integrated asynchronous route optimization workload offloading via RabbitMQ message queues.",
       ],
-      metrics: "Enterprise Grade • –58.2% Total Travel Distance",
+      metrics: "Enterprise Grade • –58.2% Travel Distance",
       isPrivateRepo: true,
       hasDetailPage: true
     },
     {
       id: "movie-ticket-booking",
       title: "Online Movie Ticket Booking System",
-      subtitle: "Distributed Cinema Booking Platform — 6 Microservices behind API Gateway · SAGA Pattern · Redis Lock · 25/25 Tests",
-      description: "Distributed cinema ticket booking platform built with a Microservices Architecture featuring 6 business services behind a centralized API Gateway (Database-per-Service pattern). Mitigates concurrent seat contention using Redis Distributed Locks (SET NX PX) with database pessimistic lock fallback. Ensures consistency between Payment and Booking via SAGA Choreography over RabbitMQ, with automated compensating refunds. Features Circuit Breakers against cascading failures, Distributed Tracing (x-request-id), and HMAC-SHA256 ZaloPay payment verification.",
+      subtitle: "Distributed Cinema Booking Platform (Microservices)",
+      description: "Distributed cinema ticket booking platform built with 6 independent microservices. Handles concurrent seat booking via Redis Distributed Lock, coordinates SAGA transactions over RabbitMQ, and integrates ZaloPay QR.",
       category: "backend",
       featured: true,
       branch: "tree/SWE_BE_1",
-      tags: ["Microservices", "API Gateway", "SAGA Pattern", "RabbitMQ", "Redis Distributed Lock", "Circuit Breaker", "SQL Server", "ZaloPay QR", "Docker Compose", "Jest Tests", "React"],
+      role: "Technical Lead & System Designer",
+      image: "/assets/projects/movie-ticket/desktop.png",
+      tags: ["Node.js & Express", "React 18", "Microservices (6 Services)", "Redis Distributed Lock", "RabbitMQ SAGA", "SQL Server", "ZaloPay QR", "Docker Compose"],
       architectureHighlights: [
         "6 business microservices behind a centralized API Gateway (Database-per-Service): User, Movie, Seat, Booking, Payment, Notification; eliminating cross-service database coupling.",
         "Redis Distributed Locking (atomic SET NX PX 120s) preventing double-booking under concurrent requests, with automatic fallback to database pessimistic transaction locking.",
         "Asynchronous SAGA Choreography over RabbitMQ (Durable Queues & Message Persistence): handles payment.successful and executes automated compensating refunds via ZaloPay API upon booking failures.",
         "Reliability & Latency Tuning: Configured Opossum Circuit Breakers at Gateway against cascading failures; end-to-end Distributed Tracing (x-request-id); Batch APIs reducing network round trips from O(N) down to O(1), and Redis caching.",
       ],
-      metrics: "Anti Double-Booking · SAGA Pattern · Circuit Breaker · 25/25 Tests",
+      metrics: "Anti Double-Booking · SAGA Pattern · 25/25 Tests",
       githubUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
       demoUrl: "https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1",
       hasDetailPage: true
@@ -206,12 +222,14 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "toeic-ai-microservices",
       title: "TOEIC Learning & AI Chatbot Ecosystem",
-      subtitle: "TOEIC Preparation Ecosystem engineered with Microservices · Database-per-Service · Event-Driven · AI/ML · ZaloPay",
-      description: "Engineered with a Microservices Architecture comprising 6 independent services behind a unified Nginx API Gateway, strictly applying the Database-per-Service pattern with 4 SQL Server 2022 databases independently owned by each domain, eliminating cross-database queries/joins. Services communicate asynchronously via RabbitMQ for workflows such as VIP activation and transactional emails, accompanied by retry policies and synchronous HTTP fallbacks for resilience. Integrates a Stateless ML Service (Python Flask + scikit-learn) executing in-memory inference with Rule-based Fallback, a Google Gemini 2.5 Flash AI Chatbot with inter-service smart context lookup, and ZaloPay Dynamic QR payment with HMAC-SHA256 signature verification and idempotency checks.",
+      subtitle: "AI-Powered TOEIC Examination Ecosystem",
+      description: "Smart TOEIC preparation ecosystem uniting Microservices and Gemini 2.5 Flash AI Assistant. Features in-memory ML inference for score prediction and asynchronous VIP workflow over RabbitMQ.",
       category: "ai",
       featured: false,
       branch: "tree/SWE_BE3",
-      tags: ["Microservices", "API Gateway", "Database-per-Service", "RabbitMQ", "SQL Server 2022", "Google Gemini AI", "Python ML", "ZaloPay QR", "Docker Compose", "Flutter 3"],
+      role: "Technical Lead & System Designer",
+      image: "/assets/projects/toeic-chatbot/desktop.png",
+      tags: ["Google Gemini AI", "Python ML", "Node.js Microservices", "RabbitMQ", "SQL Server 2022", "Flutter 3", "Docker Compose"],
       architectureHighlights: [
         "Microservices & Database-per-Service: 6 independent application services (Auth, Quiz, Payment, Chatbot, Email, ML); each owning isolated data without cross-database queries/joins; entire application stack containerized across 9 Docker containers.",
         "Event-Driven Processing: RabbitMQ AMQP handles asynchronous VIP activation and email delivery with Ack/Nack, retry, and synchronous HTTP fallback to enhance workflow fault tolerance.",
@@ -219,7 +237,7 @@ export const PROJECTS: Record<Language, Project[]> = {
         "Context-Aware AI Chatbot: Gemini 2.5 Flash integrates live TOEIC question context from Quiz Service via internal REST API (/api/v1/internal/smart-context), multi-turn conversations, General-AI fallback, and API Key Fallback Rotation.",
         "Payment Integration: ZaloPay Sandbox Dynamic QR with HMAC-SHA256 signature verification coupled with transaction idempotency checks preventing duplicate webhook processing."
       ],
-      metrics: "Microservices · Database-per-Service · RabbitMQ Event-Driven · Stateless ML · 51/51 Tests",
+      metrics: "Database-per-Service · Gemini AI · 51/51 Tests",
       githubUrl: "https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3",
       demoUrl: "https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3",
       hasDetailPage: true
@@ -227,18 +245,21 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-library",
       title: "Smart Library Management System",
-      subtitle: "Enterprise-Grade LMS · ACID Transactions · FIFO Queue · State Machine",
-      description: "Enterprise-Grade Library Management System built with NestJS + TypeORM. Solves complex business challenges: loan lifecycle via State Machine, FIFO Queue Enforcement for fair borrow processing, quota control (max 5 active loans), automated penalty engine (Damaged 50% | Lost 150%), guaranteed data integrity through ACID Database Transactions and Guarded Soft Delete. Achieved 95/95 Test Cases (100% PASS rate).",
+      subtitle: "Enterprise LMS with ACID Transactions",
+      description: "Enterprise library management system digitizing end-to-end circulation workflows. Guarantees absolute data integrity with ACID transactions, automated FIFO queue approval, and guarded soft deletes.",
       category: "backend",
       featured: false,
-      tags: ["NestJS", "TypeORM", "TypeScript", "ACID Transactions", "FIFO Queue", "RBAC", "Jest 95 Tests", "SQL Server", "React"],
+      branch: "tree/SWE_BE4",
+      role: "Technical Lead & System Designer",
+      image: "/assets/projects/smart-library/desktop.png",
+      tags: ["NestJS 10", "TypeORM v0.3", "TypeScript 5", "PostgreSQL & MSSQL", "FIFO Queue", "ACID Transactions", "Jest 95 Tests"],
       architectureHighlights: [
         "Layered Modular Architecture (Controller → Service → Repository → Entity) with NestJS IoC Container and Dependency Injection.",
         "ACID Database Transactions wrapping FineLog creation + Loan status transition + Book inventory adjustment in a single atomic operation.",
         "FIFO Queue Enforcement — forces chronological approval order for pending borrow requests, with real-time queue_position computation.",
         "Guarded Soft Delete blocking 100% of delete operations on books/readers with active loan transactions."
       ],
-      metrics: "95/95 Tests · ACID Transactions · FIFO Queue · Soft Delete Guard",
+      metrics: "ACID Transactions · FIFO Queue · 95/95 Tests",
       githubUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
       demoUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
       hasDetailPage: true
@@ -246,18 +267,21 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "tech-store-ecosystem",
       title: "Tech Store Android & Web Ecosystem",
-      subtitle: "Retail E-Commerce Ecosystem — Android Client · Node.js Backend · Stripe PCI-DSS · 57/57 Tests",
-      description: "Multi-platform tech retail ecosystem combining a customer mobile app, an enterprise web admin portal, and a dedicated backend service. Solves flash-sale overselling via pessimistic stock reservation with a 60s background Cron worker, guarantees PCI-DSS compliant card tokenization via Stripe Vault, and provides real-time omnichannel support with Firebase FCM.",
+      subtitle: "Retail E-Commerce Ecosystem & Cloud Backend",
+      description: "Multi-platform retail e-commerce ecosystem combining Android Native and React 18 Web Admin. Features pessimistic stock reservation preventing flash-sale overselling and PCI-DSS Stripe card checkout.",
       category: "mobile",
       featured: false,
-      tags: ["Android (Java 11)", "Node.js Micro-Backend", "Firestore ACID", "Stripe PCI-DSS", "Firebase FCM", "React 18 / Vite Admin", "57/57 Tests"],
+      branch: "tree/SWE_BE5",
+      role: "Technical Lead & System Designer",
+      image: "/assets/projects/tech-store/desktop.png",
+      tags: ["Android (Java 11)", "Node.js 20 & Express", "React 18 & TypeScript", "Cloud Firestore", "Stripe SDK", "Firebase FCM"],
       architectureHighlights: [
         "Pessimistic Stock Reservation mechanism via Firestore ACID Transactions with 5-minute TTL; automated 60-second Cron worker for expired stock reconciliation.",
         "PCI-DSS Level 1 compliant Stripe SDK payment pipeline (Zero Raw Card Exposure); atomic 4-document order finalization via Firebase WriteBatch.",
         "Omnichannel real-time customer support inbox (Firestore onSnapshot sub-100ms latency) with event-driven Firebase FCM push notifications.",
         "Achieved 57/57 automated test cases (100% PASS rate) across Node.js Native Runner, Android JUnit 4 JVM, and Jest 30 (100% Statements Coverage on Web Admin Backend)."
       ],
-      metrics: "57/57 Tests · Pessimistic Lock · Stripe Vault · FCM Push",
+      metrics: "Pessimistic Lock · Stripe Vault · 57/57 Tests",
       githubUrl: "https://github.com/hungpptit/tech-store-mobile",
       demoUrl: "https://github.com/hungpptit/tech-store-mobile",
       hasDetailPage: true
@@ -271,8 +295,9 @@ export const SKILL_GROUPS: Record<Language, SkillGroup[]> = {
       category: "Phát triển Backend & Kiến trúc Hệ thống",
       description: "Xây dựng logic máy chủ vững chắc, kiến trúc vi dịch vụ (Microservices) và xử lý phân tán hiệu năng cao.",
       skills: [
+        { name: "C# / .NET (ASP.NET Core / Web API)", level: "Trọng tâm", tag: "Chính" },
         { name: "Node.js / Express.js / NestJS", level: "Trọng tâm", tag: "Chính" },
-        { name: "Java (OOP / Lập trình Android)", level: "Trọng tâm", tag: "Chính" },
+        { name: "Java (OOP / Core Java)", level: "Trọng tâm", tag: "Chính" },
         { name: "TypeScript / JavaScript (ES6+)", level: "Trọng tâm", tag: "Chính" },
         { name: "C / C++ (Cấu trúc dữ liệu & Giải thuật)", level: "Thành thạo" },
         { name: "RESTful API / Webhooks", level: "Nâng cao" },
@@ -317,8 +342,9 @@ export const SKILL_GROUPS: Record<Language, SkillGroup[]> = {
       category: "Backend & Distributed Systems",
       description: "Engineering server-side business logic, microservices architecture, and distributed concurrency control.",
       skills: [
+        { name: "C# / .NET (ASP.NET Core / Web API)", level: "Core", tag: "Primary" },
         { name: "Node.js / Express.js / NestJS", level: "Core", tag: "Primary" },
-        { name: "Java (OOP / Android Studio)", level: "Core", tag: "Primary" },
+        { name: "Java (OOP / Core Java)", level: "Core", tag: "Primary" },
         { name: "TypeScript / JavaScript (ES6+)", level: "Core", tag: "Primary" },
         { name: "C / C++ (Algorithms & DSA)", level: "Proficient" },
         { name: "RESTful API / Webhooks", level: "Advanced" },
@@ -376,14 +402,14 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
     },
     {
       period: "Tháng 08/2025 - Tháng 02/2026",
-      role: "Thực tập sinh Lập trình Backend (Backend Developer Intern)",
+      role: "Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern)",
       organization: "Công ty Cổ phần Phước Thành Việt Nam (PHUOC THANH VIET NAM JSC)",
       location: "TP. Hồ Chí Minh, Việt Nam",
       description: "Tham gia phát triển website cổng thông tin doanh nghiệp và xây dựng hệ thống phần mềm Quản lý Chấm công & Nhân sự (HRM & Attendance System) phục vụ số hóa quy trình vận hành nội bộ.",
       highlights: [
-        "Thiết kế và xây dựng các dịch vụ RESTful API bằng Node.js (NestJS/Express) & SQL Server phục vụ quản lý hồ sơ nhân viên, quy trình xin nghỉ phép và chấm công.",
+        "Thiết kế và xây dựng các dịch vụ RESTful API bằng ASP.NET Core (.NET 8 / C#) & SQL Server kết hợp phát triển giao diện React & TypeScript phục vụ chấm công và quản trị nhân sự cho 200+ nhân viên.",
         "Triển khai hệ thống phân quyền đa cấp (RBAC) kết hợp máy trạng thái (State Machine) kiểm soát luồng phê duyệt đơn từ (Pending → Approved → Rejected) minh bạch.",
-        "Xây dựng tác vụ tự động hóa (Cron Job Worker) đối soát dữ liệu check-in/check-out hàng ngày và xuất báo cáo bảng công, phiếu lương định kỳ (Excel/PDF) chính xác 100%."
+        "Xây dựng các tác vụ tự động hóa (Background Worker / Cron Job) đối soát dữ liệu check-in/check-out hàng ngày và xuất báo cáo bảng công, phiếu lương định kỳ (Excel/PDF) chính xác 100%."
       ]
     },
     {
@@ -414,14 +440,14 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
     },
     {
       period: "Aug 2025 - Feb 2026",
-      role: "Backend Developer Intern",
+      role: "Fullstack Developer Intern",
       organization: "Phuoc Thanh Viet Nam Joint Stock Company (PHUOC THANH VIET NAM JSC)",
       location: "Ho Chi Minh City, Vietnam",
       description: "Contributed to developing the corporate web portal and engineered the internal Human Resource & Timekeeping Management System (HRM) to digitize enterprise operations.",
       highlights: [
-        "Designed and implemented layered RESTful APIs using Node.js (NestJS/Express) & SQL Server for employee profiling, leave management, and daily attendance tracking.",
+        "Designed and implemented RESTful APIs using ASP.NET Core (.NET 8, C#) & SQL Server alongside developing React & TypeScript frontend modules for biometric attendance tracking across 200+ employees.",
         "Engineered granular Role-Based Access Control (RBAC) and approval workflow state machines (Pending → Approved → Rejected) across departmental hierarchies.",
-        "Built automated Cron Job workers for daily check-in/out reconciliation, timesheet aggregation, and automated payroll report generation (Excel/PDF)."
+        "Built automated background workers and scheduled tasks for daily check-in/out reconciliation, timesheet aggregation, and automated payroll report generation (Excel/PDF)."
       ]
     },
     {

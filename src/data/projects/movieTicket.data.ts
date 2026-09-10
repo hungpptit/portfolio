@@ -15,7 +15,7 @@ export interface MovieTicketData {
 export const MOVIE_TICKET_DETAIL: Record<Language, MovieTicketData> = {
   vi: {
     overview: "Hệ thống đặt vé xem phim trực tuyến phân tán xây dựng theo Kiến trúc Vi dịch vụ (Microservices Architecture) gồm 6 service nghiệp vụ phía sau API Gateway tập trung (Database-per-Service). Xử lý tranh chấp giữ ghế dưới tải đồng thời bằng Khóa phân tán Redis (SET NX PX) kết hợp Database Pessimistic Lock dự phòng. Đảm bảo tính nhất quán giữa Thanh toán và Đặt vé qua SAGA Choreography trên RabbitMQ, kèm cơ chế hoàn tiền bù trừ tự động. Tích hợp Circuit Breaker chống lỗi lan tầng, Distributed Tracing (x-request-id), Batch API giảm network round trips từ O(N) xuống O(1), và đạt 25/25 Unit Tests (100% PASS) bằng Jest 29.",
-    role: "Kỹ sư Phần mềm & Lập trình viên Backend (Software Engineer & Backend Developer)",
+    role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
     duration: "3 tháng",
     teamSize: "3 thành viên",
     branch: "tree/SWE_BE_1",
@@ -54,7 +54,7 @@ export const MOVIE_TICKET_DETAIL: Record<Language, MovieTicketData> = {
   },
   en: {
     overview: "Distributed cinema ticket booking platform built with a Microservices Architecture featuring 6 business services behind a centralized API Gateway (Database-per-Service pattern). Mitigates concurrent seat contention using Redis Distributed Locks (SET NX PX) with database pessimistic lock fallback. Ensures consistency between Payment and Booking via SAGA Choreography over RabbitMQ, with automated compensating refunds. Features Circuit Breakers against cascading failures, Distributed Tracing (x-request-id), Batch APIs reducing network round trips from O(N) down to O(1), and achieves 25/25 Unit Tests (100% PASS) using Jest 29.",
-    role: "Software Engineer & Backend Developer",
+    role: "Technical Lead & System Designer",
     duration: "3 months",
     teamSize: "3 members",
     branch: "tree/SWE_BE_1",

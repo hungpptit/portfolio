@@ -17,9 +17,14 @@ import {
   CreditCard,
   Lock,
   RefreshCw,
+  Cpu,
+  GitBranch,
+  LayoutDashboard,
+  Package,
+  Copy,
+  Maximize2,
   Zap,
   MessageSquare,
-  Cpu,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { TECH_STORE_DETAIL } from '../data/projects/techStore.data';
@@ -39,8 +44,6 @@ const TechStorePage: React.FC = () => {
   const t = UI_TRANSLATIONS[language];
 
   useDocumentTitle(project ? project.title : 'Tech Store Android & Web');
-
-  const accent = '#5E6AD2'; // Linear Iris Theme
 
   const TOC_SECTIONS = [
     { id: 'overview', label: language === 'vi' ? 'Tổng quan & Hiệu quả' : 'Overview & Impact' },
@@ -153,55 +156,389 @@ const TechStorePage: React.FC = () => {
 
         {/* Main Content */}
         <main className="flex-1 min-w-0 border-l border-slate-200/80 pl-10 py-10 space-y-20">
-          {/* Hero Overview */}
-          <section id="overview">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 rounded-full shadow-[0_0_8px_#5E6AD2]" style={{ background: accent }} />
-              <span className="text-xs uppercase tracking-widest font-bold text-[#5E6AD2]">
-                RETAIL E-COMMERCE & CLOUD BACKEND ECOSYSTEM
-              </span>
-            </div>
+          {/* ── SECTION 1: EXECUTIVE PROJECT SNAPSHOT (30-Second High-Level Scan) ── */}
+          <section id="overview" className="space-y-8">
+            {/* Top Card: Visual Showcase + Key Details */}
+            <div className="p-6 md:p-8 bg-white border border-slate-200/90 rounded-3xl shadow-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* Left Column: Authentic Light Theme Web Admin & Mobile Ecosystem Mockup */}
+                <div className="lg:col-span-6 flex flex-col gap-3">
+                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-md">
+                    {/* Browser Chrome Header */}
+                    <div className="bg-[#1E1E24] px-4 py-2.5 flex items-center justify-between text-xs">
+                      {/* Window Controls */}
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+                      </div>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-[#0B0E17] tracking-tight">
-              Tech Store Android &amp; Web Ecosystem
-            </h1>
+                      {/* URL Bar */}
+                      <div className="bg-slate-800/90 border border-slate-700/60 text-slate-300 px-3 py-0.5 rounded-md text-[11px] font-mono flex items-center gap-1.5 max-w-[260px] w-full justify-between shadow-inner">
+                        <div className="flex items-center gap-1.5 truncate">
+                          <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
+                          <span className="truncate">http://admin.techstore.vn</span>
+                        </div>
+                        <Copy className="w-2.5 h-2.5 text-slate-400 shrink-0 opacity-60" />
+                      </div>
 
-            <p className="text-lg text-[#334155] leading-relaxed mb-8 max-w-4xl font-normal">
-              {detail.overview}
-            </p>
+                      {/* Right Tags */}
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[9px] font-bold text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-400/20">
+                          ERP &amp; ANDROID SYNC
+                        </span>
+                        <Maximize2 className="w-3 h-3 text-slate-400" />
+                      </div>
+                    </div>
 
-            {/* Metrics Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-              {[
-                { label: language === 'vi' ? 'Kiểm thử tự động' : 'Automated Tests', value: '57/57 Tests', sub: '100% PASS (7 Suites)', color: '#5E6AD2' },
-                { label: language === 'vi' ? 'Khóa kho chống Oversell' : 'Stock Lock TTL', value: '5 Phút TTL', sub: 'Pessimistic ACID + Cron 60s', color: '#10B981' },
-                { label: language === 'vi' ? 'Chuẩn bảo mật thẻ' : 'Card Security Standard', value: 'PCI-DSS', sub: 'Stripe Vault Zero PAN Exposure', color: '#F59E0B' },
-                { label: language === 'vi' ? 'Đồng bộ CSKH Real-time' : 'Real-time CSKH Sync', value: '< 100ms', sub: 'Firestore onSnapshot + FCM', color: '#8B5CF6' },
-              ].map((m, i) => (
-                <div key={i} className="p-5 bg-white/90 border border-slate-200/80 hover:border-[#5E6AD2]/50 hover:shadow-md transition-all rounded-2xl shadow-xs">
-                  <p className="text-xs text-[#64748B] font-medium mb-1">{m.label}</p>
-                  <p className="text-2xl font-bold font-mono" style={{ color: m.color }}>{m.value}</p>
-                  <p className="text-xs text-[#64748B] mt-1">{m.sub}</p>
+                    {/* App Internal Navigation Bar */}
+                    <div className="bg-white border-b border-slate-100 px-4 py-2 flex items-center justify-center gap-6 text-xs">
+                      <div className="flex items-center gap-1.5 text-sky-600 font-semibold border-b-2 border-sky-500 pb-1 -mb-2">
+                        <LayoutDashboard className="w-3.5 h-3.5" />
+                        <span>Dashboard</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-400 hover:text-slate-600">
+                        <Package className="w-3.5 h-3.5" />
+                        <span>Products</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-400 hover:text-slate-600">
+                        <Shield className="w-3.5 h-3.5" />
+                        <span>Stock Ledger</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-400 hover:text-slate-600">
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        <span>Support</span>
+                      </div>
+                    </div>
+
+                    {/* App Dashboard Canvas */}
+                    <div className="p-4 space-y-3 bg-[#F8FAFC]">
+                      {/* Top KPI Stat Cards (4 in a row) */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                        {/* GMV */}
+                        <div className="bg-white border border-slate-200/90 rounded-xl p-2.5 shadow-2xs flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-sky-50 border border-sky-100 text-sky-600 flex items-center justify-center shrink-0">
+                            <Zap className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-[9px] uppercase tracking-wider font-bold text-sky-600 font-mono">TODAY GMV</p>
+                            <p className="text-base font-black text-slate-900 leading-tight">$3,450</p>
+                          </div>
+                        </div>
+
+                        {/* Flash Sale Stock */}
+                        <div className="bg-white border border-slate-200/90 rounded-xl p-2.5 shadow-2xs flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                            <Lock className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-[9px] uppercase tracking-wider font-bold text-amber-600 font-mono">STOCK LOCK</p>
+                            <p className="text-base font-black text-slate-900 leading-tight">1 Left</p>
+                          </div>
+                        </div>
+
+                        {/* ACID Safe */}
+                        <div className="bg-white border border-slate-200/90 rounded-xl p-2.5 shadow-2xs flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                            <Shield className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-[9px] uppercase tracking-wider font-bold text-emerald-600 font-mono">LOCK TTL</p>
+                            <p className="text-base font-black text-slate-900 leading-tight">04:59</p>
+                          </div>
+                        </div>
+
+                        {/* Stripe Vault */}
+                        <div className="bg-white border border-slate-200/90 rounded-xl p-2.5 shadow-2xs flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-100 text-[#5E6AD2] flex items-center justify-center shrink-0">
+                            <CreditCard className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-[9px] uppercase tracking-wider font-bold text-[#5E6AD2] font-mono">STRIPE</p>
+                            <p className="text-base font-black text-slate-900 leading-tight">PCI-DSS</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Split Live Stock & Android Event View */}
+                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-stretch">
+                        {/* Left: Live Stock Reservation */}
+                        <div className="sm:col-span-7 bg-white border border-slate-200/90 rounded-xl p-3 shadow-2xs flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center justify-between">
+                              <h4 className="text-xs font-bold text-slate-900">Flash Sale Stock Reservation</h4>
+                              <span className="text-[9px] font-mono text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
+                                0 Oversell
+                              </span>
+                            </div>
+                            <p className="text-[10px] text-slate-400">Pessimistic ACID lock prevents race conditions</p>
+                          </div>
+
+                          <div className="p-2.5 bg-amber-50/70 border border-amber-200/80 rounded-lg flex items-center justify-between mt-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-7 h-7 rounded-md bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800">
+                                <Lock className="w-3.5 h-3.5" />
+                              </div>
+                              <div>
+                                <p className="text-[11px] font-bold text-amber-950">MacBook Pro M3 14"</p>
+                                <p className="text-[9px] text-amber-700 font-mono">Cron Reconciler: Sweeps every 60s</p>
+                              </div>
+                            </div>
+                            <span className="px-2 py-0.5 bg-white text-amber-800 font-mono text-[9px] font-bold rounded border border-amber-300 shadow-2xs">
+                              HOLDING 5m
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Right: Omnichannel & Android App Sync */}
+                        <div className="sm:col-span-5 bg-white border border-slate-200/90 rounded-xl p-3 shadow-2xs flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center justify-between mb-1">
+                              <h4 className="text-xs font-bold text-slate-900">Mobile Client Sync</h4>
+                              <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-mono">
+                                REALTIME
+                              </span>
+                            </div>
+                            <p className="text-[10px] text-slate-400">FCM Push &amp; Firestore Listener</p>
+                          </div>
+
+                          <div className="p-2 bg-indigo-50/60 border border-indigo-100 rounded-lg flex items-center gap-2 mt-2">
+                            <div className="w-8 h-8 bg-[#5E6AD2] rounded-lg flex items-center justify-center text-white shrink-0 shadow-2xs">
+                              <Smartphone className="w-4 h-4" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[11px] font-bold text-indigo-950 truncate">Android Native (Java 11)</p>
+                              <p className="text-[9px] text-indigo-700 truncate font-mono">FCM Push: Order #4092 Paid</p>
+                              <p className="text-[9px] font-mono text-emerald-600 font-semibold mt-0.5">Latency &lt; 100ms</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Engineering Status Strip */}
+                    <div className="bg-slate-50 px-3.5 py-2 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono">
+                      <span className="text-slate-500 font-medium flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        Node.js 20 · Firestore ACID · Stripe SDK Vault
+                      </span>
+                      <span className="text-emerald-700 font-bold">57/57 Tests PASS (100%)</span>
+                    </div>
+                  </div>
                 </div>
-              ))}
+
+                {/* Right Column: Title, Role, Tech Stack Pills, and CTAs */}
+                <div className="lg:col-span-6 flex flex-col justify-between h-full">
+                  <div>
+                    {/* Category Badge */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-2 h-2 rounded-full bg-[#5E6AD2] shadow-[0_0_8px_#5E6AD2]" />
+                      <span className="text-xs font-bold tracking-wider text-[#5E6AD2] uppercase font-mono">
+                        RETAIL E-COMMERCE &amp; CLOUD BACKEND ECOSYSTEM
+                      </span>
+                    </div>
+
+                    {/* Main Title */}
+                    <h1 className="text-3xl md:text-4xl font-black text-[#0B0E17] tracking-tight mb-2 leading-tight">
+                      Tech Store Android &amp; Web Ecosystem
+                    </h1>
+
+                    {/* Role & Metadata */}
+                    <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-sm text-[#475569] mb-5 font-medium">
+                      <span className="text-[#0B0E17] font-bold">
+                        {language === 'vi' ? 'Vai trò:' : 'Role:'} {detail.role}
+                      </span>
+                      <span>•</span>
+                      <span>{detail.duration}</span>
+                      <span>•</span>
+                      <span>{detail.teamSize}</span>
+                    </div>
+
+                    {/* Tech Stack Pills (Clean, standardized technologies) */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {[
+                        'Android Native (Java 11)',
+                        'Node.js 20 & Express',
+                        'React 18 & TypeScript',
+                        'Google Cloud Firestore',
+                        'Stripe Payment SDK',
+                        'Firebase Auth & FCM',
+                        'Ant Design 5',
+                        'Jest & JUnit 4',
+                      ].map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 text-xs font-mono font-medium rounded-lg bg-slate-100/90 hover:bg-slate-200/80 text-slate-800 border border-slate-200/90 shadow-2xs transition-all"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                      <a
+                        href={detail.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0B0E17] hover:bg-[#1E293B] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                      >
+                        <GitBranch className="w-4 h-4" /> {t.detailCommon.sourceRepo}
+                      </a>
+                      <button
+                        onClick={() => scrollTo('architecture')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-50 text-[#0B0E17] border border-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Layers className="w-4 h-4 text-[#5E6AD2]" />
+                        {language === 'vi' ? 'Xem Sơ Đồ Kiến Trúc' : 'System Architecture'}
+                      </button>
+                      <button
+                        onClick={() => scrollTo('concurrency')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#5E6AD2]/10 hover:bg-[#5E6AD2]/20 text-[#5E6AD2] border border-[#5E6AD2]/30 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Lock className="w-4 h-4" />
+                        {language === 'vi' ? 'Khóa Tồn Kho & Stripe' : 'Inventory Lock & Stripe'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
-            {/* Architecture Highlights Pills */}
-            <div className="flex flex-wrap gap-2">
-              {[
-                'Android Native Java 11 (MVVM)',
-                'Node.js 20 Micro-Backend',
-                'React 18 / Vite 5 Admin ERP',
-                'Stripe Payment Gateway (Vault)',
-                'Firestore ACID Transactions',
-                'Pessimistic Stock Reservation',
-                'Firebase Cloud Messaging (FCM)',
-                '100% Test Coverage on Controllers',
-              ].map((h, i) => (
-                <span key={i} className="px-3 py-1.5 bg-white border border-slate-200/80 text-xs text-[#334155] font-mono rounded-lg shadow-2xs font-medium">
-                  {h}
-                </span>
-              ))}
+            {/* Quick 3-Block Summary (Overview - Key Features - Core Challenge) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Block 1: Overview */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-[#5E6AD2]">
+                    <Globe className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'TỔNG QUAN BÀI TOÁN (OVERVIEW)' : 'EXECUTIVE OVERVIEW'}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-[#334155] leading-relaxed font-normal">
+                    {language === 'vi'
+                      ? 'Hệ sinh thái Bán lẻ Công nghệ đa nền tảng kết hợp ứng dụng Native Android (Java 11 MVVM) cho khách hàng, Web Admin (React 18) cho quản trị doanh nghiệp và Micro-Backend Node.js 20. Hệ thống giải quyết trọn vẹn bài toán khóa kho bi quan chống bán vượt (Overselling) trong đợt giảm giá Flash Sale, đường ống thanh toán thẻ quốc tế Stripe bảo mật chuẩn PCI-DSS không lưu số thẻ thô, và trung tâm CSKH đa kênh đồng bộ thời gian thực dưới 100ms.'
+                      : 'Multi-platform Retail E-Commerce Ecosystem combining Native Android (Java 11 MVVM) for consumers, React 18 Web Admin for ERP operators, and a dedicated Node.js 20 Micro-Backend. Resolves flash-sale overselling through pessimistic stock reservations, guarantees PCI-DSS compliant credit card checkout via Stripe Vault without raw card exposure, and synchronizes omnichannel customer support messages in sub-100ms.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-[#64748B] font-mono">
+                  <span>Architecture: Hybrid Micro-Backend</span>
+                  <span className="text-emerald-700 font-bold">57/57 Tests PASS</span>
+                </div>
+              </div>
+
+              {/* Block 2: Key Features */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-emerald-700">
+                    <CheckCircle className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'ĐIỂM NHẤN KỸ THUẬT (KEY FEATURES)' : 'KEY ENGINEERING HIGHLIGHTS'}
+                    </h3>
+                  </div>
+                  <ul className="space-y-2 text-xs text-[#334155] leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Khóa kho bi quan (TTL 5m)' : 'Pessimistic Stock Reservation'}</strong>: Firestore ACID Transaction + Cron Worker giải phóng 60s.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Cổng thanh toán Stripe PCI-DSS' : 'Stripe PCI-DSS Vault'}</strong>: Mã hóa Client Tokenization, hoàn tất đơn nguyên tử WriteBatch.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Triệt tiêu N+1 Query' : 'Eliminate N+1 Queries'}</strong>: In-Memory Lookup Caching (<code className="text-[#5E6AD2]">userCache</code>) giảm 50%+ chi phí đọc.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'CSKH Real-time & Push FCM' : 'Real-time Chat & Push FCM'}</strong>: Firestore onSnapshot &lt;100ms kết hợp đánh thức thiết bị ngầm.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Kiểm thử tự động 3 tầng' : '3-Tier Test Automation'}</strong>: Đạt 57/57 Test Cases (Node Runner + Android JUnit + Jest 30).</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-800 font-mono font-semibold">
+                  {language === 'vi' ? 'Đạt 57/57 Test Cases (100% PASS)' : 'Verified: 57/57 Automated Tests PASS'}
+                </div>
+              </div>
+
+              {/* Block 3: Challenges & Solution */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-amber-700">
+                    <Shield className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'THỬ THÁCH LỚN NHẤT & GIẢI PHÁP' : 'CORE CHALLENGE & SOLUTION'}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-[#334155] leading-relaxed mb-3">
+                    <strong className="text-amber-900 block mb-1">
+                      {language === 'vi' ? 'Thách thức: Tranh chấp bán vượt kho (Overselling) trong Flash Sale' : 'Challenge: Flash-Sale Overselling Race Conditions'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Hàng trăm khách cùng bấm mua sản phẩm số lượng còn 1. Nếu kiểm tra kho không atomic sẽ bán trùng đơn, trong khi khách giữ giỏ hàng rồi bỏ đi sẽ làm giam kho vô thời hạn.'
+                      : 'Hundreds of buyers contending for the final stock unit. Non-atomic inventory checks lead to overselling, while abandoned carts lock inventory indefinitely.'}
+                  </p>
+                  <p className="text-xs text-[#334155] leading-relaxed">
+                    <strong className="text-emerald-900 block mb-1">
+                      {language === 'vi' ? 'Giải pháp: Khóa bi quan Firestore + Cron Worker Reconciler' : 'Solution: Pessimistic Reservation + Auto Reconciler'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Bọc logic trừ kho tạm thời vào Firestore Transaction với TTL 5 phút. Cron Worker chạy ngầm mỗi 60s tự động quét và hoàn trả số lượng cho các đơn quá hạn mà chưa thanh toán.'
+                      : 'Guarded stock deductions inside Firestore Transactions with a 5-min TTL. A 60-second background Cron worker scans and reconciles expired reservations back to stock.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-amber-800 font-mono">
+                  <span>Zero Overselling</span>
+                  <span className="font-bold">60s Auto Reconciliation</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Transition Banner: Deep-Dive Indicator */}
+            <div className="p-5 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl text-white shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#5E6AD2]/30 border border-[#5E6AD2]/50 flex items-center justify-center shrink-0">
+                  <Layers className="w-5 h-5 text-indigo-300" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-wider font-mono text-indigo-200">
+                    {language === 'vi' ? 'PHÂN TÍCH KỸ THUẬT CHUYÊN SÂU (ENGINEERING DEEP DIVE)' : 'DETAILED TECHNICAL DEEP DIVE'}
+                  </h4>
+                  <p className="text-xs text-slate-300 font-normal">
+                    {language === 'vi'
+                      ? 'Bao gồm sơ đồ luồng dữ liệu 3 tầng, quy trình thanh toán Stripe Vault, lược đồ NoSQL và kết quả 57/57 tests.'
+                      : 'Comprehensive 3-tier architecture flows, Stripe Vault payment pipeline, NoSQL schema, and test suites.'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => scrollTo('architecture')}
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '1. Kiến Trúc ↓' : '1. Architecture ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('concurrency')}
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '2. Khóa Kho & Concurrency ↓' : '2. Concurrency ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('challenges')}
+                  className="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer"
+                >
+                  {language === 'vi' ? '3. Thách Thức & Giải Pháp ↓' : '3. Challenges ↓'}
+                </button>
+              </div>
             </div>
           </section>
 
@@ -345,7 +682,7 @@ const TechStorePage: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-sm text-[#0B0E17]">
-                    {language === 'vi' ? 'Kỹ sư Phần mềm & Lập trình viên Backend chính (Lead Backend Engineer)' : 'Software Engineer & Lead Backend Developer'}
+                    {language === 'vi' ? 'Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)' : 'Technical Lead & System Designer'}
                   </h3>
                   <p className="text-xs text-[#64748B]">
                     {language === 'vi' ? 'Trực tiếp thiết kế kiến trúc toàn hệ thống, CSDL NoSQL, Pipeline thanh toán và Chiến lược kiểm thử tự động' : 'Directly engineered end-to-end architecture, NoSQL modeling, payment security pipeline, and automated test suites'}

@@ -16,7 +16,7 @@ export interface TechStoreData {
 export const TECH_STORE_DETAIL: Record<Language, TechStoreData> = {
   vi: {
     overview: "Hệ sinh thái Thương mại điện tử Bán lẻ Thiết bị Công nghệ đa nền tảng kết hợp giữa Ứng dụng di động khách hàng, Bảng điều khiển quản trị doanh nghiệp và Dịch vụ Backend chuyên dụng. Hệ thống số hóa toàn diện quy trình bán lẻ công nghệ: từ duyệt sản phẩm và xử lý giỏ hàng, khóa tồn kho chống bán vượt trong đợt giảm giá cao điểm, thanh toán thẻ quốc tế an toàn, đến chăm sóc khách hàng và kiểm toán biến động kho thời gian thực. Toàn bộ nền tảng đảm bảo tính toàn vẹn dữ liệu và trải nghiệm mượt mà, được kiểm chứng qua 57/57 Test Cases (100% PASS) kiểm thử tự động.",
-    role: "Kỹ sư Phần mềm & Lập trình viên Backend chính (Software Engineer & Lead Backend Developer)",
+    role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
     duration: "3 tháng",
     teamSize: "3 thành viên",
     branch: "tree/SWE_BE5",
@@ -60,7 +60,7 @@ export const TECH_STORE_DETAIL: Record<Language, TechStoreData> = {
   },
   en: {
     overview: "Multi-platform Tech Retail E-Commerce Ecosystem seamlessly uniting a Customer Mobile App, an Enterprise Web Admin Portal, and a dedicated Backend Service. The platform comprehensively streamlines end-to-end retail operations: from catalog browsing and smart cart management, pessimistic stock reservation preventing flash-sale overselling, and secure international card checkout, to real-time omnichannel customer support and stock movement audit trails. The system guarantees absolute data integrity and high availability, verified by 57/57 automated test cases (100% PASS rate).",
-    role: "Software Engineer & Lead Backend Developer",
+    role: "Technical Lead & System Designer",
     duration: "3 months",
     teamSize: "3 members",
     branch: "tree/SWE_BE5",

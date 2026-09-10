@@ -26,6 +26,8 @@ import {
   Zap,
   Radio,
   ArrowDown,
+  Copy,
+  Maximize2,
 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { MOVIE_TICKET_DETAIL } from '../data/projects/movieTicket.data';
@@ -152,36 +154,338 @@ const MovieTicketPage: React.FC = () => {
 
         {/* Main Content */}
         <main className="flex-1 min-w-0 border-l border-slate-200/80 pl-10 py-10 space-y-20">
-          {/* Hero Overview */}
-          <section id="overview">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#5E6AD2] shadow-[0_0_8px_#5E6AD2]" />
-              <span className="text-xs font-bold tracking-wider text-[#5E6AD2] uppercase">
-                {language === 'vi' ? 'HỆ THỐNG PHÂN TÁN · KIẾN TRÚC VI DỊCH VỤ' : 'DISTRIBUTED SYSTEMS · MICROSERVICES'}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-black text-[#0B0E17] tracking-tight mb-6 leading-tight">
-              Online Movie Ticket<br />
-              <span className="text-[#5E6AD2]">{language === 'vi' ? 'Booking System' : 'Booking Platform'}</span>
-            </h1>
-            <p className="text-[#334155] leading-relaxed mb-10 max-w-3xl font-normal text-lg">{detail.overview}</p>
+          {/* ── SECTION 1: EXECUTIVE PROJECT SNAPSHOT (30-Second High-Level Scan) ── */}
+          <section id="overview" className="space-y-8">
+            {/* Top Card: Visual Showcase + Key Details */}
+            <div className="p-6 md:p-8 bg-white border border-slate-200/90 rounded-3xl shadow-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* Left Column: Visual Seat Selection Mockup (Light Theme Browser Window) */}
+                <div className="lg:col-span-6 flex flex-col gap-3">
+                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-md">
+                    {/* Browser Chrome Header */}
+                    <div className="bg-[#1E1E24] px-4 py-2.5 flex items-center justify-between text-xs">
+                      {/* Window Controls */}
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+                      </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
-                <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Bảo đảm Ghế ngồi' : 'Concurrency Control'}</span>
-                <span className="text-xl font-bold font-mono text-emerald-700">{language === 'vi' ? 'Chống Bán Trùng' : 'Anti Double-Book'}</span>
+                      {/* URL Bar */}
+                      <div className="bg-slate-800/90 border border-slate-700/60 text-slate-300 px-3 py-0.5 rounded-md text-[11px] font-mono flex items-center gap-1.5 max-w-[260px] w-full justify-between shadow-inner">
+                        <div className="flex items-center gap-1.5 truncate">
+                          <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
+                          <span className="truncate">http://galaxy.cinema.internal</span>
+                        </div>
+                        <Copy className="w-2.5 h-2.5 text-slate-400 shrink-0 opacity-60" />
+                      </div>
+
+                      {/* Right Tags */}
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[9px] font-bold text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-400/20">
+                          SEAT ENGINE
+                        </span>
+                        <Maximize2 className="w-3 h-3 text-slate-400" />
+                      </div>
+                    </div>
+
+                    {/* Cinema Banner Subheader */}
+                    <div className="bg-slate-50 px-4 py-2 border-b border-slate-200/80 flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_#10B981]" />
+                        <span className="font-mono font-bold text-slate-800">GALAXY CINEMA · RẠP 03</span>
+                      </div>
+                      <span className="font-mono text-amber-800 font-bold bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[11px]">
+                        {language === 'vi' ? 'KHÓA REDIS: 01:59' : 'LOCK TTL: 01:59'}
+                      </span>
+                    </div>
+
+                    {/* Interactive Seat Matrix Preview (Light Canvas) */}
+                    <div className="p-4 flex flex-col items-center bg-[#F8FAFC]">
+                      {/* Cinema Screen Curve */}
+                      <div className="w-56 h-2.5 bg-gradient-to-b from-[#5E6AD2]/30 via-sky-400/20 to-transparent rounded-t-full mb-1 border-t-2 border-[#5E6AD2]/40" />
+                      <div className="text-[10px] uppercase font-mono tracking-widest text-slate-400 mb-3 font-semibold">
+                        {language === 'vi' ? 'MÀN HÌNH CHIẾU (SCREEN)' : 'CINEMA SCREEN'}
+                      </div>
+
+                      {/* Mini Seat Rows */}
+                      <div className="space-y-1.5 mb-4">
+                        {[
+                          ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8'],
+                          ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8'],
+                          ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8'],
+                          ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8'],
+                        ].map((row, rIdx) => (
+                          <div key={rIdx} className="flex gap-1.5">
+                            {row.map((seat, sIdx) => {
+                              const isSold = (rIdx === 0 && (sIdx === 2 || sIdx === 3)) || (rIdx === 2 && sIdx === 4);
+                              const isHolding = (rIdx === 1 && sIdx === 3) || (rIdx === 1 && sIdx === 4);
+                              const isSelected = rIdx === 2 && (sIdx === 2 || sIdx === 3);
+                              return (
+                                <div
+                                  key={seat}
+                                  title={`${seat}: ${isSold ? 'Đã bán' : isHolding ? 'Đang giữ chỗ (Redis Lock)' : isSelected ? 'Đang chọn' : 'Ghế trống'}`}
+                                  className={`w-6 h-6 rounded-md text-[9px] font-mono font-bold flex items-center justify-center transition-all ${
+                                    isSold
+                                      ? 'bg-slate-200 text-slate-400 border border-slate-200 cursor-not-allowed'
+                                      : isHolding
+                                      ? 'bg-amber-100 text-amber-900 border border-amber-300 animate-pulse shadow-2xs'
+                                      : isSelected
+                                      ? 'bg-[#5E6AD2] text-white shadow-2xs'
+                                      : 'bg-white text-slate-700 border border-slate-300 hover:border-[#5E6AD2] shadow-2xs'
+                                  }`}
+                                >
+                                  {seat}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Legend */}
+                      <div className="flex items-center gap-3 text-[10px] font-mono text-slate-500 border-t border-slate-200/80 pt-2.5 w-full justify-center">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-xs bg-white border border-slate-300 shadow-2xs" />
+                          <span>{language === 'vi' ? 'Trống' : 'Available'}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-xs bg-amber-100 border border-amber-300" />
+                          <span className="text-amber-800 font-semibold">{language === 'vi' ? 'Khóa Redis' : 'Redis Lock'}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-xs bg-[#5E6AD2]" />
+                          <span className="text-indigo-600 font-semibold">{language === 'vi' ? 'Đang chọn' : 'Selected'}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-xs bg-slate-200 border border-slate-200" />
+                          <span className="text-slate-400">{language === 'vi' ? 'Đã bán' : 'Sold'}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Engineering Status Strip */}
+                    <div className="bg-slate-50 px-3.5 py-2 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono">
+                      <span className="text-slate-500 font-medium flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        Redlock (Distributed Lock) · SAGA Pattern
+                      </span>
+                      <span className="text-emerald-700 font-bold">100% Zero Race Condition</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column: Title, Role, Tech Stack Pills, and CTAs */}
+                <div className="lg:col-span-6 flex flex-col justify-between h-full">
+                  <div>
+                    {/* Category Badge */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-2 h-2 rounded-full bg-[#5E6AD2] shadow-[0_0_8px_#5E6AD2]" />
+                      <span className="text-xs font-bold tracking-wider text-[#5E6AD2] uppercase font-mono">
+                        {language === 'vi' ? 'HỆ THỐNG PHÂN TÁN · HIGH CONCURRENCY' : 'DISTRIBUTED SYSTEMS · HIGH CONCURRENCY'}
+                      </span>
+                    </div>
+
+                    {/* Main Title */}
+                    <h1 className="text-3xl md:text-4xl font-black text-[#0B0E17] tracking-tight mb-2 leading-tight">
+                      Online Movie Ticket Booking Platform
+                    </h1>
+
+                    {/* Role & Metadata */}
+                    <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-sm text-[#475569] mb-5 font-medium">
+                      <span className="text-[#0B0E17] font-bold">
+                        {language === 'vi' ? 'Vai trò:' : 'Role:'} {detail.role}
+                      </span>
+                      <span>•</span>
+                      <span>{detail.duration}</span>
+                      <span>•</span>
+                      <span>{detail.teamSize}</span>
+                    </div>
+
+                    {/* Tech Stack Pills (Clean, standardized technologies) */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {[
+                        'Node.js & Express',
+                        'React 18 & TypeScript',
+                        'Redis (Redlock & Cache)',
+                        'RabbitMQ (AMQP Message Broker)',
+                        'Microsoft SQL Server',
+                        'Docker Compose',
+                        'ZaloPay Payment Gateway',
+                        'Jest & Supertest',
+                      ].map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 text-xs font-mono font-medium rounded-lg bg-slate-100/90 hover:bg-slate-200/80 text-slate-800 border border-slate-200/90 shadow-2xs transition-all"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                      <a
+                        href={detail.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0B0E17] hover:bg-[#1E293B] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                      >
+                        <GitBranch className="w-4 h-4" /> {t.detailCommon.sourceRepo}
+                      </a>
+                      <button
+                        onClick={() => scrollTo('architecture')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-50 text-[#0B0E17] border border-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Layers className="w-4 h-4 text-[#5E6AD2]" />
+                        {language === 'vi' ? 'Xem Sơ Đồ Kiến Trúc' : 'System Architecture'}
+                      </button>
+                      <button
+                        onClick={() => scrollTo('concurrency')}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#5E6AD2]/10 hover:bg-[#5E6AD2]/20 text-[#5E6AD2] border border-[#5E6AD2]/30 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs cursor-pointer"
+                      >
+                        <Lock className="w-4 h-4" />
+                        {language === 'vi' ? 'Cơ Chế Khóa Phân Tán' : 'Distributed Lock Protocol'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-              <div className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
-                <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Kiến trúc Phân tán' : 'Microservices'}</span>
-                <span className="text-xl font-bold font-mono text-[#5E6AD2]">{language === 'vi' ? '6 Services + Gateway' : '6 Services + Gateway'}</span>
+            </div>
+
+            {/* Quick 3-Block Summary (Overview - Key Features - Core Challenge) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Block 1: Overview */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-[#5E6AD2]">
+                    <Globe className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'TỔNG QUAN BÀI TOÁN (OVERVIEW)' : 'EXECUTIVE OVERVIEW'}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-[#334155] leading-relaxed font-normal">
+                    {language === 'vi'
+                      ? 'Nền tảng đặt vé xem phim trực tuyến được phát triển để giải quyết triệt để bài toán nghẽn mạng và tranh chấp ghế khi hàng ngàn người dùng cùng săn vé giờ cao điểm. Hệ thống sử dụng kiến trúc Microservices gồm 6 dịch vụ độc lập xây dựng trên nền tảng Node.js / Express cho backend và React SPA cho frontend. Dự án tận dụng Redis Distributed Lock (SETNX + Lua Script) để chống bán trùng ghế với độ trễ P99 < 2ms, kết hợp RabbitMQ SAGA Choreography nhằm bảo toàn tính nhất quán dữ liệu xuyên suốt giữa Cinema, Order và Cổng thanh toán ZaloPay trên 5 cơ sở dữ liệu SQL Server biệt lập.'
+                      : 'Online Movie Ticket Booking Platform was engineered to solve high-concurrency seat contention and prevent duplicate bookings during blockbuster peak traffic. The application leverages a Microservices architecture consisting of 6 decoupled services built with Node.js / Express for the backend and React SPA for the frontend. It utilizes Redis Distributed Locks (SETNX + Lua scripts) for O(1) concurrent seat holding with P99 < 2ms, and RabbitMQ SAGA Choreography across 5 isolated SQL Server databases to guarantee eventual consistency between Booking, Order, and ZaloPay payment flows.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-[#64748B] font-mono">
+                  <span>Architecture: 6 Microservices</span>
+                  <span className="text-emerald-700 font-bold">P99 &lt; 2ms Redis Lock</span>
+                </div>
               </div>
-              <div className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
-                <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Giao dịch phân tán' : 'Distributed Consistency'}</span>
-                <span className="text-xl font-bold font-mono text-amber-700">SAGA Choreography</span>
+
+              {/* Block 2: Key Features */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-emerald-700">
+                    <CheckCircle className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'ĐIỂM NHẤN KỸ THUẬT (KEY FEATURES)' : 'KEY ENGINEERING HIGHLIGHTS'}
+                    </h3>
+                  </div>
+                  <ul className="space-y-2 text-xs text-[#334155] leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Khóa phân tán Redis' : 'Redis Distributed Lock'}</strong> (SET NX PX 120s) chống 100% race conditions.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? '6 Microservices độc lập' : '6 Isolated Microservices'}</strong> (Database-per-Service) sau API Gateway.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'SAGA Choreography RabbitMQ' : 'RabbitMQ SAGA Choreography'}</strong> tự động hoàn tiền bù trừ qua ZaloPay.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Opossum Circuit Breaker' : 'Opossum Circuit Breakers'}</strong> ngắt mạch ngăn lỗi sập dây chuyền (50% threshold).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span><strong>{language === 'vi' ? 'Kiểm thử tự động' : 'Automated Tests'}</strong>: Đạt 25/25 Jest Unit & Integration Tests (100% PASS).</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-800 font-mono font-semibold">
+                  {language === 'vi' ? 'Bảo toàn dữ liệu tuyệt đối (Zero Double-Booking)' : 'Zero Data Corruption Guarantee'}
+                </div>
               </div>
-              <div className="p-5 bg-white/90 border border-slate-200/80 rounded-2xl shadow-xs">
-                <span className="text-xs text-[#64748B] uppercase tracking-wider block mb-2">{language === 'vi' ? 'Khả năng phục hồi' : 'Fault Tolerance'}</span>
-                <span className="text-xl font-bold font-mono text-purple-700">Circuit Breakers</span>
+
+              {/* Block 3: Challenges & Solution */}
+              <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 text-amber-700">
+                    <Shield className="w-4 h-4" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider font-mono">
+                      {language === 'vi' ? 'THỬ THÁCH LỚN NHẤT & GIẢI PHÁP' : 'CORE CHALLENGE & SOLUTION'}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-[#334155] leading-relaxed mb-3">
+                    <strong className="text-amber-900 block mb-1">
+                      {language === 'vi' ? 'Thách thức: Tranh chấp đặt vé đồng thời (Race Condition)' : 'Challenge: Concurrent Seat Contention'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Nhiều người dùng cùng bấm đặt một ghế trong vài mili-giây. Dùng truy vấn CSDL truyền thống (Read-then-Write) sẽ bán trùng vé; dùng khóa bàn cờ trên DB gây nghẽn toàn bộ hệ thống.'
+                      : 'Multiple users concurrent clicking the same seat. Traditional DB Read-then-Write causes duplicate bookings, while heavy DB locking creates system-wide bottlenecks.'}
+                  </p>
+                  <p className="text-xs text-[#334155] leading-relaxed">
+                    <strong className="text-emerald-900 block mb-1">
+                      {language === 'vi' ? 'Giải pháp: 2 Tuyến phòng thủ (Redis + Pessimistic DB)' : 'Solution: 2-Tier Locking Protocol'}
+                    </strong>
+                    {language === 'vi'
+                      ? 'Khóa nguyên tử trên RAM với Redis (chặn request trùng với độ trễ <2ms), tự giải phóng sau 120s, kết hợp Pessimistic Lock ở CSDL làm tuyến phòng thủ dự phòng.'
+                      : 'Atomic in-memory lock on RAM with Redis (filters conflicts in <2ms, 120s TTL) with database pessimistic lock fallback.'}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-amber-800 font-mono">
+                  <span>ACID Integrity</span>
+                  <span className="font-bold">120s Safe TTL</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Transition Banner: Deep-Dive Indicator */}
+            <div className="p-5 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl text-white shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#5E6AD2]/30 border border-[#5E6AD2]/50 flex items-center justify-center shrink-0">
+                  <Layers className="w-5 h-5 text-indigo-300" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-wider font-mono text-indigo-200">
+                    {language === 'vi' ? 'PHÂN TÍCH KỸ THUẬT CHUYÊN SÂU (ENGINEERING DEEP DIVE)' : 'DETAILED TECHNICAL DEEP DIVE'}
+                  </h4>
+                  <p className="text-xs text-slate-300 font-normal">
+                    {language === 'vi'
+                      ? 'Bao gồm sơ đồ kiến trúc 6 vi dịch vụ, cơ chế SAGA RabbitMQ, mã giả khóa phân tán và kết quả 25/25 Jest tests.'
+                      : 'Comprehensive architectural diagrams, SAGA state machines, distributed lock protocols, and test suites.'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => scrollTo('architecture')}
+                  className="px-3.5 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-mono font-bold rounded-lg transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '1. Kiến Trúc ↓' : '1. Architecture ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('concurrency')}
+                  className="px-3.5 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-mono font-bold rounded-lg transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '2. Khóa Redis ↓' : '2. Lock Protocol ↓'}
+                </button>
+                <button
+                  onClick={() => scrollTo('challenges')}
+                  className="px-3.5 py-1.5 bg-[#5E6AD2] hover:bg-[#4F5AC2] text-white text-xs font-mono font-bold rounded-lg transition-all cursor-pointer"
+                >
+                  {language === 'vi' ? '3. Giải Pháp ↓' : '3. Solutions ↓'}
+                </button>
               </div>
             </div>
           </section>
@@ -433,8 +737,8 @@ const MovieTicketPage: React.FC = () => {
             </div>
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Trong nhóm 3 thành viên, tôi đảm nhiệm vai trò Kỹ sư Phần mềm & Lập trình viên Backend chính — phụ trách toàn bộ kiến trúc hệ thống phân tán, thiết kế CSDL SQL Server, cơ chế Redis Distributed Lock và tích hợp thanh toán ZaloPay.'
-                : 'In the 3-person team, I served as the primary Software Engineer & Backend Developer — owning the entire distributed system architecture, SQL Server schema design, Redis Distributed Locking mechanism, and ZaloPay payment integration.'}
+                ? 'Trong nhóm 3 thành viên, tôi đảm nhiệm vai trò Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer) — chịu trách nhiệm thiết kế toàn bộ kiến trúc hệ thống phân tán, thiết kế CSDL SQL Server, cơ chế Redis Distributed Lock và tích hợp thanh toán ZaloPay.'
+                : 'In the 3-person team, I served as the Technical Lead & System Designer — owning the entire distributed system architecture, SQL Server schema design, Redis Distributed Locking mechanism, and ZaloPay payment integration.'}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[

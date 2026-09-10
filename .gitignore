@@ -39,3 +39,7 @@ scratch/
 # Ignore all PDF files
 *.pdf
 
+# Windows / OS files
+desktop.ini
+Thumbs.db
+

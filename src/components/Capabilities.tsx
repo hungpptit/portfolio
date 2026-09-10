@@ -37,24 +37,25 @@ export const Capabilities: React.FC = () => {
             {/* Card 1: Data & Technical Tools */}
             <div className="lg:col-span-7 p-8 md:p-10 linear-card flex flex-col justify-between">
               <div>
-                {/* Tech Badges Icon Row */}
+                {/* Tech Badges with Clear Labels */}
                 <div className="flex items-center flex-wrap gap-2.5 mb-8">
                   {[
+                    { label: '.NET / C#', icon: '🔷' },
                     { label: 'Java', icon: '☕' },
-                    { label: 'Node / TS', icon: '⚡' },
+                    { label: 'Node.js / TS', icon: '⚡' },
                     { label: 'SQL Server', icon: '🗄️' },
+                    { label: 'PostgreSQL', icon: '🐘' },
                     { label: 'Redis', icon: '🔴' },
                     { label: 'RabbitMQ', icon: '🐰' },
                     { label: 'Docker', icon: '🐳' },
                     { label: 'Python', icon: '🐍' },
-                    { label: 'C++', icon: '⚙️' },
                   ].map((tech, idx) => (
                     <div
                       key={idx}
-                      className="w-11 h-11 border border-slate-200/80 bg-white hover:bg-[#5E6AD2]/10 hover:border-[#5E6AD2] rounded-xl flex items-center justify-center text-lg transition-all duration-200 cursor-default shadow-xs"
-                      title={tech.label}
+                      className="px-3.5 py-2 border border-slate-200/90 bg-white hover:bg-[#5E6AD2]/10 hover:border-[#5E6AD2] rounded-xl flex items-center gap-2 text-xs font-semibold text-[#0B0E17] transition-all duration-200 cursor-default shadow-xs"
                     >
-                      <span>{tech.icon}</span>
+                      <span className="text-base">{tech.icon}</span>
+                      <span className="font-mono font-medium">{tech.label}</span>
                     </div>
                   ))}
                 </div>

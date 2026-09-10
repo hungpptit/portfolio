@@ -15,7 +15,7 @@ export interface LibraryManagementData {
 export const LIBRARY_MANAGEMENT_DETAIL: Record<Language, LibraryManagementData> = {
   vi: {
     overview: "Hệ thống Quản lý Thư viện số cấp doanh nghiệp (Enterprise-Grade LMS) được xây dựng trên nền tảng NestJS, TypeScript và TypeORM. Hệ thống số hóa toàn diện quy trình vận hành thư viện: từ quản lý danh mục sách, tự động hóa vòng đời mượn - trả sách theo máy trạng thái (State Machine), kiểm soát hạn ngạch và hạn thẻ độc giả, đến tính toán phí phạt vi phạm tự động. Nền tảng đảm bảo tính toàn vẹn dữ liệu tuyệt đối nhờ các giao dịch CSDL nguyên tử (ACID Transactions) và cơ chế xóa mềm an toàn, được kiểm chứng qua 95/95 Test Cases (100% PASS) kiểm thử tự động.",
-    role: "Kỹ sư Phần mềm & Lập trình viên Backend chính (Software Engineer & Lead Backend Developer)",
+    role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
     duration: "2 tháng",
     teamSize: "3 thành viên",
     branch: "tree/SWE_BE4",
@@ -58,7 +58,7 @@ export const LIBRARY_MANAGEMENT_DETAIL: Record<Language, LibraryManagementData> 
   },
   en: {
     overview: "Enterprise-Grade Library Management System (LMS) built with NestJS, TypeScript, and TypeORM. The platform comprehensively digitizes library circulation operations: from catalog administration and state machine-driven loan lifecycle tracking, to reader quota and card expiry enforcement, and automated penalty fee calculation. The system guarantees absolute data integrity through ACID database transactions and guarded soft deletes, verified by 95/95 automated test cases (100% PASS rate).",
-    role: "Software Engineer & Lead Backend Developer",
+    role: "Technical Lead & System Designer",
     duration: "2 months",
     teamSize: "3 members",
     branch: "tree/SWE_BE4",

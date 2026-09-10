@@ -16,7 +16,7 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     "toeic-ai-microservices": {
       id: "toeic-ai-microservices",
       overview: "Hệ sinh thái học tập và luyện thi chứng chỉ Tiếng Anh Giao tiếp Quốc tế (TOEIC) toàn diện, giải quyết triệt để bài toán thiếu tương tác cá nhân hóa và chi phí gia sư đắt đỏ của các nền tảng luyện thi truyền thống. Hệ thống kết hợp ba trụ cột cốt lõi: Động cơ thi thử chuẩn hóa 7 Parts với chấm điểm tự động, Trợ lý AI gia sư thông minh (Google Gemini) giải thích ngữ pháp và đối thoại ngữ cảnh tức thì, cùng Đường ống Học máy (Machine Learning Pipeline) tự động chẩn đoán điểm yếu và dự đoán điểm thi của học viên. Nền tảng được vận hành trên Kiến trúc Vi dịch vụ (Microservices) tự chủ hoàn toàn với Cổng thanh toán trực tuyến ZaloPay an toàn, đạt 51/51 Test Cases (100% PASS) kiểm thử toàn diện trên toàn bộ hệ thống API.",
-      role: "Kỹ sư Phần mềm & Lập trình viên Backend (Software Engineer & Backend Developer)",
+      role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
       duration: "4 tháng",
       teamSize: "3 thành viên",
       techStack: [
@@ -64,7 +64,7 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     "smart-library": {
       id: "smart-library",
       overview: "Hệ thống Quản lý Thư viện cấp doanh nghiệp (Enterprise-Grade LMS) xây dựng bằng NestJS + TypeORM. Giải quyết trọn vẹn bài toán: vòng đời mượn/trả theo Máy trạng thái (Pending → Borrowing → Returned | Damaged | Lost), hàng đợi duyệt FIFO, hạn ngạch 5 cuốn/độc giả, tính phạt tự động (Hỏng 50% | Mất 150%), đảm bảo toàn vẹn bằng ACID Transactions và Guarded Soft Delete. Đạt 95/95 Test Cases (100% PASS).",
-      role: "Kỹ sư Phần mềm & Lập trình viên Backend chính (Lead Backend Developer)",
+      role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
       duration: "2 tháng",
       teamSize: "3 thành viên",
       techStack: [
@@ -100,7 +100,7 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     "tech-store-ecosystem": {
       id: "tech-store-ecosystem",
       overview: "Hệ sinh thái Thương mại điện tử Bán lẻ Thiết bị Công nghệ đa nền tảng kết hợp giữa Ứng dụng di động khách hàng, Bảng điều khiển quản trị doanh nghiệp và Dịch vụ Backend chuyên dụng. Hệ thống số hóa toàn diện quy trình bán lẻ công nghệ: từ duyệt sản phẩm và xử lý giỏ hàng, khóa tồn kho chống bán vượt trong đợt giảm giá cao điểm, thanh toán thẻ quốc tế an toàn, đến chăm sóc khách hàng và kiểm toán biến động kho thời gian thực. Toàn bộ nền tảng đảm bảo tính toàn vẹn dữ liệu và trải nghiệm mượt mà, được kiểm chứng qua 57/57 Test Cases (100% PASS) kiểm thử tự động.",
-      role: "Kỹ sư Phần mềm & Lập trình viên Backend chính (Lead Backend Engineer)",
+      role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
       duration: "3 tháng",
       teamSize: "3 thành viên",
       techStack: [
@@ -139,7 +139,7 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     "toeic-ai-microservices": {
       id: "toeic-ai-microservices",
       overview: "Comprehensive TOEIC certification examination and learning ecosystem engineered to solve the critical challenges of static learning materials, lack of personalized feedback, and prohibitive 1-on-1 tutoring expenses. The platform harmoniously unites three core pillars: an automated 7-Part TOEIC simulation and scoring engine, an intelligent AI tutor (Google Gemini) delivering instant contextual grammar explanations and multi-turn conversational reasoning, and an automated Machine Learning pipeline for personalized weakness diagnosis and score forecasting. Built on an autonomous Microservices architecture with secure ZaloPay payment integration, verified through 51/51 automated and functional test cases (100% PASS rate) across all 55+ API endpoints.",
-      role: "Software Engineer & Backend Developer",
+      role: "Technical Lead & System Designer",
       duration: "4 months",
       teamSize: "3 members",
       techStack: [
@@ -171,7 +171,7 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     "smart-library": {
       id: "smart-library",
       overview: "Enterprise-Grade Library Management System built with NestJS + TypeORM. Solves complex business challenges: loan lifecycle via State Machine (Pending → Borrowing → Returned | Damaged | Lost), FIFO Queue Enforcement, 5-book quota control, automated penalty engine (Damaged 50% | Lost 150%), guaranteed data integrity through ACID Transactions and Guarded Soft Delete. Achieved 95/95 Test Cases (100% PASS).",
-      role: "Software Engineer & Lead Backend Developer",
+      role: "Technical Lead & System Designer",
       duration: "2 months",
       teamSize: "3 members",
       techStack: [
@@ -207,7 +207,7 @@ export const OTHER_PROJECTS_DETAIL: Record<Language, Record<string, GenericProje
     "tech-store-ecosystem": {
       id: "tech-store-ecosystem",
       overview: "Multi-platform Tech Retail E-Commerce Ecosystem seamlessly uniting a Customer Mobile App, an Enterprise Web Admin Portal, and a dedicated Backend Service. The platform comprehensively streamlines end-to-end retail operations: from catalog browsing and smart cart management, pessimistic stock reservation preventing flash-sale overselling, and secure international card checkout, to real-time omnichannel customer support and stock movement audit trails. The system guarantees absolute data integrity and high availability, verified by 57/57 automated test cases (100% PASS rate).",
-      role: "Software Engineer & Lead Backend Developer",
+      role: "Technical Lead & System Designer",
       duration: "3 months",
       teamSize: "3 members",
       techStack: [

@@ -15,7 +15,7 @@ export interface ToeicChatbotData {
 export const TOEIC_CHATBOT_DETAIL: Record<Language, ToeicChatbotData> = {
   vi: {
     overview: "Hệ sinh thái học tập và luyện thi chứng chỉ Tiếng Anh Giao tiếp Quốc tế (TOEIC) toàn diện, giải quyết bài toán thiếu tương tác cá nhân hóa và chi phí gia sư đắt đỏ của các nền tảng truyền thống. Hệ thống được kiến trúc theo mô hình Microservices với 6 dịch vụ độc lập phía sau Cổng API Nginx, áp dụng triệt để nguyên tắc Database-per-Service với 4 CSDL SQL Server 2022, mỗi service sở hữu dữ liệu riêng và không thực hiện cross-database joins. Nền tảng kết hợp ba trụ cột kỹ thuật: Động cơ thi thử chuẩn hóa 7 Parts với chấm điểm tự động; Trợ lý AI gia sư thông minh (Google Gemini 2.5 Flash) có khả năng gọi REST nội bộ tra cứu ngữ cảnh đề thi thực tế; Đường ống Học máy (Python Flask + scikit-learn) suy luận Stateless In-Memory chẩn đoán kỹ năng yếu kèm cơ chế Rule-based Fallback; cùng luồng kích hoạt VIP bất đồng bộ qua hàng đợi thông điệp RabbitMQ. Hệ thống được xác thực qua 51/51 Test Cases (100% PASS) bao phủ các workflow chức năng, integration và security chính.",
-    role: "Kỹ sư Phần mềm & Lập trình viên Backend (Software Engineer & Backend Developer)",
+    role: "Trưởng nhóm Kỹ thuật & Thiết kế Hệ thống (Technical Lead & System Designer)",
     duration: "4 tháng",
     teamSize: "3 thành viên",
     branch: "tree/SWE_BE3",
@@ -67,7 +67,7 @@ export const TOEIC_CHATBOT_DETAIL: Record<Language, ToeicChatbotData> = {
   },
   en: {
     overview: "Comprehensive TOEIC certification examination and learning ecosystem engineered to solve the critical challenges of static learning materials, lack of personalized feedback, and prohibitive 1-on-1 tutoring expenses. Built on a Microservices Architecture featuring 6 independent services behind a unified Nginx API Gateway, strictly applying the Database-per-Service pattern with 4 SQL Server 2022 databases, each service owning its data domain without cross-database joins. The platform harmoniously unites three technical pillars: an automated 7-Part TOEIC simulation and scoring engine; an intelligent AI tutor (Google Gemini 2.5 Flash) with internal REST context retrieval from the question bank; a Stateless Machine Learning Pipeline (Python Flask + scikit-learn) for in-memory score forecasting and weak skill diagnosis with automatic Rule-based Fallback; and asynchronous VIP activation via RabbitMQ message broker. Verified through 51/51 automated test cases (100% PASS rate) covering core functional, integration, and security workflows.",
-    role: "Software Engineer & Backend Developer",
+    role: "Technical Lead & System Designer",
     duration: "4 months",
     teamSize: "3 members",
     branch: "tree/SWE_BE3",
