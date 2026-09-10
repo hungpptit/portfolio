@@ -13,7 +13,7 @@
   <style>
     @page {
       size: A4 portrait;
-      margin: 4.5mm 8.5mm 4.5mm 8.5mm;
+      margin: 5.5mm 9.5mm 5.5mm 9.5mm;
     }
 
     * {
@@ -26,8 +26,8 @@
       font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
       color: #111111;
       background-color: #ffffff;
-      line-height: 1.20;
-      font-size: 8.75pt;
+      line-height: 1.27;
+      font-size: 9.1pt;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -76,9 +76,10 @@
     }
 
     @media print {
-      body {
+      html, body {
         background: none;
         padding: 0;
+        margin: 0;
       }
 
       .cv-page {
@@ -91,55 +92,60 @@
       .print-bar {
         display: none;
       }
+
+      .section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
     }
 
     /* HEADER */
     .header {
       text-align: center;
-      margin-bottom: 2.2px;
-      border-bottom: 1.2px solid #111111;
-      padding-bottom: 2.2px;
+      margin-bottom: 4.0px;
+      border-bottom: 1.4px solid #111111;
+      padding-bottom: 3.5px;
     }
 
     .header h1 {
-      font-size: 17pt;
+      font-size: 18.5pt;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.7px;
       text-transform: uppercase;
-      margin-bottom: 0.5px;
+      margin-bottom: 1.5px;
       color: #000000;
-      line-height: 1.12;
+      line-height: 1.15;
     }
 
     .role-title {
-      font-size: 9.15pt;
+      font-size: 9.8pt;
       font-weight: 600;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.7px;
       text-transform: uppercase;
       color: #222222;
-      margin-bottom: 1.8px;
+      margin-bottom: 2.8px;
     }
 
     .contact-info {
-      font-size: 8.25pt;
+      font-size: 8.6pt;
       color: #222222;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      gap: 9px;
+      gap: 11px;
     }
 
     .contact-item {
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      gap: 3.5px;
       color: #222222;
     }
 
     .contact-item svg {
-      width: 9.5px;
-      height: 9.5px;
+      width: 10.5px;
+      height: 10.5px;
       flex-shrink: 0;
       color: #111111;
       vertical-align: middle;
@@ -157,58 +163,60 @@
 
     /* SECTIONS */
     .section {
-      margin-top: 2.6px;
+      margin-top: 4.5px;
     }
 
     .section-title {
-      font-size: 9.55pt;
+      font-size: 10.0pt;
       font-weight: 700;
       color: #000000;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
       border-bottom: 1.1px solid #000000;
-      padding-bottom: 0.6px;
-      margin-bottom: 1.6px;
+      padding-bottom: 1.5px;
+      margin-bottom: 3.0px;
+      margin-top: 0;
     }
 
     .summary-text {
       text-align: justify;
-      font-size: 8.65pt;
-      line-height: 1.20;
+      font-size: 9.05pt;
+      line-height: 1.28;
       color: #1a1a1a;
     }
 
     /* ITEMS */
     .item {
-      margin-bottom: 1.8px;
+      margin-bottom: 3.8px;
     }
 
     .item-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 0.4px;
+      margin-bottom: 1.0px;
     }
 
     .item-title {
-      font-size: 8.95pt;
+      font-size: 9.4pt;
       font-weight: 700;
       color: #000000;
     }
 
     .item-project-tag {
-      font-size: 8.75pt;
-      font-weight: 600;
-      color: #111111;
+      font-size: 9.0pt;
+      font-weight: 500;
+      color: #222222;
     }
 
     .item-company {
       font-weight: 500;
-      color: #111111;
+      font-size: 9.1pt;
+      color: #222222;
     }
 
     .item-date {
-      font-size: 8.25pt;
+      font-size: 8.6pt;
       font-weight: 500;
       color: #333333;
       white-space: nowrap;
@@ -219,22 +227,22 @@
       display: inline-flex;
       align-items: center;
       gap: 2.2px;
-      font-size: 7.0pt;
+      font-size: 7.4pt;
       font-weight: 600;
       color: #222222;
       text-decoration: none;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #94a3b8;
       border-radius: 3px;
-      padding: 0.4px 3.8px;
-      margin-left: 2.5px;
+      padding: 0.6px 4.0px;
+      margin-left: 3px;
       vertical-align: 1px;
       background: #f8fafc;
       letter-spacing: 0.1px;
     }
 
     .link-badge svg {
-      width: 7.8px;
-      height: 7.8px;
+      width: 8px;
+      height: 8px;
       display: block;
       color: #111111;
     }
@@ -247,15 +255,15 @@
 
     .bullet-list {
       list-style-type: disc;
-      padding-left: 12px;
+      padding-left: 13px;
       margin: 0;
     }
 
     .bullet-list li {
-      font-size: 8.55pt;
-      line-height: 1.19;
+      font-size: 9.05pt;
+      line-height: 1.27;
       color: #1a1a1a;
-      margin-bottom: 0.4px;
+      margin-bottom: 1.4px;
       text-align: justify;
     }
 
@@ -266,12 +274,12 @@
 
     /* SKILLS SECTION */
     .skills-block {
-      font-size: 8.55pt;
-      line-height: 1.19;
+      font-size: 9.05pt;
+      line-height: 1.27;
     }
 
     .skill-row {
-      margin-bottom: 0.5px;
+      margin-bottom: 1.8px;
       text-align: justify;
     }
 
@@ -283,15 +291,15 @@
     /* CERTIFICATIONS */
     .cert-list {
       list-style-type: disc;
-      padding-left: 12px;
+      padding-left: 13px;
       margin: 0;
     }
 
     .cert-list li {
-      font-size: 8.55pt;
-      line-height: 1.19;
+      font-size: 9.05pt;
+      line-height: 1.27;
       color: #1a1a1a;
-      margin-bottom: 0.4px;
+      margin-bottom: 1.4px;
     }
 
     .cert-list li strong {
@@ -369,15 +377,15 @@
 
     <!-- PROFESSIONAL SUMMARY -->
     <section class="section">
-      <div class="section-title">Professional Summary</div>
+      <h2 class="section-title">Professional Summary</h2>
       <p class="summary-text">
-        Fullstack Software Engineer and PTIT graduate with over 1 year of hands-on experience developing scalable web applications and distributed systems. Proficient in <strong>JavaScript and TypeScript</strong>, specializing in <strong>React, Next.js</strong>, and <strong>Node.js (NestJS, Express)</strong>, with experience in <strong>PostgreSQL and SQL Server</strong>. Strong focus on software architecture (Clean Architecture, DDD, Microservices), automated testing (Jest), and AI-assisted development to improve engineering productivity and code quality.
+        Fullstack Software Engineer (PTIT, GPA 3.2/4.0) with over 1 year of practical experience engineering modern web applications and distributed backend architectures. Proficient in <strong>TypeScript, JavaScript, React, Next.js</strong>, and <strong>Node.js (NestJS, Express)</strong>, with strong data modeling in <strong>SQL Server and PostgreSQL</strong>. Experienced in developing distributed systems with <strong>Microservices, Redis Distributed Lock, RabbitMQ</strong>, automated testing (Jest), and AI-driven workflow integrations.
       </p>
     </section>
 
     <!-- EDUCATION -->
     <section class="section">
-      <div class="section-title">Education</div>
+      <h2 class="section-title">Education</h2>
       <div class="item">
         <div class="item-header">
           <div>
@@ -386,25 +394,25 @@
           <span class="item-date">(2022 - 2026)</span>
         </div>
         <div style="font-size: 8.45pt; margin-bottom: 1px; color: #222222;">
-          Engineer’s Degree in Software Engineering (4.5-Year Engineer Program)
+          Engineer’s Degree in Software Engineering (4.5-Year Program) &bull; <strong>Cumulative GPA: 3.2 / 4.0</strong>
         </div>
         <ul class="bullet-list">
-          <li><strong>Relevant Coursework:</strong> Software Architecture, Relational Databases (PostgreSQL, SQL Server), Distributed Systems, Object-Oriented Programming (OOP & Design Patterns), Data Structures & Algorithms, Operating Systems & Networking.</li>
+          <li><strong>Relevant Coursework:</strong> Software Architecture, Relational Databases (SQL Server, PostgreSQL), Distributed Systems, Object-Oriented Programming (OOP), Data Structures & Algorithms, Computer Networks & OS.</li>
         </ul>
       </div>
     </section>
 
     <!-- WORK EXPERIENCE -->
     <section class="section">
-      <div class="section-title">Work Experience</div>
+      <h2 class="section-title">Work Experience</h2>
 
       <div class="item">
         <div class="item-header">
           <div>
-            <span class="item-title">Backend Developer Intern</span> &ndash; <span class="item-project-tag">Smart Logistics Platform (SLP)</span>
+            <span class="item-title">Fullstack Developer Intern</span> &ndash; <span class="item-project-tag">Smart Logistics Platform (SLP)</span>
             <a href="https://portfolio-chi-gules-wvghnhsxje.vercel.app/project/smart-logistics" class="link-badge"
               target="_blank" title="View Case Study Details">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
@@ -417,38 +425,38 @@
           <span class="item-date">(Mar 2026 - Aug 2026)</span>
         </div>
         <ul class="bullet-list">
-          <li>Participated in engineering dispatch RESTful APIs and 17-state order lifecycle state machines (FSM) using Express.js & TypeScript under Clean Architecture & DDD; assisted in PostgreSQL/PostGIS query optimization.</li>
-          <li>Collaborated on implementing the 4-stage route optimization pipeline (DBSCAN &rarr; K-Means &rarr; Genetic Algorithm &rarr; Hungarian Algorithm), <strong>reducing delivery distance by 58.2%</strong> across 500+ daily deliveries.</li>
-          <li>Engineered a high-throughput Redis telemetry pipeline (<strong>1,321 GPS coordinates/s, P99 &lt; 1ms</strong>) and Socket.io broadcasts; authored automated test suites ensuring 100% PASS rate.</li>
+          <li>Contributed to developing backend modules & RESTful APIs (Express.js/TypeScript) under <strong>Clean Architecture & DDD</strong>; designed PostgreSQL schema with <strong>PostGIS spatial indexing (GIST)</strong>, enforced <strong>4-tier RBAC</strong>, ACID transactions, and supported building the <strong>React SPA Dispatcher Dashboard</strong>.</li>
+          <li>Implemented a pure TypeScript 4-stage <strong>route optimization pipeline</strong> (<strong>DBSCAN</strong> &rarr; <strong>Capacity K-Means</strong> &rarr; <strong>Genetic Algorithm</strong> CVRP/VRPTW &rarr; <strong>Hungarian</strong>) with 3-tier distance fallback, <strong>reducing transit distance by 58.2%</strong> across 500+ daily orders.</li>
+          <li>Engineered real-time <strong>GPS telemetry pipeline</strong> buffering into <strong>Redis In-Memory (1,321 pings/s, P99 &lt; 1ms)</strong> with <strong>Socket.io</strong>; built <strong>17-state OrderStatus FSM</strong>, tote aggregation cutting 95% manual touches, and achieved <strong>12/12 ACID tests (100% PASS)</strong>.</li>
         </ul>
       </div>
 
       <div class="item">
         <div class="item-header">
           <div>
-            <span class="item-title">Fullstack Developer Intern</span> &ndash; <span class="item-project-tag">HRM & Time Tracking System</span> &bull; <span class="item-company">Phuoc Thanh Viet Nam JSC</span>
+            <span class="item-title">Fullstack Developer Intern</span> &ndash; <span class="item-project-tag">HRM & Attendance System</span> &bull; <span class="item-company">Phuoc Thanh Viet Nam JSC</span>
           </div>
           <span class="item-date">(Aug 2025 - Feb 2026)</span>
         </div>
         <ul class="bullet-list">
-          <li>Developed <strong>React & TypeScript</strong> frontend modules and 15+ RESTful API endpoints with NestJS integrating SQL Server, serving biometric attendance tracking for <strong>200+ employees</strong>.</li>
-          <li>Implemented multi-tier <strong>RBAC</strong> authorization and State Machine for automated leave approval workflows across 4 departments, cutting turnaround from <strong>2 days to under 2 hours</strong>.</li>
-          <li>Engineered automated daily Cron Jobs reconciling biometric time-tracking logs, maintaining audit logs, and saving <strong>15+ hours/week</strong> of manual reconciliation.</li>
+          <li>Contributed to designing layered RESTful APIs using NestJS & SQL Server alongside developing <strong>React & TypeScript</strong> frontend modules for biometric time-tracking for <strong>200+ employees</strong>.</li>
+          <li>Engineered granular Role-Based Access Control (<strong>RBAC</strong>) and approval workflow state machines (Pending &rarr; Approved &rarr; Rejected), cutting turnaround from <strong>2 days to under 2 hours</strong>.</li>
+          <li>Built automated Cron Job workers for daily attendance reconciliation, audit logging, and timesheet reports, saving <strong>15+ hours/week</strong> of manual administration.</li>
         </ul>
       </div>
     </section>
 
     <!-- TECHNICAL PROJECTS -->
     <section class="section">
-      <div class="section-title">Featured Technical Projects</div>
+      <h2 class="section-title">Featured Technical Projects</h2>
 
       <div class="item">
         <div class="item-header">
           <div>
-            <span class="item-title">Online Movie Ticket Booking & Interactive Seat Matrix</span>
+            <span class="item-title">Online Movie Ticket Booking Platform</span>
             <a href="https://portfolio-chi-gules-wvghnhsxje.vercel.app/project/movie-ticket-booking" class="link-badge"
               target="_blank" title="View Case Study Details">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
@@ -458,20 +466,19 @@
             </a>
             <a href="https://github.com/hungpptit/XEMPHIM/tree/SWE_BE_1" class="link-badge" target="_blank"
               title="View GitHub Repository">
-              <svg viewBox="0 0 24 24" fill="currentColor">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                  d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                  d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
               </svg>
               GitHub
             </a>
-            <span style="font-size: 8.1pt; color: #333333; font-weight: 500;">(React Frontend, Microservices, SAGA Pattern, Circuit Breaker, Redis Lock, RabbitMQ, SQL Server)</span>
+            <span style="font-size: 8.1pt; color: #333333; font-weight: 500;">(React, Distributed Systems, Concurrency & Redis Lock, SAGA, RabbitMQ, ZaloPay API, SQL Server)</span>
           </div>
         </div>
         <ul class="bullet-list">
-          <li>Architected 6 business microservices behind a centralized API Gateway (Database-per-Service) with <strong>Opossum Circuit Breakers</strong> and <strong>Distributed Tracing (x-request-id)</strong>.</li>
-          <li>Engineered <strong>Redis Distributed Locking (atomic SET NX PX 120s)</strong> preventing double-booking under concurrent contention, with automatic fallback to Sequelize pessimistic DB transaction locking.</li>
-          <li>Implemented <strong>asynchronous SAGA Choreography over RabbitMQ</strong> with automated ZaloPay compensating refund transactions on booking failures, plus batch query APIs reducing network round trips from O(N) to O(1).</li>
-          <li>Secured ZaloPay Dynamic QR payments via HMAC-SHA256 signature verification and authored comprehensive Jest unit test suites with <strong>100% test pass rate (25/25 tests)</strong>.</li>
+          <li>Architected 6 microservices behind centralized API Gateway (Database-per-Service with 5 isolated SQL Server databases); integrated Opossum Circuit Breaker (50% threshold, 6s timeout) to prevent cascading failures.</li>
+          <li>Built interactive React seat selection matrix with real-time countdown; eliminated race conditions under high concurrency via atomic <strong>Redis Distributed Lock (SET NX PX 120s)</strong> with DB pessimistic lock fallback.</li>
+          <li>Orchestrated SAGA Choreography over RabbitMQ with durable queues, executing automated compensating refunds via ZaloPay API upon reservation timeouts; passed <strong>25/25 Jest tests (100% PASS)</strong>.</li>
         </ul>
       </div>
 
@@ -481,7 +488,7 @@
             <span class="item-title">TOEIC Learning & AI Chatbot Ecosystem</span>
             <a href="https://portfolio-chi-gules-wvghnhsxje.vercel.app/project/toeic-ai-microservices"
               class="link-badge" target="_blank" title="View Case Study Details">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
@@ -491,39 +498,36 @@
             </a>
             <a href="https://github.com/hungpptit/chatbot-toeic-flutter/tree/SWE_BE3" class="link-badge" target="_blank"
               title="View GitHub Repository">
-              <svg viewBox="0 0 24 24" fill="currentColor">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
               </svg>
               GitHub
             </a>
-            <span style="font-size: 8.1pt; color: #333333; font-weight: 500;">(React & Flutter, Node.js Microservices, Google Gemini Flash AI, Docker)</span>
+            <span style="font-size: 8.1pt; color: #333333; font-weight: 500;">(React & Flutter, Google Gemini 2.5 Flash, Machine Learning, Internal REST API, ZaloPay QR, SQL Server)</span>
           </div>
         </div>
         <ul class="bullet-list">
-          <li>Constructed 6 microservices across 9 Docker containers, providing 55+ RESTful APIs with centralized Swagger/OpenAPI docs and automated contract testing.</li>
-          <li>Integrated Google Gemini Flash AI assistant, handling HTTP 429 rate-limit errors through <strong>Round-Robin API key rotation and fallback caching</strong>.</li>
-          <li>Engineered ML score prediction pipeline using Python Flask & scikit-learn with 2:00 AM automated Cron retraining; passed <strong>51/51 automated test cases</strong>.</li>
-          <li>Developed cross-platform client with Flutter & React; integrated ZaloPay Sandbox Dynamic QR payment with HMAC-SHA256 Webhook verification to automate instant VIP activations.</li>
+          <li>Engineered internal REST API <strong>/api/v1/internal/smart-context</strong> on Quiz Service to feed exam context into <strong>Google Gemini 2.5 Flash</strong>, combined with dynamic API key fallback rotation.</li>
+          <li>Engineered a Stateless Machine Learning service (<strong>Python Flask + scikit-learn</strong>) with in-memory inference diagnosing weak skills, Rule-based Fallback upon offline connectivity, and daily Cron retraining; passed <strong>51/51 automated tests</strong>.</li>
+          <li>Developed multi-platform clients (<strong>React SPA web & Flutter mobile</strong>); implemented Event-Driven VIP activation via RabbitMQ and secured ZaloPay Dynamic QR payments with HMAC-SHA256 & idempotency verification.</li>
         </ul>
       </div>
     </section>
 
     <!-- TECHNICAL SKILLS -->
     <section class="section">
-      <div class="section-title">Technical Skills & Competencies</div>
+      <h2 class="section-title">Technical Skills & Core Stack</h2>
       <div class="skills-block">
-        <div class="skill-row"><span class="skill-name">Programming Languages:</span> JavaScript (ES6+), TypeScript, Java (OOP), Python, SQL (T-SQL, PL/pgSQL), HTML5/CSS3</div>
-        <div class="skill-row"><span class="skill-name">Frontend Development:</span> React.js, Next.js, Redux Toolkit, Context API, Tailwind CSS, Responsive Web UI, Component Architecture</div>
-        <div class="skill-row"><span class="skill-name">Backend & Architecture:</span> Node.js (NestJS, Express.js), RESTful APIs, Swagger/OpenAPI, Microservices, Clean Architecture, Domain-Driven Design (DDD), SOLID Principles</div>
-        <div class="skill-row"><span class="skill-name">Databases & Distributed Systems:</span> PostgreSQL 15 (PostGIS), SQL Server 2022, TypeORM, Prisma ORM, Redis 7 (Distributed Lock, Cache-Aside), RabbitMQ, NoSQL (Firestore)</div>
-        <div class="skill-row"><span class="skill-name">Testing, DevOps & AI:</span> Jest (Unit/Integration Testing), Docker, Docker Compose, AWS (EC2, S3), Socket.io, Git/GitHub (PR Review Workflow), Claude Code, Google Gemini API</div>
+        <div class="skill-row"><span class="skill-name">Core Stack:</span> React / Next.js, Node.js / NestJS, TypeScript / JavaScript, SQL Server / PostgreSQL</div>
+        <div class="skill-row"><span class="skill-name">Architecture & APIs:</span> Microservices (Database-per-Service), Redis (Distributed Lock), RabbitMQ, Payment Gateways (ZaloPay QR, Stripe)</div>
+        <div class="skill-row"><span class="skill-name">Tools & DevOps:</span> Docker & Docker Compose, Git / GitHub, Jest (Unit / Integration Testing), Socket.io</div>
       </div>
     </section>
 
     <!-- CERTIFICATIONS -->
     <section class="section">
-      <div class="section-title">Certifications & Languages</div>
+      <h2 class="section-title">Certifications & Languages</h2>
       <ul class="cert-list">
         <li><strong>Aptis ESOL International Certificate</strong> &ndash; CEFR B1, British Council (2025)</li>
         <li><strong>Google Data Analytics Professional Certificate</strong> &ndash; Foundations: Data, Data, Everywhere (2025)</li>

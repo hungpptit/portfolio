@@ -72,14 +72,14 @@ export const PROJECTS: Record<Language, Project[]> = {
       id: "smart-logistics",
       title: "Smart Logistics Platform",
       subtitle: "Hệ thống điều vận và tối ưu hóa tuyến đường giao hàng tự động (Dự án Doanh nghiệp tại CITARES)",
-      description: "Nền tảng logistics cấp doanh nghiệp được thiết kế theo Kiến trúc phần mềm sạch (Clean Architecture) và Phương pháp thiết kế hướng miền (Domain-Driven Design - DDD), phát triển tại Công ty TNHH CITARES. Tự động hóa chuỗi cung ứng: gom hàng, phân loại kho, trung chuyển liên kho, tối ưu giao hàng chặng cuối bằng đường ống 4 thuật toán Trí tuệ nhân tạo (AI Pipeline) thuần TypeScript.",
+      description: "Nền tảng logistics cấp doanh nghiệp được thiết kế theo Kiến trúc phần mềm sạch (Clean Architecture) và Phương pháp thiết kế hướng miền (Domain-Driven Design - DDD), phát triển tại Công ty TNHH CITARES. Tự động hóa chuỗi cung ứng: gom hàng, phân loại kho, trung chuyển liên kho, tối ưu giao hàng chặng cuối bằng đường ống 4 thuật toán tối ưu tuyến đường (Route Optimization Pipeline) thuần TypeScript.",
       category: "backend",
-      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "DBSCAN", "K-Means", "Hungarian Algorithm", "Prisma ORM", "RabbitMQ", "Docker", "Flutter"],
+      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "DBSCAN", "K-Means", "Hungarian Algorithm", "Prisma ORM", "RabbitMQ", "Docker", "React SPA", "Flutter"],
       architectureHighlights: [
-        "Tham gia hiện thực hóa đường ống Trí tuệ nhân tạo (AI Pipeline) 4 thuật toán thuần TypeScript: DBSCAN → K-Means → Giải thuật Di truyền (GA) → Thuật toán ghép cặp Hungarian.",
+        "Tham gia hiện thực hóa đường ống 4 thuật toán tối ưu tuyến đường thuần TypeScript: DBSCAN → K-Means → Giải thuật Di truyền (GA) → Thuật toán ghép cặp Hungarian.",
         "Xây dựng đường ống xử lý tọa độ định vị toàn cầu (GPS Telemetry) trên bộ nhớ đệm Redis tiếp nhận 1,321 điểm/giây với độ trễ P99 dưới 1 mili-giây.",
-        "Tham gia phát triển và tối ưu cấu trúc cơ sở dữ liệu PostgreSQL chuẩn hóa bậc 3 (3NF), kiểm soát 17 trạng thái vòng đời đơn và đảm bảo tính toàn vẹn giao dịch (ACID).",
-        "Tích hợp vi dịch vụ tính toán AI độc lập tách rời tải nặng qua hàng đợi thông điệp RabbitMQ.",
+        "Tham gia phát triển module Backend & RESTful API (Clean Architecture & DDD), thiết kế CSDL quan hệ PostgreSQL/PostGIS và hỗ trợ xây dựng React SPA Dispatcher Dashboard.",
+        "Tích hợp dịch vụ tính toán định tuyến tách rời tải nặng qua hàng đợi thông điệp RabbitMQ.",
       ],
       metrics: "Hệ thống Doanh nghiệp • Giảm 58.2% quãng đường giao hàng",
       isPrivateRepo: true,
@@ -169,15 +169,15 @@ export const PROJECTS: Record<Language, Project[]> = {
     {
       id: "smart-logistics",
       title: "Smart Logistics Platform",
-      subtitle: "Enterprise automated dispatching & AI route optimization system (Enterprise Project at CITARES)",
-      description: "Enterprise-grade logistics platform engineered with Clean Architecture & Domain-Driven Design (DDD), deployed at CITARES Co., Ltd. Automates end-to-end supply chain execution: pickup dispatch, zone sorting, line-haul transfers, and last-mile route optimization via a pure TypeScript 4-module AI pipeline.",
+      subtitle: "Enterprise automated dispatching & route optimization system (Enterprise Project at CITARES)",
+      description: "Enterprise-grade logistics platform engineered with Clean Architecture & Domain-Driven Design (DDD), deployed at CITARES Co., Ltd. Automates end-to-end supply chain execution: pickup dispatch, zone sorting, line-haul transfers, and last-mile route optimization via a pure TypeScript 4-module route optimization pipeline.",
       category: "backend",
-      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "DBSCAN", "K-Means", "Hungarian Algorithm", "Prisma ORM", "RabbitMQ", "Docker", "Flutter"],
+      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "DBSCAN", "K-Means", "Hungarian Algorithm", "Prisma ORM", "RabbitMQ", "Docker", "React SPA", "Flutter"],
       architectureHighlights: [
-        "Contributed to implementing the pure TypeScript 4-module AI pipeline: DBSCAN spatial clustering → K-Means capacity partition → Genetic Algorithm (GA) CVRP+VRPTW solver → Hungarian driver matching.",
+        "Contributed to implementing the pure TypeScript 4-module route optimization pipeline: DBSCAN spatial clustering → K-Means capacity partition → Genetic Algorithm (GA) CVRP+VRPTW solver → Hungarian driver matching.",
         "Engineered high-throughput GPS Telemetry streaming over Redis in-memory cache, ingesting 1,321 coordinates/sec with sub-millisecond P99 latency.",
-        "Participated in developing and tuning 38-table PostgreSQL 3NF schema, handling 17-state order lifecycle state machines and ensuring strict ACID transaction integrity.",
-        "Integrated asynchronous AI microservice workload offloading via RabbitMQ message queues.",
+        "Participated in developing backend modules (Clean Architecture & DDD), relational PostgreSQL/PostGIS schema, and assisted in building the React SPA Dispatcher Dashboard.",
+        "Integrated asynchronous route optimization workload offloading via RabbitMQ message queues.",
       ],
       metrics: "Enterprise Grade • –58.2% Total Travel Distance",
       isPrivateRepo: true,
@@ -364,14 +364,14 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
   vi: [
     {
       period: "Tháng 03/2026 - Tháng 08/2026",
-      role: "Thực tập sinh Lập trình Backend (Backend Developer Intern)",
+      role: "Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern)",
       organization: "Công ty TNHH CITARES (CITARES Co., Ltd.)",
       location: "TP. Hồ Chí Minh, Việt Nam",
-      description: "Tham gia cùng nhóm kỹ thuật Backend phát triển nền tảng điều vận thông minh Smart Logistics Platform (SLP), tập trung vào hiện thực hóa các module API nghiệp vụ, tích hợp giải thuật tối ưu tuyến đường và xử lý luồng dữ liệu định vị thời gian thực.",
+      description: "Tham gia cùng nhóm kỹ thuật phát triển nền tảng điều vận thông minh Smart Logistics Platform (SLP), tập trung vào hiện thực hóa các module Backend & RESTful API, tích hợp giải thuật tối ưu tuyến đường, xử lý luồng dữ liệu định vị thời gian thực và hỗ trợ giao diện điều phối.",
       highlights: [
-        "Tham gia lập trình các API dịch vụ nghiệp vụ điều vận, kiểm soát vòng đời 17 trạng thái đơn hàng (FSM) và phân quyền người dùng (RBAC) bằng Node.js & TypeScript theo kiến trúc Clean Architecture & DDD.",
-        "Hiện thực hóa và tích hợp đường ống 4 thuật toán tối ưu tuyến đường (DBSCAN, K-Means, Genetic Algorithm, Hungarian) bằng TypeScript, giúp giảm 58.2% tổng quãng đường di chuyển của đội xe.",
-        "Xây dựng luồng tiếp nhận định vị GPS thời gian thực qua Redis In-Memory & Socket.io (độ trễ P99 < 1ms), hỗ trợ tối ưu các câu truy vấn PostgreSQL và viết bộ kịch bản kiểm thử tự động (12 Test Scenarios) bảo đảm tính toàn vẹn giao dịch (ACID)."
+        "Tham gia phát triển các module Backend & RESTful API bằng Express.js/TypeScript theo Clean Architecture & DDD; thiết kế CSDL PostgreSQL/PostGIS (chuẩn 3NF, GIST), phân quyền RBAC 4 cấp, giao dịch ACID và hỗ trợ xây dựng React SPA Dispatcher Dashboard.",
+        "Hiện thực hóa pipeline 4 thuật toán tối ưu tuyến đường thuần TypeScript (DBSCAN → Capacity K-Means → Genetic Algorithm → Hungarian) kèm ma trận khoảng cách 3 tầng, giúp giảm 58.2% tổng quãng đường di chuyển cho 500+ đơn/ngày.",
+        "Xây dựng pipeline xử lý GPS telemetry thời gian thực với Redis In-Memory (1.321 pings/giây, P99 < 1ms) và Socket.io; triển khai FSM 17 bước, cơ chế gom Tote Bag giảm 95% thao tác và đạt 12/12 kịch bản kiểm thử ACID (100% PASS)."
       ]
     },
     {
@@ -402,14 +402,14 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
   en: [
     {
       period: "Mar 2026 - Aug 2026",
-      role: "Backend Developer Intern",
+      role: "Fullstack Developer Intern",
       organization: "CITARES Co., Ltd.",
       location: "Ho Chi Minh City, Vietnam",
-      description: "Participated in engineering the Smart Logistics Platform (SLP) within the backend team, focusing on implementing core business API modules, integrating vehicle routing optimization algorithms, and building real-time GPS telemetry pipelines.",
+      description: "Collaborated with the engineering team to build the Smart Logistics Platform (SLP), focusing on developing backend modules & RESTful APIs, vehicle routing optimization algorithms, real-time GPS telemetry, and supporting dispatcher UI development.",
       highlights: [
-        "Developed dispatch management RESTful APIs, handled 17-state order lifecycle state machines (FSM), and enforced RBAC security using Node.js & TypeScript under Clean Architecture & DDD.",
-        "Collaborated on implementing the 4-stage algorithmic routing pipeline in TypeScript (DBSCAN, K-Means, Genetic Algorithm, Hungarian), achieving a 58.2% reduction in fleet transit distance.",
-        "Engineered real-time GPS telemetry ingestion via Redis In-Memory & Socket.io (sub-millisecond P99 latency), assisted in PostgreSQL query tuning, and authored 12 automated test scenarios (100% PASS)."
+        "Contributed to engineering backend modules & RESTful APIs using Express.js & TypeScript under Clean Architecture & DDD; designed PostgreSQL schema with PostGIS spatial indexing (GIST), 4-tier RBAC, ACID transactions, and supported developing the React SPA Dispatcher Dashboard.",
+        "Implemented a pure TypeScript 4-stage route optimization pipeline (DBSCAN spatial clustering → Capacity K-Means → Genetic Algorithm CVRP/VRPTW → Hungarian driver matching) with 3-tier distance fallback, reducing transit distance by 58.2% across 500+ daily orders.",
+        "Engineered real-time GPS telemetry pipeline buffering into Redis In-Memory (1,321 pings/s, P99 < 1ms) with Socket.io radar tracking; built 17-state OrderStatus FSM, tote aggregation cutting 95% manual touches, and achieved 12/12 ACID tests (100% PASS)."
       ]
     },
     {

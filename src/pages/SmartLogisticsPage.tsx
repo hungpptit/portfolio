@@ -222,18 +222,18 @@ const MyOwnershipSection: React.FC<{ detail: SmartLogisticsData; language: strin
           <div>
             <h3 className="text-base font-bold text-[#0B0E17]">
               {language === 'vi'
-                ? 'Thực tập sinh Lập trình Backend — Tham gia Phát triển Khối Nghiệp vụ & Giải thuật'
-                : 'Backend Developer Intern — Core Contributor (APIs & Algorithm Integration)'}
+                ? 'Thực tập sinh Lập trình Fullstack — Tham gia Phát triển Khối Nghiệp vụ & Giải thuật'
+                : 'Fullstack Developer Intern — Core Contributor (Backend & Optimization Focus)'}
             </h3>
             <p className="text-xs text-[#475569] mt-0.5 font-normal">
               {language === 'vi'
-                ? 'Được hướng dẫn bởi các kỹ sư đàn anh, tham gia học hỏi và đóng góp vào việc hiện thực hóa các API điều vận, tích hợp giải thuật chia tuyến và luồng dữ liệu GPS.'
-                : 'Guided by senior engineers, learned and contributed to implementing dispatch API modules, integrating routing algorithms, and building real-time GPS telemetry pipelines.'}
+                ? 'Trong đội ngũ kỹ thuật tại CITARES, tôi tham gia với vai trò Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern), tập trung vào phát triển Backend, tích hợp thuật toán tối ưu tuyến đường, xử lý dữ liệu GPS thời gian thực và hỗ trợ giao diện điều phối.'
+                : 'As a Fullstack Developer Intern within the CITARES engineering team, I contributed to developing backend modules, integrating vehicle routing optimization algorithms, processing real-time GPS telemetry, and supporting dispatcher UI development.'}
             </p>
           </div>
         </div>
         <span className="px-3.5 py-1.5 bg-[#5E6AD2] text-white font-black text-xs font-mono uppercase tracking-wider rounded-xl shadow-xs shrink-0 self-start md:self-auto">
-          BACKEND CONTRIBUTOR
+          FULLSTACK CONTRIBUTOR
         </span>
       </div>
 
@@ -823,7 +823,7 @@ const SmartLogisticsPage: React.FC = () => {
     { id: 'scope', label: language === 'vi' ? 'Mục tiêu & Phạm vi toàn quốc' : 'Scope & Nationwide Coverage' },
     { id: 'ownership', label: language === 'vi' ? 'Trách nhiệm kỹ thuật cá nhân' : 'My Engineering Ownership' },
     { id: 'architecture', label: language === 'vi' ? 'Kiến trúc Hệ thống Tổng thể' : 'System Architecture' },
-    { id: 'ai', label: language === 'vi' ? 'Thuật toán AI chia tuyến' : 'AI Routing Pipeline' },
+    { id: 'ai', label: language === 'vi' ? 'Thuật toán tối ưu tuyến đường' : 'Route Optimization Pipeline' },
     { id: 'telemetry', label: language === 'vi' ? 'Định vị GPS thời gian thực' : 'Real-Time GPS Telemetry' },
     { id: 'lifecycle', label: language === 'vi' ? 'Quy trình 7 bước giao vận' : '7-Stage Fulfillment' },
     { id: 'database', label: language === 'vi' ? 'Kiến trúc Cơ sở dữ liệu' : 'Database Architecture' },
@@ -1062,11 +1062,11 @@ const SmartLogisticsPage: React.FC = () => {
           <section id="ownership">
             <SectionTitle icon={<Award className="w-5 h-5" />}
               title={language === 'vi' ? 'Trách nhiệm & Đóng góp Kỹ thuật Cá nhân (My Engineering Contributions)' : 'My Engineering Contributions'}
-              badge={language === 'vi' ? 'Backend & Algorithms' : 'Backend & Algorithms'} />
+              badge={language === 'vi' ? 'Fullstack & Optimization' : 'Fullstack & Optimization'} />
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Trong đội ngũ kỹ thuật tại CITARES, tôi tham gia với vai trò Thực tập sinh Lập trình Backend (Backend Developer Intern) — học hỏi từ các kỹ sư đi trước và đóng góp vào việc phát triển các API nghiệp vụ điều vận, tích hợp giải thuật tối ưu tuyến đường, xử lý luồng định vị GPS thời gian thực và viết kịch bản kiểm thử tự động.'
-                : 'As a Backend Developer Intern within the CITARES engineering team, I collaborated with senior engineers to learn and contribute to developing dispatch API modules, integrating vehicle routing optimization algorithms, handling real-time GPS telemetry streams, and authoring automated test suites.'}
+                ? 'Trong đội ngũ kỹ thuật tại CITARES, tôi tham gia với vai trò Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern) — học hỏi từ các kỹ sư đi trước và đóng góp vào việc phát triển các module Backend & RESTful API, tích hợp giải thuật tối ưu tuyến đường, xử lý luồng định vị GPS thời gian thực và hỗ trợ giao diện điều phối React.'
+                : 'As a Fullstack Developer Intern within the CITARES engineering team, I collaborated with senior engineers to contribute to developing dispatch backend modules & RESTful APIs, integrating vehicle routing optimization algorithms, handling real-time GPS telemetry streams, and supporting React dispatcher UI.'}
             </p>
             <MyOwnershipSection detail={detail} language={language} />
           </section>
@@ -1078,21 +1078,21 @@ const SmartLogisticsPage: React.FC = () => {
               badge="Clean Architecture & DDD" />
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Sơ đồ luồng phân tầng kiến trúc tổng thể toàn hệ thống từ Client, Gateway, 10 phân hệ nghiệp vụ, Động cơ AI đến Bộ đệm Redis và CSDL PostgreSQL/PostGIS.'
-                : 'End-to-end multi-tier architectural flow covering Presentation, Ingress Gateway, Domain Monolith, Pure TS AI solvers, In-Memory Stream, and Relational Persistence.'}
+                ? 'Sơ đồ luồng phân tầng kiến trúc tổng thể toàn hệ thống từ Client, Gateway, 10 phân hệ nghiệp vụ, Động cơ Tối ưu Tuyến đường đến Bộ đệm Redis và CSDL PostgreSQL/PostGIS.'
+                : 'End-to-end multi-tier architectural flow covering Presentation, Ingress Gateway, Domain Monolith, Pure TS optimization solvers, In-Memory Stream, and Relational Persistence.'}
             </p>
             <SystemArchitectureSection detail={detail} language={language} />
           </section>
 
-          {/* ── AI Pipeline ── */}
+          {/* ── Route Optimization Pipeline ── */}
           <section id="ai">
             <SectionTitle icon={<Cpu className="w-5 h-5" />}
-              title={language === 'vi' ? 'Đường ống 4 Thuật toán Trí tuệ Nhân tạo chia tuyến (AI Routing Pipeline)' : '4-Module Pure TypeScript AI Routing Pipeline'}
+              title={language === 'vi' ? 'Đường ống 4 Thuật toán Tối ưu Tuyến đường (Route Optimization Pipeline)' : '4-Module Pure TypeScript Route Optimization Pipeline'}
               badge={language === 'vi' ? '100% Thuần TypeScript' : 'Zero External AI Dependency'} />
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Toàn bộ động cơ Trí tuệ nhân tạo (AI Engine) được tự phát triển bằng mã nguồn TypeScript thuần mà không phụ thuộc vào thư viện ngoài. Đường ống gồm 4 thuật toán tuần tự phối hợp chặt chẽ nhằm giải quyết bài toán định tuyến xe có giới hạn tải trọng và khung giờ hẹn (Capacitated Vehicle Routing Problem with Time Windows - CVRP/VRPTW) trong vòng chưa tới nửa giây.'
-                : 'The entire optimization engine is engineered in pure TypeScript with zero external black-box dependencies. The 4 sequential algorithms collaborate to solve the NP-Hard Capacitated Vehicle Routing Problem with Time Windows (CVRP+VRPTW) in sub-second execution.'}
+                ? 'Toàn bộ động cơ tối ưu tuyến đường (Route Optimization Engine) được tự phát triển bằng mã nguồn TypeScript thuần mà không phụ thuộc vào thư viện ngoài. Đường ống gồm 4 thuật toán tuần tự phối hợp chặt chẽ nhằm giải quyết bài toán định tuyến xe có giới hạn tải trọng và khung giờ hẹn (Capacitated Vehicle Routing Problem with Time Windows - CVRP/VRPTW) trong vòng chưa tới nửa giây.'
+                : 'The entire route optimization engine is engineered in pure TypeScript with zero external black-box dependencies. The 4 sequential algorithms collaborate to solve the NP-Hard Capacitated Vehicle Routing Problem with Time Windows (CVRP+VRPTW) in sub-second execution.'}
             </p>
             <AIPipelineFlow detail={detail} language={language} />
           </section>

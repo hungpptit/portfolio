@@ -88,7 +88,7 @@ export interface SmartLogisticsData {
 export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
   vi: {
     overview: "Smart Logistics Platform (SLP) là nền tảng quản lý điều vận và tối ưu giao hàng cấp doanh nghiệp (3PL Logistics Platform), được thiết kế theo Kiến trúc phần mềm sạch (Clean Architecture) và Phương pháp thiết kế hướng miền nghiệp vụ (Domain-Driven Design - DDD). Dự án do Công ty TNHH CITARES tiếp nhận và phát triển cho đối tác vận tải, đã hoàn thành và xác nhận nghiệm thu. Hệ thống số hóa toàn diện chuỗi cung ứng logistics gồm 7 giai đoạn khép kín: tạo đơn hàng, gom hàng tận nơi (Pickup), phân loại bưu kiện tại kho bãi (Zone Sorting), trung chuyển liên bưu cục (Line-haul), tối ưu tuyến đường giao chặng cuối (Last-Mile), ký nhận bằng chứng giao hàng điện tử (Proof of Delivery - POD), và giám sát vị trí định vị toàn cầu (GPS) theo thời gian thực trên bản đồ số radar.",
-    role: "Thực tập sinh Lập trình Backend (Backend Developer Intern — Core Contributor)",
+    role: "Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern — Core Contributor)",
     company: "Công ty TNHH CITARES",
     clientType: "Dự án nhận thầu cho Đơn vị Vận tải & Logistics (3PL Platform)",
     duration: "Tháng 03/2026 – Tháng 08/2026 (Hoàn thành)",
@@ -161,14 +161,14 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
 
     myOwnership: [
       {
-        area: "Phát triển Dịch vụ Backend & Tối ưu Cơ sở Dữ liệu (Backend Engineering & API Modules)",
-        badge: "BACKEND CONTRIBUTOR",
-        summary: "Được hướng dẫn bởi các kỹ sư đàn anh, tham gia xây dựng các dịch vụ Backend API nghiệp vụ, phân quyền bảo mật và hỗ trợ tối ưu các câu truy vấn cơ sở dữ liệu.",
+        area: "Phát triển Dịch vụ Backend, RESTful API & Giao diện Điều phối (Fullstack & API Modules)",
+        badge: "FULLSTACK CONTRIBUTOR",
+        summary: "Được hướng dẫn bởi các kỹ sư đàn anh, tham gia xây dựng các dịch vụ Backend & RESTful API nghiệp vụ, phân quyền bảo mật, đồng thời hỗ trợ phát triển giao diện điều phối Dispatcher Dashboard.",
         items: [
-          "Áp dụng Kiến trúc Clean Architecture & Domain-Driven Design (DDD) để phát triển các module dịch vụ điều vận, tạo đơn và phân loại.",
-          "Tham gia xây dựng các bảng dữ liệu PostgreSQL liên quan đến phân hệ điều vận, hỗ trợ tối ưu truy vấn dữ liệu không gian PostGIS (ST_Distance, GIST Index) và ánh xạ qua Prisma ORM.",
-          "Xây dựng các RESTful API Gateway (Express.js + TypeScript), triển khai phân quyền Role-Based Access Control (RBAC) cho các nhóm người dùng, bộ lọc DTO Validation và tài liệu Swagger.",
-          "Xử lý tính toàn vẹn giao dịch (ACID) đa bảng và thiết lập khóa Unique Constraint chống tranh chấp (Race Condition) khi thao tác quét đơn đồng thời."
+          "Áp dụng Kiến trúc Clean Architecture & Domain-Driven Design (DDD) để phát triển các module dịch vụ điều vận, tạo đơn và phân loại bằng Express.js & TypeScript.",
+          "Hỗ trợ xây dựng các thành phần giao diện React SPA Dispatcher Dashboard (bản đồ radar giám sát đội xe và danh sách điều phối bưu kiện thời gian thực).",
+          "Tham gia xây dựng CSDL quan hệ PostgreSQL, hỗ trợ tối ưu truy vấn dữ liệu không gian PostGIS (ST_Distance, GIST Index) và ánh xạ qua Prisma ORM.",
+          "Xây dựng các RESTful API Gateway, triển khai phân quyền RBAC 4 cấp, bộ lọc DTO Validation, Swagger và kiểm soát giao dịch ACID chống Race Condition khi quét đơn đồng thời."
         ]
       },
       {
@@ -417,7 +417,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
   },
   en: {
     overview: "Smart Logistics Platform (SLP) is an enterprise-grade automated dispatching and routing platform (3PL Logistics Platform) engineered with Clean Architecture and Domain-Driven Design (DDD) principles. Contracted and developed by CITARES Co., Ltd. for a logistics partner, the system is fully completed and verified. It digitizes the entire supply chain across 7 closed-loop phases: order intake, door-to-door pickup dispatch, cross-dock facility zone sorting, line-haul inter-hub transfers, last-mile route optimization, digital Proof of Delivery (POD), and high-frequency real-time GPS telemetry monitoring on live radar maps.",
-    role: "Backend Developer Intern (Core Technical Contributor)",
+    role: "Fullstack Developer Intern (Core Contributor — Backend & Optimization Focus)",
     company: "CITARES Co., Ltd.",
     clientType: "Contracted Enterprise Solution for Logistics & Transport Partner (3PL)",
     duration: "Mar 2026 – Aug 2026 (Completed)",
@@ -490,14 +490,14 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
 
     myOwnership: [
       {
-        area: "Backend Services & Database Optimization (Backend Engineering & API Modules)",
-        badge: "BACKEND CONTRIBUTOR",
-        summary: "Mentored by senior engineers, participated in developing backend API services, role-based security, and relational database query optimization.",
+        area: "Backend Services, RESTful APIs & Dispatcher UI (Fullstack & API Modules)",
+        badge: "FULLSTACK CONTRIBUTOR",
+        summary: "Mentored by senior engineers, participated in developing core backend & RESTful API services, role-based security, and supported dispatcher UI development.",
         items: [
-          "Applied Clean Architecture & Domain-Driven Design (DDD) principles to build dispatching, order creation, and sorting modules.",
-          "Participated in developing PostgreSQL database schema components, assisting in PostGIS spatial query tuning (ST_Distance, GIST Index) mapped through Prisma ORM.",
-          "Developed RESTful API Gateway (Express.js/TypeScript), multi-role RBAC authorization, declarative DTO validation, and Swagger OpenAPI documentation.",
-          "Enforced multi-table ACID transaction integrity and @unique constraints to avoid concurrent parcel scanning race conditions."
+          "Applied Clean Architecture & Domain-Driven Design (DDD) principles to build dispatching, order creation, and sorting modules using Express.js & TypeScript.",
+          "Supported developing React SPA Dispatcher Dashboard components (real-time fleet radar monitoring map and batch parcel dispatch list).",
+          "Participated in developing relational PostgreSQL schema, assisting in PostGIS spatial query tuning (ST_Distance, GIST Index) mapped through Prisma ORM.",
+          "Built RESTful API Gateway modules, 4-tier RBAC authorization, declarative DTO validation, Swagger docs, and enforced ACID transactions preventing concurrent scanning race conditions."
         ]
       },
       {
