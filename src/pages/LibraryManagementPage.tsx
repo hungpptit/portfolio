@@ -22,7 +22,6 @@ import {
   GitBranch,
   Lock,
   LayoutDashboard,
-  Copy,
   Maximize2,
   AlertCircle,
   TrendingUp,
@@ -73,7 +72,8 @@ const LibraryManagementPage: React.FC = () => {
   }, []);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
+    const targetId = id === 'fifo' ? 'lifecycle' : id;
+    const el = document.getElementById(id) || document.getElementById(targetId);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
@@ -87,7 +87,7 @@ const LibraryManagementPage: React.FC = () => {
             <ArrowLeft className="w-4 h-4" /> {t.detailCommon.backBtn}
           </button>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <LanguageToggle />
             <a href={detail.githubUrl} target="_blank" rel="noopener noreferrer"
               className="btn-linear-primary text-xs py-2 px-4 shadow-xs">
@@ -122,6 +122,16 @@ const LibraryManagementPage: React.FC = () => {
                 <div>
                   <p className="text-xs text-[#64748B] mb-1 font-medium">{t.detailCommon.teamLabel}</p>
                   <p className="text-sm text-[#0B0E17] font-semibold">{detail.teamSize}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-[#64748B] mb-1 font-medium">{language === 'vi' ? 'Bản Demo Giao diện' : 'Live UX/UI Demo'}</p>
+                  <a href={detail.demoUrl} target="_blank" rel="noopener noreferrer"
+                    className="text-xs text-[#5E6AD2] hover:text-[#4338CA] font-semibold inline-flex items-center gap-1 hover:underline">
+                    library-management...vercel.app <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                  <p className="text-[10px] text-slate-400 mt-0.5 leading-snug">
+                    {language === 'vi' ? '* Demo UX/UI, không bao gồm logic backend' : '* UX/UI demo only, no backend logic'}
+                  </p>
                 </div>
               </div>
             </div>
@@ -161,7 +171,7 @@ const LibraryManagementPage: React.FC = () => {
                 
                 {/* Left Column: Authentic Light Theme Web Admin Mockup (Matching User App Screenshot) */}
                 <div className="lg:col-span-6 flex flex-col gap-3">
-                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-md">
+                  <div className="border border-slate-200/90 rounded-2xl overflow-hidden bg-white text-[#0B0E17] shadow-md hover:shadow-lg transition-all duration-300 group">
                     {/* Browser Chrome Header */}
                     <div className="bg-[#1E1E24] px-4 py-2.5 flex items-center justify-between text-xs">
                       {/* Window Controls */}
@@ -172,18 +182,24 @@ const LibraryManagementPage: React.FC = () => {
                       </div>
 
                       {/* URL Bar */}
-                      <div className="bg-slate-800/90 border border-slate-700/60 text-slate-300 px-3 py-0.5 rounded-md text-[11px] font-mono flex items-center gap-1.5 max-w-[260px] w-full justify-between shadow-inner">
+                      <a
+                        href={detail.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-slate-800/90 hover:bg-slate-800 border border-slate-700/60 hover:border-slate-600 text-slate-300 px-3 py-0.5 rounded-md text-[11px] font-mono flex items-center gap-1.5 max-w-[280px] w-full justify-between shadow-inner transition-colors"
+                        title={language === 'vi' ? 'Nhấp để mở live demo UX/UI' : 'Click to open live UX/UI demo'}
+                      >
                         <div className="flex items-center gap-1.5 truncate">
                           <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
-                          <span className="truncate">http://localhost:3000</span>
+                          <span className="truncate">https://library-management-system-frontend-three-beryl.vercel.app</span>
                         </div>
-                        <Copy className="w-2.5 h-2.5 text-slate-400 shrink-0 opacity-60" />
-                      </div>
+                        <ArrowUpRight className="w-3 h-3 text-slate-400 shrink-0 opacity-70" />
+                      </a>
 
                       {/* Right Tags */}
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[9px] font-bold text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-400/20">
-                          WEB ADMIN / DESKTOP
+                        <span className="font-mono text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-400/20">
+                          UX/UI DEMO
                         </span>
                         <Maximize2 className="w-3 h-3 text-slate-400" />
                       </div>
@@ -324,11 +340,19 @@ const LibraryManagementPage: React.FC = () => {
 
                     {/* Bottom Engineering Status Strip */}
                     <div className="bg-slate-50 px-3.5 py-2 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono">
-                      <span className="text-slate-500 font-medium flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      <span className="text-slate-600 font-medium flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#10B981]" />
                         NestJS 10 · TypeORM · ACID Transactions
                       </span>
-                      <span className="text-emerald-700 font-bold">100% Concurrency Safe</span>
+                      <a
+                        href={detail.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-700 hover:text-emerald-800 font-bold hover:underline inline-flex items-center gap-1"
+                      >
+                        <span>library-management...vercel.app</span>
+                        <ArrowUpRight className="w-3 h-3" />
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -384,10 +408,20 @@ const LibraryManagementPage: React.FC = () => {
                     {/* Action Buttons */}
                     <div className="flex flex-wrap items-center gap-3 pt-2">
                       <a
+                        href={detail.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                      >
+                        <Globe className="w-4 h-4" />
+                        {language === 'vi' ? 'Trải Nghiệm Demo UX/UI' : 'Live UX/UI Demo'}
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                      <a
                         href={detail.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0B0E17] hover:bg-[#1E293B] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0B0E17] hover:bg-[#1E293B] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
                       >
                         <GitBranch className="w-4 h-4" /> {t.detailCommon.sourceRepo}
                       </a>
@@ -406,6 +440,11 @@ const LibraryManagementPage: React.FC = () => {
                         {language === 'vi' ? 'Hàng Đợi FIFO & ACID' : 'FIFO & ACID Protocol'}
                       </button>
                     </div>
+                    <p className="text-[11px] text-slate-500 font-mono mt-2">
+                      {language === 'vi'
+                        ? '💡 Ghi chú: Bản Live Demo trên Vercel là bản mô phỏng giao diện người dùng (UX/UI Frontend Demo), không kết nối cụm server logic backend & CSDL.'
+                        : '💡 Note: The Vercel live demo is a frontend UX/UI demonstration, without active connections to the backend server & database.'}
+                    </p>
                   </div>
                 </div>
 
@@ -554,7 +593,7 @@ const LibraryManagementPage: React.FC = () => {
               defaultTab="desktop"
               availableTabs={['desktop', 'terminal']}
               desktopTitle={language === 'vi' ? 'Cổng Quản Trị Thư Viện Doanh Nghiệp (React Web)' : 'Enterprise Library Management Portal (React Web)'}
-              desktopUrl="http://localhost:3000"
+              desktopUrl="https://library-management-system-frontend-three-beryl.vercel.app/"
               themeColor="#5E6AD2"
               terminalCommand="npm test -- --coverage --verbose --detectOpenHandles"
             />
@@ -976,7 +1015,8 @@ const LibraryManagementPage: React.FC = () => {
           </section>
 
           {/* ── Loan Lifecycle State Machine Diagram ── */}
-          <section id="lifecycle">
+          <section id="lifecycle" className="scroll-mt-24 relative">
+            <div id="fifo" className="scroll-mt-24 absolute -top-24" />
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs font-bold tracking-wider uppercase text-[#5E6AD2] font-mono">
                 {language === 'vi' ? 'SƠ ĐỒ HỆ THỐNG' : 'SYSTEM DIAGRAM'}

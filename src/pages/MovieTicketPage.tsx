@@ -91,13 +91,6 @@ const MovieTicketPage: React.FC = () => {
 
           <div className="flex items-center gap-3">
             <LanguageToggle />
-            <a href={detail.demoUrl} target="_blank" rel="noopener noreferrer"
-              title={language === 'vi' ? 'Xem Demo Giao diện UI/UX (Frontend)' : 'Live UI/UX Demo (Frontend Only)'}
-              className="inline-flex items-center gap-1.5 px-3 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 text-xs font-bold rounded-xl transition-all shadow-2xs">
-              <Globe className="w-3.5 h-3.5 text-emerald-600" />
-              <span>{language === 'vi' ? 'Live Demo (UI/UX)' : 'Live UI/UX Demo'}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
-            </a>
             <a href={detail.githubUrl} target="_blank" rel="noopener noreferrer"
               className="btn-linear-primary text-xs py-2 px-4 shadow-xs">
               {t.detailCommon.sourceRepo} <ArrowUpRight className="w-4 h-4 ml-1.5" />
@@ -133,13 +126,13 @@ const MovieTicketPage: React.FC = () => {
                   <p className="text-sm text-[#0B0E17] font-semibold">{detail.teamSize}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-[#64748B] mb-1 font-medium">{language === 'vi' ? 'Bản Demo Giao diện' : 'Live UI/UX Demo'}</p>
+                  <p className="text-xs text-[#64748B] mb-1 font-medium">{language === 'vi' ? 'Bản Demo Giao diện' : 'Live UX/UI Demo'}</p>
                   <a href={detail.demoUrl} target="_blank" rel="noopener noreferrer"
                     className="text-xs text-[#5E6AD2] hover:text-[#4338CA] font-semibold inline-flex items-center gap-1 hover:underline">
                     xemphim-three.vercel.app <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                   <p className="text-[10px] text-slate-400 mt-0.5 leading-snug">
-                    {language === 'vi' ? '* Demo UI/UX, không bao gồm logic backend' : '* UI/UX demo only, no backend logic'}
+                    {language === 'vi' ? '* Demo UX/UI, không bao gồm logic backend' : '* UX/UI demo only, no backend logic'}
                   </p>
                 </div>
               </div>
@@ -208,7 +201,7 @@ const MovieTicketPage: React.FC = () => {
                       {/* Right Tags */}
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-400/20">
-                          UI/UX DEMO
+                          UX/UI DEMO
                         </span>
                         <button
                           onClick={() => setLightboxOpen(true)}
@@ -315,7 +308,7 @@ const MovieTicketPage: React.FC = () => {
                         className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm"
                       >
                         <Globe className="w-4 h-4" />
-                        {language === 'vi' ? 'Trải Nghiệm Demo UI/UX' : 'Live UI/UX Demo'}
+                        {language === 'vi' ? 'Trải Nghiệm Demo UX/UI' : 'Live UX/UI Demo'}
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
                       <a
@@ -343,8 +336,8 @@ const MovieTicketPage: React.FC = () => {
                     </div>
                     <p className="text-[11px] text-slate-500 font-mono mt-2">
                       {language === 'vi'
-                        ? '💡 Ghi chú: Bản Live Demo trên Vercel là bản mô phỏng giao diện người dùng (UI/UX Frontend Demo), không kết nối cụm 6 vi dịch vụ backend & CSDL phân tán.'
-                        : '💡 Note: The Vercel live demo is a frontend UI/UX demonstration, without active connections to the 6-microservices backend & distributed databases.'}
+                        ? '💡 Ghi chú: Bản Live Demo trên Vercel là bản mô phỏng giao diện người dùng (UX/UI Frontend Demo), không kết nối cụm 6 vi dịch vụ backend & CSDL phân tán.'
+                        : '💡 Note: The Vercel live demo is a frontend UX/UI demonstration, without active connections to the 6-microservices backend & distributed databases.'}
                     </p>
                   </div>
                 </div>
@@ -502,7 +495,7 @@ const MovieTicketPage: React.FC = () => {
             <div className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600">
               <span className="flex items-center gap-2 font-medium">
                 <Globe className="w-4 h-4 text-emerald-600" />
-                {language === 'vi' ? 'Bản Demo UI/UX trực tiếp trên Vercel (chỉ giao diện frontend):' : 'Live UI/UX Demo on Vercel (frontend interface only):'}
+                {language === 'vi' ? 'Bản Demo UX/UI trực tiếp trên Vercel (chỉ giao diện frontend):' : 'Live UX/UI Demo on Vercel (frontend interface only):'}
               </span>
               <a
                 href={detail.demoUrl}
@@ -510,7 +503,7 @@ const MovieTicketPage: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors"
               >
-                <span>{language === 'vi' ? 'Mở Demo UI/UX' : 'Open UI/UX Demo'}</span>
+                <span>{language === 'vi' ? 'Mở Demo UX/UI' : 'Open UX/UI Demo'}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -1406,7 +1399,7 @@ const MovieTicketPage: React.FC = () => {
         isOpen={lightboxOpen}
         src="/assets/projects/movie-ticket/demo1.png"
         alt="XEMPHIM Cinema - Online Movie Ticket Booking Platform"
-        title="XEMPHIM Cinemas - Movie Ticket Booking UI/UX Demo"
+        title="XEMPHIM Cinemas - Movie Ticket Booking UX/UI Demo"
         caption="Live demo web app: https://xemphim-three.vercel.app/"
         onClose={() => setLightboxOpen(false)}
       />

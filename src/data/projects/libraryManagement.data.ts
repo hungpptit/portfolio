@@ -8,6 +8,7 @@ export interface LibraryManagementData {
   teamSize: string;
   branch: string;
   githubUrl: string;
+  demoUrl: string;
   techStack: TechStackItem[];
   challenges: ProjectChallenge[];
 }
@@ -20,6 +21,7 @@ export const LIBRARY_MANAGEMENT_DETAIL: Record<Language, LibraryManagementData> 
     teamSize: "3 thành viên",
     branch: "tree/SWE_BE4",
     githubUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
+    demoUrl: "https://library-management-system-frontend-three-beryl.vercel.app/",
 
     techStack: [
       { layer: "Kiến trúc hệ thống", tech: "Kiến trúc Module hóa Phân tầng (Layered Modular Architecture)", version: "—", role: "Phân tách hệ thống thành 3 Module nghiệp vụ độc lập (UsersModule, BooksModule, LoansModule) theo tầng: Controller → Service → Repository → Entity; tuân thủ nguyên lý SOLID, Dependency Injection qua NestJS IoC Container" },
@@ -63,6 +65,7 @@ export const LIBRARY_MANAGEMENT_DETAIL: Record<Language, LibraryManagementData> 
     teamSize: "3 members",
     branch: "tree/SWE_BE4",
     githubUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
+    demoUrl: "https://library-management-system-frontend-three-beryl.vercel.app/",
 
     techStack: [
       { layer: "System Architecture", tech: "Layered Modular Architecture (NestJS)", version: "—", role: "Decoupled 3 independent business modules (UsersModule, BooksModule, LoansModule) following Controller → Service → Repository → Entity layering; adheres to SOLID principles with NestJS IoC Container Dependency Injection" },

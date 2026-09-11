@@ -221,11 +221,11 @@ export const Projects: React.FC = () => {
                           href={project.demoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          title={project.id === 'movie-ticket-booking' ? (language === 'vi' ? 'Xem Demo Giao diện UI/UX (Frontend)' : 'Live UI/UX Demo (Frontend Only)') : undefined}
+                          title={(project.id === 'movie-ticket-booking' || project.id === 'smart-library') ? (language === 'vi' ? 'Xem Demo Giao diện UX/UI (Frontend)' : 'Live UX/UI Demo (Frontend Only)') : undefined}
                           className="inline-flex items-center gap-1.5 px-3.5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 hover:text-[#5E6AD2] border border-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-2xs"
                         >
                           <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
-                          <span>{project.id === 'movie-ticket-booking' ? (language === 'vi' ? 'Demo UI/UX' : 'UI/UX Demo') : 'Live Demo'}</span>
+                          <span>{(project.id === 'movie-ticket-booking' || project.id === 'smart-library') ? (language === 'vi' ? 'Demo UX/UI' : 'UX/UI Demo') : 'Live Demo'}</span>
                         </a>
                       )}
                     </div>

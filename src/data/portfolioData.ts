@@ -151,7 +151,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       ],
       metrics: "ACID Transactions · FIFO Queue · 95/95 Tests",
       githubUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
-      demoUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
+      demoUrl: "https://library-management-system-frontend-three-beryl.vercel.app/",
       hasDetailPage: true
     },
     {
@@ -261,7 +261,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       ],
       metrics: "ACID Transactions · FIFO Queue · 95/95 Tests",
       githubUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
-      demoUrl: "https://github.com/hungpptit/library-management-system/tree/SWE_BE4",
+      demoUrl: "https://library-management-system-frontend-three-beryl.vercel.app/",
       hasDetailPage: true
     },
     {
