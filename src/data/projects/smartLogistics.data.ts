@@ -302,7 +302,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
         name: "DBSCAN Clustering",
         algo: "Thuật toán gom cụm không gian theo mật độ (Density-Based Spatial Clustering - DBSCAN)",
         description: "Tính toán trước ma trận khoảng cách địa lý theo công thức Haversine. Phân vùng đơn hàng tự nhiên theo mật độ địa lý và tự động cô lập các đơn hàng ngoại lai ở vùng xa trước khi đưa vào chia tuyến.",
-        result: "Phát hiện chính xác 1 đơn hàng ngoại lai cách 18km (khu vực Hóc Môn). Tự động gán lại về cụm giao hàng gần nhất sau khi tối ưu.",
+        result: "Phát hiện chính xác 1 đơn hàng ngoại lai cách 4.2km (vùng rìa giáp ranh bưu cục). Tự động gán lại về cụm giao hàng gần nhất sau khi tối ưu.",
         timeMs: "3 mili-giây"
       },
       {
@@ -339,13 +339,13 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
       { id: 5, name: "Vận đơn & Chuyến xe gom (Shipment Management)", tables: ["shipments", "shipment_packages", "shipment_transfers"], keyFeature: "Đảm bảo tính cô lập tuyệt đối: một kiện hàng chỉ nằm trong duy nhất một chuyến xe đang hoạt động nhờ ràng buộc duy nhất (Unique Constraint). Lưu vết bàn giao hàng hóa giữa các kho có chữ ký điện tử" },
       { id: 6, name: "Đội xe & Tài xế (Fleet & Driver Management)", tables: ["staff", "staff_driver_types", "vehicle_types", "vehicles", "driver_vehicle_assignments", "driver_locations"], keyFeature: "Quản lý hồ sơ nhân sự, giấy phép lái xe đa hạng (A1, B2, C, FC), phân công ca trực xe và lưu trữ vùng đệm vị trí GPS thời gian thực của tài xế" },
       { id: 7, name: "Điều vận & Tuyến đường AI (Routing & Dispatch Engine)", tables: ["routes", "route_stops", "dispatch_tasks", "route_optimizations", "route_adjustment_logs"], keyFeature: "Lưu trữ tuyến đường do Trí tuệ nhân tạo (AI) tính toán kèm thứ tự điểm dừng tối ưu. Tự động ghi nhật ký kiểm toán khi có sự cố phát sinh cần điều phối đổi tài xế giữa đường" },
-      { id: 8, name: "Giám sát, Quét kho & Bằng chứng giao (Tracking & POD)", tables: ["tracking_events", "warehouse_scans", "tote_bags", "delivery_proofs"], keyFeature: "Cung cấp dòng thời gian hành trình công khai cho khách hàng tra cứu. Quản lý sọt hàng gom tập kết (Tote Bag) giúp gom nhiều đơn trong 1 lần quét mã. Lưu giữ ảnh chụp bằng chứng giao hàng, chữ ký số và đối soát tiền thu hộ (COD)" },
+      { id: 8, name: "Giám sát, Quét kho & Bằng chứng giao (Tracking & POD)", tables: ["tracking_events", "warehouse_scans", "delivery_proofs"], keyFeature: "Cung cấp dòng thời gian hành trình công khai cho khách hàng tra cứu. Lưu giữ biên bản kiểm toán trạng thái đơn hàng, ảnh chụp bằng chứng giao hàng (POD), chữ ký số và đối soát dòng tiền thu hộ (COD) an toàn nguyên tử" },
       { id: 9, name: "Cấu hình tham số hệ thống (System Configuration)", tables: ["system_settings"], keyFeature: "Lưu trữ tham số động cho thuật toán Trí tuệ nhân tạo (chu kỳ phát GPS, quy mô quần thể, tỷ lệ đột biến di truyền) — cho phép điều chỉnh linh hoạt trên web mà không cần khởi động lại hệ thống" },
       { id: 10, name: "Đơn vị hành chính Việt Nam (Administrative Units)", tables: ["administrative_regions", "administrative_units", "provinces", "wards"], keyFeature: "Dữ liệu địa chính chuẩn quốc gia theo mô hình Đơn vị hành chính mới nhất sau sáp nhập (provinces, wards, administrative_units, administrative_regions), phục vụ chuẩn hóa địa chỉ bưu chính và tự động định tuyến cước phí" },
     ],
 
     testResults: [
-      { group: "Thuật toán (Algorithm)", name: "DBSCAN: Gom cụm theo mật độ & Phát hiện điểm ngoại lai", timeMs: "3ms", result: "Phát hiện 1 cụm chính + 1 đơn hàng ngoại lai xa 18km", status: "PASS" },
+      { group: "Thuật toán (Algorithm)", name: "DBSCAN: Gom cụm theo mật độ & Phát hiện điểm ngoại lai", timeMs: "3ms", result: "Phát hiện 1 cụm chính + 1 đơn hàng ngoại lai giáp ranh (4.2km)", status: "PASS" },
       { group: "Thuật toán (Algorithm)", name: "K-Means: Phân cụm địa lý theo giới hạn tải trọng xe", timeMs: "10ms", result: "Phân bổ 4 đơn hàng vào 2 cụm cân bằng tải trọng xe", status: "PASS" },
       { group: "Thuật toán (Algorithm)", name: "Genetic Algorithm: Giải thuật di truyền tối ưu lộ trình", timeMs: "444ms", result: "Hội tụ dưới 100 thế hệ, giảm 58.2% tổng quãng đường", status: "PASS" },
       { group: "Thuật toán (Algorithm)", name: "Hungarian: Ghép cặp tối ưu toàn cục tài xế - tuyến đường", timeMs: "< 1ms", result: "Ghép nối thành công 3 tài xế với 3 cụm tuyến tối ưu chi phí", status: "PASS" },
@@ -380,8 +380,8 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
         solution: "Áp dụng Giải thuật Di truyền (Genetic Algorithm - GA) kết hợp hàm phạt điểm linh hoạt cho các ràng buộc tải trọng và thời gian. Thuật toán tiến hóa qua các bước chọn lọc, lai ghép và đột biến để tìm ra tuyến đường tối ưu nhất trong vòng chưa tới nửa giây (444 mili-giây), giúp tiết kiệm 58.2% quãng đường di chuyển thực tế."
       },
       {
-        title: "Đơn hàng ngoại lai ở vùng thưa dân làm sai lệch thuật toán phân cụm",
-        problem: "Một số đơn hàng nằm cách xa trung tâm (ví dụ cách 18km ở vùng ngoại thành) sẽ kéo lệch tâm phân cụm của thuật toán K-Means, làm biến dạng toàn bộ các tuyến đường giao hàng xung quanh.",
+        title: "Đơn hàng ngoại lai ở vùng giáp ranh làm sai lệch thuật toán phân cụm",
+        problem: "Một số đơn hàng nằm ở vùng rìa giáp ranh (ví dụ cách 4-5km ngoài bán kính giao hàng tập trung) sẽ kéo lệch tâm phân cụm của thuật toán K-Means, làm biến dạng các tuyến đường giao hàng xung quanh.",
         solution: "Bổ sung giai đoạn 1 sử dụng Thuật toán gom cụm theo mật độ (DBSCAN) để tự động nhận diện và tách riêng các đơn hàng ngoại lai xa khu vực. Sau khi các cụm chính được phân chia ổn định, hệ thống mới tự động gán đơn ngoại lai vào tuyến đường phù hợp nhất, đảm bảo 100% đơn hàng đều được xử lý."
       },
       {
@@ -622,7 +622,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
         name: "DBSCAN Density Clustering",
         algo: "Density-Based Spatial Clustering of Applications with Noise (DBSCAN)",
         description: "Pre-computes pairwise Haversine distance matrix. Groups orders into natural spatial density clusters and isolates remote geographical outliers before route generation.",
-        result: "Detected 1 remote outlier order 18km away (Hoc Mon district). Reassigned to nearest optimized cluster post-routing.",
+        result: "Detected 1 remote outlier order 4.2km away (peripheral boundary zone). Reassigned to nearest optimized cluster post-routing.",
         timeMs: "3 ms"
       },
       {
@@ -659,13 +659,13 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
       { id: 5, name: "Shipments & Master Consignments (Shipment Management)", tables: ["shipments", "shipment_packages", "shipment_transfers"], keyFeature: "Unique constraints guarantee a package belongs to strictly one active shipment at any moment. Digital handover audit logs between hubs" },
       { id: 6, name: "Fleet & Couriers (Fleet & Driver Management)", tables: ["staff", "staff_driver_types", "vehicle_types", "vehicles", "driver_vehicle_assignments", "driver_locations"], keyFeature: "Staff records, driving license classes (A1, B2, C, FC), shift assignments, and real-time GPS coordinate telemetry buffer" },
       { id: 7, name: "AI Dispatch & Routing (Routing & Dispatch Engine)", tables: ["routes", "route_stops", "dispatch_tasks", "route_optimizations", "route_adjustment_logs"], keyFeature: "Stores AI-generated routes with optimal stop sequences. Comprehensive audit logs for manual reassignment during in-transit incidents" },
-      { id: 8, name: "Tracking, Sorting & Proof of Delivery (Tracking & POD)", tables: ["tracking_events", "warehouse_scans", "tote_bags", "delivery_proofs"], keyFeature: "Public tracking timeline, batch Tote Bag scanning, electronic POD signature capture, and Cash-on-Delivery (COD) reconciliation" },
+      { id: 8, name: "Tracking, Sorting & Proof of Delivery (Tracking & POD)", tables: ["tracking_events", "warehouse_scans", "delivery_proofs"], keyFeature: "Public tracking timeline, order status audit trails, electronic POD signature capture, and atomic Cash-on-Delivery (COD) reconciliation" },
       { id: 9, name: "System Settings (System Configuration)", tables: ["system_settings"], keyFeature: "Dynamic parameter tuning for AI algorithms (GPS broadcast interval, population size, mutation rate) without service restarts" },
       { id: 10, name: "Vietnam Administrative Units (Administrative Units)", tables: ["administrative_regions", "administrative_units", "provinces", "wards"], keyFeature: "Standardized geospatial dataset aligned with post-merger administrative reforms for automated postal zone routing and pricing" },
     ],
 
     testResults: [
-      { group: "Algorithm", name: "DBSCAN: Density Clustering & Outlier Isolation", timeMs: "3ms", result: "Detected 1 main cluster + 1 remote outlier (18km away)", status: "PASS" },
+      { group: "Algorithm", name: "DBSCAN: Density Clustering & Outlier Isolation", timeMs: "3ms", result: "Detected 1 main cluster + 1 peripheral outlier (4.2km away)", status: "PASS" },
       { group: "Algorithm", name: "K-Means: Capacity-Constrained Geographic Partitioning", timeMs: "10ms", result: "Partitioned 4 orders into 2 balanced payload clusters", status: "PASS" },
       { group: "Algorithm", name: "Genetic Algorithm: CVRP/VRPTW Route Optimization", timeMs: "444ms", result: "Converged in <100 generations, reducing distance by 58.2%", status: "PASS" },
       { group: "Algorithm", name: "Hungarian: Global Optimal Driver-Route Matching", timeMs: "< 1ms", result: "Matched 3 couriers to 3 route clusters with minimum global cost", status: "PASS" },
@@ -700,8 +700,8 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
         solution: "Engineered a Genetic Algorithm (GA) solver with adaptive penalty functions for payload and time violations. Evolutionary selection, crossover, and mutation converge to near-optimal routes in 444ms, saving 58.2% in total travel distance."
       },
       {
-        title: "Remote outlier orders distorting spatial clustering centroids",
-        problem: "Sparse outlier orders far from urban clusters (e.g., 18km in suburban areas) distort standard K-Means centroids, degrading all surrounding delivery routes.",
+        title: "Peripheral outlier orders distorting spatial clustering centroids",
+        problem: "Sparse outlier orders located at the peripheral boundary (e.g., 4–5km away from the dense delivery zone) distort standard K-Means centroids, degrading surrounding delivery routes.",
         solution: "Integrated a pre-processing DBSCAN step to detect and isolate remote outliers before route creation. Once core clusters are established, outliers are reassigned to the nearest optimal route, ensuring 100% order fulfillment."
       },
       {
