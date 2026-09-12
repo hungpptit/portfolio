@@ -221,13 +221,13 @@ const MyOwnershipSection: React.FC<{ detail: SmartLogisticsData; language: strin
           <div>
             <h3 className="text-base font-bold text-[#0B0E17]">
               {language === 'vi'
-                ? 'Thực tập sinh Lập trình Fullstack — Tham gia Phát triển Khối Nghiệp vụ & Giải thuật'
-                : 'Fullstack Developer Intern — Core Contributor (Backend & Optimization Focus)'}
+                ? 'Kỹ sư Phần mềm Fullstack (Thực tập sinh) — Trọng Tâm Kỹ Thuật & Đóng Góp Cốt Lõi'
+                : 'Fullstack Software Engineer (Intern) — Core Engineering Contributions'}
             </h3>
             <p className="text-xs text-[#475569] mt-0.5 font-normal">
               {language === 'vi'
-                ? 'Trong đội ngũ kỹ thuật tại CITARES, tôi tham gia với vai trò Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern), tập trung vào phát triển Backend, tích hợp thuật toán tối ưu tuyến đường, xử lý dữ liệu GPS thời gian thực và hỗ trợ giao diện điều phối.'
-                : 'As a Fullstack Developer Intern within the CITARES engineering team, I contributed to developing backend modules, integrating vehicle routing optimization algorithms, processing real-time GPS telemetry, and supporting dispatcher UI development.'}
+                ? 'Nhiệm vụ kỹ thuật tại CITARES được tập trung vào 3 trụ cột: Tham gia phát triển CSDL PostgreSQL 15 (3NF), Backend DDD & React Dispatcher Dashboard; Xây dựng pipeline 4 thuật toán định tuyến thuần TypeScript (giảm 58.2% km); và Thiết kế đường ống GPS telemetry trên Redis / RabbitMQ tuân thủ quy trình Git branching & PR review.'
+                : 'Core engineering responsibilities at CITARES structured into 3 pillars: Contributing to 3NF PostgreSQL 15 schema, DDD backend & React Dispatcher Dashboard; Engineering a 4-stage route optimization pipeline in pure TypeScript (–58.2% km); and Designing GPS telemetry on Redis / RabbitMQ with strict Git branching & PR reviews.'}
             </p>
           </div>
         </div>
@@ -236,7 +236,7 @@ const MyOwnershipSection: React.FC<{ detail: SmartLogisticsData; language: strin
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {detail.myOwnership.map((pillar, idx) => (
           <div key={idx} className="p-6 bg-white/90 border border-slate-200/80 hover:border-[#5E6AD2]/50 hover:shadow-md transition-all rounded-2xl flex flex-col justify-between gap-4">
             <div>
@@ -465,7 +465,7 @@ const SystemArchitectureSection: React.FC<{ detail?: SmartLogisticsData; languag
                 <span className="text-xs font-bold text-[#5E6AD2] uppercase font-mono">
                   4.1 CƠ SỞ DỮ LIỆU QUAN HỆ (POSTGRESQL 15)
                 </span>
-                <span className="text-xs font-mono text-emerald-700 font-bold">38 TABLES · 3NF</span>
+                <span className="text-xs font-mono text-emerald-700 font-bold">RELATIONAL · 3NF</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#334155]">
                 <div>
@@ -1062,9 +1062,9 @@ const SmartLogisticsPage: React.FC = () => {
                         'Redis 7 (Geospatial & Pub/Sub)',
                         'Socket.io (Live Radar)',
                         'React 19 & Vite (Dispatcher UI)',
-                        'Flutter (Driver Mobile App)',
+                        'RabbitMQ (Async Queue)',
                         'Genetic Algorithm (VRPTW Solver)',
-                        'Docker & Nginx',
+                        'Gitflow & PR Reviews',
                       ].map((tech, idx) => (
                         <span
                           key={idx}
@@ -1247,8 +1247,8 @@ const SmartLogisticsPage: React.FC = () => {
               desktopSrc="/assets/projects/smart-logistics/desktop.jpg"
               defaultTab="dual"
               availableTabs={['dual', 'desktop', 'mobile', 'terminal']}
-              desktopTitle={language === 'vi' ? 'Trung Tâm Điều Vận Radar & Bản Đồ Số (Web Portal)' : 'Dispatch Radar & Live Geospatial Map (Web Portal)'}
-              mobileTitle={language === 'vi' ? 'App Tài Xế & Ký Nhận POD (Flutter Mobile)' : 'Driver Routing & Electronic POD App (Flutter)'}
+              desktopTitle={language === 'vi' ? 'Bảng Điều Phối Trung Tâm & Bản Đồ Radar (React SPA)' : 'Central Dispatcher Dashboard & Radar Map (React SPA)'}
+              mobileTitle={language === 'vi' ? 'Nguồn Phát Định Vị GPS Đội Xe (Mô phỏng Mobile Stream 5s/lần)' : 'Courier GPS Telemetry Stream (Mobile Ingestion Source)'}
               desktopUrl="http://localhost:3000"
               themeColor="#5E6AD2"
               terminalCommand="npm test -- --testPathPattern=algorithms.spec.ts"
@@ -1284,12 +1284,12 @@ const SmartLogisticsPage: React.FC = () => {
           {/* ── My Engineering Ownership ── */}
           <section id="ownership">
             <SectionTitle icon={<Award className="w-5 h-5" />}
-              title={language === 'vi' ? 'Trách nhiệm & Đóng góp Kỹ thuật Cá nhân (My Engineering Contributions)' : 'My Engineering Contributions'}
+              title={language === 'vi' ? 'Trách Nhiệm & Đóng Góp Kỹ Thuật Cá Nhân' : 'My Engineering Ownership & Contributions'}
               badge={language === 'vi' ? 'Fullstack & Optimization' : 'Fullstack & Optimization'} />
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Trong đội ngũ kỹ thuật tại CITARES, tôi tham gia với vai trò Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern) — học hỏi từ các kỹ sư đi trước và đóng góp vào việc phát triển các module Backend & RESTful API, tích hợp giải thuật tối ưu tuyến đường, xử lý luồng định vị GPS thời gian thực và hỗ trợ giao diện điều phối React.'
-                : 'As a Fullstack Developer Intern within the CITARES engineering team, I collaborated with senior engineers to contribute to developing dispatch backend modules & RESTful APIs, integrating vehicle routing optimization algorithms, handling real-time GPS telemetry streams, and supporting React dispatcher UI.'}
+                ? 'Nhiệm vụ kỹ thuật của tôi tại CITARES được tập trung vào 3 trụ cột vững chắc: Tham gia phát triển CSDL PostgreSQL 15 chuẩn 3NF & tầng Backend Clean Architecture / DDD, xây dựng React SPA Dispatcher Dashboard; Lập trình pipeline 4 thuật toán định tuyến thuần TypeScript (giảm 58.2% km); và Thiết kế đường ống GPS telemetry trên Redis / RabbitMQ tuân thủ quy trình Git branching & PR review.'
+                : 'My engineering contributions at CITARES were focused into 3 solid technical pillars: Participating in developing 3NF PostgreSQL 15 schema, Clean Architecture & DDD backend, crafting the React SPA Dispatcher Dashboard; Engineering a 4-stage route optimization pipeline in pure TypeScript (–58.2% km); and Designing real-time GPS telemetry on Redis / RabbitMQ adhering to professional Git branching and PR reviews.'}
             </p>
             <MyOwnershipSection detail={detail} language={language} />
           </section>
@@ -1350,8 +1350,8 @@ const SmartLogisticsPage: React.FC = () => {
               title={language === 'vi' ? 'Kiến trúc Cơ sở Dữ liệu Quan hệ (Database Architecture)' : 'Relational Database Architecture'} />
             <p className="text-[#334155] text-base mb-8 font-normal">
               {language === 'vi'
-                ? 'Quy mô 38 bảng · 10 Phân hệ nghiệp vụ độc lập · Cơ sở dữ liệu PostgreSQL 15 · Trình ánh xạ quan hệ đối tượng Prisma ORM 5.x'
-                : '38 Tables · 10 Bounded Domain Contexts · PostgreSQL 15 · Prisma ORM 5.x'}
+                ? 'CSDL Quan Hệ PostgreSQL 15 Chuẩn 3NF · 10 Phân hệ nghiệp vụ độc lập · Trình ánh xạ Prisma ORM 5.x'
+                : '3NF Relational Database Schema · 10 Bounded Domain Contexts · PostgreSQL 15 · Prisma ORM 5.x'}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {detail.dbModules.map((mod) => {
