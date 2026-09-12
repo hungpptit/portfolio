@@ -125,7 +125,7 @@ export const Capabilities: React.FC = () => {
                   {[
                     'SQL Server (T-SQL, CTEs)',
                     language === 'vi' ? 'Chuẩn hóa CSDL (3NF)' : 'Database Normalization (3NF)',
-                    'PostgreSQL / PostGIS',
+                    'PostgreSQL 15 (Prisma ORM)',
                     language === 'vi' ? 'Bộ nhớ đệm Redis (TTL)' : 'Redis In-Memory Cache (TTL)',
                     language === 'vi' ? 'Giao dịch Toàn vẹn ACID' : 'ACID Transactions & Isolation',
                     'Firebase Firestore & FCM',

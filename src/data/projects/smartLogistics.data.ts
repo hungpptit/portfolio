@@ -167,7 +167,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
         items: [
           "Áp dụng Kiến trúc Clean Architecture & Domain-Driven Design (DDD) để phát triển các module dịch vụ điều vận, tạo đơn và phân loại bằng Express.js & TypeScript.",
           "Hỗ trợ xây dựng các thành phần giao diện React SPA Dispatcher Dashboard (bản đồ radar giám sát đội xe và danh sách điều phối bưu kiện thời gian thực).",
-          "Tham gia xây dựng CSDL quan hệ PostgreSQL, hỗ trợ tối ưu truy vấn dữ liệu không gian PostGIS (ST_Distance, GIST Index) và ánh xạ qua Prisma ORM.",
+          "Tham gia xây dựng CSDL quan hệ PostgreSQL, thiết kế cấu trúc chuẩn hóa 3NF, chuẩn hóa địa giới hành chính (Ward/Province) và ánh xạ qua Prisma ORM.",
           "Xây dựng các RESTful API Gateway, triển khai phân quyền RBAC 4 cấp, bộ lọc DTO Validation, Swagger và kiểm soát giao dịch ACID chống Race Condition khi quét đơn đồng thời."
         ]
       },
@@ -207,7 +207,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
     ],
 
     systemArchitecture: {
-      overview: "Hệ thống được thiết kế theo Kiến trúc Phần mềm Sạch (Clean Architecture) và Phương pháp Thiết kế Hướng miền nghiệp vụ (Domain-Driven Design - DDD) dưới dạng Khối đơn nhân phân tầng (Modular Monolith). Kiến trúc phân tách rõ ràng trách nhiệm giữa Tầng Giao diện (Presentation), Cổng An ninh (API Gateway), Miền Nghiệp vụ Lõi (Domain Logic), Động cơ AI (Optimization Solvers), Hạ tầng Hàng đợi & Bộ nhớ đệm (Async & Cache) và CSDL Lưu trữ Bền vững (PostgreSQL/PostGIS).",
+      overview: "Hệ thống được thiết kế theo Kiến trúc Phần mềm Sạch (Clean Architecture) và Phương pháp Thiết kế Hướng miền nghiệp vụ (Domain-Driven Design - DDD) dưới dạng Khối đơn nhân phân tầng (Modular Monolith). Kiến trúc phân tách rõ ràng trách nhiệm giữa Tầng Giao diện (Presentation), Cổng An ninh (API Gateway), Miền Nghiệp vụ Lõi (Domain Logic), Động cơ AI (Optimization Solvers), Hạ tầng Hàng đợi & Bộ nhớ đệm (Async & Cache) và CSDL Lưu trữ Bền vững (PostgreSQL 15).",
       layers: [
         {
           tier: 1,
@@ -258,11 +258,11 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
           name: "Tầng Cơ sở Dữ liệu & Hạ tầng Bền vững (Persistence & Infrastructure Layer)",
           badge: "DATA & INFRA",
           components: [
-            { name: "PostgreSQL 15 + PostGIS", desc: "38 bảng chuẩn hóa bậc 3 (3NF), đảm bảo giao dịch ACID và lập chỉ mục không gian", tech: "PostgreSQL 15 + PostGIS Extension" },
+            { name: "PostgreSQL 15", desc: "38 bảng chuẩn hóa bậc 3 (3NF), đảm bảo giao dịch ACID và tối ưu chỉ mục truy vấn", tech: "PostgreSQL 15 (Relational Database)" },
             { name: "Prisma ORM Client", desc: "Trình ánh xạ CSDL an toàn kiểu dữ liệu (Type-safe), quản lý tự động Migration", tech: "Prisma ORM 5.x" },
             { name: "Container Orchestration", desc: "Đóng gói toàn bộ dịch vụ backend, redis, rabbitmq và database đồng nhất", tech: "Docker + Docker Compose" }
           ],
-          whyUsed: "PostgreSQL đảm bảo tính toàn vẹn tuyệt đối của các giao dịch tài chính thu hộ (COD) và mốc lịch sử đơn hàng; PostGIS xử lý tối ưu các phép toán không gian địa lý; Prisma ORM loại bỏ 100% lỗi sai kiểu dữ liệu giữa TypeScript và CSDL."
+          whyUsed: "PostgreSQL đảm bảo tính toàn vẹn tuyệt đối của các giao dịch tài chính thu hộ (COD) và mốc lịch sử đơn hàng; Prisma ORM loại bỏ 100% lỗi sai kiểu dữ liệu giữa TypeScript và CSDL."
         }
       ],
       decisions: [
@@ -291,7 +291,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
       { layer: "Nền tảng thực thi (Runtime)", tech: "Node.js + TypeScript", version: "v20 LTS / TS 5.x", role: "Xử lý bất đồng bộ không chặn I/O, kiểm soát kiểu dữ liệu chặt chẽ cho toàn bộ logic nghiệp vụ" },
       { layer: "Khung phát triển API", tech: "Express.js", version: "^4.19", role: "Cổng giao diện lập trình ứng dụng (RESTful API Gateway), kiểm soát luồng trung gian (Middleware), tự động sinh tài liệu Swagger" },
       { layer: "Trình ánh xạ CSDL (ORM)", tech: "Prisma ORM", version: "^5.12", role: "Ánh xạ cơ sở dữ liệu định kiểu an toàn (Type-safe), quản lý phiên bản cấu trúc bảng (Migration)" },
-      { layer: "Cơ sở dữ liệu quan hệ", tech: "PostgreSQL 15 + PostGIS", version: "PG 15", role: "Cơ sở dữ liệu chuẩn hóa bậc 3 (3NF), tham gia xây dựng và tối ưu câu truy vấn, đảm bảo tính toàn vẹn giao dịch (ACID) và tính toán địa lý không gian (ST_Distance, GEOADD)" },
+      { layer: "Cơ sở dữ liệu quan hệ", tech: "PostgreSQL 15", version: "PG 15", role: "Cơ sở dữ liệu chuẩn hóa bậc 3 (3NF), tham gia xây dựng và tối ưu câu truy vấn, đảm bảo tính toàn vẹn giao dịch (ACID) và lưu trữ tọa độ trắc địa" },
       { layer: "Bộ nhớ đệm tốc độ cao", tech: "Redis 7 (In-Memory)", version: "^4.6", role: "Lưu trữ tọa độ GPS thời gian thực (HSET, GEOADD), xử lý giới hạn tần suất gọi API (Rate Limiting), độ trễ dưới 1 mili-giây" },
       { layer: "Giao tiếp thời gian thực", tech: "Socket.io (WebSocket)", version: "^4.7", role: "Truyền phát luồng tọa độ tài xế hai chiều liên tục, phát sự kiện giao hàng thành công tức thì không cần tải lại trang" },
       { layer: "Hàng đợi thông điệp", tech: "RabbitMQ (amqplib)", version: "^2.0", role: "Tách rời xử lý bất đồng bộ: gửi email thông báo, điều phối tác vụ tính toán thuật toán AI nặng" },
@@ -302,7 +302,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
       { layer: "Tính toán ma trận khoảng cách", tech: "Goong Maps → OSRM → Haversine", version: "—", role: "Cơ chế dự phòng 3 tầng thông minh (thời gian chờ tối đa 5 giây mỗi tầng), đảm bảo tính toán liên tục ngay cả khi mất mạng" },
       { layer: "Giao diện quản trị (Web)", tech: "React 19 + Vite 8 + Tailwind CSS v4", version: "—", role: "Trang web quản trị đơn trang (Single Page Application - SPA), tích hợp bản đồ số radar theo dõi đội xe trực quan" },
       { layer: "Ứng dụng di động (Mobile)", tech: "Flutter (Dart)", version: "—", role: "Ứng dụng tài xế chạy ngầm phát GPS liên tục, quét mã phản hồi nhanh (QR Code), chụp ảnh và ký nhận điện tử (POD)" },
-      { layer: "Đóng gói & Triển khai", tech: "Docker + Docker Compose", version: "—", role: "Đóng gói đồng nhất môi trường dịch vụ Backend, cơ sở dữ liệu PostgreSQL/PostGIS và Redis" },
+      { layer: "Đóng gói & Triển khai", tech: "Docker + Docker Compose", version: "—", role: "Đóng gói đồng nhất môi trường dịch vụ Backend, cơ sở dữ liệu PostgreSQL 15 và Redis" },
     ],
 
     aiPipeline: [
@@ -496,7 +496,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
         items: [
           "Applied Clean Architecture & Domain-Driven Design (DDD) principles to build dispatching, order creation, and sorting modules using Express.js & TypeScript.",
           "Supported developing React SPA Dispatcher Dashboard components (real-time fleet radar monitoring map and batch parcel dispatch list).",
-          "Participated in developing relational PostgreSQL schema, assisting in PostGIS spatial query tuning (ST_Distance, GIST Index) mapped through Prisma ORM.",
+          "Participated in developing relational PostgreSQL schema, designing 3NF normalized structures, administrative units mapping, and Prisma ORM integration.",
           "Built RESTful API Gateway modules, 4-tier RBAC authorization, declarative DTO validation, Swagger docs, and enforced ACID transactions preventing concurrent scanning race conditions."
         ]
       },
@@ -587,11 +587,11 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
           name: "Persistence & Infrastructure Layer",
           badge: "DATA & INFRA",
           components: [
-            { name: "PostgreSQL 15 + PostGIS", desc: "38-table 3NF relational schema with ACID transactions and GIST geospatial indexing", tech: "PostgreSQL 15 + PostGIS Extension" },
+            { name: "PostgreSQL 15", desc: "38-table 3NF relational schema with strict ACID transactions and query index tuning", tech: "PostgreSQL 15 (Relational Database)" },
             { name: "Prisma ORM Client", desc: "Type-safe database client and automated schema migration management", tech: "Prisma ORM 5.x" },
             { name: "Container Orchestration", desc: "Unified containerized deployment across backend, cache, message broker, and relational database", tech: "Docker + Docker Compose" }
           ],
-          whyUsed: "PostgreSQL guarantees strict financial integrity for COD collections and order audit logs; PostGIS handles high-performance spatial indexing; Prisma ORM eliminates type mismatches."
+          whyUsed: "PostgreSQL guarantees strict financial integrity for COD collections and order audit logs; Prisma ORM eliminates type mismatches."
         }
       ],
       decisions: [
@@ -620,7 +620,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
       { layer: "Execution Runtime", tech: "Node.js + TypeScript", version: "v20 LTS / TS 5.x", role: "Non-blocking asynchronous I/O runtime with strict end-to-end type safety across domain modules" },
       { layer: "API Framework", tech: "Express.js", version: "^4.19", role: "RESTful API Gateway, middleware orchestration, and automated Swagger OpenAPI documentation" },
       { layer: "Object-Relational Mapping (ORM)", tech: "Prisma ORM", version: "^5.12", role: "Type-safe database querying, declarative schema management, and automated database migrations" },
-      { layer: "Relational Database", tech: "PostgreSQL 15 + PostGIS", version: "PG 15", role: "3NF normalized relational database, participated in query optimization, ACID transaction integrity, and geospatial calculations (ST_Distance, GEOADD)" },
+      { layer: "Relational Database", tech: "PostgreSQL 15", version: "PG 15", role: "3NF normalized relational database, participated in query optimization, ACID transaction integrity, and coordinate persistence" },
       { layer: "High-Speed In-Memory Cache", tech: "Redis 7 (In-Memory)", version: "^4.6", role: "Real-time GPS telemetry hot buffering (HSET, GEOADD) and sub-millisecond API rate limiting" },
       { layer: "Real-Time Communication", tech: "Socket.io (WebSocket)", version: "^4.7", role: "Bi-directional WebSocket streaming for courier locations and instant live map state transitions" },
       { layer: "Message Broker Queue", tech: "RabbitMQ (amqplib)", version: "^2.0", role: "Asynchronous task offloading: batch AI route computation and transactional email dispatch" },
@@ -631,7 +631,7 @@ export const SMART_LOGISTICS_DETAIL: Record<Language, SmartLogisticsData> = {
       { layer: "Distance Matrix Computation", tech: "Goong Maps → OSRM → Haversine", version: "—", role: "3-tier intelligent fallback mechanism (5s timeout per tier) ensuring 100% offline dispatch reliability" },
       { layer: "Operations Dashboard (Web)", tech: "React 19 + Vite 8 + Tailwind CSS v4", version: "—", role: "Single Page Application (SPA) dispatcher dashboard with live radar fleet monitoring maps" },
       { layer: "Courier Mobile App (Mobile)", tech: "Flutter (Dart)", version: "—", role: "Background GPS tracking mobile application with QR scanning and digital Proof-of-Delivery (POD) capture" },
-      { layer: "Containerization & Deployment", tech: "Docker + Docker Compose", version: "—", role: "Containerized deployment orchestrating Backend services, PostgreSQL/PostGIS, and Redis" },
+      { layer: "Containerization & Deployment", tech: "Docker + Docker Compose", version: "—", role: "Containerized deployment orchestrating Backend services, PostgreSQL 15, and Redis" },
     ],
 
     aiPipeline: [

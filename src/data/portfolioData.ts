@@ -76,11 +76,11 @@ export const PROJECTS: Record<Language, Project[]> = {
       category: "backend",
       role: "Thực tập sinh Lập trình Fullstack (Fullstack Developer Intern)",
       image: "/assets/projects/smart-logistics/desktop.jpg",
-      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "RabbitMQ", "Docker", "React SPA", "Flutter"],
+      tags: ["Node.js / TypeScript", "PostgreSQL 15 (Prisma ORM)", "Redis 7", "Socket.io", "Genetic Algorithm", "RabbitMQ", "Docker", "React SPA", "Flutter"],
       architectureHighlights: [
         "Tham gia hiện thực hóa đường ống 4 thuật toán tối ưu tuyến đường thuần TypeScript: DBSCAN → K-Means → Giải thuật Di truyền (GA) → Thuật toán ghép cặp Hungarian.",
         "Xây dựng đường ống xử lý tọa độ định vị toàn cầu (GPS Telemetry) trên bộ nhớ đệm Redis tiếp nhận 1,321 điểm/giây với độ trễ P99 dưới 1 mili-giây.",
-        "Tham gia phát triển module Backend & RESTful API (Clean Architecture & DDD), thiết kế CSDL quan hệ PostgreSQL/PostGIS và hỗ trợ xây dựng React SPA Dispatcher Dashboard.",
+        "Tham gia phát triển module Backend & RESTful API (Clean Architecture & DDD), thiết kế CSDL quan hệ PostgreSQL 15 và hỗ trợ xây dựng React SPA Dispatcher Dashboard.",
         "Tích hợp dịch vụ tính toán định tuyến tách rời tải nặng qua hàng đợi thông điệp RabbitMQ.",
       ],
       metrics: "Hệ thống Doanh nghiệp • Giảm 58.2% quãng đường",
@@ -186,11 +186,11 @@ export const PROJECTS: Record<Language, Project[]> = {
       category: "backend",
       role: "Fullstack Developer Intern",
       image: "/assets/projects/smart-logistics/desktop.jpg",
-      tags: ["Node.js / TypeScript", "PostgreSQL 15 / PostGIS", "Redis 7", "Socket.io", "Genetic Algorithm", "RabbitMQ", "Docker", "React SPA", "Flutter"],
+      tags: ["Node.js / TypeScript", "PostgreSQL 15 (Prisma ORM)", "Redis 7", "Socket.io", "Genetic Algorithm", "RabbitMQ", "Docker", "React SPA", "Flutter"],
       architectureHighlights: [
         "Contributed to implementing the pure TypeScript 4-module route optimization pipeline: DBSCAN spatial clustering → K-Means capacity partition → Genetic Algorithm (GA) CVRP+VRPTW solver → Hungarian driver matching.",
         "Engineered high-throughput GPS Telemetry streaming over Redis in-memory cache, ingesting 1,321 coordinates/sec with sub-millisecond P99 latency.",
-        "Participated in developing backend modules (Clean Architecture & DDD), relational PostgreSQL/PostGIS schema, and assisted in building the React SPA Dispatcher Dashboard.",
+        "Participated in developing backend modules (Clean Architecture & DDD), relational PostgreSQL 15 schema, and assisted in building the React SPA Dispatcher Dashboard.",
         "Integrated asynchronous route optimization workload offloading via RabbitMQ message queues.",
       ],
       metrics: "Enterprise Grade • –58.2% Travel Distance",
@@ -309,7 +309,7 @@ export const SKILL_GROUPS: Record<Language, SkillGroup[]> = {
       description: "Thiết kế mô hình dữ liệu, tối ưu hóa truy vấn, xử lý tranh chấp đồng thời và tác vụ bất đồng bộ.",
       skills: [
         { name: "SQL Server (T-SQL, Index, Window Functions)", level: "Nâng cao", tag: "CSDL" },
-        { name: "PostgreSQL 15 / MySQL / PostGIS", level: "Thành thạo", tag: "CSDL" },
+        { name: "PostgreSQL 15 / MySQL", level: "Thành thạo", tag: "CSDL" },
         { name: "Redis 7 (Distributed Lock, TTL, Cache)", level: "Trọng tâm", tag: "Hiệu năng cao" },
         { name: "RabbitMQ (Message Broker / Hàng đợi)", level: "Trọng tâm", tag: "Bất đồng bộ" },
         { name: "Google Firebase (Firestore, FCM, Auth)", level: "Thành thạo" }
@@ -356,7 +356,7 @@ export const SKILL_GROUPS: Record<Language, SkillGroup[]> = {
       description: "Relational data modeling, query optimization, high-throughput caching, and async pipelines.",
       skills: [
         { name: "SQL Server (T-SQL, Indexing, Window Func)", level: "Advanced", tag: "RDBMS" },
-        { name: "PostgreSQL 15 / MySQL / PostGIS", level: "Proficient", tag: "RDBMS" },
+        { name: "PostgreSQL 15 / MySQL", level: "Proficient", tag: "RDBMS" },
         { name: "Redis 7 (Distributed Lock, TTL, Cache)", level: "Core", tag: "High Perf" },
         { name: "RabbitMQ (Message Broker / Queue)", level: "Core", tag: "Async" },
         { name: "Google Firebase (Firestore, FCM, Auth)", level: "Proficient" }
@@ -395,7 +395,7 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
       location: "TP. Hồ Chí Minh, Việt Nam",
       description: "Tham gia cùng nhóm kỹ thuật phát triển nền tảng điều vận thông minh Smart Logistics Platform (SLP), tập trung vào hiện thực hóa các module Backend & RESTful API, tích hợp giải thuật tối ưu tuyến đường, xử lý luồng dữ liệu định vị thời gian thực và hỗ trợ giao diện điều phối.",
       highlights: [
-        "Tham gia phát triển các module Backend & RESTful API bằng Express.js/TypeScript theo Clean Architecture & DDD; thiết kế CSDL PostgreSQL/PostGIS (chuẩn 3NF, GIST), phân quyền RBAC 4 cấp, giao dịch ACID và hỗ trợ xây dựng React SPA Dispatcher Dashboard.",
+        "Tham gia phát triển các module Backend & RESTful API bằng Express.js/TypeScript theo Clean Architecture & DDD; thiết kế CSDL PostgreSQL (chuẩn 3NF), phân quyền RBAC 4 cấp, giao dịch ACID và hỗ trợ xây dựng React SPA Dispatcher Dashboard.",
         "Hiện thực hóa pipeline 4 thuật toán tối ưu tuyến đường thuần TypeScript (DBSCAN → Capacity K-Means → Genetic Algorithm → Hungarian) kèm ma trận khoảng cách 3 tầng, giúp giảm 58.2% tổng quãng đường di chuyển cho 500+ đơn/ngày.",
         "Xây dựng pipeline xử lý GPS telemetry thời gian thực với Redis In-Memory (1.321 pings/giây, P99 < 1ms) và Socket.io; triển khai FSM 17 bước, cơ chế gom Tote Bag giảm 95% thao tác và đạt 12/12 kịch bản kiểm thử ACID (100% PASS)."
       ]
@@ -433,7 +433,7 @@ export const EXPERIENCE_MILESTONES: Record<Language, ExperienceItem[]> = {
       location: "Ho Chi Minh City, Vietnam",
       description: "Collaborated with the engineering team to build the Smart Logistics Platform (SLP), focusing on developing backend modules & RESTful APIs, vehicle routing optimization algorithms, real-time GPS telemetry, and supporting dispatcher UI development.",
       highlights: [
-        "Contributed to engineering backend modules & RESTful APIs using Express.js & TypeScript under Clean Architecture & DDD; designed PostgreSQL schema with PostGIS spatial indexing (GIST), 4-tier RBAC, ACID transactions, and supported developing the React SPA Dispatcher Dashboard.",
+        "Contributed to engineering backend modules & RESTful APIs using Express.js & TypeScript under Clean Architecture & DDD; designed PostgreSQL schema (3NF normalized), 4-tier RBAC, ACID transactions, and supported developing the React SPA Dispatcher Dashboard.",
         "Implemented a pure TypeScript 4-stage route optimization pipeline (DBSCAN spatial clustering → Capacity K-Means → Genetic Algorithm CVRP/VRPTW → Hungarian driver matching) with 3-tier distance fallback, reducing transit distance by 58.2% across 500+ daily orders.",
         "Engineered real-time GPS telemetry pipeline buffering into Redis In-Memory (1,321 pings/s, P99 < 1ms) with Socket.io radar tracking; built 17-state OrderStatus FSM, tote aggregation cutting 95% manual touches, and achieved 12/12 ACID tests (100% PASS)."
       ]

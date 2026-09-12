@@ -29,8 +29,8 @@ export const UI_TRANSLATIONS = {
         },
         {
           title: 'Cơ sở Dữ liệu & Tối ưu hóa Truy vấn',
-          desc: 'Thiết kế cấu trúc CSDL chuẩn hóa 3NF, xử lý giao dịch toàn vẹn ACID, tối ưu hóa chỉ mục Index, tính toán dữ liệu địa lý PostGIS và caching hiệu năng cao với Redis.',
-          tags: ['PostgreSQL', 'PostGIS', 'SQL Server', 'Prisma ORM', 'Redis 7'],
+          desc: 'Thiết kế cấu trúc CSDL chuẩn hóa 3NF, xử lý giao dịch toàn vẹn ACID, tối ưu hóa chỉ mục Index, chuẩn hóa dữ liệu địa giới hành chính và caching hiệu năng cao với Redis.',
+          tags: ['PostgreSQL 15', 'SQL Server', 'Prisma ORM', 'Redis 7'],
         },
         {
           title: 'Thuật toán Tối ưu hóa & Trí tuệ Nhân tạo',
@@ -134,8 +134,8 @@ export const UI_TRANSLATIONS = {
         },
         {
           title: 'Database Engineering & Performance',
-          desc: 'Crafting normalized 3NF relational schemas, strict ACID transaction management, query index tuning, geospatial spatial queries via PostGIS, and sub-millisecond in-memory caching with Redis.',
-          tags: ['PostgreSQL', 'PostGIS', 'SQL Server', 'Prisma ORM', 'Redis 7'],
+          desc: 'Crafting normalized 3NF relational schemas, strict ACID transaction management, query index tuning, administrative location normalization, and sub-millisecond in-memory caching with Redis.',
+          tags: ['PostgreSQL 15', 'SQL Server', 'Prisma ORM', 'Redis 7'],
         },
         {
           title: 'Algorithmic Optimization & AI',

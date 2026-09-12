@@ -455,7 +455,7 @@ const SystemArchitectureSection: React.FC<{ detail?: SmartLogisticsData; languag
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-700">
               {language === 'vi' ? 'TẦNG 4: CƠ SỞ DỮ LIỆU & DỊCH VỤ NGOÀI (PERSISTENCE & EXTERNAL LAYER)' : 'TIER 4: PERSISTENCE & EXTERNAL LAYER'}
             </span>
-            <span className="text-[11px] text-[#64748B] font-mono">PostgreSQL 15 · PostGIS · Goong Maps</span>
+            <span className="text-[11px] text-[#64748B] font-mono">PostgreSQL 15 · Goong Maps API</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
 
@@ -463,13 +463,13 @@ const SystemArchitectureSection: React.FC<{ detail?: SmartLogisticsData; languag
             <div className="md:col-span-8 p-4 bg-slate-50/80 border border-[#5E6AD2]/30 rounded-xl space-y-2 shadow-2xs">
               <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                 <span className="text-xs font-bold text-[#5E6AD2] uppercase font-mono">
-                  4.1 CƠ SỞ DỮ LIỆU QUAN HỆ (POSTGRESQL &amp; POSTGIS)
+                  4.1 CƠ SỞ DỮ LIỆU QUAN HỆ (POSTGRESQL 15)
                 </span>
                 <span className="text-xs font-mono text-emerald-700 font-bold">38 TABLES · 3NF</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#334155]">
                 <div>
-                  <strong>PostgreSQL 15 + PostGIS</strong>: Đảm bảo giao dịch ACID, hàm địa lý ST_Distance &amp; GIST Indexing.
+                  <strong>PostgreSQL 15</strong>: Đảm bảo giao dịch ACID, chuẩn hóa 3NF và liên kết địa giới hành chính (Ward/Province).
                 </div>
                 <div>
                   <strong>Prisma ORM 5.x Client</strong>: Truy vấn Type-safe 100%, quản lý Migrations tự động và bảo toàn Rollback.
@@ -1019,7 +1019,7 @@ const SmartLogisticsPage: React.FC = () => {
                       {language === 'vi' ? 'Cấu trúc Hệ thống:' : 'Architecture:'}
                     </span>
                     <span className="font-mono font-bold text-[#5E6AD2]">
-                      Clean Architecture · DDD · Redis 7 · PostGIS
+                      Clean Architecture · DDD · Redis 7 · PostgreSQL 15
                     </span>
                   </div>
                 </div>
@@ -1058,7 +1058,7 @@ const SmartLogisticsPage: React.FC = () => {
                     <div className="flex flex-wrap gap-2 mb-6">
                       {[
                         'Node.js & TypeScript',
-                        'PostgreSQL 15 & PostGIS',
+                        'PostgreSQL 15 (Prisma ORM)',
                         'Redis 7 (Geospatial & Pub/Sub)',
                         'Socket.io (Live Radar)',
                         'React 19 & Vite (Dispatcher UI)',
@@ -1301,7 +1301,7 @@ const SmartLogisticsPage: React.FC = () => {
               badge="Clean Architecture & DDD" />
             <p className="text-[#334155] text-base mb-8 leading-relaxed font-normal">
               {language === 'vi'
-                ? 'Sơ đồ luồng phân tầng kiến trúc tổng thể toàn hệ thống từ Client, Gateway, 10 phân hệ nghiệp vụ, Động cơ Tối ưu Tuyến đường đến Bộ đệm Redis và CSDL PostgreSQL/PostGIS.'
+                ? 'Sơ đồ luồng phân tầng kiến trúc tổng thể toàn hệ thống từ Client, Gateway, 10 phân hệ nghiệp vụ, Động cơ Tối ưu Tuyến đường đến Bộ đệm Redis và CSDL PostgreSQL 15.'
                 : 'End-to-end multi-tier architectural flow covering Presentation, Ingress Gateway, Domain Monolith, Pure TS optimization solvers, In-Memory Stream, and Relational Persistence.'}
             </p>
             <SystemArchitectureSection detail={detail} language={language} />
@@ -1350,8 +1350,8 @@ const SmartLogisticsPage: React.FC = () => {
               title={language === 'vi' ? 'Kiến trúc Cơ sở Dữ liệu Quan hệ (Database Architecture)' : 'Relational Database Architecture'} />
             <p className="text-[#334155] text-base mb-8 font-normal">
               {language === 'vi'
-                ? 'Quy mô 38 bảng · 10 Phân hệ nghiệp vụ độc lập · Cơ sở dữ liệu PostgreSQL 15 + PostGIS · Trình ánh xạ quan hệ đối tượng Prisma ORM 5.x'
-                : '38 Tables · 10 Bounded Domain Contexts · PostgreSQL 15 + PostGIS · Prisma ORM 5.x'}
+                ? 'Quy mô 38 bảng · 10 Phân hệ nghiệp vụ độc lập · Cơ sở dữ liệu PostgreSQL 15 · Trình ánh xạ quan hệ đối tượng Prisma ORM 5.x'
+                : '38 Tables · 10 Bounded Domain Contexts · PostgreSQL 15 · Prisma ORM 5.x'}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {detail.dbModules.map((mod) => {
